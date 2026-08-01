@@ -218,6 +218,35 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Related Projects
 
+### victron-venus Organization
+
+| Repo | Description | Link |
+|------|-------------|------|
+| inverter-control | Grid-zero feed-in control for Victron inverters | [GitHub](https://github.com/victron-venus/inverter-control) |
+| inverter-dashboard | Real-time web dashboard (FastAPI + Vue) | [GitHub](https://github.com/victron-venus/inverter-dashboard) |
+| inverter-dashboard-go | Real-time dashboard in Go | [GitHub](https://github.com/victron-venus/inverter-dashboard-go) |
+| inverter-dashboard-vue | Shared Vue 3 SPA component library | [GitHub](https://github.com/victron-venus/inverter-dashboard-vue) |
+| inverter-desktop | Desktop version of web dashboard | [GitHub](https://github.com/victron-venus/inverter-desktop) |
+| inverter-monitoring | Telegraf + InfluxDB + Grafana stack | [GitHub](https://github.com/victron-venus/inverter-monitoring) |
+| dbus-mqtt-battery | JBD BMS MQTT→D-Bus bridge with DVCC | [GitHub](https://github.com/victron-venus/dbus-mqtt-battery) |
+| dbus-tasmota-pv | Tasmota→Victron D-Bus PV inverter bridge | [GitHub](https://github.com/victron-venus/dbus-tasmota-pv) |
+| dbus-event-log | Audit log of D-Bus commands & state transitions | [GitHub](https://github.com/victron-venus/dbus-event-log) |
+| dbus-service-template | Template for D-Bus services | [GitHub](https://github.com/victron-venus/dbus-service-template) |
+| esphome-jbd-bms-mqtt | ESPHome ESP32 Bluetooth proxy for JBD BMS | [GitHub](https://github.com/victron-venus/esphome-jbd-bms-mqtt) |
+| esphome-ble-sensor-patterns | ESPHome BLE sensor patterns | [GitHub](https://github.com/victron-venus/esphome-ble-sensor-patterns) |
+| fastapi-mqtt-gateway | FastAPI MQTT gateway | [GitHub](https://github.com/victron-venus/fastapi-mqtt-gateway) |
+| mqtt-observability-opentelemetry | MQTT observability with OpenTelemetry | [GitHub](https://github.com/victron-venus/mqtt-observability-opentelemetry) |
+| solar-forecast-langgraph | Solar forecast with LangGraph | [GitHub](https://github.com/victron-venus/solar-forecast-langgraph) |
+| venus-os-observability | OpenTelemetry/Prometheus for Venus OS | [GitHub](https://github.com/victron-venus/venus-os-observability) |
+| venus-os-governance | Policy engine with approval gates | [GitHub](https://github.com/victron-venus/venus-os-governance) |
+| integration-tests | Integration tests for Venus OS projects | [GitHub](https://github.com/victron-venus/integration-tests) |
+| energy-data-rag-pipeline | Energy data RAG pipeline | [GitHub](https://github.com/victron-venus/energy-data-rag-pipeline) |
+| 4alvit | Personal utilities | [GitHub](https://github.com/victron-venus/4alvit) |
+| iot-project-builder-profile | IoT project builder | [GitHub](https://github.com/victron-venus/iot-project-builder-profile) |
+| .github | Organization profile | [GitHub](https://github.com/victron-venus/.github) |
+
+### External Dependencies
+
 - [esphome](https://github.com/esphome/esphome) - ESPHome firmware framework
 - [dbus-python](https://github.com/freedesktop/dbus-python) - Python D-Bus bindings
 - [Victron Energy](https://www.victronenergy.com/) - Energy management systems
