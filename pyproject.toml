@@ -1,0 +1,71 @@
+[project]
+name = "iot-profile-builder"
+version = "0.1.0"
+description = "IoT Developer Profile Generator from GitHub Activity"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "PyGithub>=2.6",
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+    "markdown>=3.6",
+    "matplotlib>=3.8",
+    "plotly>=5.18",
+    "httpx>=0.26",
+    "pydantic>=2.6",
+    "rich>=13.7",
+    "anthropic>=0.25",
+    "tenacity>=8.2",
+]
+
+[project.scripts]
+iot-profile-builder = "iot_profile_builder.cli:cli"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=4.1",
+    "ruff>=0.5",
+    "mypy>=1.8",
+    "pre-commit>=3.6",
+]
+
+[build-system]
+requires = ["setuptools>=70.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["iot_profile_builder*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "C90", "UP", "B", "SIM", "T20", "ARG"]
+ignore = ["S101", "T201", "C901"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "T201"]
+"iot_profile_builder/output/renderer.py" = ["E501"]
+"iot_profile_builder/cli.py" = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --cov=iot_profile_builder --cov-report=term-missing"
+
+[tool.anthropic]
+model = "claude-3-5-sonnet-20241022"
+max_tokens = 4096
+temperature = 0.3

@@ -1,0 +1,19 @@
+# Logs - NEVER push to GitHub
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+uv.lock
+
+# OS
+.DS_Store
+
+# Coverage
+.coverage
+htmlcov/
+.mypy_cache/
