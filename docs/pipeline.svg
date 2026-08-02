@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800" width="1100" height="800">
+  <defs>
+    <style>
+      .node-proc { fill: #111827; stroke: #3b82f6; stroke-width: 2; rx: 10; ry: 10; }
+      .node-decision { fill: #111827; stroke: #f59e0b; stroke-width: 2; }
+      .node-out { fill: #111827; stroke: #10b981; stroke-width: 2; rx: 10; ry: 10; }
+      .node-skip { fill: #111827; stroke: #ef4444; stroke-width: 2; rx: 10; ry: 10; }
+      .txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #e5e7eb; text-anchor: middle; dominant-baseline: middle; font-weight: 500; }
+      .txt-sm { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #e5e7eb; text-anchor: middle; dominant-baseline: middle; font-weight: 500; }
+      .edge { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .edge-lbl { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; fill: #9ca3af; text-anchor: middle; dominant-baseline: middle; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 20px; fill: #f9fafb; font-weight: 600; text-anchor: middle; }
+      .subt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; fill: #9ca3af; text-anchor: middle; }
+      .legend-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #d1d5db; text-anchor: start; dominant-baseline: middle; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="800" fill="#030712"/>
+
+  <!-- Title -->
+  <text x="550" y="40" class="title">Profile Generation Pipeline</text>
+  <text x="550" y="60" class="subt">IoT Project Builder — Automated Engineering Profile Generator</text>
+
+  <!-- Legend -->
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="18" height="18" rx="4" fill="#111827" stroke="#3b82f6" stroke-width="2"/>
+    <text x="25" y="9" class="legend-txt">Process / Transform</text>
+    <rect x="180" y="0" width="18" height="18" rx="4" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+    <text x="205" y="9" class="legend-txt">Decision</text>
+    <rect x="340" y="0" width="18" height="18" rx="4" fill="#111827" stroke="#10b981" stroke-width="2"/>
+    <text x="365" y="9" class="legend-txt">Output / Terminal</text>
+    <rect x="520" y="0" width="18" height="18" rx="4" fill="#111827" stroke="#ef4444" stroke-width="2"/>
+    <text x="545" y="9" class="legend-txt">Skip / Negative</text>
+  </g>
+
+  <!-- ===== NODES ===== -->
+  <!-- 1. GitHub API -->
+  <rect x="430" y="100" width="240" height="50" class="node-proc" id="n1"/>
+  <text x="550" y="125" class="txt">GitHub API</text>
+
+  <!-- 2. Repository Scanner -->
+  <rect x="400" y="180" width="300" height="50" class="node-proc" id="n2"/>
+  <text x="550" y="205" class="txt">Repository Scanner</text>
+
+  <!-- 3. Decision: IoT Score ≥ 0.3? -->
+  <polygon points="550,260 650,310 550,360 450,310" class="node-decision" id="n3"/>
+  <text x="550" y="310" class="txt-sm">IoT Score ≥ 0.3?</text>
+
+  <!-- 4. Skip (right branch) -->
+  <rect x="700" y="320" width="120" height="50" class="node-skip" id="n4"/>
+  <text x="760" y="345" class="txt-sm">Skip</text>
+
+  <!-- 5. Collect Metrics (left branch) -->
+  <rect x="260" y="380" width="200" height="50" class="node-proc" id="n5"/>
+  <text x="360" y="405" class="txt-sm">Collect Repository Metrics</text>
+
+  <!-- 6. ESPHome Analyzer -->
+  <rect x="80" y="480" width="180" height="50" class="node-proc" id="n6"/>
+  <text x="170" y="505" class="txt-sm">ESPHome Analyzer</text>
+
+  <!-- 7. D-Bus Analyzer -->
+  <rect x="420" y="480" width="180" height="50" class="node-proc" id="n7"/>
+  <text x="510" y="505" class="txt-sm">D-Bus Analyzer</text>
+
+  <!-- 8. Profile Generator -->
+  <rect x="260" y="570" width="260" height="50" class="node-proc" id="n8"/>
+  <text x="390" y="595" class="txt-sm">Profile Generator</text>
+
+  <!-- 9. Decision: LLM Available? -->
+  <polygon points="390,650 465,685 390,720 315,685" class="node-decision" id="n9"/>
+  <text x="390" y="685" class="txt-sm">LLM Available?</text>
+
+  <!-- 10. LLM Analysis (left) -->
+  <rect x="120" y="710" width="170" height="45" class="node-out" id="n10"/>
+  <text x="205" y="732" class="txt-sm">LLM Analysis</text>
+
+  <!-- 11. Heuristic Analysis (right) -->
+  <rect x="460" y="710" width="180" height="45" class="node-out" id="n11"/>
+  <text x="550" y="732" class="txt-sm">Heuristic Analysis</text>
+
+  <!-- 12. Render Outputs (merge point) -->
+  <rect x="680" y="570" width="240" height="180" class="node-out" id="n12"/>
+  <text x="800" y="595" class="txt-sm">Render Outputs</text>
+  <text x="800" y="625" class="txt-sm" style="font-size:10px;">• Markdown Profile</text>
+  <text x="800" y="645" class="txt-sm" style="font-size:10px;">• HTML + Plotly Charts</text>
+  <text x="800" y="665" class="txt-sm" style="font-size:10px;">• JSON Data</text>
+  <text x="800" y="685" class="txt-sm" style="font-size:10px;">• Static Chart Images</text>
+
+  <!-- ===== EDGES ===== -->
+  <!-- 1 → 2 -->
+  <path d="M550 150 L550 180" class="edge"/>
+
+  <!-- 2 → 3 -->
+  <path d="M550 230 L550 260" class="edge"/>
+
+  <!-- 3 → 4 (No / Skip) -->
+  <path d="M650 310 L700 320 L700 345" class="edge"/>
+  <text x="690" y="315" class="edge-lbl" style="text-anchor:end;">No</text>
+
+  <!-- 3 → 5 (Yes / Collect Metrics) -->
+  <path d="M450 310 L360 380" class="edge"/>
+  <text x="380" y="335" class="edge-lbl" style="text-anchor:start;">Yes</text>
+
+  <!-- 5 → 6 (ESPHome) -->
+  <path d="M260 405 L260 480" class="edge"/>
+
+  <!-- 5 → 7 (D-Bus) -->
+  <path d="M360 405 L420 480" class="edge"/>
+
+  <!-- 6 → 8 -->
+  <path d="M170 505 L170 545 L260 595" class="edge"/>
+
+  <!-- 7 → 8 -->
+  <path d="M510 505 L510 545 L390 595" class="edge"/>
+
+  <!-- 8 → 9 -->
+  <path d="M390 620 L390 650" class="edge"/>
+
+  <!-- 9 → 10 (Yes / LLM) -->
+  <path d="M315 685 L290 685 L290 710 L205 710" class="edge"/>
+  <text x="260" y="695" class="edge-lbl" style="text-anchor:middle;">Yes</text>
+
+  <!-- 9 → 11 (No / Heuristic) -->
+  <path d="M465 685 L485 685 L485 710 L460 710" class="edge"/>
+  <text x="485" y="695" class="edge-lbl" style="text-anchor:middle;">No</text>
+
+  <!-- 10 → 12 (Render Outputs) -->
+  <path d="M290 732 L680 660" class="edge"/>
+
+  <!-- 11 → 12 (Render Outputs) -->
+  <path d="M640 732 L680 660" class="edge"/>
+
+</svg>
