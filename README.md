@@ -1,252 +1,268 @@
-# IoT Project Builder Profile
+# IoT Project Builder Portfolio
 
-> Automated engineering profile generator for IoT developers based on GitHub activity
+> Complete Venus OS / IoT ecosystem across 26 repositories — hardware, control, visualization, AI, and infrastructure
 
-Analyzes a developer's GitHub repositories, ESPHome configurations, and D-Bus services to generate a comprehensive engineering profile with skill assessments, focus areas, and interactive visualizations.
+![Total Repos](https://img.shields.io/badge/repos-26-blue)
+![Total Commits](https://img.shields.io/badge/commits-2500+-brightgreen)
+![Languages](https://img.shields.io/badge/languages-Python%20%7C%20Go%20%7C%20Vue%2FTypeScript%20%7C%20HCL%20%7C%20YAML-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-![Profile Generation Pipeline](docs/pipeline.svg)
-
-## Features
-
-- **GitHub Scanner** - Identifies IoT-related repositories using keyword matching, language detection, and activity scoring
-- **ESPHome Analyzer** - Parses YAML configurations to extract devices, components, integrations, and custom components
-- **D-Bus Analyzer** - Extracts interfaces, methods, signals, and properties from Python D-Bus services
-- **LLM-Generated Profile** - Uses Anthropic Claude to create evidence-based skill assessments and narrative summaries
-- **Multi-Format Output** - Markdown, HTML (with embedded Plotly charts), JSON, and static chart images
-- **GitHub Action** - Automated weekly profile updates
-
-## Architecture
+## 🏗️ Architecture Overview
 
 ```mermaid
-graph TD
-    A[GitHub API] --> B[Repository Scanner]
-    B --> C{IoT Score ≥ 0.3?}
-    C -->|Yes| D[Collect Metrics]
-    C -->|No| E[Skip]
-    D --> F[ESPHome Analyzer]
-    D --> G[D-Bus Analyzer]
-    F --> H[Profile Generator]
-    G --> H
-    H --> I{LLM Available?}
-    I -->|Yes| J[LLM Analysis]
-    I -->|No| K[Heuristic Analysis]
-    J --> L[Render Outputs]
-    K --> L
-    L --> M[Markdown]
-    L --> N[HTML + Charts]
-    L --> O[JSON]
-    L --> P[Chart Images]
+graph TB
+    subgraph Hardware["Hardware Layer"]
+        ESP32[ESP32 + CT Sensors]
+        BLE[BLE Sensors<br/>JBD/Daly BMS, Temp, Plant]
+        Tasmota[Tasmota PV Meters]
+    end
+
+    subgraph Data["Data Layer"]
+        MQTT[(MQTT Broker)]
+        DBUS[D-Bus<br/>Victron Venus OS]
+        ESPHOME[ESPHome<br/>Firmware]
+    end
+
+    subgraph Control["Control Layer"]
+        INV_CTRL[inverter-control<br/>Grid-zero feed-in]
+        GOV[venus-os-governance<br/>Policy engine + safety]
+        EVENT[dbus-event-log<br/>Audit logging]
+    end
+
+    subgraph Viz["Visualization Layer"]
+        DASH_GO[inverter-dashboard-go<br/>Production web dashboard]
+        DESK[inverter-desktop<br/>Native Electron/Tauri app]
+        VUE_LIB[inverter-dashboard-vue<br/>Shared Vue 3 components]
+        MON[inverter-monitoring<br/>Telegraf/InfluxDB/Grafana]
+    end
+
+    subgraph AI["AI & Intelligence"]
+        RAG[energy-data-rag-pipeline<br/>RAG on Victron docs]
+        MCP[mcp-venus-os<br/>MCP server for LLM control]
+        SOLAR[solar-forecast-langgraph<br/>LangGraph forecasting]
+    end
+
+    subgraph Infra["Infrastructure & DevOps"]
+        TF_VICTRON[terraform-github-victron<br/>Org IaC]
+        TF_PERSONAL[terraform-github-4alvit<br/>Personal IaC]
+        INTEG[integration-tests<br/>Cross-project tests]
+        OTEL_PERS[mqtt-observability-opentelemetry<br/>Generic MQTT OTel]
+        OTEL_ORG[venus-os-observability<br/>Venus OS OTel]
+        SVC_TMPL[dbus-service-template<br/>D-Bus service copier template]
+        FASTAPI[fastapi-mqtt-gateway<br/>REST/WS ↔ MQTT bridge]
+        ESP_BLE[esphome-ble-sensor-patterns<br/>BLE sensor patterns]
+        BLD_PROF[iot-project-builder-profile<br/>This portfolio]
+        PG_PROF[4alvit<br/>Personal utilities]
+    end
+
+    %% Hardware connections
+    ESP32 -->|MQTT| MQTT
+    BLE -->|ESPHome| ESPHOME
+    Tasmota -->|MQTT| MQTT
+
+    %% Data layer
+    ESPHOME -->|MQTT| MQTT
+    MQTT -->|Bridge| DBUS
+    DBUS -->|Subscribe| INV_CTRL
+    DBUS -->|Subscribe| GOV
+    DBUS -->|Subscribe| EVENT
+
+    %% Control
+    INV_CTRL -->|Commands| DBUS
+    GOV -->|Approve/Reject| INV_CTRL
+    EVENT -->|Logs| DBUS
+
+    %% Visualization
+    MQTT -->|Real-time| DASH_GO
+    MQTT -->|Real-time| DESK
+    VUE_LIB -.->|Components| DASH_GO
+    VUE_LIB -.->|Components| DESK
+    DBUS -->|Metrics| MON
+
+    %% AI
+    DBUS -->|Data| RAG
+    DBUS -->|Control| MCP
+    MQTT -->|History| SOLAR
+
+    %% Infra
+    TF_VICTRON -.->|Manages| INV_CTRL
+    TF_VICTRON -.->|Manages| DASH_GO
+    OTEL_PERS -.->|Monitors| MQTT
+    OTEL_ORG -.->|Monitors| DBUS
+    INTEG -.->|Tests| INV_CTRL
+    INTEG -.->|Tests| DASH_GO
 ```
 
-## Quick Start
+## 🌟 Featured Projects
+
+| Project | Type | Commits | Description |
+|---------|------|---------|-------------|
+| **[inverter-control](https://github.com/victron-venus/inverter-control)** | Python | 336 | Grid-zero feed-in control with Home Assistant integration. The core control engine. |
+| **[inverter-desktop](https://github.com/victron-venus/inverter-desktop)** | Vue/Electron | 545 | Native desktop monitoring app. Most mature UI. |
+| **[inverter-dashboard-go](https://github.com/victron-venus/inverter-dashboard-go)** | Go | 185 | Production web dashboard with Docker Hub deployment. Real-time MQTT/WebSocket. |
+| **[dbus-mqtt-battery](https://github.com/victron-venus/dbus-mqtt-battery)** | Python | ~200 | JBD BMS → D-Bus bridge with DVCC support. Battle-tested on 8+ BMS units. |
+| **[mqtt-observability-opentelemetry](https://github.com/4alvit/mqtt-observability-opentelemetry)** | Python | ~150 | Complete OpenTelemetry stack for MQTT IoT. Generic, broker-agnostic. |
+
+## 🛠️ Technology Matrix
+
+| Category | Technologies |
+|----------|--------------|
+| **Languages** | Python 3.11+, Go 1.22+, Vue 3 / TypeScript, HCL (Terraform), YAML |
+| **Protocols** | MQTT 3.1/5, D-Bus, Modbus, BLE, HTTP/REST, WebSocket |
+| **Frameworks** | FastAPI, ESPHome, Electron/Tauri, LangGraph, Rich CLI |
+| **Observability** | OpenTelemetry, Prometheus, Grafana, Jaeger, InfluxDB |
+| **Infrastructure** | Docker, Docker Compose, Terraform, GitHub Actions, Copier |
+| **Hardware** | ESP32 (S3/BOX-3), CT Sensors (SCT-013), BLE Sensors, Cerbo GX |
+| **AI/ML** | Anthropic SDK, LangChain, pgvector, LangGraph |
+
+## 🚀 Getting Started
+
+### Minimal Victron Setup (Grid-Zero Control)
 
 ```bash
-# Install with pipx (recommended)
-pipx install git+https://github.com/4alvit/iot-project-builder-profile.git
-
-# Or install in development mode
-git clone https://github.com/4alvit/iot-project-builder-profile.git
-cd iot-project-builder-profile
-pip install -e ".[dev]"
-
-# Generate profile (with LLM)
-iot-profile-builder 4alvit --token $GITHUB_TOKEN --output ./profile
-
-# Generate profile (heuristic only, no API key needed)
-iot-profile-builder 4alvit --no-llm --output ./profile
+# 1. Hardware: ESP32 + SCT-013 CT sensor on grid feed
+# 2. Firmware: Flash ESPHome grid-sensor.yaml (from dbus-esphome-grid-sensor)
+# 3. Bridge: Run dbus-mqtt-battery for BMS or dbus-tasmota-pv for PV
+# 4. Control: Deploy inverter-control via Docker
+# 5. Dashboard: Access inverter-dashboard-go at :8080 or install inverter-desktop
 ```
 
-## Configuration
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GITHUB_TOKEN` | GitHub Personal Access Token (public_repo scope) | Yes |
-| `ANTHROPIC_API_KEY` | Anthropic API key for LLM analysis | No (falls back to heuristic) |
-
-### CLI Options
+### Full Observability Stack
 
 ```bash
-iot-profile-builder USERNAME [OPTIONS]
+# 1. Deploy mqtt-observability-opentelemetry (generic MQTT OTel)
+docker compose -f mqtt-observability-opentelemetry/docker-compose.yml up -d
 
-Options:
-  -t, --token TEXT       GitHub personal access token
-  -o, --output PATH      Output directory (default: .)
-  -m, --max-repos INT    Max repositories to scan (default: 100)
-  --no-llm               Disable LLM analysis (heuristic only)
-  -h, --help             Show help message
+# 2. Add venus-os-observability for Venus OS specific metrics
+docker compose -f venus-os-observability/docker-compose.yml up -d
+
+# 3. Configure Grafana dashboards (pre-built included)
 ```
 
-## Output Formats
-
-| Format | Description | File |
-|--------|-------------|------|
-| Markdown | Human-readable profile with tables | `username_profile.md` |
-| HTML | Interactive dashboard with Plotly charts | `username_profile.html` |
-| JSON | Machine-readable structured data | `username_profile.json` |
-| Charts | Static PNG charts (radar, pie, bar) | `charts/*.png` |
-
-## Sample Output
-
-### Focus Areas Radar Chart
-![Focus Areas](docs/focus-radar.png)
-
-### Complexity Distribution
-![Complexity](docs/complexity-pie.png)
-
-### Skills Assessment
-![Skills](docs/skills-bar.png)
-
-## GitHub Action
-
-The included workflow (`.github/workflows/update-profile.yml`) runs weekly to keep your profile current.
-
-### Setup
-
-1. Add `ANTHROPIC_API_KEY` to repository secrets (optional)
-2. Enable GitHub Actions on your fork
-3. Trigger manually via "Actions" tab or wait for Monday 6 AM UTC run
-
-### Customization
-
-```yaml
-# In workflow_dispatch inputs
-username: "your-github-username"  # Target user to analyze
-use-llm: true                     # Enable/disable LLM analysis
-```
-
-## Project Structure
-
-```
-iot-project-builder-profile/
-├── .github/workflows/     # GitHub Actions
-├── src/
-│   ├── cli.py             # Main CLI entry point
-│   ├── models.py          # Core data models (Pydantic-free)
-│   ├── scanner/
-│   │   └── github_scanner.py  # GitHub API scanner
-│   ├── analyzers/
-│   │   ├── esphome_analyzer.py  # ESPHome YAML parser
-│   │   └── dbus_analyzer.py     # D-Bus service analyzer
-│   ├── generator/
-│   │   └── profile_generator.py # LLM + heuristic profile gen
-│   └── output/
-│       └── renderer.py    # Markdown/HTML/JSON/Charts
-├── tests/                 # Pytest test suite
-├── pyproject.toml         # Project config
-└── README.md              # This file
-```
-
-## Data Models
-
-```mermaid
-classDiagram
-    class EngineeringProfile {
-        +username: str
-        +skills: List[SkillAssessment]
-        +focus_areas: Dict[FocusArea, float]
-        +complexity_distribution: Dict[ComplexityLevel, int]
-        +top_repositories: List[RepositoryMetrics]
-        +esphome_analyses: List[ESPHomeAnalysis]
-        +dbus_analyses: List[DBusAnalysis]
-        +narrative_summary: str
-        +key_strengths: List[str]
-        +growth_areas: List[str]
-    }
-    class SkillAssessment {
-        +name: str
-        +category: str
-        +proficiency: int
-        +evidence: List[str]
-        +confidence: float
-    }
-    class RepositoryMetrics {
-        +name: str
-        +stars: int
-        +language: str
-        +iot_score: float
-        +complexity: ComplexityLevel
-        +focus_areas: List[FocusArea]
-    }
-    class ESPHomeAnalysis {
-        +devices: List[str]
-        +components: List[ESPHomeComponent]
-        +custom_components: List[str]
-        +complexity: ComplexityLevel
-    }
-    class DBusAnalysis {
-        +service_name: str
-        +interfaces: List[DBusInterface]
-        +complexity: ComplexityLevel
-    }
-    EngineeringProfile "1" *-- "*" SkillAssessment
-    EngineeringProfile "1" *-- "*" RepositoryMetrics
-    EngineeringProfile "1" *-- "*" ESPHomeAnalysis
-    EngineeringProfile "1" *-- "*" DBusAnalysis
-```
-
-## Development
+### AI-Assisted Operations
 
 ```bash
-# Run tests
-pytest -v --cov=src
+# 1. Start MCP server for LLM control
+cd mcp-venus-os && pip install -e . && mcp-venus-os
 
-# Type checking
-mypy src/
+# 2. Query solar forecast
+cd solar-forecast-langgraph && python -m src.main
 
-# Linting
-ruff check src/
-
-# Format
-ruff format src/
+# 3. RAG queries on Victron docs
+cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 ```
 
-## Tech Stack
+## 📦 Repository Catalog
 
-- **Python 3.11+**
-- **GitHub API** via PyGithub
-- **YAML Parsing** via PyYAML
-- **Templating** via Jinja2
-- **Charts** via Plotly
-- **LLM** via Anthropic SDK (optional)
-- **CLI** via Rich
+### victron-venus Organization (15 repos)
 
-## License
+#### Control & Automation
+| Repo | Language | Description |
+|------|----------|-------------|
+| [inverter-control](https://github.com/victron-venus/inverter-control) | Python | Grid-zero feed-in control, HA integration, safety limits |
+| [venus-os-governance](https://github.com/victron-venus/venus-os-governance) | Python | Policy engine: SOC floors, rate limits, time restrictions, approval gates |
+| [dbus-event-log](https://github.com/victron-venus/dbus-event-log) | Python | Audit log of D-Bus commands & state transitions (SQLite/TimescaleDB) |
 
-MIT License - see [LICENSE](LICENSE) for details.
+#### Hardware Bridges
+| Repo | Language | Description |
+|------|----------|-------------|
+| [dbus-mqtt-battery](https://github.com/victron-venus/dbus-mqtt-battery) | Python | JBD BMS MQTT→D-Bus bridge with DVCC support |
+| [dbus-tasmota-pv](https://github.com/victron-venus/dbus-tasmota-pv) | Python | Tasmota PV inverter → Victron D-Bus bridge |
+| [esphome-jbd-bms-mqtt](https://github.com/victron-venus/esphome-jbd-bms-mqtt) | YAML | ESP32 Bluetooth proxy for JBD BMS → MQTT |
 
-## Related Projects
+#### Visualization
+| Repo | Language | Description |
+|------|----------|-------------|
+| [inverter-dashboard-go](https://github.com/victron-venus/inverter-dashboard-go) | Go | **Production** web dashboard: real-time MQTT/WS, Docker Hub, HA |
+| [inverter-desktop](https://github.com/victron-venus/inverter-desktop) | Vue/Electron | **Native** desktop app (Electron/Tauri), uses shared Vue components |
+| [inverter-dashboard-vue](https://github.com/victron-venus/inverter-dashboard-vue) | Vue | Shared Vue 3 component library: ECharts widgets, MQTT hooks, Tailwind |
+| [inverter-dashboard](https://github.com/victron-venus/inverter-dashboard) | Python | Legacy prototype (FastAPI + Vue) — use dashboard-go or desktop |
+| [inverter-monitoring](https://github.com/victron-venus/inverter-monitoring) | Python | Telegraf + InfluxDB + Grafana stack for long-term metrics |
 
-### victron-venus Organization
+#### Observability & Infrastructure
+| Repo | Language | Description |
+|------|----------|-------------|
+| [venus-os-observability](https://github.com/victron-venus/venus-os-observability) | Python | Venus OS specific OTel: D-Bus tracing, inverter metrics, Cerbo integration |
+| [integration-tests](https://github.com/victron-venus/integration-tests) | Python | Cross-project integration tests |
+| [terraform-github-victron](https://github.com/victron-venus/terraform-github-victron) | HCL | Org GitHub repo management via Terraform |
+| [.github](https://github.com/victron-venus/.github) | — | Organization profile & templates |
+| [SetupHelper](https://github.com/victron-venus/SetupHelper) | Python | Fork of Venus OS setup utility |
 
-| Repo | Description | Link |
-|------|-------------|------|
-| inverter-control | Grid-zero feed-in control for Victron inverters | [GitHub](https://github.com/victron-venus/inverter-control) |
-| inverter-dashboard | Real-time web dashboard (FastAPI + Vue) | [GitHub](https://github.com/victron-venus/inverter-dashboard) |
-| inverter-dashboard-go | Real-time dashboard in Go | [GitHub](https://github.com/victron-venus/inverter-dashboard-go) |
-| inverter-dashboard-vue | Shared Vue 3 SPA component library | [GitHub](https://github.com/victron-venus/inverter-dashboard-vue) |
-| inverter-desktop | Desktop version of web dashboard | [GitHub](https://github.com/victron-venus/inverter-desktop) |
-| inverter-monitoring | Telegraf + InfluxDB + Grafana stack | [GitHub](https://github.com/victron-venus/inverter-monitoring) |
-| dbus-mqtt-battery | JBD BMS MQTT→D-Bus bridge with DVCC | [GitHub](https://github.com/victron-venus/dbus-mqtt-battery) |
-| dbus-tasmota-pv | Tasmota→Victron D-Bus PV inverter bridge | [GitHub](https://github.com/victron-venus/dbus-tasmota-pv) |
-| dbus-event-log | Audit log of D-Bus commands & state transitions | [GitHub](https://github.com/victron-venus/dbus-event-log) |
-| dbus-service-template | Template for D-Bus services | [GitHub](https://github.com/victron-venus/dbus-service-template) |
-| esphome-jbd-bms-mqtt | ESPHome ESP32 Bluetooth proxy for JBD BMS | [GitHub](https://github.com/victron-venus/esphome-jbd-bms-mqtt) |
-| esphome-ble-sensor-patterns | ESPHome BLE sensor patterns | [GitHub](https://github.com/victron-venus/esphome-ble-sensor-patterns) |
-| fastapi-mqtt-gateway | FastAPI MQTT gateway | [GitHub](https://github.com/victron-venus/fastapi-mqtt-gateway) |
-| mqtt-observability-opentelemetry | MQTT observability with OpenTelemetry | [GitHub](https://github.com/victron-venus/mqtt-observability-opentelemetry) |
-| solar-forecast-langgraph | Solar forecast with LangGraph | [GitHub](https://github.com/victron-venus/solar-forecast-langgraph) |
-| venus-os-observability | OpenTelemetry/Prometheus for Venus OS | [GitHub](https://github.com/victron-venus/venus-os-observability) |
-| venus-os-governance | Policy engine with approval gates | [GitHub](https://github.com/victron-venus/venus-os-governance) |
-| integration-tests | Integration tests for Venus OS projects | [GitHub](https://github.com/victron-venus/integration-tests) |
-| energy-data-rag-pipeline | Energy data RAG pipeline | [GitHub](https://github.com/victron-venus/energy-data-rag-pipeline) |
-| 4alvit | Personal utilities | [GitHub](https://github.com/victron-venus/4alvit) |
-| iot-project-builder-profile | IoT project builder | [GitHub](https://github.com/victron-venus/iot-project-builder-profile) |
-| .github | Organization profile | [GitHub](https://github.com/victron-venus/.github) |
+#### Reference
+| Repo | Language | Description |
+|------|----------|-------------|
+| [esphome-ble-sensor-patterns](https://github.com/victron-venus/esphome-ble-sensor-patterns) | YAML | Production ESPHome BLE patterns: JBD/Daly BMS, Xiaomi/Inkbird temp, Mi Flora |
+| [dbus-service-template](https://github.com/victron-venus/dbus-service-template) | Python | Copier template for D-Bus services |
 
-### External Dependencies
+---
 
-- [esphome](https://github.com/esphome/esphome) - ESPHome firmware framework
-- [dbus-python](https://github.com/freedesktop/dbus-python) - Python D-Bus bindings
-- [Victron Energy](https://www.victronenergy.com/) - Energy management systems
+### 4alvit Personal (11 repos)
+
+#### AI & Intelligence
+| Repo | Language | Description |
+|------|----------|-------------|
+| [energy-data-rag-pipeline](https://github.com/4alvit/energy-data-rag-pipeline) | Python | RAG pipeline on Victron docs + energy data |
+| [mcp-venus-os](https://github.com/4alvit/mcp-venus-os) | Python | MCP server exposing Venus OS control to LLMs |
+| [solar-forecast-langgraph](https://github.com/4alvit/solar-forecast-langgraph) | Python | LangGraph-based solar production forecasting |
+
+#### Observability & Platform
+| Repo | Language | Description |
+|------|----------|-------------|
+| [mqtt-observability-opentelemetry](https://github.com/4alvit/mqtt-observability-opentelemetry) | Python | **Best personal project** — Generic MQTT OTel stack, broker-agnostic |
+| [fastapi-mqtt-gateway](https://github.com/4alvit/fastapi-mqtt-gateway) | Python | REST/WebSocket ↔ MQTT bridge with topic routing |
+
+#### Templates & Utilities
+| Repo | Language | Description |
+|------|----------|-------------|
+| [dbus-service-template](https://github.com/4alvit/dbus-service-template) | Python | Copier template for production D-Bus services |
+| [esphome-ble-sensor-patterns](https://github.com/4alvit/esphome-ble-sensor-patterns) | YAML | ESPHome BLE sensor patterns (duplicate of org for personal indexing) |
+| [iot-project-builder-profile](https://github.com/4alvit/iot-project-builder-profile) | Python | **This repo** — Engineering profile generator from GitHub activity |
+| [4alvit](https://github.com/4alvit/4alvit) | Python | Personal CLI utilities |
+| [terraform-github-4alvit](https://github.com/4alvit/terraform-github-4alvit) | HCL | Personal GitHub Terraform IaC |
+| [terraform-github-victron](https://github.com/4alvit/terraform-github-victron) | HCL | Mirror of org Terraform for reference |
+
+---
+
+## 🔗 Cross-References
+
+| If you need... | Start with... | Then add... |
+|----------------|---------------|-------------|
+| Grid-zero control | `inverter-control` | `venus-os-governance`, `dbus-event-log` |
+| Web dashboard | `inverter-dashboard-go` | `inverter-dashboard-vue` |
+| Native desktop app | `inverter-desktop` | `inverter-dashboard-vue` |
+| BMS integration | `dbus-mqtt-battery` | `esphome-jbd-bms-mqtt` |
+| PV meter integration | `dbus-tasmota-pv` | — |
+| MQTT observability (generic) | `mqtt-observability-opentelemetry` | — |
+| Venus OS observability | `venus-os-observability` | `mqtt-observability-opentelemetry` |
+| LLM control of inverter | `mcp-venus-os` | `inverter-control` |
+| Solar forecasting | `solar-forecast-langgraph` | `inverter-control` |
+| RAG on Victron docs | `energy-data-rag-pipeline` | — |
+
+## 📊 Project Status
+
+| Repo | Status | CI | Docker | Tests | Docs |
+|------|--------|----|--------|-------|------|
+| inverter-control | ✅ Production | ✅ | ✅ | ✅ | ✅ |
+| inverter-dashboard-go | ✅ Production | ✅ | ✅ (Docker Hub) | ✅ | ✅ |
+| inverter-desktop | ✅ Production | ✅ | ✅ | ✅ | ✅ |
+| inverter-dashboard-vue | ✅ Library | ✅ | N/A | ✅ | ✅ |
+| dbus-mqtt-battery | ✅ Production | ✅ | ✅ | ✅ | ✅ |
+| venus-os-governance | 🚧 Scaffold | ❌ | ❌ | ❌ | ✅ |
+| mqtt-observability-opentelemetry | ✅ Active | ✅ | ✅ | 🚧 | ✅ |
+| esphome-ble-sensor-patterns | ✅ Reference | ✅ | N/A | N/A | ✅ |
+| energy-data-rag-pipeline | 🚧 Prototype | ❌ | ❌ | ❌ | ✅ |
+| solar-forecast-langgraph | 🚧 Prototype | ❌ | ❌ | ❌ | ✅ |
+
+---
+
+## 🤝 Contributing
+
+This is a personal portfolio organization. Issues and PRs welcome on individual repos.
+
+## 📄 License
+
+All repos use MIT License unless noted otherwise.
+
+---
+
+**Maintained by [4alvit](https://github.com/4alvit)** · Part of the Victron/Energy monitoring ecosystem
