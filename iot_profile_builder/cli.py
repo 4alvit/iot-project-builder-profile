@@ -153,7 +153,7 @@ class IoTProfileBuilder:
 
         return analyses
 
-    async def _analyze_dbus(self, repos: list[RepositoryMetrics]) -> list[DBusAnalysis | None]:
+    async def _analyze_dbus(self, repos: list[RepositoryMetrics]) -> list[DBusAnalysis]:
         """Analyze D-Bus services in repositories."""
         analyses = []
 
@@ -249,7 +249,7 @@ async def main(
     return 0
 
 
-def cli() -> None:
+def cli() -> int:
     """Synchronous CLI wrapper."""
     import argparse
 

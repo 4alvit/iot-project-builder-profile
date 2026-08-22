@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Any
 import anthropic
 
 from ..models import (
+    ComplexityLevel,
     EngineeringProfile,
     FocusArea,
     RepositoryMetrics,
@@ -350,7 +351,7 @@ class ProfileGenerator:
                 pass
 
         # Build complexity distribution
-        complexity_dist: dict[str, int] = {}
+        complexity_dist: dict[ComplexityLevel, int] = {}
         for repo in repos:
             complexity_dist[repo.complexity] = complexity_dist.get(repo.complexity, 0) + 1
         for e in esphome_analyses:
@@ -404,7 +405,7 @@ def generate_heuristic_profile(
 
     skills = []
     focus_areas = {area: 0.0 for area in FocusArea}
-    complexity_dist: dict[str, int] = {}
+    complexity_dist: dict[ComplexityLevel, int] = {}
 
     # Aggregate from repos
     for repo in repos:
