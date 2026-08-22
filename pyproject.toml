@@ -23,6 +23,7 @@ iot-profile-builder = "iot_profile_builder.cli:cli"
 
 [project.optional-dependencies]
 dev = [
+    "types-PyYAML>=6.0",
     "pytest>=8.0",
     "pytest-asyncio>=0.23",
     "pytest-cov>=4.1",

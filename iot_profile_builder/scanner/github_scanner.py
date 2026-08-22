@@ -5,9 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from github import Github
+from github.ContentFile import ContentFile
 from github.Repository import Repository
 
 from ..models import (
@@ -23,65 +24,231 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 IOT_KEYWORDS = {
-    "esphome", "homeassistant", "home-assistant", "mqtt", "zigbee", "zwave",
-    "ble", "bluetooth", "modbus", "canbus", "can-bus", "d-bus", "dbus",
-    "bms", "battery", "inverter", "solar", "energy", "power", "meter",
-    "sensor", "actuator", "gpio", "i2c", "spi", "uart", "rs485",
-    "esp32", "esp8266", "rp2040", "stm32", "nrf52", "arduino",
-    "firmware", "embedded", "micropython", "circuitpython", "zephyr",
-    "freertos", "lora", "lorawan", "wifi", "ethernet", "thread",
-    "matter", "homekit", "alexa", "google-home", "voice",
-    "automation", "smart-home", "iot", "industrial", "scada",
-    "telemetry", "monitoring", "datalogger", "data-logger",
+    "esphome",
+    "homeassistant",
+    "home-assistant",
+    "mqtt",
+    "zigbee",
+    "zwave",
+    "ble",
+    "bluetooth",
+    "modbus",
+    "canbus",
+    "can-bus",
+    "d-bus",
+    "dbus",
+    "bms",
+    "battery",
+    "inverter",
+    "solar",
+    "energy",
+    "power",
+    "meter",
+    "sensor",
+    "actuator",
+    "gpio",
+    "i2c",
+    "spi",
+    "uart",
+    "rs485",
+    "esp32",
+    "esp8266",
+    "rp2040",
+    "stm32",
+    "nrf52",
+    "arduino",
+    "firmware",
+    "embedded",
+    "micropython",
+    "circuitpython",
+    "zephyr",
+    "freertos",
+    "lora",
+    "lorawan",
+    "wifi",
+    "ethernet",
+    "thread",
+    "matter",
+    "homekit",
+    "alexa",
+    "google-home",
+    "voice",
+    "automation",
+    "smart-home",
+    "iot",
+    "industrial",
+    "scada",
+    "telemetry",
+    "monitoring",
+    "datalogger",
+    "data-logger",
 }
 
 IOT_LANGUAGES = {
-    "Python", "C", "C++", "Rust", "Go", "C#", "TypeScript",
-    "JavaScript", "YAML", "CMake", "Makefile",
+    "Python",
+    "C",
+    "C++",
+    "Rust",
+    "Go",
+    "C#",
+    "TypeScript",
+    "JavaScript",
+    "YAML",
+    "CMake",
+    "Makefile",
 }
 
 FOCUS_KEYWORDS: dict[FocusArea, set[str]] = {
     FocusArea.HOME_AUTOMATION: {
-        "homeassistant", "home-assistant", "hass", "automation", "smart-home",
-        "light", "switch", "climate", "cover", "lock", "camera", "doorbell",
+        "homeassistant",
+        "home-assistant",
+        "hass",
+        "automation",
+        "smart-home",
+        "light",
+        "switch",
+        "climate",
+        "cover",
+        "lock",
+        "camera",
+        "doorbell",
     },
     FocusArea.INDUSTRIAL_IOT: {
-        "modbus", "canbus", "can-bus", "opcua", "opc-ua", "scada", "plc",
-        "industrial", "factory", "manufacturing", "process-control",
+        "modbus",
+        "canbus",
+        "can-bus",
+        "opcua",
+        "opc-ua",
+        "scada",
+        "plc",
+        "industrial",
+        "factory",
+        "manufacturing",
+        "process-control",
     },
     FocusArea.ENERGY_MANAGEMENT: {
-        "solar", "pv", "inverter", "energy", "power", "meter", "grid",
-        "battery", "bms", "charge", "discharge", "mppt", "photovoltaic",
+        "solar",
+        "pv",
+        "inverter",
+        "energy",
+        "power",
+        "meter",
+        "grid",
+        "battery",
+        "bms",
+        "charge",
+        "discharge",
+        "mppt",
+        "photovoltaic",
     },
     FocusArea.BMS: {
-        "bms", "battery-management", "cell", "balancing", "so", "soc",
-        "soh", "lifepo4", "li-ion", "battery-pack", "jbd", "daly",
+        "bms",
+        "battery-management",
+        "cell",
+        "balancing",
+        "so",
+        "soc",
+        "soh",
+        "lifepo4",
+        "li-ion",
+        "battery-pack",
+        "jbd",
+        "daly",
     },
     FocusArea.ENVIRONMENTAL: {
-        "temperature", "humidity", "pressure", "air-quality", "co2", "pm25",
-        "pm10", "voc", "weather", "environment", "climate-sensor",
+        "temperature",
+        "humidity",
+        "pressure",
+        "air-quality",
+        "co2",
+        "pm25",
+        "pm10",
+        "voc",
+        "weather",
+        "environment",
+        "climate-sensor",
     },
     FocusArea.VOICE_ASSISTANT: {
-        "voice", "assistant", "wake-word", "stt", "tts", "piper", "whisper",
-        "wyoming", "rhasspy", "snips", "alexa", "google-assistant",
+        "voice",
+        "assistant",
+        "wake-word",
+        "stt",
+        "tts",
+        "piper",
+        "whisper",
+        "wyoming",
+        "rhasspy",
+        "snips",
+        "alexa",
+        "google-assistant",
     },
     FocusArea.NETWORKING: {
-        "mqtt", "zigbee", "zwave", "z-wave", "thread", "matter", "ble",
-        "bluetooth", "lorawan", "wifi", "ethernet", "tcp", "udp", "coap",
-        "http", "websocket", "d-bus", "dbus", "grpc",
+        "mqtt",
+        "zigbee",
+        "zwave",
+        "z-wave",
+        "thread",
+        "matter",
+        "ble",
+        "bluetooth",
+        "lorawan",
+        "wifi",
+        "ethernet",
+        "tcp",
+        "udp",
+        "coap",
+        "http",
+        "websocket",
+        "d-bus",
+        "dbus",
+        "grpc",
     },
     FocusArea.EDGE_COMPUTING: {
-        "edge", "k3s", "kubeedge", "openyurt", "kubelet", "container",
-        "docker", "podman", "wasm", "webassembly", "edge-computing",
+        "edge",
+        "k3s",
+        "kubeedge",
+        "openyurt",
+        "kubelet",
+        "container",
+        "docker",
+        "podman",
+        "wasm",
+        "webassembly",
+        "edge-computing",
     },
     FocusArea.FIRMWARE: {
-        "firmware", "bootloader", "ota", "dfu", "flash", "gpio", "i2c",
-        "spi", "uart", "pwm", "adc", "dac", "rtos", "interrupt",
+        "firmware",
+        "bootloader",
+        "ota",
+        "dfu",
+        "flash",
+        "gpio",
+        "i2c",
+        "spi",
+        "uart",
+        "pwm",
+        "adc",
+        "dac",
+        "rtos",
+        "interrupt",
     },
     FocusArea.DATA_PIPELINE: {
-        "influxdb", "timeseries", "time-series", "prometheus", "grafana",
-        "kafka", "mqtt", "telegraf", "flux", "sql", "postgresql", "redis",
-        "data-pipeline", "etl", "analytics", "visualization",
+        "influxdb",
+        "timeseries",
+        "time-series",
+        "prometheus",
+        "grafana",
+        "kafka",
+        "mqtt",
+        "telegraf",
+        "flux",
+        "sql",
+        "postgresql",
+        "redis",
+        "data-pipeline",
+        "etl",
+        "analytics",
+        "visualization",
     },
 }
 
@@ -107,11 +274,13 @@ class GitHubScanner:
     def _calculate_iot_score(self, repo: Repository) -> float:
         """Calculate IoT relevance score (0-1)."""
         score = 0.0
-        text = " ".join([
-            (repo.description or "").lower(),
-            " ".join(repo.get_topics()).lower(),
-            (repo.language or "").lower(),
-        ])
+        text = " ".join(
+            [
+                (repo.description or "").lower(),
+                " ".join(repo.get_topics()).lower(),
+                (repo.language or "").lower(),
+            ]
+        )
 
         # Language match
         if repo.language in IOT_LANGUAGES:
@@ -175,10 +344,12 @@ class GitHubScanner:
 
     def _detect_focus_areas(self, repo: Repository) -> list[FocusArea]:
         """Detect IoT focus areas from repository metadata."""
-        text = " ".join([
-            (repo.description or "").lower(),
-            " ".join(repo.get_topics()).lower(),
-        ]).split()
+        text = " ".join(
+            [
+                (repo.description or "").lower(),
+                " ".join(repo.get_topics()).lower(),
+            ]
+        ).split()
 
         areas = []
         for area, keywords in FOCUS_KEYWORDS.items():
@@ -223,7 +394,8 @@ class GitHubScanner:
                 direction="desc",
             )
 
-            for repo in user_repos[: self.config.max_repos]:
+            repos_slice: list[Repository] = list(user_repos[: self.config.max_repos])
+            for repo in repos_slice:
                 total += 1
                 try:
                     metrics = self._repo_to_metrics(repo)
@@ -246,14 +418,16 @@ class GitHubScanner:
             errors=errors,
         )
 
-    async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict]:
+    async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict[str, Any]]:
         """Get repository contents for deeper analysis."""
         try:
             repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
             contents = repo.get_contents(path)
+            # get_contents returns a single ContentFile for files, list for dirs
+            if isinstance(contents, ContentFile):
+                contents = [contents]
             return [
-                {"name": c.name, "path": c.path, "type": c.type, "size": c.size}
-                for c in contents
+                {"name": c.name, "path": c.path, "type": c.type, "size": c.size} for c in contents
             ]
         except Exception as e:
             logger.error(f"Failed to get contents for {repo_name}: {e}")
@@ -264,7 +438,9 @@ class GitHubScanner:
         try:
             repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
             file = repo.get_contents(path)
-            return file.decoded_content.decode("utf-8")
+            if isinstance(file, list):
+                raise ValueError(f"{path} is a directory, not a file")
+            return (file.decoded_content or b"").decode("utf-8")
         except Exception as e:
             logger.error(f"Failed to get file {path} from {repo_name}: {e}")
             return None

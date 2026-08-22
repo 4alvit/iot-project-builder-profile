@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import anthropic
 
 from ..models import (
+    ComplexityLevel,
     EngineeringProfile,
     FocusArea,
     RepositoryMetrics,
@@ -16,8 +17,8 @@ from ..models import (
 )
 
 if TYPE_CHECKING:
-    from .dbus_analyzer import DBusAnalysis
-    from .esphome_analyzer import ESPHomeAnalysis
+    from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalysis
+    from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalysis
 
 logger = logging.getLogger(__name__)
 
@@ -38,44 +39,152 @@ SYSTEM_PROMPT = (
 
 SKILL_CATEGORIES = {
     "embedded_firmware": [
-        "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ESP-IDF", "Arduino",
-        "STM32", "NRF52", "RP2040", "GPIO", "I2C", "SPI", "UART",
-        "ADC", "DAC", "PWM", "interrupts", "DMA", "bootloader", "OTA",
+        "C",
+        "C++",
+        "Rust",
+        "Zephyr",
+        "FreeRTOS",
+        "ESP-IDF",
+        "Arduino",
+        "STM32",
+        "NRF52",
+        "RP2040",
+        "GPIO",
+        "I2C",
+        "SPI",
+        "UART",
+        "ADC",
+        "DAC",
+        "PWM",
+        "interrupts",
+        "DMA",
+        "bootloader",
+        "OTA",
     ],
     "home_automation": [
-        "Home Assistant", "ESPHome", "ESP32", "ESP8266", "YAML", "Jinja2",
-        "automation", "script", "sensor", "switch", "light", "climate",
-        "Matter", "Thread", "Zigbee", "Z-Wave", "Bluetooth", "BLE",
+        "Home Assistant",
+        "ESPHome",
+        "ESP32",
+        "ESP8266",
+        "YAML",
+        "Jinja2",
+        "automation",
+        "script",
+        "sensor",
+        "switch",
+        "light",
+        "climate",
+        "Matter",
+        "Thread",
+        "Zigbee",
+        "Z-Wave",
+        "Bluetooth",
+        "BLE",
     ],
     "energy_systems": [
-        "solar", "photovoltaic", "inverter", "MPPT", "battery", "BMS",
-        "Victron", "energy meter", "power monitoring", "grid", "off-grid",
-        "LiFePO4", "cell balancing", "SOC", "SOH", "Modbus", "DBus",
+        "solar",
+        "photovoltaic",
+        "inverter",
+        "MPPT",
+        "battery",
+        "BMS",
+        "Victron",
+        "energy meter",
+        "power monitoring",
+        "grid",
+        "off-grid",
+        "LiFePO4",
+        "cell balancing",
+        "SOC",
+        "SOH",
+        "Modbus",
+        "DBus",
     ],
     "protocols_networking": [
-        "MQTT", "Modbus", "CANbus", "HTTP", "WebSocket", "CoAP", "gRPC",
-        "TCP", "UDP", "LoRaWAN", "WiFi", "Ethernet", "BLE", "Zigbee",
-        "Thread", "Matter", "DBus", "D-Bus", "systemd", "NetworkManager",
+        "MQTT",
+        "Modbus",
+        "CANbus",
+        "HTTP",
+        "WebSocket",
+        "CoAP",
+        "gRPC",
+        "TCP",
+        "UDP",
+        "LoRaWAN",
+        "WiFi",
+        "Ethernet",
+        "BLE",
+        "Zigbee",
+        "Thread",
+        "Matter",
+        "DBus",
+        "D-Bus",
+        "systemd",
+        "NetworkManager",
     ],
     "data_pipeline": [
-        "InfluxDB", "TimescaleDB", "Prometheus", "Grafana", "Telegraf",
-        "Kafka", "MQTT", "Flux", "SQL", "PostgreSQL", "Redis",
-        "data pipeline", "ETL", "analytics", "visualization",
+        "InfluxDB",
+        "TimescaleDB",
+        "Prometheus",
+        "Grafana",
+        "Telegraf",
+        "Kafka",
+        "MQTT",
+        "Flux",
+        "SQL",
+        "PostgreSQL",
+        "Redis",
+        "data pipeline",
+        "ETL",
+        "analytics",
+        "visualization",
     ],
     "edge_computing": [
-        "Docker", "Podman", "Kubernetes", "K3s", "KubeEdge", "OpenYurt",
-        "container", "WASM", "WebAssembly", "edge", "IoT Edge",
-        "Azure IoT Edge", "AWS Greengrass",
+        "Docker",
+        "Podman",
+        "Kubernetes",
+        "K3s",
+        "KubeEdge",
+        "OpenYurt",
+        "container",
+        "WASM",
+        "WebAssembly",
+        "edge",
+        "IoT Edge",
+        "Azure IoT Edge",
+        "AWS Greengrass",
     ],
     "python_iot": [
-        "Python", "asyncio", "aiohttp", "paho-mqtt", "bleak", "pyModbus",
-        "dbus-python", "pydbus", "gi.repository", "Home Assistant",
-        "ESPHome", "custom components", "integration",
+        "Python",
+        "asyncio",
+        "aiohttp",
+        "paho-mqtt",
+        "bleak",
+        "pyModbus",
+        "dbus-python",
+        "pydbus",
+        "gi.repository",
+        "Home Assistant",
+        "ESPHome",
+        "custom components",
+        "integration",
     ],
     "voice_ai": [
-        "voice assistant", "wake word", "STT", "TTS", "Piper", "Whisper",
-        "Wyoming", "Rhasspy", "ESP32-S3", "I2S", "ES8311", "ES7210",
-        "microphone", "speaker", "audio pipeline",
+        "voice assistant",
+        "wake word",
+        "STT",
+        "TTS",
+        "Piper",
+        "Whisper",
+        "Wyoming",
+        "Rhasspy",
+        "ESP32-S3",
+        "I2S",
+        "ES8311",
+        "ES7210",
+        "microphone",
+        "speaker",
+        "audio pipeline",
     ],
 }
 
@@ -93,7 +202,7 @@ class ProfileGenerator:
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> EngineeringProfile:
         """Generate complete engineering profile."""
 
@@ -115,7 +224,7 @@ class ProfileGenerator:
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> str:
         """Build context string for LLM."""
 
@@ -162,7 +271,7 @@ class ProfileGenerator:
         )
         return context
 
-    def _call_llm(self, context: str) -> dict:
+    def _call_llm(self, context: str) -> dict[str, Any]:
         """Call Anthropic API for profile generation."""
 
         focus_area_values = [a.value for a in FocusArea]
@@ -186,7 +295,7 @@ class ProfileGenerator:
         )
 
         try:
-            response = self.client.messages.create(
+            response = self.client.messages.create(  # type: ignore[call-overload]
                 model=self.model,
                 max_tokens=4096,
                 temperature=0.3,
@@ -199,7 +308,8 @@ class ProfileGenerator:
             json_start = content.find("{")
             json_end = content.rfind("}") + 1
             if json_start >= 0 and json_end > json_start:
-                return json.loads(content[json_start:json_end])
+                parsed: dict[str, Any] = json.loads(content[json_start:json_end])
+                return parsed
 
         except Exception as e:
             logger.error(f"LLM call failed: {e}")
@@ -208,11 +318,11 @@ class ProfileGenerator:
 
     def _parse_llm_result(
         self,
-        llm_result: dict,
+        llm_result: dict[str, Any],
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> EngineeringProfile:
         """Parse LLM result into EngineeringProfile."""
 
@@ -221,13 +331,15 @@ class ProfileGenerator:
         # Parse skills
         skills = []
         for s in llm_result.get("skills", []):
-            skills.append(SkillAssessment(
-                name=s["name"],
-                category=s["category"],
-                proficiency=s["proficiency"],
-                evidence=s["evidence"],
-                confidence=s["confidence"],
-            ))
+            skills.append(
+                SkillAssessment(
+                    name=s["name"],
+                    category=s["category"],
+                    proficiency=s["proficiency"],
+                    evidence=s["evidence"],
+                    confidence=s["confidence"],
+                )
+            )
 
         # Parse focus areas
         focus_areas = {}
@@ -239,7 +351,7 @@ class ProfileGenerator:
                 pass
 
         # Build complexity distribution
-        complexity_dist = {}
+        complexity_dist: dict[ComplexityLevel, int] = {}
         for repo in repos:
             complexity_dist[repo.complexity] = complexity_dist.get(repo.complexity, 0) + 1
         for e in esphome_analyses:
@@ -267,14 +379,13 @@ class ProfileGenerator:
             github_stats=github_stats,
         )
 
-    def _fallback_analysis(self) -> dict:
+    def _fallback_analysis(self) -> dict[str, Any]:
         """Fallback analysis if LLM fails."""
         return {
             "skills": [],
             "focus_areas": {},
             "narrative_summary": (
-                "LLM analysis unavailable. Profile based on heuristic "
-                "analysis only."
+                "LLM analysis unavailable. Profile based on heuristic analysis only."
             ),
             "key_strengths": [],
             "growth_areas": ["Enable LLM analysis for deeper insights"],
@@ -285,7 +396,7 @@ def generate_heuristic_profile(
     repos: list[RepositoryMetrics],
     esphome_analyses: list[ESPHomeAnalysis],
     dbus_analyses: list[DBusAnalysis],
-    github_stats: dict,
+    github_stats: dict[str, Any],
     username: str,
 ) -> EngineeringProfile:
     """Generate profile without LLM (heuristic only)."""
@@ -294,7 +405,7 @@ def generate_heuristic_profile(
 
     skills = []
     focus_areas = {area: 0.0 for area in FocusArea}
-    complexity_dist = {}
+    complexity_dist: dict[ComplexityLevel, int] = {}
 
     # Aggregate from repos
     for repo in repos:
@@ -339,20 +450,21 @@ def generate_heuristic_profile(
         "YAML": "home_automation",
     }
 
-    all_text = " ".join([
-        r.name + " " + (r.description or "") + " " + " ".join(r.topics)
-        for r in repos
-    ]).lower()
+    all_text = " ".join(
+        [r.name + " " + (r.description or "") + " " + " ".join(r.topics) for r in repos]
+    ).lower()
 
     for tech, category in tech_keywords.items():
         if tech.lower() in all_text:
-            skills.append(SkillAssessment(
-                name=tech,
-                category=category,
-                proficiency=min(5 + all_text.count(tech.lower()), 10),
-                evidence=[r.name for r in repos if tech.lower() in r.name.lower()][:3],
-                confidence=0.7,
-            ))
+            skills.append(
+                SkillAssessment(
+                    name=tech,
+                    category=category,
+                    proficiency=min(5 + all_text.count(tech.lower()), 10),
+                    evidence=[r.name for r in repos if tech.lower() in r.name.lower()][:3],
+                    confidence=0.7,
+                )
+            )
 
     top_repos = sorted(repos, key=lambda r: r.iot_score, reverse=True)[:10]
 
@@ -371,11 +483,7 @@ def generate_heuristic_profile(
             "Heuristic analysis based on repository metadata, "
             "ESPHome configs, and D-Bus services found."
         ),
-        key_strengths=[
-            area.value for area, score in focus_areas.items() if score > 0.5
-        ][:3],
-        growth_areas=[
-            area.value for area, score in focus_areas.items() if score < 0.3
-        ][:3],
+        key_strengths=[area.value for area, score in focus_areas.items() if score > 0.5][:3],
+        growth_areas=[area.value for area, score in focus_areas.items() if score < 0.3][:3],
         github_stats=github_stats,
     )

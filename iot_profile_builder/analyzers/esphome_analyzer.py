@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import yaml
 
@@ -15,20 +15,61 @@ from ..models import (
     FocusArea,
 )
 
+__all__ = ["ESPHomeAnalysis"]
+
 if TYPE_CHECKING:
     pass
 
 logger = logging.getLogger(__name__)
 
 COMPONENT_TYPES = {
-    "sensor", "binary_sensor", "switch", "light", "climate", "cover",
-    "fan", "number", "text", "select", "button", "lock", "valve",
-    "alarm_control_panel", "camera", "media_player", "remote_transmitter",
-    "remote_receiver", "i2c", "spi", "uart", "canbus", "wifi", "ethernet",
-    "ble_client", "ble_server", "bluetooth_proxy", "esp32_ble_tracker",
-    "esp32_ble", "esp32_camera", "mqtt", "api", "ota", "web_server",
-    "logger", "captive_portal", "time", "sun", "display", "touchscreen",
-    "font", "image", "color", "lambda", "script", "automation", "interval",
+    "sensor",
+    "binary_sensor",
+    "switch",
+    "light",
+    "climate",
+    "cover",
+    "fan",
+    "number",
+    "text",
+    "select",
+    "button",
+    "lock",
+    "valve",
+    "alarm_control_panel",
+    "camera",
+    "media_player",
+    "remote_transmitter",
+    "remote_receiver",
+    "i2c",
+    "spi",
+    "uart",
+    "canbus",
+    "wifi",
+    "ethernet",
+    "ble_client",
+    "ble_server",
+    "bluetooth_proxy",
+    "esp32_ble_tracker",
+    "esp32_ble",
+    "esp32_camera",
+    "mqtt",
+    "api",
+    "ota",
+    "web_server",
+    "logger",
+    "captive_portal",
+    "time",
+    "sun",
+    "display",
+    "touchscreen",
+    "font",
+    "image",
+    "color",
+    "lambda",
+    "script",
+    "automation",
+    "interval",
 }
 
 PLATFORM_KEYWORDS: dict[str, set[str]] = {
@@ -48,32 +89,97 @@ PLATFORM_KEYWORDS: dict[str, set[str]] = {
 
 FOCUS_AREA_KEYWORDS: dict[FocusArea, set[str]] = {
     FocusArea.HOME_AUTOMATION: {
-        "light", "switch", "climate", "cover", "fan", "lock", "valve",
-        "binary_sensor", "sensor", "automation", "script",
+        "light",
+        "switch",
+        "climate",
+        "cover",
+        "fan",
+        "lock",
+        "valve",
+        "binary_sensor",
+        "sensor",
+        "automation",
+        "script",
     },
     FocusArea.ENERGY_MANAGEMENT: {
-        "power", "energy", "voltage", "current", "battery", "solar",
-        "inverter", "mppt", "energy_meter", "ct_clamp",
+        "power",
+        "energy",
+        "voltage",
+        "current",
+        "battery",
+        "solar",
+        "inverter",
+        "mppt",
+        "energy_meter",
+        "ct_clamp",
     },
     FocusArea.BMS: {
-        "bms", "cell", "balancing", "battery", "jbd", "daly", "ant_bms",
+        "bms",
+        "cell",
+        "balancing",
+        "battery",
+        "jbd",
+        "daly",
+        "ant_bms",
     },
     FocusArea.ENVIRONMENTAL: {
-        "temperature", "humidity", "pressure", "co2", "pm25", "pm10",
-        "air_quality", "voc", "weather", "bme280", "bme680", "scd40",
-        "sht30", "sht40", "aht10", "aht20",
+        "temperature",
+        "humidity",
+        "pressure",
+        "co2",
+        "pm25",
+        "pm10",
+        "air_quality",
+        "voc",
+        "weather",
+        "bme280",
+        "bme680",
+        "scd40",
+        "sht30",
+        "sht40",
+        "aht10",
+        "aht20",
     },
     FocusArea.VOICE_ASSISTANT: {
-        "voice_assistant", "microphone", "speaker", "i2s_audio", "es8311",
-        "es7210", "wake_word", "piper", "whisper", "wyoming",
+        "voice_assistant",
+        "microphone",
+        "speaker",
+        "i2s_audio",
+        "es8311",
+        "es7210",
+        "wake_word",
+        "piper",
+        "whisper",
+        "wyoming",
     },
     FocusArea.NETWORKING: {
-        "mqtt", "wifi", "ethernet", "ble", "bluetooth", "espnow",
-        "thread", "matter", "zigbee", "zwave", "modbus", "canbus",
+        "mqtt",
+        "wifi",
+        "ethernet",
+        "ble",
+        "bluetooth",
+        "espnow",
+        "thread",
+        "matter",
+        "zigbee",
+        "zwave",
+        "modbus",
+        "canbus",
     },
     FocusArea.FIRMWARE: {
-        "ota", "deep_sleep", "watchdog", "gpio", "i2c", "spi", "uart",
-        "adc", "dac", "pwm", "rtc", "preferences", "flash",
+        "ota",
+        "deep_sleep",
+        "watchdog",
+        "gpio",
+        "i2c",
+        "spi",
+        "uart",
+        "adc",
+        "dac",
+        "pwm",
+        "rtc",
+        "preferences",
+        "flash",
     },
 }
 
@@ -81,7 +187,7 @@ FOCUS_AREA_KEYWORDS: dict[FocusArea, set[str]] = {
 class ESPHomeAnalyzer:
     """Analyzes ESPHome YAML configurations."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.custom_components: set[str] = set()
 
     def analyze_file(self, file_path: str | Path) -> ESPHomeAnalysis:
@@ -150,7 +256,7 @@ class ESPHomeAnalyzer:
         except Exception:
             return False
 
-    def _extract_devices(self, config: dict) -> list[str]:
+    def _extract_devices(self, config: dict[str, Any]) -> list[str]:
         """Extract target devices from config."""
         devices = []
         for key in ("esp32", "esp8266", "rp2040", "bk72xx", "rtl87xx"):
@@ -162,7 +268,7 @@ class ESPHomeAnalyzer:
                     devices.append(key)
         return devices
 
-    def _extract_components(self, config: dict) -> list[ESPHomeComponent]:
+    def _extract_components(self, config: dict[str, Any]) -> list[ESPHomeComponent]:
         """Extract all components from config."""
         components = []
 
@@ -187,7 +293,7 @@ class ESPHomeAnalyzer:
 
         return components
 
-    def _detect_integrations(self, comp_type: str, comp_config: dict) -> list[str]:
+    def _detect_integrations(self, comp_type: str, comp_config: dict[str, Any]) -> list[str]:
         """Detect integrations used by a component."""
         integrations = []
         text = str(comp_config).lower()
@@ -202,7 +308,7 @@ class ESPHomeAnalyzer:
 
         return list(set(integrations))
 
-    def _extract_custom_components(self, config: dict) -> list[str]:
+    def _extract_custom_components(self, config: dict[str, Any]) -> list[str]:
         """Extract custom component references."""
         custom = set()
 
@@ -228,7 +334,7 @@ class ESPHomeAnalyzer:
 
         return list(custom)
 
-    def _extract_external_libs(self, config: dict) -> list[str]:
+    def _extract_external_libs(self, config: dict[str, Any]) -> list[str]:
         """Extract external library dependencies."""
         libs = set()
 
@@ -252,7 +358,7 @@ class ESPHomeAnalyzer:
 
     def _assess_complexity(
         self,
-        config: dict,
+        config: dict[str, Any],
         components: list[ESPHomeComponent],
         custom_components: list[str],
     ) -> ComplexityLevel:
@@ -275,9 +381,18 @@ class ESPHomeAnalyzer:
 
         # Advanced features
         advanced_keys = {
-            "lambda", "script", "automation", "deep_sleep", "web_server",
-            "bluetooth_proxy", "voice_assistant", "esp32_camera",
-            "i2s_audio", "display", "touchscreen", "canbus",
+            "lambda",
+            "script",
+            "automation",
+            "deep_sleep",
+            "web_server",
+            "bluetooth_proxy",
+            "voice_assistant",
+            "esp32_camera",
+            "i2s_audio",
+            "display",
+            "touchscreen",
+            "canbus",
         }
         factors += sum(1 for k in advanced_keys if k in config)
 
@@ -303,13 +418,15 @@ class ESPHomeAnalyzer:
     def _detect_focus_areas(
         self,
         components: list[ESPHomeComponent],
-        config: dict,
+        config: dict[str, Any],
     ) -> list[FocusArea]:
         """Detect focus areas from components and config."""
         areas = set()
-        all_text = " ".join([
-            c.type for c in components
-        ] + [c.platform or "" for c in components] + [c.name for c in components]).lower()
+        all_text = " ".join(
+            [c.type for c in components]
+            + [c.platform or "" for c in components]
+            + [c.name for c in components]
+        ).lower()
 
         config_text = str(config).lower()
 

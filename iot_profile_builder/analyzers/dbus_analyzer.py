@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from ..models import (
     ComplexityLevel,
@@ -14,34 +14,65 @@ from ..models import (
     FocusArea,
 )
 
+__all__ = ["DBusAnalysis"]
+
 if TYPE_CHECKING:
     pass
 
 logger = logging.getLogger(__name__)
 
 DBUS_KEYWORDS = {
-    "dbus", "dbus-python", "pydbus", "gi.repository", "GLib",
-    "org.freedesktop", "com.victronenergy", "com.victron",
-    "system-bus", "session-bus", "message-bus",
+    "dbus",
+    "dbus-python",
+    "pydbus",
+    "gi.repository",
+    "GLib",
+    "org.freedesktop",
+    "com.victronenergy",
+    "com.victron",
+    "system-bus",
+    "session-bus",
+    "message-bus",
 }
 
 FOCUS_KEYWORDS: dict[FocusArea, set[str]] = {
     FocusArea.ENERGY_MANAGEMENT: {
-        "com.victronenergy.solarcharger", "com.victronenergy.inverter",
-        "com.victronenergy.grid", "com.victronenergy.vebus",
-        "power", "energy", "voltage", "current", "ac", "dc",
+        "com.victronenergy.solarcharger",
+        "com.victronenergy.inverter",
+        "com.victronenergy.grid",
+        "com.victronenergy.vebus",
+        "power",
+        "energy",
+        "voltage",
+        "current",
+        "ac",
+        "dc",
     },
     FocusArea.BMS: {
-        "com.victronenergy.battery", "com.victronenergy.bms",
-        "cell", "balancing", "soc", "soh", "temperature",
+        "com.victronenergy.battery",
+        "com.victronenergy.bms",
+        "cell",
+        "balancing",
+        "soc",
+        "soh",
+        "temperature",
     },
     FocusArea.HOME_AUTOMATION: {
-        "com.victronenergy.settings", "com.victronenergy.system",
-        "relay", "switch", "input", "output",
+        "com.victronenergy.settings",
+        "com.victronenergy.system",
+        "relay",
+        "switch",
+        "input",
+        "output",
     },
     FocusArea.NETWORKING: {
-        "org.freedesktop.DBus", "org.bluez", "org.freedesktop.NetworkManager",
-        "org.freedesktop.ModemManager", "mqtt", "modbus", "canbus",
+        "org.freedesktop.DBus",
+        "org.bluez",
+        "org.freedesktop.NetworkManager",
+        "org.freedesktop.ModemManager",
+        "mqtt",
+        "modbus",
+        "canbus",
     },
 }
 
@@ -49,8 +80,8 @@ FOCUS_KEYWORDS: dict[FocusArea, set[str]] = {
 class DBusAnalyzer:
     """Analyzes D-Bus service implementations."""
 
-    def __init__(self):
-        self.xml_interface_cache: dict[str, dict] = {}
+    def __init__(self) -> None:
+        self.xml_interface_cache: dict[str, dict[str, Any]] = {}
 
     def analyze_file(self, file_path: str | Path) -> DBusAnalysis | None:
         """Analyze a single Python file for D-Bus service."""
@@ -138,8 +169,7 @@ class DBusAnalyzer:
         interfaces = []
 
         interface_blocks = re.findall(
-            r'<interface\s+name\s*=\s*["\']([^"\']+)["\']>(.*?)</interface>',
-            content, re.DOTALL
+            r'<interface\s+name\s*=\s*["\']([^"\']+)["\']>(.*?)</interface>', content, re.DOTALL
         )
 
         for name, block in interface_blocks:
@@ -150,13 +180,15 @@ class DBusAnalyzer:
             path_match = re.search(r'path\s*[=:]\s*["\']([^"\']+)["\']', block)
             path = path_match.group(1) if path_match else f"/{name.replace('.', '/')}"
 
-            interfaces.append(DBusInterface(
-                name=name,
-                path=path,
-                methods=methods,
-                signals=signals,
-                properties=properties,
-            ))
+            interfaces.append(
+                DBusInterface(
+                    name=name,
+                    path=path,
+                    methods=methods,
+                    signals=signals,
+                    properties=properties,
+                )
+            )
 
         return interfaces
 
@@ -164,7 +196,7 @@ class DBusAnalyzer:
         """Parse interfaces from Python code with decorators."""
         interfaces = []
 
-        class_pattern = r'class\s+(\w+)\s*\([^)]*\):'
+        class_pattern = r"class\s+(\w+)\s*\([^)]*\):"
         class_matches = re.finditer(class_pattern, content)
 
         for match in class_matches:
@@ -181,19 +213,21 @@ class DBusAnalyzer:
             properties = self._extract_python_properties(class_content)
             path = self._extract_object_path(class_content, class_name)
 
-            interfaces.append(DBusInterface(
-                name=interface_name,
-                path=path,
-                methods=methods,
-                signals=signals,
-                properties=properties,
-            ))
+            interfaces.append(
+                DBusInterface(
+                    name=interface_name,
+                    path=path,
+                    methods=methods,
+                    signals=signals,
+                    properties=properties,
+                )
+            )
 
         return interfaces
 
     def _extract_class_content(self, content: str, start: int) -> str:
         """Extract class body content."""
-        lines = content[start:].split('\n')
+        lines = content[start:].split("\n")
         class_lines = []
         indent = None
 
@@ -208,16 +242,25 @@ class DBusAnalyzer:
                 break
             class_lines.append(line)
 
-        return '\n'.join(class_lines)
+        return "\n".join(class_lines)
 
     def _is_dbus_class(self, content: str) -> bool:
         """Check if class is a D-Bus service."""
         content_lower = content.lower()
-        return any(kw in content_lower for kw in [
-            '@dbus', '@method', '@signal', '@property',
-            'dbus.service', 'pydbus', 'gi.repository',
-            'com.victronenergy', 'org.freedesktop',
-        ])
+        return any(
+            kw in content_lower
+            for kw in [
+                "@dbus",
+                "@method",
+                "@signal",
+                "@property",
+                "dbus.service",
+                "pydbus",
+                "gi.repository",
+                "com.victronenergy",
+                "org.freedesktop",
+            ]
+        )
 
     def _extract_interface_name(self, content: str, class_name: str) -> str:
         """Extract D-Bus interface name."""
@@ -249,15 +292,15 @@ class DBusAnalyzer:
 
         return f"/{class_name.lower()}"
 
-    def _extract_python_methods(self, content: str) -> list[dict]:
+    def _extract_python_methods(self, content: str) -> list[dict[str, Any]]:
         """Extract methods from Python class."""
         methods = []
 
-        for match in re.finditer(r'@(?:dbus\.)?method\s+(?:async\s+)?def\s+(\w+)', content):
+        for match in re.finditer(r"@(?:dbus\.)?method\s+(?:async\s+)?def\s+(\w+)", content):
             methods.append({"name": match.group(1), "type": "method"})
 
         for match in re.finditer(
-            r'async\s+def\s+(\w+)\s*\([^)]*\)\s*:(?=.*?dbus)',
+            r"async\s+def\s+(\w+)\s*\([^)]*\)\s*:(?=.*?dbus)",
             content,
             re.DOTALL,
         ):
@@ -265,39 +308,39 @@ class DBusAnalyzer:
 
         return methods
 
-    def _extract_python_signals(self, content: str) -> list[dict]:
+    def _extract_python_signals(self, content: str) -> list[dict[str, Any]]:
         """Extract signals from Python class."""
         signals = []
 
-        for match in re.finditer(r'@(?:dbus\.)?signal\s+(?:async\s+)?def\s+(\w+)', content):
+        for match in re.finditer(r"@(?:dbus\.)?signal\s+(?:async\s+)?def\s+(\w+)", content):
             signals.append({"name": match.group(1), "type": "signal"})
 
         return signals
 
-    def _extract_python_properties(self, content: str) -> list[dict]:
+    def _extract_python_properties(self, content: str) -> list[dict[str, Any]]:
         """Extract properties from Python class."""
         properties = []
 
-        for match in re.finditer(r'@(?:dbus\.)?property\s+(?:async\s+)?def\s+(\w+)', content):
+        for match in re.finditer(r"@(?:dbus\.)?property\s+(?:async\s+)?def\s+(\w+)", content):
             properties.append({"name": match.group(1), "type": "property"})
 
         return properties
 
-    def _extract_xml_methods(self, block: str) -> list[dict]:
+    def _extract_xml_methods(self, block: str) -> list[dict[str, Any]]:
         """Extract methods from XML interface block."""
         methods = []
         for match in re.finditer(r'<method\s+name\s*=\s*["\']([^"\']+)["\']', block):
             methods.append({"name": match.group(1), "type": "method"})
         return methods
 
-    def _extract_xml_signals(self, block: str) -> list[dict]:
+    def _extract_xml_signals(self, block: str) -> list[dict[str, Any]]:
         """Extract signals from XML interface block."""
         signals = []
         for match in re.finditer(r'<signal\s+name\s*=\s*["\']([^"\']+)["\']', block):
             signals.append({"name": match.group(1), "type": "signal"})
         return signals
 
-    def _extract_xml_properties(self, block: str) -> list[dict]:
+    def _extract_xml_properties(self, block: str) -> list[dict[str, Any]]:
         """Extract properties from XML interface block."""
         properties = []
         for match in re.finditer(r'<property\s+name\s*=\s*["\']([^"\']+)["\']', block):
@@ -387,8 +430,7 @@ class DBusAnalyzer:
 
     def _score_async_methods(self, interfaces: list[DBusInterface]) -> int:
         async_count = sum(
-            1 for i in interfaces for m in i.methods
-            if m.get("type") == "async_method"
+            1 for i in interfaces for m in i.methods if m.get("type") == "async_method"
         )
         return 1 if async_count > 5 else 0
 
