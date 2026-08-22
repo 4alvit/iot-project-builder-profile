@@ -394,7 +394,7 @@ class GitHubScanner:
                 direction="desc",
             )
 
-            repos_slice = list(user_repos[: self.config.max_repos])
+            repos_slice: list[Repository] = list(user_repos[: self.config.max_repos])
             for repo in repos_slice:
                 total += 1
                 try:
