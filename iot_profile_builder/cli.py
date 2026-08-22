@@ -13,13 +13,13 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
-from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalyzer
-from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalyzer
+from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalysis, DBusAnalyzer
+from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalysis, ESPHomeAnalyzer
 from iot_profile_builder.generator.profile_generator import (
     ProfileGenerator,
     generate_heuristic_profile,
 )
-from iot_profile_builder.models import ScanConfig
+from iot_profile_builder.models import RepositoryMetrics, ScanConfig
 from iot_profile_builder.output.renderer import generate_profile_outputs
 from iot_profile_builder.scanner.github_scanner import GitHubScanner, ScanResult
 
@@ -123,7 +123,7 @@ class IoTProfileBuilder:
 
         return output_dir / f"{self.config.username}_profile.md"
 
-    async def _analyze_esphome(self, repos) -> list:
+    async def _analyze_esphome(self, repos: list[RepositoryMetrics]) -> list[ESPHomeAnalysis]:
         """Analyze ESPHome configurations in repositories."""
         analyses = []
         local_cache = Path.home() / ".cache" / "iot-profile-builder" / "repos"
@@ -143,7 +143,8 @@ class IoTProfileBuilder:
                         )
                         if is_esphome:
                             analysis = self.esphome_analyzer.analyze_content(
-                                content, f"{repo.name}/{yaml_file['path']}"
+                                str(content),
+                                f"{repo.name}/{yaml_file['path']}",  # content may be None -> empty
                             )
                             if analysis.components:
                                 analyses.append(analysis)
@@ -152,7 +153,7 @@ class IoTProfileBuilder:
 
         return analyses
 
-    async def _analyze_dbus(self, repos) -> list:
+    async def _analyze_dbus(self, repos: list[RepositoryMetrics]) -> list[DBusAnalysis | None]:
         """Analyze D-Bus services in repositories."""
         analyses = []
 
@@ -208,7 +209,7 @@ def _print_scan_summary(result: ScanResult) -> None:
         console.print(repo_table)
 
 
-def _print_output_summary(paths: dict) -> None:
+def _print_output_summary(paths: dict[str, Path]) -> None:
     """Print output file summary."""
     table = Table(title="Generated Outputs")
     table.add_column("Format", style="cyan")
@@ -248,7 +249,7 @@ async def main(
     return 0
 
 
-def cli():
+def cli() -> None:
     """Synchronous CLI wrapper."""
     import argparse
 

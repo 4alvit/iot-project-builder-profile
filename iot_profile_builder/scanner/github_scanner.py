@@ -5,9 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from github import Github
+from github.ContentFile import ContentFile
 from github.Repository import Repository
 
 from ..models import (
@@ -393,7 +394,7 @@ class GitHubScanner:
                 direction="desc",
             )
 
-            for repo in user_repos[: self.config.max_repos]:
+            for repo in list(user_repos[: self.config.max_repos]):
                 total += 1
                 try:
                     metrics = self._repo_to_metrics(repo)
@@ -416,11 +417,14 @@ class GitHubScanner:
             errors=errors,
         )
 
-    async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict]:
+    async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict[str, Any]]:
         """Get repository contents for deeper analysis."""
         try:
             repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
             contents = repo.get_contents(path)
+            # get_contents returns a single ContentFile for files, list for dirs
+            if isinstance(contents, ContentFile):
+                contents = [contents]
             return [
                 {"name": c.name, "path": c.path, "type": c.type, "size": c.size} for c in contents
             ]
@@ -433,7 +437,9 @@ class GitHubScanner:
         try:
             repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
             file = repo.get_contents(path)
-            return file.decoded_content.decode("utf-8")
+            if isinstance(file, list):
+                raise ValueError(f"{path} is a directory, not a file")
+            return (file.decoded_content or b"").decode("utf-8")
         except Exception as e:
             logger.error(f"Failed to get file {path} from {repo_name}: {e}")
             return None

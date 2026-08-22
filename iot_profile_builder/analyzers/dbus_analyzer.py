@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from ..models import (
     ComplexityLevel,
@@ -78,8 +78,8 @@ FOCUS_KEYWORDS: dict[FocusArea, set[str]] = {
 class DBusAnalyzer:
     """Analyzes D-Bus service implementations."""
 
-    def __init__(self):
-        self.xml_interface_cache: dict[str, dict] = {}
+    def __init__(self) -> None:
+        self.xml_interface_cache: dict[str, dict[str, Any]] = {}
 
     def analyze_file(self, file_path: str | Path) -> DBusAnalysis | None:
         """Analyze a single Python file for D-Bus service."""
@@ -290,7 +290,7 @@ class DBusAnalyzer:
 
         return f"/{class_name.lower()}"
 
-    def _extract_python_methods(self, content: str) -> list[dict]:
+    def _extract_python_methods(self, content: str) -> list[dict[str, Any]]:
         """Extract methods from Python class."""
         methods = []
 
@@ -306,7 +306,7 @@ class DBusAnalyzer:
 
         return methods
 
-    def _extract_python_signals(self, content: str) -> list[dict]:
+    def _extract_python_signals(self, content: str) -> list[dict[str, Any]]:
         """Extract signals from Python class."""
         signals = []
 
@@ -315,7 +315,7 @@ class DBusAnalyzer:
 
         return signals
 
-    def _extract_python_properties(self, content: str) -> list[dict]:
+    def _extract_python_properties(self, content: str) -> list[dict[str, Any]]:
         """Extract properties from Python class."""
         properties = []
 
@@ -324,21 +324,21 @@ class DBusAnalyzer:
 
         return properties
 
-    def _extract_xml_methods(self, block: str) -> list[dict]:
+    def _extract_xml_methods(self, block: str) -> list[dict[str, Any]]:
         """Extract methods from XML interface block."""
         methods = []
         for match in re.finditer(r'<method\s+name\s*=\s*["\']([^"\']+)["\']', block):
             methods.append({"name": match.group(1), "type": "method"})
         return methods
 
-    def _extract_xml_signals(self, block: str) -> list[dict]:
+    def _extract_xml_signals(self, block: str) -> list[dict[str, Any]]:
         """Extract signals from XML interface block."""
         signals = []
         for match in re.finditer(r'<signal\s+name\s*=\s*["\']([^"\']+)["\']', block):
             signals.append({"name": match.group(1), "type": "signal"})
         return signals
 
-    def _extract_xml_properties(self, block: str) -> list[dict]:
+    def _extract_xml_properties(self, block: str) -> list[dict[str, Any]]:
         """Extract properties from XML interface block."""
         properties = []
         for match in re.finditer(r'<property\s+name\s*=\s*["\']([^"\']+)["\']', block):

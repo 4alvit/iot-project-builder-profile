@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
-import plotly.graph_objects as go
+import plotly.graph_objects as go  # type: ignore[import-untyped]
 from jinja2 import Environment, FileSystemLoader
 
 from ..models import (
@@ -451,7 +451,7 @@ class ProfileRenderer:
 def generate_profile_outputs(
     profile: EngineeringProfile,
     output_dir: Path,
-    formats: list[str] = None,
+    formats: list[str] | None = None,
 ) -> dict[str, Path]:
     """Generate all profile outputs."""
     if formats is None:
@@ -485,11 +485,11 @@ def generate_profile_outputs(
     return results
 
 
-def _profile_to_dict(profile: EngineeringProfile) -> dict:
+def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
     """Convert EngineeringProfile to dictionary for JSON serialization."""
     from ..models import SkillAssessment
 
-    def skill_to_dict(s: SkillAssessment) -> dict:
+    def skill_to_dict(s: SkillAssessment) -> dict[str, Any]:
         return {
             "name": s.name,
             "category": s.category,
@@ -498,7 +498,7 @@ def _profile_to_dict(profile: EngineeringProfile) -> dict:
             "confidence": s.confidence,
         }
 
-    def repo_to_dict(r: RepositoryMetrics) -> dict:
+    def repo_to_dict(r: RepositoryMetrics) -> dict[str, Any]:
         return {
             "name": r.name,
             "description": r.description,

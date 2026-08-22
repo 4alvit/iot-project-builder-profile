@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import yaml
 
@@ -185,7 +185,7 @@ FOCUS_AREA_KEYWORDS: dict[FocusArea, set[str]] = {
 class ESPHomeAnalyzer:
     """Analyzes ESPHome YAML configurations."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.custom_components: set[str] = set()
 
     def analyze_file(self, file_path: str | Path) -> ESPHomeAnalysis:
@@ -254,7 +254,7 @@ class ESPHomeAnalyzer:
         except Exception:
             return False
 
-    def _extract_devices(self, config: dict) -> list[str]:
+    def _extract_devices(self, config: dict[str, Any]) -> list[str]:
         """Extract target devices from config."""
         devices = []
         for key in ("esp32", "esp8266", "rp2040", "bk72xx", "rtl87xx"):
@@ -266,7 +266,7 @@ class ESPHomeAnalyzer:
                     devices.append(key)
         return devices
 
-    def _extract_components(self, config: dict) -> list[ESPHomeComponent]:
+    def _extract_components(self, config: dict[str, Any]) -> list[ESPHomeComponent]:
         """Extract all components from config."""
         components = []
 
@@ -291,7 +291,7 @@ class ESPHomeAnalyzer:
 
         return components
 
-    def _detect_integrations(self, comp_type: str, comp_config: dict) -> list[str]:
+    def _detect_integrations(self, comp_type: str, comp_config: dict[str, Any]) -> list[str]:
         """Detect integrations used by a component."""
         integrations = []
         text = str(comp_config).lower()
@@ -306,7 +306,7 @@ class ESPHomeAnalyzer:
 
         return list(set(integrations))
 
-    def _extract_custom_components(self, config: dict) -> list[str]:
+    def _extract_custom_components(self, config: dict[str, Any]) -> list[str]:
         """Extract custom component references."""
         custom = set()
 
@@ -332,7 +332,7 @@ class ESPHomeAnalyzer:
 
         return list(custom)
 
-    def _extract_external_libs(self, config: dict) -> list[str]:
+    def _extract_external_libs(self, config: dict[str, Any]) -> list[str]:
         """Extract external library dependencies."""
         libs = set()
 
@@ -356,7 +356,7 @@ class ESPHomeAnalyzer:
 
     def _assess_complexity(
         self,
-        config: dict,
+        config: dict[str, Any],
         components: list[ESPHomeComponent],
         custom_components: list[str],
     ) -> ComplexityLevel:
@@ -416,7 +416,7 @@ class ESPHomeAnalyzer:
     def _detect_focus_areas(
         self,
         components: list[ESPHomeComponent],
-        config: dict,
+        config: dict[str, Any],
     ) -> list[FocusArea]:
         """Detect focus areas from components and config."""
         areas = set()

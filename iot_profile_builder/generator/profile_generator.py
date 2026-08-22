@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import anthropic
 
@@ -16,8 +16,8 @@ from ..models import (
 )
 
 if TYPE_CHECKING:
-    from .dbus_analyzer import DBusAnalysis
-    from .esphome_analyzer import ESPHomeAnalysis
+    from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalysis
+    from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalysis
 
 logger = logging.getLogger(__name__)
 
@@ -201,7 +201,7 @@ class ProfileGenerator:
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> EngineeringProfile:
         """Generate complete engineering profile."""
 
@@ -223,7 +223,7 @@ class ProfileGenerator:
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> str:
         """Build context string for LLM."""
 
@@ -270,7 +270,7 @@ class ProfileGenerator:
         )
         return context
 
-    def _call_llm(self, context: str) -> dict:
+    def _call_llm(self, context: str) -> dict[str, Any]:
         """Call Anthropic API for profile generation."""
 
         focus_area_values = [a.value for a in FocusArea]
@@ -294,7 +294,7 @@ class ProfileGenerator:
         )
 
         try:
-            response = self.client.messages.create(
+            response = self.client.messages.create(  # type: ignore[call-overload]
                 model=self.model,
                 max_tokens=4096,
                 temperature=0.3,
@@ -307,7 +307,8 @@ class ProfileGenerator:
             json_start = content.find("{")
             json_end = content.rfind("}") + 1
             if json_start >= 0 and json_end > json_start:
-                return json.loads(content[json_start:json_end])
+                parsed: dict[str, Any] = json.loads(content[json_start:json_end])
+                return parsed
 
         except Exception as e:
             logger.error(f"LLM call failed: {e}")
@@ -316,11 +317,11 @@ class ProfileGenerator:
 
     def _parse_llm_result(
         self,
-        llm_result: dict,
+        llm_result: dict[str, Any],
         repos: list[RepositoryMetrics],
         esphome_analyses: list[ESPHomeAnalysis],
         dbus_analyses: list[DBusAnalysis],
-        github_stats: dict,
+        github_stats: dict[str, Any],
     ) -> EngineeringProfile:
         """Parse LLM result into EngineeringProfile."""
 
@@ -349,7 +350,7 @@ class ProfileGenerator:
                 pass
 
         # Build complexity distribution
-        complexity_dist = {}
+        complexity_dist: dict[str, int] = {}
         for repo in repos:
             complexity_dist[repo.complexity] = complexity_dist.get(repo.complexity, 0) + 1
         for e in esphome_analyses:
@@ -377,7 +378,7 @@ class ProfileGenerator:
             github_stats=github_stats,
         )
 
-    def _fallback_analysis(self) -> dict:
+    def _fallback_analysis(self) -> dict[str, Any]:
         """Fallback analysis if LLM fails."""
         return {
             "skills": [],
@@ -394,7 +395,7 @@ def generate_heuristic_profile(
     repos: list[RepositoryMetrics],
     esphome_analyses: list[ESPHomeAnalysis],
     dbus_analyses: list[DBusAnalysis],
-    github_stats: dict,
+    github_stats: dict[str, Any],
     username: str,
 ) -> EngineeringProfile:
     """Generate profile without LLM (heuristic only)."""
@@ -403,7 +404,7 @@ def generate_heuristic_profile(
 
     skills = []
     focus_areas = {area: 0.0 for area in FocusArea}
-    complexity_dist = {}
+    complexity_dist: dict[str, int] = {}
 
     # Aggregate from repos
     for repo in repos:
