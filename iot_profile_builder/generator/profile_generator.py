@@ -38,44 +38,152 @@ SYSTEM_PROMPT = (
 
 SKILL_CATEGORIES = {
     "embedded_firmware": [
-        "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ESP-IDF", "Arduino",
-        "STM32", "NRF52", "RP2040", "GPIO", "I2C", "SPI", "UART",
-        "ADC", "DAC", "PWM", "interrupts", "DMA", "bootloader", "OTA",
+        "C",
+        "C++",
+        "Rust",
+        "Zephyr",
+        "FreeRTOS",
+        "ESP-IDF",
+        "Arduino",
+        "STM32",
+        "NRF52",
+        "RP2040",
+        "GPIO",
+        "I2C",
+        "SPI",
+        "UART",
+        "ADC",
+        "DAC",
+        "PWM",
+        "interrupts",
+        "DMA",
+        "bootloader",
+        "OTA",
     ],
     "home_automation": [
-        "Home Assistant", "ESPHome", "ESP32", "ESP8266", "YAML", "Jinja2",
-        "automation", "script", "sensor", "switch", "light", "climate",
-        "Matter", "Thread", "Zigbee", "Z-Wave", "Bluetooth", "BLE",
+        "Home Assistant",
+        "ESPHome",
+        "ESP32",
+        "ESP8266",
+        "YAML",
+        "Jinja2",
+        "automation",
+        "script",
+        "sensor",
+        "switch",
+        "light",
+        "climate",
+        "Matter",
+        "Thread",
+        "Zigbee",
+        "Z-Wave",
+        "Bluetooth",
+        "BLE",
     ],
     "energy_systems": [
-        "solar", "photovoltaic", "inverter", "MPPT", "battery", "BMS",
-        "Victron", "energy meter", "power monitoring", "grid", "off-grid",
-        "LiFePO4", "cell balancing", "SOC", "SOH", "Modbus", "DBus",
+        "solar",
+        "photovoltaic",
+        "inverter",
+        "MPPT",
+        "battery",
+        "BMS",
+        "Victron",
+        "energy meter",
+        "power monitoring",
+        "grid",
+        "off-grid",
+        "LiFePO4",
+        "cell balancing",
+        "SOC",
+        "SOH",
+        "Modbus",
+        "DBus",
     ],
     "protocols_networking": [
-        "MQTT", "Modbus", "CANbus", "HTTP", "WebSocket", "CoAP", "gRPC",
-        "TCP", "UDP", "LoRaWAN", "WiFi", "Ethernet", "BLE", "Zigbee",
-        "Thread", "Matter", "DBus", "D-Bus", "systemd", "NetworkManager",
+        "MQTT",
+        "Modbus",
+        "CANbus",
+        "HTTP",
+        "WebSocket",
+        "CoAP",
+        "gRPC",
+        "TCP",
+        "UDP",
+        "LoRaWAN",
+        "WiFi",
+        "Ethernet",
+        "BLE",
+        "Zigbee",
+        "Thread",
+        "Matter",
+        "DBus",
+        "D-Bus",
+        "systemd",
+        "NetworkManager",
     ],
     "data_pipeline": [
-        "InfluxDB", "TimescaleDB", "Prometheus", "Grafana", "Telegraf",
-        "Kafka", "MQTT", "Flux", "SQL", "PostgreSQL", "Redis",
-        "data pipeline", "ETL", "analytics", "visualization",
+        "InfluxDB",
+        "TimescaleDB",
+        "Prometheus",
+        "Grafana",
+        "Telegraf",
+        "Kafka",
+        "MQTT",
+        "Flux",
+        "SQL",
+        "PostgreSQL",
+        "Redis",
+        "data pipeline",
+        "ETL",
+        "analytics",
+        "visualization",
     ],
     "edge_computing": [
-        "Docker", "Podman", "Kubernetes", "K3s", "KubeEdge", "OpenYurt",
-        "container", "WASM", "WebAssembly", "edge", "IoT Edge",
-        "Azure IoT Edge", "AWS Greengrass",
+        "Docker",
+        "Podman",
+        "Kubernetes",
+        "K3s",
+        "KubeEdge",
+        "OpenYurt",
+        "container",
+        "WASM",
+        "WebAssembly",
+        "edge",
+        "IoT Edge",
+        "Azure IoT Edge",
+        "AWS Greengrass",
     ],
     "python_iot": [
-        "Python", "asyncio", "aiohttp", "paho-mqtt", "bleak", "pyModbus",
-        "dbus-python", "pydbus", "gi.repository", "Home Assistant",
-        "ESPHome", "custom components", "integration",
+        "Python",
+        "asyncio",
+        "aiohttp",
+        "paho-mqtt",
+        "bleak",
+        "pyModbus",
+        "dbus-python",
+        "pydbus",
+        "gi.repository",
+        "Home Assistant",
+        "ESPHome",
+        "custom components",
+        "integration",
     ],
     "voice_ai": [
-        "voice assistant", "wake word", "STT", "TTS", "Piper", "Whisper",
-        "Wyoming", "Rhasspy", "ESP32-S3", "I2S", "ES8311", "ES7210",
-        "microphone", "speaker", "audio pipeline",
+        "voice assistant",
+        "wake word",
+        "STT",
+        "TTS",
+        "Piper",
+        "Whisper",
+        "Wyoming",
+        "Rhasspy",
+        "ESP32-S3",
+        "I2S",
+        "ES8311",
+        "ES7210",
+        "microphone",
+        "speaker",
+        "audio pipeline",
     ],
 }
 
@@ -221,13 +329,15 @@ class ProfileGenerator:
         # Parse skills
         skills = []
         for s in llm_result.get("skills", []):
-            skills.append(SkillAssessment(
-                name=s["name"],
-                category=s["category"],
-                proficiency=s["proficiency"],
-                evidence=s["evidence"],
-                confidence=s["confidence"],
-            ))
+            skills.append(
+                SkillAssessment(
+                    name=s["name"],
+                    category=s["category"],
+                    proficiency=s["proficiency"],
+                    evidence=s["evidence"],
+                    confidence=s["confidence"],
+                )
+            )
 
         # Parse focus areas
         focus_areas = {}
@@ -273,8 +383,7 @@ class ProfileGenerator:
             "skills": [],
             "focus_areas": {},
             "narrative_summary": (
-                "LLM analysis unavailable. Profile based on heuristic "
-                "analysis only."
+                "LLM analysis unavailable. Profile based on heuristic analysis only."
             ),
             "key_strengths": [],
             "growth_areas": ["Enable LLM analysis for deeper insights"],
@@ -339,20 +448,21 @@ def generate_heuristic_profile(
         "YAML": "home_automation",
     }
 
-    all_text = " ".join([
-        r.name + " " + (r.description or "") + " " + " ".join(r.topics)
-        for r in repos
-    ]).lower()
+    all_text = " ".join(
+        [r.name + " " + (r.description or "") + " " + " ".join(r.topics) for r in repos]
+    ).lower()
 
     for tech, category in tech_keywords.items():
         if tech.lower() in all_text:
-            skills.append(SkillAssessment(
-                name=tech,
-                category=category,
-                proficiency=min(5 + all_text.count(tech.lower()), 10),
-                evidence=[r.name for r in repos if tech.lower() in r.name.lower()][:3],
-                confidence=0.7,
-            ))
+            skills.append(
+                SkillAssessment(
+                    name=tech,
+                    category=category,
+                    proficiency=min(5 + all_text.count(tech.lower()), 10),
+                    evidence=[r.name for r in repos if tech.lower() in r.name.lower()][:3],
+                    confidence=0.7,
+                )
+            )
 
     top_repos = sorted(repos, key=lambda r: r.iot_score, reverse=True)[:10]
 
@@ -371,11 +481,7 @@ def generate_heuristic_profile(
             "Heuristic analysis based on repository metadata, "
             "ESPHome configs, and D-Bus services found."
         ),
-        key_strengths=[
-            area.value for area, score in focus_areas.items() if score > 0.5
-        ][:3],
-        growth_areas=[
-            area.value for area, score in focus_areas.items() if score < 0.3
-        ][:3],
+        key_strengths=[area.value for area, score in focus_areas.items() if score > 0.5][:3],
+        growth_areas=[area.value for area, score in focus_areas.items() if score < 0.3][:3],
         github_stats=github_stats,
     )

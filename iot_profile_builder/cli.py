@@ -39,11 +39,13 @@ class IoTProfileBuilder:
 
     async def run(self, output_dir: Path, use_llm: bool = True) -> Path:
         """Run the complete profile generation pipeline."""
-        console.print(Panel.fit(
-            f"IoT Profile Builder for [bold cyan]{self.config.username}[/bold cyan]",
-            title="Starting",
-            border_style="blue",
-        ))
+        console.print(
+            Panel.fit(
+                f"IoT Profile Builder for [bold cyan]{self.config.username}[/bold cyan]",
+                title="Starting",
+                border_style="blue",
+            )
+        )
 
         # Step 1: Scan GitHub repositories
         with Progress(
@@ -69,8 +71,7 @@ class IoTProfileBuilder:
         if self.config.analyze_esphome:
             esphome_analyses = await self._analyze_esphome(scan_result.repositories)
             console.print(
-                f"[green]✓[/green] Analyzed {len(esphome_analyses)} "
-                "ESPHome configurations"
+                f"[green]✓[/green] Analyzed {len(esphome_analyses)} ESPHome configurations"
             )
 
         # Step 3: Analyze D-Bus services
@@ -132,22 +133,13 @@ class IoTProfileBuilder:
             try:
                 # Look for YAML files in the repo
                 contents = await self.scanner.get_repo_contents(repo.name)
-                yaml_files = [
-                    c for c in contents if c["path"].endswith((".yaml", ".yml"))
-                ]
+                yaml_files = [c for c in contents if c["path"].endswith((".yaml", ".yml"))]
 
                 for yaml_file in yaml_files[:5]:  # Max 5 YAML files per repo
                     if yaml_file["type"] == "file":
-                        content = await self.scanner.get_file_content(
-                            repo.name, yaml_file["path"]
-                        )
-                        is_esphome = (
-                            content
-                            and (
-                                "esphome" in content
-                                or "esp32" in content
-                                or "esp8266" in content
-                            )
+                        content = await self.scanner.get_file_content(repo.name, yaml_file["path"])
+                        is_esphome = content and (
+                            "esphome" in content or "esp32" in content or "esp8266" in content
                         )
                         if is_esphome:
                             analysis = self.esphome_analyzer.analyze_content(
@@ -171,12 +163,8 @@ class IoTProfileBuilder:
 
                 for py_file in py_files[:5]:
                     if py_file["type"] == "file":
-                        content = await self.scanner.get_file_content(
-                            repo.name, py_file["path"]
-                        )
-                        dbus_keywords = [
-                            "dbus", "pydbus", "gi.repository", "com.victronenergy"
-                        ]
+                        content = await self.scanner.get_file_content(repo.name, py_file["path"])
+                        dbus_keywords = ["dbus", "pydbus", "gi.repository", "com.victronenergy"]
                         if content and any(kw in content.lower() for kw in dbus_keywords):
                             analysis = self.dbus_analyzer.analyze_content(
                                 content, f"{repo.name}/{py_file['path']}"
@@ -209,9 +197,7 @@ def _print_scan_summary(result: ScanResult) -> None:
         repo_table.add_column("IoT Score", justify="right")
         repo_table.add_column("Complexity")
 
-        for repo in sorted(
-            result.repositories, key=lambda r: r.iot_score, reverse=True
-        )[:10]:
+        for repo in sorted(result.repositories, key=lambda r: r.iot_score, reverse=True)[:10]:
             repo_table.add_row(
                 repo.name,
                 repo.language or "N/A",
@@ -251,11 +237,13 @@ async def main(
     builder = IoTProfileBuilder(config)
     output_path = await builder.run(output_dir, use_llm)
 
-    console.print(Panel.fit(
-        f"Profile generated: [bold green]{output_path}[/bold green]",
-        title="Complete",
-        border_style="green",
-    ))
+    console.print(
+        Panel.fit(
+            f"Profile generated: [bold green]{output_path}[/bold green]",
+            title="Complete",
+            border_style="green",
+        )
+    )
 
     return 0
 
@@ -278,13 +266,15 @@ def cli():
     logging.basicConfig(level=logging.WARNING)
 
     try:
-        return asyncio.run(main(
-            username=args.username,
-            token=args.token,
-            output_dir=Path(args.output),
-            max_repos=args.max_repos,
-            use_llm=not args.no_llm,
-        ))
+        return asyncio.run(
+            main(
+                username=args.username,
+                token=args.token,
+                output_dir=Path(args.output),
+                max_repos=args.max_repos,
+                use_llm=not args.no_llm,
+            )
+        )
     except KeyboardInterrupt:
         console.print("\n[red]Interrupted[/red]")
         return 1
