@@ -1,0 +1,358 @@
+{
+  "username": "4alvit",
+  "generated_at": "2026-08-26T13:25:25.383128",
+  "total_repos_analyzed": 8,
+  "iot_repos_count": 8,
+  "skills": [
+    {
+      "name": "ESPHome",
+      "category": "home_automation",
+      "proficiency": 9,
+      "evidence": [
+        "esphome-ble-sensor-patterns"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "Home Assistant",
+      "category": "home_automation",
+      "proficiency": 6,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "MQTT",
+      "category": "protocols_networking",
+      "proficiency": 10,
+      "evidence": [
+        "mqtt-observability-opentelemetry",
+        "fastapi-mqtt-gateway"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "Victron",
+      "category": "energy_systems",
+      "proficiency": 10,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "DBus",
+      "category": "protocols_networking",
+      "proficiency": 8,
+      "evidence": [
+        "dbus-service-template"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "ESP32",
+      "category": "embedded_firmware",
+      "proficiency": 8,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "BLE",
+      "category": "protocols_networking",
+      "proficiency": 9,
+      "evidence": [
+        "esphome-ble-sensor-patterns"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "Docker",
+      "category": "edge_computing",
+      "proficiency": 7,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "Grafana",
+      "category": "data_pipeline",
+      "proficiency": 7,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "Prometheus",
+      "category": "data_pipeline",
+      "proficiency": 7,
+      "evidence": [],
+      "confidence": 0.7
+    },
+    {
+      "name": "Python",
+      "category": "python_iot",
+      "proficiency": 10,
+      "evidence": [],
+      "confidence": 0.7
+    }
+  ],
+  "focus_areas": {
+    "home_automation": 0.2573529411764706,
+    "industrial_iot": 0.0,
+    "energy_management": 0.6029411764705882,
+    "battery_management": 0.2573529411764706,
+    "environmental_monitoring": 0.18750000000000003,
+    "voice_assistant": 0.2573529411764706,
+    "networking_protocols": 1.0,
+    "edge_computing": 0.21691176470588236,
+    "firmware_development": 0.0,
+    "data_pipeline": 0.5551470588235294,
+    "unknown": 0.21691176470588236
+  },
+  "complexity_distribution": {
+    "low": 5,
+    "medium": 3
+  },
+  "top_repositories": [
+    {
+      "name": "esphome-ble-sensor-patterns",
+      "description": "Production-ready patterns for ESPHome BLE sensors \u2014 iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.",
+      "stars": 0,
+      "forks": 0,
+      "language": null,
+      "topics": [
+        "ble",
+        "bms",
+        "esp32",
+        "esphome",
+        "plant-sensor",
+        "reference-implementation",
+        "temperature-sensor",
+        "venus-os",
+        "xiaomi",
+        "bluetooth-low-energy",
+        "bluetooth-proxy",
+        "home-assistant",
+        "iot",
+        "lambda",
+        "passive-scanning",
+        "sensor",
+        "ibeacon",
+        "victron"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T01:53:11+00:00",
+      "updated_at": "2026-08-25T20:59:53+00:00",
+      "size_kb": 64,
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management",
+        "battery_management",
+        "voice_assistant",
+        "networking_protocols"
+      ],
+      "iot_score": 0.7
+    },
+    {
+      "name": "iot-project-builder-profile",
+      "description": "Automated engineering profile generator for IoT developers based on GitHub activity",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "topics": [
+        "engineering-profile",
+        "esp32",
+        "esphome",
+        "github-api",
+        "iot",
+        "llm",
+        "profile-generator",
+        "python"
+      ],
+      "is_fork": false,
+      "created_at": "2026-08-01T20:20:01+00:00",
+      "updated_at": "2026-08-26T06:45:25+00:00",
+      "size_kb": 75,
+      "complexity": "low",
+      "focus_areas": [
+        "unknown"
+      ],
+      "iot_score": 0.59
+    },
+    {
+      "name": "mqtt-observability-opentelemetry",
+      "description": "Complete OpenTelemetry observability stack for MQTT-based IoT systems \u2014 MQTT message interception with W3C trace context propagation, Mosquitto broker metrics exporter, topic-based span processing, and Grafana/Jaeger/Prometheus visualization. Ready-to-run Docker Compose stack for Venus OS and IoT deployments.",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "grafana",
+        "mqtt",
+        "observability",
+        "opentelemetry",
+        "prometheus",
+        "python",
+        "tempo",
+        "venus-os",
+        "victron",
+        "docker",
+        "iot",
+        "jaeger",
+        "mqtt-interceptor"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T00:46:08+00:00",
+      "updated_at": "2026-08-25T19:49:41+00:00",
+      "size_kb": 292,
+      "complexity": "low",
+      "focus_areas": [
+        "networking_protocols",
+        "edge_computing",
+        "data_pipeline"
+      ],
+      "iot_score": 0.59
+    },
+    {
+      "name": "mcp-venus-os",
+      "description": "MCP server for Venus OS management - D-Bus, MQTT, and safety-constrained control",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "cerbo-gx",
+        "dbus",
+        "mcp",
+        "mqtt",
+        "python",
+        "venus-os",
+        "victron"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T06:38:35+00:00",
+      "updated_at": "2026-08-25T19:44:58+00:00",
+      "size_kb": 399,
+      "complexity": "low",
+      "focus_areas": [
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 0.59
+    },
+    {
+      "name": "dbus-service-template",
+      "description": "Production-ready Copier template for D-Bus services targeting Victron Venus OS",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "cerbo-gx",
+        "copier",
+        "dbus",
+        "service-template",
+        "template",
+        "venus-os",
+        "victron"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T05:22:40+00:00",
+      "updated_at": "2026-08-25T20:59:49+00:00",
+      "size_kb": 75,
+      "complexity": "medium",
+      "focus_areas": [
+        "networking_protocols"
+      ],
+      "iot_score": 0.51
+    },
+    {
+      "name": "solar-forecast-langgraph",
+      "description": "LangGraph workflow for solar forecasting with weather data, historical generation, panel config, and inverter-control integration",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "forecast",
+        "inverter-control",
+        "langgraph",
+        "python",
+        "solar",
+        "victron",
+        "weather"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T21:19:22+00:00",
+      "updated_at": "2026-08-25T19:49:06+00:00",
+      "size_kb": 284,
+      "complexity": "medium",
+      "focus_areas": [
+        "energy_management",
+        "environmental_monitoring"
+      ],
+      "iot_score": 0.51
+    },
+    {
+      "name": "energy-data-rag-pipeline",
+      "description": "RAG pipeline for Victron Energy documentation with pgvector, LangChain, and FastAPI",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "documentation",
+        "energy",
+        "fastapi",
+        "langchain",
+        "pgvector",
+        "python",
+        "rag",
+        "victron"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T20:42:21+00:00",
+      "updated_at": "2026-08-26T01:06:04+00:00",
+      "size_kb": 638,
+      "complexity": "medium",
+      "focus_areas": [
+        "energy_management"
+      ],
+      "iot_score": 0.42999999999999994
+    },
+    {
+      "name": "fastapi-mqtt-gateway",
+      "description": "Production-ready REST/WebSocket \u2192 MQTT bridge",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "bridge",
+        "fastapi",
+        "gateway",
+        "mqtt",
+        "python",
+        "rest",
+        "websocket"
+      ],
+      "is_fork": false,
+      "created_at": "2026-07-31T23:03:16+00:00",
+      "updated_at": "2026-08-25T19:44:58+00:00",
+      "size_kb": 188,
+      "complexity": "low",
+      "focus_areas": [
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 0.32999999999999996
+    }
+  ],
+  "narrative_summary": "Heuristic analysis based on repository metadata, ESPHome configs, and D-Bus services found.",
+  "key_strengths": [
+    "energy_management",
+    "networking_protocols",
+    "data_pipeline"
+  ],
+  "growth_areas": [
+    "home_automation",
+    "industrial_iot",
+    "battery_management"
+  ],
+  "github_stats": {
+    "total_repos": 12,
+    "iot_repos": 8,
+    "errors": [],
+    "scanned_at": "2026-08-26T13:25:25.381551"
+  }
+}
