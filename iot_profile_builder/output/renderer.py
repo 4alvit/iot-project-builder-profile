@@ -106,7 +106,7 @@ class ProfileRenderer:
             "- **Custom Components**: {{ esphome.custom_components|join(', ') or 'None' }}\n"
             "- **External Libraries**: {{ esphome.external_libs|join(', ') or 'None' }}\n"
             "- **Complexity**: {{ esphome.complexity.value }}\n"
-            "- **Focus Areas**: {{ [a.value for a in esphome.focus_areas]|join(', ') }}\n\n"
+            "- **Focus Areas**: {{ esphome.focus_areas|map(attribute='value')|join(', ') }}\n\n"
             "**Component Breakdown**:\n"
             "{% for comp in esphome.components %}\n"
             "- {{ comp.type }}{% if comp.platform %} ({{ comp.platform }}){% endif %}: "
@@ -123,7 +123,7 @@ class ProfileRenderer:
             "- **Total Signals**: {{ dbus.interfaces|map(attribute='signals')|map('length')|sum }}\n"
             "- **Total Properties**: {{ dbus.interfaces|map(attribute='properties')|map('length')|sum }}\n"
             "- **Complexity**: {{ dbus.complexity.value }}\n"
-            "- **Focus Areas**: {{ [a.value for a in dbus.focus_areas]|join(', ') }}\n\n"
+            "- **Focus Areas**: {{ dbus.focus_areas|map(attribute='value')|join(', ') }}\n\n"
             "**Interfaces**:\n"
             "{% for iface in dbus.interfaces %}\n"
             "#### {{ iface.name }} ({{ iface.path }})\n"
@@ -307,7 +307,7 @@ class ProfileRenderer:
                 "                <p>Devices: {{ esphome.devices|join(', ') }}</p>\n",
                 "                <p>Components: {{ esphome.components|length }} | Complexity: ",
                 '<span class="badge badge-success">{{ esphome.complexity.value }}</span></p>\n',
-                "                <p>Focus: {{ [a.value for a in esphome.focus_areas]|join(', ') }}</p>\n",
+                "                <p>Focus: {{ esphome.focus_areas|map(attribute='value')|join(', ') }}</p>\n",
                 "            </div>\n",
                 "            {% endfor %}\n",
                 "        </section>\n\n",
@@ -320,7 +320,7 @@ class ProfileRenderer:
                 "{{ dbus.interfaces|map(attribute='methods')|map('length')|sum }} | Signals: ",
                 "{{ dbus.interfaces|map(attribute='signals')|map('length')|sum }}</p>\n",
                 '                <p>Complexity: <span class="badge badge-success">{{ dbus.complexity.value }}',
-                "</span> | Focus: {{ [a.value for a in dbus.focus_areas]|join(', ') }}</p>\n",
+                "</span> | Focus: {{ dbus.focus_areas|map(attribute='value')|join(', ') }}</p>\n",
                 "            </div>\n",
                 "            {% endfor %}\n",
                 "        </section>\n",
