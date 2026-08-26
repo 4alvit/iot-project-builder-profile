@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Engineering Profile: 4alvit</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a2e; background: #f8f9fa; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 2rem; border-radius: 16px; margin-bottom: 2rem; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { opacity: 0.9; }
+        section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h2 { color: #667eea; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eef; }
+        h3 { color: #333; margin: 1.5rem 0 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; }
+        tr:hover { background: #fafbff; }
+        .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 500; margin: 0.25rem; }
+        .badge-primary { background: #eef; color: #667eea; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+        .chart-container { height: 300px; margin: 1rem 0; }
+        .repo-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+        .repo-card h4 { color: #667eea; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1rem; border-radius: 8px; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: #667eea; }
+        .stat-label { font-size: 0.9rem; color: #666; }
+        .skills-table th:nth-child(3), .skills-table td:nth-child(3) { text-align: center; }
+        .skill-bar { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IoT Engineering Profile</h1>
+            <p>4alvit • Generated August 26, 2026</p>
+        </header>
+
+        <section>
+            <h2>📊 Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Total Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">IoT Repositories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">ESPHome Configs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">D-Bus Services</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🎯 Focus Areas</h2>
+            <div id="focus-chart" class="chart-container"></div>
+            <div class="focus-details">
+                
+                <span class="badge badge-primary">Home Automation: 26%</span>
+                
+                <span class="badge badge-primary">Industrial Iot: 0%</span>
+                
+                <span class="badge badge-primary">Energy Management: 60%</span>
+                
+                <span class="badge badge-primary">Battery Management: 26%</span>
+                
+                <span class="badge badge-primary">Environmental Monitoring: 19%</span>
+                
+                <span class="badge badge-primary">Voice Assistant: 26%</span>
+                
+                <span class="badge badge-primary">Networking Protocols: 100%</span>
+                
+                <span class="badge badge-primary">Edge Computing: 22%</span>
+                
+                <span class="badge badge-primary">Firmware Development: 0%</span>
+                
+                <span class="badge badge-primary">Data Pipeline: 56%</span>
+                
+                <span class="badge badge-primary">Unknown: 22%</span>
+                
+            </div>
+        </section>
+
+        <section>
+            <h2>📈 Complexity Distribution</h2>
+            <div id="complexity-chart" class="chart-container"></div>
+        </section>
+
+        <section>
+            <h2>🛠 Skills Assessment</h2>
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Category</th>
+                        <th>Proficiency</th>
+                        <th>Confidence</th>
+                        <th>Evidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><strong>MQTT</strong></td>
+                        <td><span class="badge badge-primary">protocols_networking</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 100%"></div>
+                            </div>
+                            <small>10/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td>mqtt-observability-opentelemetry, fastapi-mqtt-gateway</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Victron</strong></td>
+                        <td><span class="badge badge-primary">energy_systems</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 100%"></div>
+                            </div>
+                            <small>10/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Python</strong></td>
+                        <td><span class="badge badge-primary">python_iot</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 100%"></div>
+                            </div>
+                            <small>10/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>ESPHome</strong></td>
+                        <td><span class="badge badge-primary">home_automation</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                            <small>9/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td>esphome-ble-sensor-patterns</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>BLE</strong></td>
+                        <td><span class="badge badge-primary">protocols_networking</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                            <small>9/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td>esphome-ble-sensor-patterns</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>DBus</strong></td>
+                        <td><span class="badge badge-primary">protocols_networking</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 80%"></div>
+                            </div>
+                            <small>8/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td>dbus-service-template</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>ESP32</strong></td>
+                        <td><span class="badge badge-primary">embedded_firmware</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 80%"></div>
+                            </div>
+                            <small>8/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Docker</strong></td>
+                        <td><span class="badge badge-primary">edge_computing</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 70%"></div>
+                            </div>
+                            <small>7/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Grafana</strong></td>
+                        <td><span class="badge badge-primary">data_pipeline</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 70%"></div>
+                            </div>
+                            <small>7/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Prometheus</strong></td>
+                        <td><span class="badge badge-primary">data_pipeline</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 70%"></div>
+                            </div>
+                            <small>7/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Home Assistant</strong></td>
+                        <td><span class="badge badge-primary">home_automation</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 60%"></div>
+                            </div>
+                            <small>6/10</small>
+                        </td>
+                        <td>70%</td>
+                        <td></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>💪 Key Strengths</h2>
+            <ul>
+                
+                <li>energy_management</li>
+                
+                <li>networking_protocols</li>
+                
+                <li>data_pipeline</li>
+                
+            </ul>
+        </section>
+
+        <section>
+            <h2>📈 Growth Areas</h2>
+            <ul>
+                
+                <li>home_automation</li>
+                
+                <li>industrial_iot</li>
+                
+                <li>battery_management</li>
+                
+            </ul>
+        </section>
+
+        <section>
+            <h2>🏆 Top Repositories</h2>
+            
+            <div class="repo-card">
+                <h4>esphome-ble-sensor-patterns</h4>
+                <p>Production-ready patterns for ESPHome BLE sensors — iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">N/A</span>
+                    <span class="badge badge-success">low</span>
+                    <span class="badge badge-warning">0.70 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: ble, bms, esp32, esphome, plant-sensor, reference-implementation, temperature-sensor, venus-os, xiaomi, bluetooth-low-energy, bluetooth-proxy, home-assistant, iot, lambda, passive-scanning, sensor, ibeacon, victron</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>iot-project-builder-profile</h4>
+                <p>Automated engineering profile generator for IoT developers based on GitHub activity</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">low</span>
+                    <span class="badge badge-warning">0.59 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: engineering-profile, esp32, esphome, github-api, iot, llm, profile-generator, python</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>mqtt-observability-opentelemetry</h4>
+                <p>Complete OpenTelemetry observability stack for MQTT-based IoT systems — MQTT message interception with W3C trace context propagation, Mosquitto broker metrics exporter, topic-based span processing, and Grafana/Jaeger/Prometheus visualization. Ready-to-run Docker Compose stack for Venus OS and IoT deployments.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">low</span>
+                    <span class="badge badge-warning">0.59 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: grafana, mqtt, observability, opentelemetry, prometheus, python, tempo, venus-os, victron, docker, iot, jaeger, mqtt-interceptor</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>mcp-venus-os</h4>
+                <p>MCP server for Venus OS management - D-Bus, MQTT, and safety-constrained control</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">low</span>
+                    <span class="badge badge-warning">0.59 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, dbus, mcp, mqtt, python, venus-os, victron</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>dbus-service-template</h4>
+                <p>Production-ready Copier template for D-Bus services targeting Victron Venus OS</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">medium</span>
+                    <span class="badge badge-warning">0.51 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, copier, dbus, service-template, template, venus-os, victron</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>solar-forecast-langgraph</h4>
+                <p>LangGraph workflow for solar forecasting with weather data, historical generation, panel config, and inverter-control integration</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">medium</span>
+                    <span class="badge badge-warning">0.51 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: forecast, inverter-control, langgraph, python, solar, victron, weather</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>energy-data-rag-pipeline</h4>
+                <p>RAG pipeline for Victron Energy documentation with pgvector, LangChain, and FastAPI</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">medium</span>
+                    <span class="badge badge-warning">0.43 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: documentation, energy, fastapi, langchain, pgvector, python, rag, victron</p>
+            </div>
+            
+            <div class="repo-card">
+                <h4>fastapi-mqtt-gateway</h4>
+                <p>Production-ready REST/WebSocket → MQTT bridge</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <span class="badge badge-primary">Python</span>
+                    <span class="badge badge-success">low</span>
+                    <span class="badge badge-warning">0.33 IoT Score</span>
+                    <span class="badge">0⭐</span>
+                </div>
+                <p style="margin-top: 0.5rem; color: #666;">Topics: bridge, fastapi, gateway, mqtt, python, rest, websocket</p>
+            </div>
+            
+        </section>
+
+        <section>
+            <h2>🔧 ESPHome Configurations</h2>
+            
+        </section>
+
+        <section>
+            <h2>📡 D-Bus Services</h2>
+            
+        </section>
+    </div>
+
+    <script>
+        // Focus Areas Radar Chart
+        const focusData = [{
+            type: 'scatterpolar',
+            r: [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0],
+            theta: ["Home Automation", "Industrial Iot", "Energy Management", "Battery Management", "Environmental Monitoring", "Voice Assistant", "Networking Protocols", "Edge Computing", "Firmware Development", "Data Pipeline", "Unknown"],
+            fill: 'toself',
+            name: 'Focus Areas',
+            line: { color: '#667eea' }
+        }];
+        Plotly.newPlot('focus-chart', focusData, {
+            polar: { radialaxis: { visible: true, range: [0, 100] } },
+            showlegend: false,
+            margin: { t: 20, b: 20, l: 20, r: 20 }
+        });
+
+        // Complexity Distribution Pie Chart
+        const complexityLabels = ["Low", "Medium"];
+        const complexityValues = [5, 3];
+        Plotly.newPlot('complexity-chart', [{
+            values: complexityValues,
+            labels: complexityLabels,
+            type: 'pie',
+            hole: 0.4,
+            marker: { colors: ['#28a745', '#ffc107', '#fd7e14', '#dc3545'] }
+        }], {
+            showlegend: true,
+            margin: { t: 20, b: 20, l: 20, r: 20 }
+        });
+    </script>
+</body>
+</html>
