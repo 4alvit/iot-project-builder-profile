@@ -25,7 +25,7 @@ graph TB
 
     subgraph Control["Control Layer"]
         INV_CTRL[inverter-control<br/>Grid-zero feed-in]
-        GOV[venus-os-governance<br/>Policy engine + safety]
+        GOV[venus-os-governance<br/>🗄️ Archived]
         EVENT[dbus-event-log<br/>Audit logging]
     end
 
@@ -160,7 +160,7 @@ cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 | Repo | Language | Description |
 |------|----------|-------------|
 | [inverter-control](https://github.com/victron-venus/inverter-control) | Python | Grid-zero feed-in control, HA integration, safety limits |
-| [venus-os-governance](https://github.com/victron-venus/venus-os-governance) | Python | Policy engine: SOC floors, rate limits, time restrictions, approval gates |
+| [venus-os-governance](https://github.com/victron-venus/venus-os-governance) | Python | 🗄️ Archived 2026-08 — superseded by inverter-control built-in safety |
 | [dbus-event-log](https://github.com/victron-venus/dbus-event-log) | Python | Audit log of D-Bus commands & state transitions (SQLite/TimescaleDB) |
 
 #### Hardware Bridges
@@ -227,7 +227,7 @@ cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 
 | If you need... | Start with... | Then add... |
 |----------------|---------------|-------------|
-| Grid-zero control | `inverter-control` | `venus-os-governance`, `dbus-event-log` |
+| Grid-zero control | `inverter-control` | `dbus-event-log` |
 | Web dashboard | `inverter-dashboard-go` | `inverter-dashboard-vue` |
 | Native desktop app | `inverter-desktop` | `inverter-dashboard-vue` |
 | BMS integration | `dbus-mqtt-battery` | `esphome-jbd-bms-mqtt` |
@@ -247,7 +247,7 @@ cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 | inverter-desktop | ✅ Production | ✅ | ✅ | ✅ | ✅ |
 | inverter-dashboard-vue | ✅ Library | ✅ | N/A | ✅ | ✅ |
 | dbus-mqtt-battery | ✅ Production | ✅ | ✅ | ✅ | ✅ |
-| venus-os-governance | 🚧 Scaffold | ❌ | ❌ | ❌ | ✅ |
+| venus-os-governance | 🗄️ Archived | ❌ | ❌ | ❌ | ✅ |
 | mqtt-observability-opentelemetry | ✅ Active | ✅ | ✅ | 🚧 | ✅ |
 | esphome-ble-sensor-patterns | ✅ Reference | ✅ | N/A | N/A | ✅ |
 | energy-data-rag-pipeline | 🚧 Prototype | ❌ | ❌ | ❌ | ✅ |
