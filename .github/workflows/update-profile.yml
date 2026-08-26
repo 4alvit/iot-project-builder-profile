@@ -44,9 +44,17 @@ jobs:
       - name: Generate profile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # LLM analysis runs through the self-hosted Free Claude Code gateway
+          # from the energy-data-rag-pipeline stack (fcc service on the NAS).
+          # Both variables are required: the proxy URL and its access password
+          # (FCC auth token, default "freecc"). Hosted runners cannot reach the
+          # LAN NAS; the generator logs the connection error and falls back to
+          # heuristic analysis instead of failing the workflow. Override via
+          # repo secrets when a runner with LAN access is attached.
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://synology:8082' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
         run: |
-          python -m src.cli ${{ github.event.inputs.username || '4alvit' }} \
+          iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \
             --token ${{ secrets.GITHUB_TOKEN }} \
             --output ./profile \
             --max-repos 100 \

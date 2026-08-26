@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from typing import TYPE_CHECKING, Any
 
 import anthropic
@@ -291,25 +292,52 @@ class ProfileGenerator:
             '    "growth_areas": ["area1", "area2"]\n'
             "}\n\n"
             f"Focus areas must be from: {focus_area_values}\n"
-            "Categories from skill categories reference above."
+            "Categories from skill categories reference above.\n"
+            "Output ONLY the JSON object — no markdown fences, no comments, "
+            "no trailing commas. It must parse with a strict JSON parser."
         )
 
         try:
-            response = self.client.messages.create(  # type: ignore[call-overload]
+            # Stream + concatenate text blocks: gateways that always stream
+            # (ignoring stream:false) break plain messages.create, and reasoning
+            # models may prepend a thinking block before the answer text.
+            # No explicit temperature: SDK stubs disagree across versions on
+            # whether stream() takes sampling kwargs; the structured prompt
+            # keeps output deterministic enough at the provider default.
+            with self.client.messages.stream(
                 model=self.model,
-                max_tokens=4096,
-                temperature=0.3,
+                max_tokens=8192,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_prompt}],
-            )
-            content = response.content[0].text
+            ) as stream:
+                response = stream.get_final_message()
+            content = "".join(b.text for b in response.content if b.type == "text")
 
             # Extract JSON from response
             json_start = content.find("{")
             json_end = content.rfind("}") + 1
-            if json_start >= 0 and json_end > json_start:
-                parsed: dict[str, Any] = json.loads(content[json_start:json_end])
-                return parsed
+            if json_start < 0 or json_end <= json_start:
+                raise ValueError("no JSON object found in LLM output")
+            candidate = content[json_start:json_end]
+
+            parsed = None
+            try:
+                parsed = json.loads(candidate)
+            except json.JSONDecodeError:
+                # Best-effort repair for sloppy LLM JSON (trailing commas etc.)
+                repaired = re.sub(r",\s*(?=[}\]])", "", candidate)
+                parsed = json.loads(repaired)  # may raise -> logged below
+            if not isinstance(parsed, dict):
+                raise ValueError("LLM returned non-object JSON")
+
+            # Unwrap nested wrappers like {"profile_analysis": {"skills": ...}}
+            while "skills" not in parsed and any(isinstance(v, dict) for v in parsed.values()):
+                inner = next(v for v in parsed.values() if isinstance(v, dict))
+                parsed = inner
+            if "skills" not in parsed:
+                raise ValueError("LLM JSON missing 'skills' key")
+
+            return parsed
 
         except Exception as e:
             logger.error(f"LLM call failed: {e}")
