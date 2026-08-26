@@ -79,8 +79,11 @@ jobs:
 
       # main is protected (PR-only + required signatures + CodeQL gate), so the
       # bot cannot push it directly. Land profile updates through a PR instead:
-      # squash-merge commits carry GitHub's web-flow signature, and the repo's
-      # auto-approve/auto-merge pipelines close it once checks pass.
+      # squash-merge commits carry GitHub's web-flow signature and CodeQL gates
+      # the PR. A GITHUB_TOKEN-created PR does NOT fire pull_request workflows
+      # (GitHub recursion guard), so the repo's auto-approve/auto-merge
+      # pipelines never see it — approve with BOT_PAT (a different account,
+      # self-approval is impossible) and enable auto-merge here instead.
       - name: Open profile update PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,3 +103,15 @@ jobs:
             --title "chore: update IoT developer profile" \
             --body "Automated regeneration on the self-hosted fcc runner." \
             --label auto-merge
+
+      - name: Approve and queue merge
+        if: env.BOT_PAT != ''
+        env:
+          BOT_PAT: ${{ secrets.BOT_PAT }}
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
+          PR_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          PR=$(gh pr list --repo "$PR_URL" --state open \
+                 --head "profile-update/*" --limit 1 --json number --jq '.[0].number')
+          gh pr review "$PR" --repo "$PR_URL" --approve
+          gh pr merge "$PR" --repo "$PR_URL" --squash --auto
