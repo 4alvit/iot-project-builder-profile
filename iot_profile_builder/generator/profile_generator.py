@@ -301,7 +301,7 @@ class ProfileGenerator:
             # Stream + concatenate text blocks: gateways that always stream
             # (ignoring stream:false) break plain messages.create, and reasoning
             # models may prepend a thinking block before the answer text.
-            with self.client.messages.stream(
+            with self.client.messages.stream(  # type: ignore[call-arg]
                 model=self.model,
                 max_tokens=8192,
                 temperature=0.3,
