@@ -21,7 +21,10 @@ permissions:
 
 jobs:
   generate-profile:
-    runs-on: ubuntu-latest
+    # Self-hosted runner on the home-lab arm64 box: only there is the FCC
+    # LLM gateway on the NAS (http://synology:8082, mapped via --add-host)
+    # reachable. Falls back to heuristic analysis if the gateway is down.
+    runs-on: [self-hosted, fcc]
     timeout-minutes: 30
 
     steps:
