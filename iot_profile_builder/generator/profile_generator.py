@@ -301,10 +301,12 @@ class ProfileGenerator:
             # Stream + concatenate text blocks: gateways that always stream
             # (ignoring stream:false) break plain messages.create, and reasoning
             # models may prepend a thinking block before the answer text.
-            with self.client.messages.stream(  # type: ignore[call-arg]
+            # No explicit temperature: SDK stubs disagree across versions on
+            # whether stream() takes sampling kwargs; the structured prompt
+            # keeps output deterministic enough at the provider default.
+            with self.client.messages.stream(
                 model=self.model,
                 max_tokens=8192,
-                temperature=0.3,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_prompt}],
             ) as stream:
