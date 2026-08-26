@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -13,6 +14,8 @@ from ..models import (
     EngineeringProfile,
     RepositoryMetrics,
 )
+
+logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     pass
@@ -479,8 +482,11 @@ def generate_profile_outputs(
         results["json"] = json_path
 
     if "charts" in formats:
-        chart_paths = renderer.generate_charts(profile, output_dir / "charts")
-        results.update(chart_paths)
+        try:
+            chart_paths = renderer.generate_charts(profile, output_dir / "charts")
+            results.update(chart_paths)
+        except Exception as e:  # charts are optional; needs kaleido for PNG export
+            logger.warning("Chart generation skipped: %s", e)
 
     return results
 

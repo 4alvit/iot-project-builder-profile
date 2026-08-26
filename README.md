@@ -255,6 +255,17 @@ cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 
 ---
 
+## 🔁 Regenerating This Profile
+
+The catalog and status tables above are produced by scanning the GitHub orgs with the bundled generator. LLM analysis runs through the self-hosted [Free Claude Code](https://github.com/Alishahryar1/free-claude-code) proxy deployed in the [`energy-data-rag-pipeline`](https://github.com/4alvit/energy-data-rag-pipeline) stack (see its `docs/configuration.md`):
+
+```bash
+cp .env.sample .env && set -a && source .env && set +a
+iot-profile-builder 4alvit --token "$GITHUB_PAT" --model default -o .
+```
+
+Both gateway variables are required: `ANTHROPIC_BASE_URL` (proxy URL) **and** `ANTHROPIC_API_KEY` (access password — FCC's auth token, `freecc` unless changed on the NAS). Any model id is accepted; the gateway routes every request to its configured provider model, so `default` works. Omit the env vars or pass `--no-llm` for heuristic-only generation.
+
 ## 🤝 Contributing
 
 This is a personal portfolio organization. Issues and PRs welcome on individual repos.

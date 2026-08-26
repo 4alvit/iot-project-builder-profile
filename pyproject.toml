@@ -70,3 +70,19 @@ addopts = "-v --cov=iot_profile_builder --cov-report=term-missing"
 model = "claude-3-5-sonnet-20241022"
 max_tokens = 4096
 temperature = 0.3
+[tool.pylint.messages_control]
+disable = [
+    "E0401",  # Unable to import (project deps not in the isolated pre-commit env)
+    "C0301",  # Line too long (jinja template strings in renderer)
+    "C0415",  # Import outside toplevel (lazy imports for optional deps)
+    "R0903",  # Too few public methods
+    "R0913",  # Too many arguments
+    "R0902",  # Too many instance attributes (pydantic models)
+    "R0914",  # Too many local variables
+    "R1702",  # Too many nested blocks
+    "R1705",  # Unnecessary elif after return
+    "R1716",  # Chained comparison
+    "R1735",  # Use dict literal instead of dict()
+    "W0718",  # Broad exception caught (scanner/renderer best-effort paths)
+    "W1203",  # f-string logging (style preference, matches sibling repos)
+]

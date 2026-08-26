@@ -7,6 +7,7 @@ import logging
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 from rich.console import Console
 from rich.panel import Panel
@@ -227,13 +228,18 @@ async def main(
     output_dir: Path = Path("."),
     max_repos: int = 100,
     use_llm: bool = True,
+    model: str | None = None,
 ) -> int:
     """Main entry point."""
-    config = ScanConfig(
-        username=username,
-        token=token,
-        max_repos=max_repos,
-    )
+    config_kwargs: dict[str, Any] = {
+        "username": username,
+        "token": token,
+        "max_repos": max_repos,
+    }
+    if model:
+        config_kwargs["llm_model"] = model
+
+    config = ScanConfig(**config_kwargs)
 
     builder = IoTProfileBuilder(config)
     output_path = await builder.run(output_dir, use_llm)
@@ -261,6 +267,12 @@ def cli() -> int:
     parser.add_argument(
         "--no-llm", action="store_true", help="Disable LLM analysis (heuristic only)"
     )
+    parser.add_argument(
+        "--model",
+        "-M",
+        default=None,
+        help="LLM model id (default: claude-3-5-sonnet-20241022; any id exposed by the gateway works)",
+    )
 
     args = parser.parse_args()
 
@@ -274,6 +286,7 @@ def cli() -> int:
                 output_dir=Path(args.output),
                 max_repos=args.max_repos,
                 use_llm=not args.no_llm,
+                model=args.model,
             )
         )
     except KeyboardInterrupt:

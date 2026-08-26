@@ -17,3 +17,8 @@ uv.lock
 .coverage
 htmlcov/
 .mypy_cache/
+# Local env (real gateway credentials) - never push
+.env
+
+# Runtime-generated jinja templates (recreated from renderer.py defaults)
+iot_profile_builder/output/templates/
