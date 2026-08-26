@@ -1,117 +1,77 @@
 name: Update IoT Developer Profile
-
-on:
+true:
   schedule:
-    - cron: "0 6 * * 1"  # Every Monday at 6 AM UTC
+  - cron: 0 6 * * 1
   workflow_dispatch:
     inputs:
       username:
-        description: "GitHub username to analyze"
+        description: GitHub username to analyze
         required: true
-        default: "4alvit"
+        default: 4alvit
       use-llm:
-        description: "Enable LLM analysis"
+        description: Enable LLM analysis
         required: false
         default: true
         type: boolean
-
 permissions:
   contents: write
   id-token: write
-  # the bot lands profile updates through a PR, not a direct main push
   pull-requests: write
-
 jobs:
   generate-profile:
-    # Self-hosted runner on the home-lab arm64 box: only there is the FCC
-    # LLM gateway on the NAS (http://synology:8082, mapped via --add-host)
-    # reachable. Falls back to heuristic analysis if the gateway is down.
-    runs-on: [self-hosted, fcc]
+    runs-on:
+    - self-hosted
+    - fcc
     timeout-minutes: 30
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+    - name: Checkout repository
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.11'
+        cache: pip
+    - name: Install dependencies
+      run: 'pip install -e ".[dev]"
 
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: "3.11"
-          cache: "pip"
-
-      - name: Install dependencies
-        run: |
-          pip install -e ".[dev]"
-
-      - name: Generate profile
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # LLM analysis runs through the self-hosted Free Claude Code gateway
-          # from the energy-data-rag-pipeline stack (fcc service on the NAS).
-          # Both variables are required: the proxy URL and its access password
-          # (FCC auth token, default "freecc"). Hosted runners cannot reach the
-          # LAN NAS; the generator logs the connection error and falls back to
-          # heuristic analysis instead of failing the workflow. Override via
-          # repo secrets when a runner with LAN access is attached.
-          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://synology:8082' }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
-        run: |
-          iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \
-            --token ${{ secrets.GITHUB_TOKEN }} \
-            --output ./profile \
-            --max-repos 100 \
-            ${{ github.event.inputs.use-llm != 'false' && '' || '--no-llm' }}
-
-      - name: Create summary
-        run: |
-          markdown_file=$(find ./profile -name "*_profile.md" | head -1)
-          if [ -f "$markdown_file" ]; then
-            echo "Profile generated: $markdown_file"
-            echo "## Latest Profile Update" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            head -50 "$markdown_file" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "[View full profile]($markdown_file)" >> $GITHUB_STEP_SUMMARY
-          fi
-
-      # main is protected (PR-only + required signatures + CodeQL gate), so the
-      # bot cannot push it directly. Land profile updates through a PR instead:
-      # squash-merge commits carry GitHub's web-flow signature and CodeQL gates
-      # the PR. A GITHUB_TOKEN-created PR does NOT fire pull_request workflows
-      # (GitHub recursion guard), so the repo's auto-approve/auto-merge
-      # pipelines never see it — approve with BOT_PAT (a different account,
-      # self-approval is impossible) and enable auto-merge here instead.
-      - name: Open profile update PR
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          BRANCH="profile-update/$(date +%Y%m%d-%H%M%S)"
-          git checkout -b "$BRANCH"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A profile/
-          if git diff --staged --quiet; then
-            echo "No profile changes to land"; exit 0
-          fi
-          git commit -m "chore: update IoT developer profile [skip ci]"
-          git push -u origin "$BRANCH"
-          gh pr create \
-            --base main --head "$BRANCH" \
-            --title "chore: update IoT developer profile" \
-            --body "Automated regeneration on the self-hosted fcc runner." \
-            --label auto-merge
-
-      - name: Approve and queue merge
-        if: env.BOT_PAT != ''
-        env:
-          BOT_PAT: ${{ secrets.BOT_PAT }}
-          GH_TOKEN: ${{ secrets.BOT_PAT }}
-          PR_URL: ${{ github.server_url }}/${{ github.repository }}
-        run: |
-          PR=$(gh pr list --repo "$PR_URL" --state open \
-                 --head "profile-update/*" --limit 1 --json number --jq '.[0].number')
-          gh pr review "$PR" --repo "$PR_URL" --approve
-          gh pr merge "$PR" --repo "$PR_URL" --squash --auto
+        '
+    - name: Generate profile
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://synology:8082'
+          }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
+      run: "iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \\\
+        \n  --token ${{ secrets.GITHUB_TOKEN }} \\\n  --output ./profile \\\n  --max-repos\
+        \ 100 \\\n  ${{ github.event.inputs.use-llm != 'false' && '' || '--no-llm'\
+        \ }}\n"
+    - name: Create summary
+      run: "markdown_file=$(find ./profile -name \"*_profile.md\" | head -1)\nif [\
+        \ -f \"$markdown_file\" ]; then\n  echo \"Profile generated: $markdown_file\"\
+        \n  echo \"## Latest Profile Update\" >> $GITHUB_STEP_SUMMARY\n  echo \"\"\
+        \ >> $GITHUB_STEP_SUMMARY\n  head -50 \"$markdown_file\" >> $GITHUB_STEP_SUMMARY\n\
+        \  echo \"\" >> $GITHUB_STEP_SUMMARY\n  echo \"[View full profile]($markdown_file)\"\
+        \ >> $GITHUB_STEP_SUMMARY\nfi\n"
+    - name: Open profile update PR
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: "BRANCH=\"profile-update/$(date +%Y%m%d-%H%M%S)\"\ngit checkout -b \"$BRANCH\"\
+        \ngit config user.name \"github-actions[bot]\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\
+        \ngit add -A profile/\nif git diff --staged --quiet; then\n  echo \"No profile\
+        \ changes to land\"; exit 0\nfi\ngit commit -m \"chore: update IoT developer\
+        \ profile [skip ci]\"\ngit push -u origin \"$BRANCH\"\ngh pr create \\\n \
+        \ --base main --head \"$BRANCH\" \\\n  --title \"chore: update IoT developer\
+        \ profile\" \\\n  --body \"Automated regeneration on the self-hosted fcc runner.\"\
+        \ \\\n  --label auto-merge\n"
+    - name: Approve and queue merge
+      if: env.BOT_PAT != ''
+      env:
+        BOT_PAT: ${{ secrets.BOT_PAT }}
+        GH_TOKEN: ${{ secrets.BOT_PAT }}
+        PR_URL: ${{ github.server_url }}/${{ github.repository }}
+      run: "PR=$(gh pr list --repo \"$PR_URL\" --state open \\\n       --head \"profile-update/*\"\
+        \ --limit 1 --json number --jq '.[0].number')\ngh pr review \"$PR\" --repo\
+        \ \"$PR_URL\" --approve\ngh pr merge \"$PR\" --repo \"$PR_URL\" --squash --auto\n"
