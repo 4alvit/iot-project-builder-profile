@@ -75,10 +75,26 @@ jobs:
             echo "[View full profile]($markdown_file)" >> $GITHUB_STEP_SUMMARY
           fi
 
-      - name: Commit and push
+      # main is protected (PR-only + required signatures + CodeQL gate), so the
+      # bot cannot push it directly. Land profile updates through a PR instead:
+      # squash-merge commits carry GitHub's web-flow signature, and the repo's
+      # auto-approve/auto-merge pipelines close it once checks pass.
+      - name: Open profile update PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          BRANCH="profile-update/$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A profile/
-          git diff --staged --quiet || git commit -m "chore: update IoT developer profile [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "No profile changes to land"; exit 0
+          fi
+          git commit -m "chore: update IoT developer profile [skip ci]"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --base main --head "$BRANCH" \
+            --title "chore: update IoT developer profile" \
+            --body "Automated regeneration on the self-hosted fcc runner." \
+            --label auto-merge
