@@ -41,13 +41,18 @@ jobs:
     - name: Generate profile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://synology:8082'
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://192.168.167.25:8082'
           }}
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
       run: "iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \\\
         \n  --token ${{ secrets.GITHUB_TOKEN }} \\\n  --output ./profile \\\n  --max-repos\
         \ 100 \\\n  ${{ github.event.inputs.use-llm != 'false' && '' || '--no-llm'\
         \ }}\n"
+    - name: Copy profile to docs
+      run: |
+        echo "Copying profile to docs"
+        mkdir -p docs
+        cp -r profile/* docs
     - name: Create summary
       run: "markdown_file=$(find ./profile -name \"*_profile.md\" | head -1)\nif [\
         \ -f \"$markdown_file\" ]; then\n  echo \"Profile generated: $markdown_file\"\
@@ -60,7 +65,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: "BRANCH=\"profile-update/$(date +%Y%m%d-%H%M%S)\"\ngit checkout -b \"$BRANCH\"\
         \ngit config user.name \"github-actions[bot]\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\
-        \ngit add -A profile/\nif git diff --staged --quiet; then\n  echo \"No profile\
+        \ngit add -A\nif git diff --staged --quiet; then\n  echo \"No profile\
         \ changes to land\"; exit 0\nfi\ngit commit -m \"chore: update IoT developer\
         \ profile [skip ci]\"\ngit push -u origin \"$BRANCH\"\ngh pr create \\\n \
         \ --base main --head \"$BRANCH\" \\\n  --title \"chore: update IoT developer\
