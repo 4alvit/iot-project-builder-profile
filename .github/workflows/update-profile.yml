@@ -41,7 +41,7 @@ jobs:
     - name: Generate profile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://192.168.167.25:8082'
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://fcc.energy-rag.svc.cluster.local:8082'
           }}
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
       run: "iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \\\
