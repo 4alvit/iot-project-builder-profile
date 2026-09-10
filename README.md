@@ -255,6 +255,10 @@ cd energy-data-rag-pipeline && python -m src.query "How to configure grid-zero?"
 
 ---
 
+## 🌐 Live profile
+
+Published on GitHub Pages: https://4alvit.github.io/iot-project-builder-profile/
+
 ## 🔁 Regenerating This Profile
 
 The catalog and status tables above are produced by scanning the GitHub orgs with the bundled generator. LLM analysis runs through the self-hosted [Free Claude Code](https://github.com/Alishahryar1/free-claude-code) proxy deployed in the [`energy-data-rag-pipeline`](https://github.com/4alvit/energy-data-rag-pipeline) stack (see its `docs/configuration.md`):

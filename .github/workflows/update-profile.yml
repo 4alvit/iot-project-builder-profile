@@ -1,5 +1,5 @@
 name: Update IoT Developer Profile
-true:
+"on":
   schedule:
   - cron: 0 6 * * 1
   workflow_dispatch:
@@ -50,9 +50,24 @@ jobs:
         \ }}\n"
     - name: Copy profile to docs
       run: |
-        echo "Copying profile to docs"
+        echo "Copying profile artifacts to docs for GitHub Pages"
         mkdir -p docs
-        cp -r profile/* docs
+        # Copy generated profile files (html/md/json); keep existing docs/pipeline.svg
+        cp profile/*_profile.html profile/*_profile.md profile/*_profile.json docs/ 2>/dev/null || {
+          # Fallback if naming differs
+          for f in profile/*.html profile/*.md profile/*.json; do
+            [ -f "$f" ] && cp "$f" docs/
+          done
+        }
+        # Pages entrypoint at site root
+        html=$(ls docs/*_profile.html 2>/dev/null | head -1)
+        if [ -n "$html" ]; then
+          cp "$html" docs/index.html
+          echo "Installed Pages entrypoint: docs/index.html <- $html"
+        else
+          echo "WARNING: no *_profile.html found to install as docs/index.html"
+        fi
+        ls -la docs/
     - name: Create summary
       run: "markdown_file=$(find ./profile -name \"*_profile.md\" | head -1)\nif [\
         \ -f \"$markdown_file\" ]; then\n  echo \"Profile generated: $markdown_file\"\
