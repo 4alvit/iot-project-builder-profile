@@ -385,7 +385,7 @@ class GitHubScanner:
         """List up to `limit` repos for an org without PaginatedList IndexError."""
         org = self.client.get_organization(org_name)
         org_repos: list[Repository] = []
-        for i, org_repo in enumerate(org.get_repos(type="all")):
+        for i, org_repo in enumerate(org.get_repos(type="public")):
             if i >= limit:
                 break
             org_repos.append(org_repo)
@@ -412,7 +412,7 @@ class GitHubScanner:
                     break
                 gh_repos.append(user_repo)
 
-            # Explicit orgs (e.g. victron-venus) — public repos readable with any token
+            # Explicit orgs — public repos only (GITHUB_TOKEN is sufficient)
             for org_name in self.config.include_orgs:
                 try:
                     org_repos = self._iter_org_repos(org_name, self.config.max_repos)
@@ -430,6 +430,8 @@ class GitHubScanner:
                     break
                 total += 1
                 try:
+                    if getattr(repo, "private", False):
+                        continue  # public repos only
                     if repo.fork and not self.config.include_forks:
                         continue
                     metrics = self._repo_to_metrics(repo)
