@@ -1,17 +1,17 @@
 # IoT Engineering Profile: 4alvit
 
-*Generated: 2026-09-10 04:05*
+*Generated: 2026-09-10 05:06*
 
 ## Summary
 
-The developer exhibits a strong focus on energy management and battery systems, particularly around Victron Venus OS infrastructure. They have built numerous integrations bridging MQTT, D-Bus, and ESPHome to monitor and control inverters, solar arrays, and BMS batteries. Their work includes production‑grade observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT‑based IoT systems, as well as ESPHome BLE sensor patterns for battery‑powered devices. They are proficient in Python‑based IoT services, leveraging asyncio, FastAPI, and DBus bindings to create reliable gateways and dashboards. In addition, they have experience with edge computing technologies such as Docker and containerized deployments, and have begun exploring Rust for desktop applications. Overall, their skill set centers on protocols, data pipelines, and home/energy automation, with room to grow in lower‑level embedded firmware (C/C++) and broader industrial IoT scenarios.
+The developer demonstrates deep expertise in Home Assistant and ESPHome ecosystems, building production-ready BLE sensor patterns for battery management and integrating them with MQTT and Home Assistant. They have extensive experience with Victron Venus OS, creating D-Bus services, MQTT-to-D-Bus bridges, and energy management dashboards across multiple languages (Python, Rust, Go). Their work spans edge computing observability stacks, data pipelines for solar forecasting, and voice assistant integrations, showing a full‑stack IoT capability from embedded firmware to cloud‑ready analytics.
 
 ---
 
 ## 📊 Repository Overview
 
-- **Total Repositories Analyzed**: 76
-- **IoT-Related Repositories**: 31
+- **Total Repositories Analyzed**: 78
+- **IoT-Related Repositories**: 33
 - **ESPHome Configurations**: 13
 - **D-Bus Services**: 32
 
@@ -20,7 +20,9 @@ The developer exhibits a strong focus on energy management and battery systems, 
 
 - **Low**: 40
 
-- **Medium**: 36
+- **Medium**: 37
+
+- **High**: 1
 
 
 ---
@@ -28,47 +30,47 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ## 🎯 Focus Areas
 
 
-### Home Automation: 78.0%
+### Home Automation: 30.0%
 
 ![home_automation](home_automation_chart.png)
 
-### Industrial Iot: 20.0%
+### Industrial Iot: 0.0%
 
 ![industrial_iot](industrial_iot_chart.png)
 
-### Energy Management: 92.0%
+### Energy Management: 55.0%
 
 ![energy_management](energy_management_chart.png)
 
-### Battery Management: 82.0%
+### Battery Management: 20.0%
 
 ![battery_management](battery_management_chart.png)
 
-### Environmental Monitoring: 55.0%
+### Environmental Monitoring: 5.0%
 
 ![environmental_monitoring](environmental_monitoring_chart.png)
 
-### Voice Assistant: 70.0%
+### Voice Assistant: 30.0%
 
 ![voice_assistant](voice_assistant_chart.png)
 
-### Networking Protocols: 95.0%
+### Networking Protocols: 80.0%
 
 ![networking_protocols](networking_protocols_chart.png)
 
-### Edge Computing: 60.0%
+### Edge Computing: 25.0%
 
 ![edge_computing](edge_computing_chart.png)
 
-### Firmware Development: 65.0%
+### Firmware Development: 0.0%
 
 ![firmware_development](firmware_development_chart.png)
 
-### Data Pipeline: 86.0%
+### Data Pipeline: 65.0%
 
 ![data_pipeline](data_pipeline_chart.png)
 
-### Unknown: 10.0%
+### Unknown: 5.0%
 
 ![unknown](unknown_chart.png)
 
@@ -80,29 +82,27 @@ The developer exhibits a strong focus on energy management and battery systems, 
 | Skill | Category | Proficiency | Confidence | Evidence |
 |-------|----------|-------------|------------|----------|
 
-| Python | python_iot | 9/10 | 95.0% | fastapi-mqtt-gateway, solar-forecast-langgraph, energy-data-rag-pipeline, mqtt-observability-opentelemetry, mcp-venus-os, dbus-service-template, dbus-mqtt-battery, dbus-tasmota-pv, inverter-control, inverter-dashboard, inverter-monitoring, integration-tests, venus-os-observability, dbus-event-log |
+| ESPHome | home_automation | 9/10 | 95.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt |
 
-| MQTT | protocols_networking | 9/10 | 90.0% | fastapi-mqtt-gateway, mqtt-observability-opentelemetry, esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, dbus-mqtt-battery, dbus-tasmota-pv |
+| Python IoT Development | python_iot | 9/10 | 98.0% | mqtt-observability-opentelemetry, energy-data-rag-pipeline, solar-forecast-langgraph, fastapi-mqtt-gateway, iot-project-builder-profile, mcp-venus-os, dbus-service-template, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, integration-tests |
 
-| Victron Energy Systems | energy_systems | 9/10 | 90.0% | dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, venus-os-observability, dbus-event-log |
+| Energy Management Systems (Victron) | energy_systems | 9/10 | 95.0% | dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop |
 
-| AsyncIO | python_iot | 8/10 | 80.0% | fastapi-mqtt-gateway, mqtt-observability-opentelemetry, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, inverter-control |
+| BLE Sensor Development | protocols_networking | 8/10 | 90.0% | esphome-ble-sensor-patterns |
 
-| BLE | home_automation | 8/10 | 85.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt |
+| MQTT Messaging | protocols_networking | 8/10 | 95.0% | mqtt-observability-opentelemetry, fastapi-mqtt-gateway, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control |
 
-| ESPHome | home_automation | 8/10 | 85.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml, victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml |
+| D-Bus System Integration | protocols_networking | 8/10 | 90.0% | dbus-mqtt-battery, dbus-tasmota-pv, dbus-service-template |
 
-| D-Bus | protocols_networking | 8/10 | 85.0% | dbus-service-template, dbus-mqtt-battery, dbus-tasmota-pv, venus-os-observability, dbus-event-log |
+| Observability &amp; OpenTelemetry | data_pipeline | 8/10 | 85.0% | mqtt-observability-opentelemetry |
 
-| Battery Management | energy_systems | 8/10 | 80.0% | dbus-mqtt-battery, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns |
+| Home Assistant Custom Components | home_automation | 8/10 | 90.0% | inverter-control, google-home-voice-stats, amazon-echo-home-voice |
 
-| Data Pipeline &amp; Observability | data_pipeline | 8/10 | 80.0% | mqtt-observability-opentelemetry, venus-os-observability, inverter-monitoring, dbus-event-log |
+| Rust Embedded/Firmware | embedded_firmware | 7/10 | 80.0% | inverter-desktop |
 
-| Home Assistant | home_automation | 7/10 | 75.0% | inverter-control, inverter-desktop, inverter-dashboard-go, esphome-ble-sensor-patterns |
+| Go Edge Services | edge_computing | 7/10 | 80.0% | inverter-dashboard-go |
 
-| Edge Computing / Docker | edge_computing | 7/10 | 75.0% | mqtt-observability-opentelemetry, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop |
-
-| Rust | embedded_firmware | 6/10 | 60.0% | inverter-desktop |
+| Voice Assistant Integration | voice_ai | 7/10 | 85.0% | google-home-voice-stats, amazon-echo-home-voice, inverter-control |
 
 
 ---
@@ -110,13 +110,11 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ## 💪 Key Strengths
 
 
-- Deep expertise in MQTT and D-Bus based IoT bridging
+- ESPHome and BLE sensor development
 
-- Strong battery management and BMS integration via ESPHome and Python
+- Python‑centric IoT backend and data pipelines
 
-- Proficiency in building observability and data pipeline solutions for IoT
-
-- Effective use of Home Assistant and ESPHome for home automation
+- Victron Venus OS integration (D‑Bus, MQTT, energy management)
 
 
 ---
@@ -124,13 +122,9 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ## 📈 Growth Areas
 
 
-- Lower‑level embedded firmware development (C/C++, ESP-IDF)
+- Industrial IoT protocols (Modbus, CANbus)
 
-- Industrial IoT protocols such as Modbus TCP/RTU and CANbus
-
-- Advanced orchestration with Kubernetes/K3s for edge workloads
-
-- Voice AI integration pipelines (wake word, STT/TTS) beyond basic patterns
+- Low‑level embedded firmware in C/C++/Zephyr
 
 
 ---
@@ -138,105 +132,105 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ## 🏆 Top Repositories
 
 
-### dbus-tasmota-pv
+### esphome-ble-sensor-patterns
 
-- **Description**: Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS
-- **Language**: Python
-- **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.85
-- **Complexity**: medium
-- **Focus Areas**: energy_management, networking_protocols, data_pipeline
-- **Topics**: dbus, mqtt, python, solar, tasmota, venus-os, victron, pv-inverter
-
-### dbus-esphome-grid-sensor
-
-- **Description**: ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS
-- **Language**: Python
+- **Description**: Production-ready patterns for ESPHome BLE sensors — iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.
+- **Language**: N/A
 - **Stars**: 0 ⭐ | **Forks**: 0
-- **IoT Score**: 0.85
+- **IoT Score**: 1.00
 - **Complexity**: medium
-- **Focus Areas**: energy_management, networking_protocols, edge_computing, data_pipeline
-- **Topics**: ct-sensor, dbus, docker, esp32, esphome, grid-meter, home-automation, mqtt, python, venus-os, victron
-
-### esphome-jbd-bms-mqtt
-
-- **Description**: ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS
-- **Language**: YAML
-- **Stars**: 1 ⭐ | **Forks**: 1
-- **IoT Score**: 0.83
-- **Complexity**: medium
-- **Focus Areas**: energy_management, battery_management, networking_protocols, data_pipeline
-- **Topics**: bluetooth, esp32, esphome, jbd-bms, lifepo4, mqtt, venus-os, victron, battery-monitor, cerbo-gx
-
-### inverter-control
-
-- **Description**: Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard
-- **Language**: Python
-- **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.83
-- **Complexity**: medium
-- **Focus Areas**: home_automation, energy_management, voice_assistant, networking_protocols, data_pipeline
-- **Topics**: dbus, energy-management, grid-tie, home-assistant, python, raspberry-pi, solar, venus-os, victron, cerbo-gx, emporia-vue, hass, quattro, vm-3p75ct, ess, external-control, mqtt
-
-### dbus-emporia-vue
-
-- **Description**: Emporia Vue submeter channels as individual Victron D-Bus AC loads for Venus OS — Home Assistant WebSocket power data via com.victronenergy.acload services
-- **Language**: Python
-- **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.83
-- **Complexity**: medium
-- **Focus Areas**: home_automation, energy_management, voice_assistant, networking_protocols
-- **Topics**: acload, cerbo-gx, dbus, emporia-vue, energy-management, hass, home-assistant, python, submetering, venus-os, victron, websocket
+- **Focus Areas**: home_automation, energy_management, battery_management, voice_assistant, networking_protocols
+- **Topics**: ble, bms, esp32, esphome, plant-sensor, reference-implementation, bluetooth-low-energy, bluetooth-proxy, home-assistant, iot, lambda, passive-scanning, sensor, ibeacon, temperature-sensor, venus-os, victron, xiaomi
 
 ### dbus-mqtt-battery
 
 - **Description**: MQTT to D-Bus bridge for JBD BMS batteries on Victron Venus OS with DVCC support
 - **Language**: Python
 - **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.75
+- **IoT Score**: 1.00
 - **Complexity**: medium
 - **Focus Areas**: energy_management, battery_management, networking_protocols, data_pipeline
-- **Topics**: bms, dbus, lifepo4, mqtt, python, venus-os, victron, battery-management, cerbo-gx, dvcc, jbd-bms
+- **Topics**: bms, dbus, lifepo4, mqtt, python, venus-os, victron, battery-management, cerbo-gx, dvcc, jbd-bms, battery, energy, power, sensor, solar
+
+### dbus-tasmota-pv
+
+- **Description**: Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS
+- **Language**: Python
+- **Stars**: 0 ⭐ | **Forks**: 1
+- **IoT Score**: 1.00
+- **Complexity**: medium
+- **Focus Areas**: energy_management, networking_protocols, data_pipeline
+- **Topics**: dbus, mqtt, python, solar, tasmota, venus-os, victron, pv-inverter, energy, inverter, meter, power, sensor
+
+### esphome-jbd-bms-mqtt
+
+- **Description**: ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS
+- **Language**: YAML
+- **Stars**: 1 ⭐ | **Forks**: 1
+- **IoT Score**: 1.00
+- **Complexity**: medium
+- **Focus Areas**: energy_management, battery_management, networking_protocols, data_pipeline
+- **Topics**: bluetooth, esp32, esphome, jbd-bms, lifepo4, mqtt, venus-os, victron, battery-monitor, cerbo-gx, battery, ble, bms, energy, sensor
+
+### inverter-control
+
+- **Description**: Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard
+- **Language**: Python
+- **Stars**: 0 ⭐ | **Forks**: 1
+- **IoT Score**: 1.00
+- **Complexity**: medium
+- **Focus Areas**: home_automation, energy_management, voice_assistant, networking_protocols, data_pipeline
+- **Topics**: dbus, energy-management, grid-tie, home-assistant, python, raspberry-pi, solar, cerbo-gx, emporia-vue, hass, quattro, ess, external-control, mqtt, battery, energy, inverter, meter, power, sensor
 
 ### inverter-monitoring
 
 - **Description**: Telegraf + InfluxDB + Grafana monitoring stack for Victron inverter systems
 - **Language**: Python
 - **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.75
+- **IoT Score**: 1.00
 - **Complexity**: medium
 - **Focus Areas**: energy_management, networking_protocols, edge_computing, data_pipeline
-- **Topics**: cerbo-gx, docker, energy-monitoring, grafana, influxdb, iot, mqtt, telegraf, time-series, venus-os, victron, python
+- **Topics**: cerbo-gx, docker, energy-monitoring, grafana, influxdb, iot, mqtt, telegraf, time-series, venus-os, victron, python, battery, dbus, energy, inverter, meter, power, sensor, solar
+
+### inverter-dashboard-go
+
+- **Description**: Real-time Victron inverter web dashboard (Go) — same role as inverter-dashboard, implemented in Go with MQTT and optional Home Assistant direct control
+- **Language**: Go
+- **Stars**: 0 ⭐ | **Forks**: 1
+- **IoT Score**: 1.00
+- **Complexity**: medium
+- **Focus Areas**: home_automation, energy_management, voice_assistant, networking_protocols, edge_computing, data_pipeline
+- **Topics**: cerbo-gx, dashboard, docker, go, golang, hass, home-assistant, mqtt, real-time, venus-os, victron, websocket, battery, energy, inverter, power, sensor, solar
+
+### inverter-desktop
+
+- **Description**: Desktop version of Web dashboard for Victron inverter control with Home Assistant integration
+- **Language**: Rust
+- **Stars**: 0 ⭐ | **Forks**: 1
+- **IoT Score**: 1.00
+- **Complexity**: high
+- **Focus Areas**: home_automation, energy_management, voice_assistant, networking_protocols, data_pipeline
+- **Topics**: cerbo-gx, dashboard, energy-management, grid-tie, hass, home-assistant, mqtt, venus-os, victron, web-dashboard, battery, energy, inverter, power, sensor, solar
 
 ### venus-os-observability
 
 - **Description**: OpenTelemetry/Prometheus observability for Venus OS — D-Bus event tracing, inverter metrics, distributed tracing
 - **Language**: Python
 - **Stars**: 0 ⭐ | **Forks**: 0
-- **IoT Score**: 0.75
+- **IoT Score**: 1.00
 - **Complexity**: medium
 - **Focus Areas**: energy_management, networking_protocols, data_pipeline
-- **Topics**: cerbo-gx, dbus, distributed-tracing, grafana, mqtt, opentelemetry, prometheus, tempo, venus-os, victron, python
+- **Topics**: cerbo-gx, dbus, distributed-tracing, grafana, mqtt, opentelemetry, prometheus, tempo, venus-os, victron, python, energy, inverter, power, sensor, solar
 
-### venus-os-integration-patterns
+### dbus-esphome-grid-sensor
 
-- **Description**: Reference implementations for common Venus OS integrations — MQTT↔D-Bus bridges, HTTP API wrappers, scheduled control, Home Assistant automations
+- **Description**: ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS
 - **Language**: Python
-- **Stars**: 0 ⭐ | **Forks**: 1
-- **IoT Score**: 0.75
-- **Complexity**: medium
-- **Focus Areas**: home_automation, voice_assistant, networking_protocols, data_pipeline
-- **Topics**: cerbo-gx, dbus, fastapi, home-assistant, integration-patterns, mqtt, python, venus-os, victron, ha-automation
-
-### esphome-ble-sensor-patterns
-
-- **Description**: Production-ready patterns for ESPHome BLE sensors — iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.
-- **Language**: N/A
 - **Stars**: 0 ⭐ | **Forks**: 0
-- **IoT Score**: 0.70
-- **Complexity**: low
-- **Focus Areas**: home_automation, energy_management, battery_management, voice_assistant, networking_protocols
-- **Topics**: ble, bms, esp32, esphome, plant-sensor, reference-implementation, temperature-sensor, venus-os, xiaomi, bluetooth-low-energy, bluetooth-proxy, home-assistant, iot, lambda, passive-scanning, sensor, ibeacon, victron
+- **IoT Score**: 1.00
+- **Complexity**: medium
+- **Focus Areas**: energy_management, networking_protocols, edge_computing, data_pipeline
+- **Topics**: ct-sensor, dbus, docker, esp32, esphome, grid-meter, home-automation, mqtt, python, venus-os, victron, energy, grid, meter, power, sensor, solar
 
 
 ---
@@ -244,60 +238,370 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ## 🔧 ESPHome Configurations
 
 
-### victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml
+### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml
 
 - **Devices**: esp32:esp32dev
-- **Components**: 16
+- **Components**: 14
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, energy_management, networking_protocols, home_automation
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (ble_client): unnamed
+
+- sensor (template): Temperature
+
+- sensor (template): Humidity
+
+- sensor (template): Battery
+
+- sensor (uptime): Uptime
+
+- sensor (wifi_signal): WiFi Signal
+
+- mqtt: unnamed
 
 - api: unnamed
 
 - ota (esphome): unnamed
 
-- button (restart): Grid Sensor Restart
-
-- button (template): Toggle Calibration Mode
-
-- mqtt: unnamed
-
-- sensor (adc): Grid Current
-
-- sensor (template): Grid Power
-
-- sensor (integration): Grid Energy Forward
-
-- sensor (integration): Grid Energy Reverse
-
-- light (binary): Grid Sensor LED
+- web_server: unnamed
 
 - wifi: unnamed
 
-- binary_sensor (status): Grid Sensor Status
-
-- binary_sensor (template): Grid Feed-In Active
-
-- i2c: unnamed
-
-- switch (template): MQTT Publishing
-
 - logger: unnamed
 
+- binary_sensor (status): ESP32 Status
 
-### victron-venus/dbus-esphome-grid-sensor/docker-compose.yml
 
-- **Devices**: 
-- **Components**: 0
+### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 13
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, home_automation
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (template): Inkbird Temperature
+
+- sensor (template): Inkbird Humidity
+
+- sensor (template): Inkbird Battery
+
+- sensor (uptime): Uptime
+
+- sensor (wifi_signal): WiFi Signal
+
+- mqtt: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- web_server: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 12
+- **Custom Components**: xiaomi_ble
+- **External Libraries**: None
+- **Complexity**: low
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- mqtt: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): Restart
+
+- web_server: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 21
+- **Custom Components**: daly_bms_ble
+- **External Libraries**: None
+- **Complexity**: medium
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- interval: unnamed
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- web_server: unnamed
+
+- esp32_ble: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 17
+- **Custom Components**: daly_bms_ble
+- **External Libraries**: None
+- **Complexity**: medium
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): Restart
+
+- web_server: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 25
+- **Custom Components**: jbd_bms_ble
+- **External Libraries**: None
+- **Complexity**: medium
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- sensor (template): Total Voltage (All)
+
+- sensor (template): Total Power (All)
+
+- sensor (template): Min SOC (All)
+
+- interval: unnamed
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): Restart
+
+- web_server: unnamed
+
+- esp32_ble: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 16
+- **Custom Components**: jbd_bms_ble
+- **External Libraries**: None
+- **Complexity**: medium
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (jbd_bms_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): Restart
+
+- web_server: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 17
+- **Custom Components**: xiaomi_ble
+- **External Libraries**: None
+- **Complexity**: medium
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
+
+**Component Breakdown**:
+
+- esp32_ble_tracker: unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (xiaomi_ble): unnamed
+
+- sensor (uptime): Uptime
+
+- sensor (wifi_signal): WiFi Signal
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- web_server: unnamed
+
+- wifi: unnamed
+
+- logger: unnamed
+
+- binary_sensor (status): ESP32 Status
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml
@@ -307,21 +611,11 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
 
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): restart
-
-- interval: unnamed
-
-- esp32_ble: unnamed
-
-- mqtt: unnamed
+- esp32_ble_tracker: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -363,27 +657,39 @@ The developer exhibits a strong focus on energy management and battery systems, 
 
 - sensor (template): capacity_total_c2
 
+- interval: unnamed
+
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): restart
+
 - web_server: unnamed
 
-- esp32_ble_tracker: unnamed
+- esp32_ble: unnamed
 
 - wifi: unnamed
 
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
+- logger: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -402,8 +708,6 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): esp32_status
-
-- logger: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml
@@ -413,21 +717,13 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
 
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): restart
+- esp32_ble_tracker: unnamed
 
 - script: unnamed
-
-- esp32_ble: unnamed
-
-- mqtt: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -451,19 +747,29 @@ The developer exhibits a strong focus on energy management and battery systems, 
 
 - sensor (template): capacity_total
 
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): restart
+
 - web_server: unnamed
 
-- esp32_ble_tracker: unnamed
+- esp32_ble: unnamed
 
 - wifi: unnamed
 
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
+- logger: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -474,8 +780,6 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): esp32_status
-
-- logger: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml
@@ -485,21 +789,13 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, firmware_development, environmental_monitoring, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
 
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): restart
+- esp32_ble_tracker: unnamed
 
 - script: unnamed
-
-- esp32_ble: unnamed
-
-- mqtt: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -523,19 +819,29 @@ The developer exhibits a strong focus on energy management and battery systems, 
 
 - sensor (template): capacity_total
 
+- mqtt: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): restart
+
 - web_server: unnamed
 
-- esp32_ble_tracker: unnamed
+- esp32_ble: unnamed
 
 - wifi: unnamed
 
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
+- logger: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -547,379 +853,103 @@ The developer exhibits a strong focus on energy management and battery systems, 
 
 - binary_sensor (status): esp32_status
 
-- logger: unnamed
 
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 14
-- **Custom Components**: None
-- **External Libraries**: None
-- **Complexity**: low
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- mqtt: unnamed
-
-- sensor (ble_client): unnamed
-
-- sensor (template): Temperature
-
-- sensor (template): Humidity
-
-- sensor (template): Battery
-
-- sensor (uptime): Uptime
-
-- sensor (wifi_signal): WiFi Signal
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 13
-- **Custom Components**: None
-- **External Libraries**: None
-- **Complexity**: low
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- mqtt: unnamed
-
-- sensor (template): Inkbird Temperature
-
-- sensor (template): Inkbird Humidity
-
-- sensor (template): Inkbird Battery
-
-- sensor (uptime): Uptime
-
-- sensor (wifi_signal): WiFi Signal
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 12
-- **Custom Components**: xiaomi_ble
-- **External Libraries**: None
-- **Complexity**: low
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): Restart
-
-- mqtt: unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 21
-- **Custom Components**: daly_bms_ble
-- **External Libraries**: None
-- **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- interval: unnamed
-
-- esp32_ble: unnamed
-
-- mqtt: unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 17
-- **Custom Components**: daly_bms_ble
-- **External Libraries**: None
-- **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): Restart
-
-- mqtt: unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- ble_client: unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 25
-- **Custom Components**: jbd_bms_ble
-- **External Libraries**: None
-- **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
-
-**Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- button (restart): Restart
-
-- interval: unnamed
-
-- esp32_ble: unnamed
-
-- mqtt: unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- sensor (template): Total Voltage (All)
-
-- sensor (template): Total Power (All)
-
-- sensor (template): Min SOC (All)
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- binary_sensor (jbd_bms_ble): unnamed
-
-- binary_sensor (jbd_bms_ble): unnamed
-
-- binary_sensor (jbd_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml
+### victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml
 
 - **Devices**: esp32:esp32dev
 - **Components**: 16
-- **Custom Components**: jbd_bms_ble
+- **Custom Components**: None
 - **External Libraries**: None
-- **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
+- **Complexity**: low
+- **Focus Areas**: firmware_development, home_automation, networking_protocols, energy_management
 
 **Component Breakdown**:
+
+- sensor (adc): Grid Current
+
+- sensor (template): Grid Power
+
+- sensor (integration): Grid Energy Forward
+
+- sensor (integration): Grid Energy Reverse
+
+- mqtt: unnamed
+
+- switch (template): MQTT Publishing
+
+- light (binary): Grid Sensor LED
 
 - api: unnamed
 
 - ota (esphome): unnamed
 
-- button (restart): Restart
+- button (restart): Grid Sensor Restart
 
-- mqtt: unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (jbd_bms_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
+- button (template): Toggle Calibration Mode
 
 - wifi: unnamed
 
-- ble_client: unnamed
-
-- binary_sensor (jbd_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
 - logger: unnamed
 
+- binary_sensor (status): Grid Sensor Status
 
-### 4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml
+- binary_sensor (template): Grid Feed-In Active
 
-- **Devices**: esp32:esp32dev
-- **Components**: 17
-- **Custom Components**: xiaomi_ble
+- i2c: unnamed
+
+
+### victron-venus/dbus-esphome-grid-sensor/docker-compose.yml
+
+- **Devices**: 
+- **Components**: 0
+- **Custom Components**: None
 - **External Libraries**: None
-- **Complexity**: medium
-- **Focus Areas**: environmental_monitoring, networking_protocols, firmware_development, energy_management, battery_management, home_automation
+- **Complexity**: low
+- **Focus Areas**: home_automation, networking_protocols
 
 **Component Breakdown**:
-
-- api: unnamed
-
-- ota (esphome): unnamed
-
-- mqtt: unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (xiaomi_ble): unnamed
-
-- sensor (uptime): Uptime
-
-- sensor (wifi_signal): WiFi Signal
-
-- web_server: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- wifi: unnamed
-
-- ble_client: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
 
 
 
 ---
 
 ## 📡 D-Bus Services
+
+
+### com.victronenergy.battery.
+
+- **Interfaces**: 1
+- **Object Paths**: /Alarms/CellImbalance, /Alarms/CommunicationError, /Alarms/HighCellVoltage, /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowCellVoltage, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /Dc/0/Temperature, /History/ChargeCycles, /Info/MaxChargeCellVoltage, /Info/MaxChargeCurrent, /Info/MaxChargeVoltage, /Info/MaxDischargeCurrent, /InstalledCapacity, /Io/AllowToBalance, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MOSTemperature, /System/MaxCellTemperature, /System/MaxCellVoltage, /System/MaxTemperatureCellId, /System/MaxVoltageCellId, /System/MinCellTemperature, /System/MinCellVoltage, /System/MinTemperatureCellId, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCells, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge, /System/NrOfModulesOffline, /System/NrOfModulesOnline, /System/StaleData, /Voltages/Diff, /Voltages/Sum
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 40
+- **Complexity**: medium
+- **Focus Areas**: battery_management, networking_protocols, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.battery. (/Alarms/CellImbalance)
+- Methods: None
+- Signals: None
+- Properties: /Alarms/CellImbalance, /Alarms/CommunicationError, /Alarms/HighCellVoltage, /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowCellVoltage, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /Dc/0/Temperature, /History/ChargeCycles, /Info/MaxChargeCellVoltage, /Info/MaxChargeCurrent, /Info/MaxChargeVoltage, /Info/MaxDischargeCurrent, /InstalledCapacity, /Io/AllowToBalance, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MOSTemperature, /System/MaxCellTemperature, /System/MaxCellVoltage, /System/MaxTemperatureCellId, /System/MaxVoltageCellId, /System/MinCellTemperature, /System/MinCellVoltage, /System/MinTemperatureCellId, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCells, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge
+
+
+### dbus_utils
+
+- **Interfaces**: 1
+- **Object Paths**: /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /TimeToGo
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 15
+- **Complexity**: low
+- **Focus Areas**: battery_management, networking_protocols, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.dbus_utils (/Connected)
+- Methods: None
+- Signals: None
+- Properties: /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /TimeToGo
 
 
 ### com.victronenergy.pvinverter.tasmota_
@@ -930,7 +960,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 18
 - **Complexity**: medium
-- **Focus Areas**: energy_management, networking_protocols, home_automation
+- **Focus Areas**: home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -938,24 +968,6 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - Methods: None
 - Signals: None
 - Properties: /Ac/Energy/Daily, /Ac/Energy/Forward, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /Energy/Daily/Yesterday, /ErrorCode, /FirmwareVersion, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Position, /ProductId, /ProductName, /Serial
-
-
-### com.victronenergy.grid
-
-- **Interfaces**: 1
-- **Object Paths**: /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /ErrorCode, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Status, /run/dbus-grid-service.pid
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 20
-- **Complexity**: medium
-- **Focus Areas**: energy_management, networking_protocols
-
-**Interfaces**:
-
-#### com.victronenergy.grid (/Ac/Energy/Forward)
-- Methods: None
-- Signals: None
-- Properties: /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /ErrorCode, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Status, /run/dbus-grid-service.pid
 
 
 ### com.victronenergy.acload.
@@ -966,7 +978,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -984,7 +996,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, energy_management
 
 **Interfaces**:
 
@@ -1002,7 +1014,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1020,7 +1032,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 6
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management
+- **Focus Areas**: battery_management, energy_management
 
 **Interfaces**:
 
@@ -1038,7 +1050,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 31
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1056,7 +1068,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1064,6 +1076,78 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - Methods: None
 - Signals: None
 - Properties: /Level, /State
+
+
+### com.victronenergy.BusItem
+
+- **Interfaces**: 1
+- **Object Paths**: /, /Ac/Grid/L1/P, /Ac/L1/Power, /Ac/Out/L1/P, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /Soc, /State, /Yield/Power, /org/freedesktop/DBus, {path}
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 15
+- **Complexity**: low
+- **Focus Areas**: battery_management, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.BusItem (/)
+- Methods: None
+- Signals: None
+- Properties: /, /Ac/Grid/L1/P, /Ac/L1/Power, /Ac/Out/L1/P, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /Soc, /State, /Yield/Power, /org/freedesktop/DBus, {path}
+
+
+### com.victronenergy.battery.ttyO1
+
+- **Interfaces**: 1
+- **Object Paths**: /ac/grid/power, /ac/loads/power, /ac/power, /dc/0/power, /dc/0/voltages/cell, /dc/pv/power, /power, /soc, /state, /temperatures/cell, /yield/power
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 11
+- **Complexity**: low
+- **Focus Areas**: battery_management, networking_protocols, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.battery.ttyO1 (/ac/grid/power)
+- Methods: None
+- Signals: None
+- Properties: /ac/grid/power, /ac/loads/power, /ac/power, /dc/0/power, /dc/0/voltages/cell, /dc/pv/power, /power, /soc, /state, /temperatures/cell, /yield/power
+
+
+### com.victronenergy.grid
+
+- **Interfaces**: 1
+- **Object Paths**: /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /ErrorCode, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Status, /run/dbus-grid-service.pid
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 20
+- **Complexity**: medium
+- **Focus Areas**: networking_protocols, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.grid (/Ac/Energy/Forward)
+- Methods: None
+- Signals: None
+- Properties: /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /ErrorCode, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Status, /run/dbus-grid-service.pid
+
+
+### mqtt_to_dbus
+
+- **Interfaces**: 1
+- **Object Paths**: /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /ProductId, /ProductName
+- **Total Methods**: 0
+- **Total Signals**: 0
+- **Total Properties**: 6
+- **Complexity**: low
+- **Focus Areas**: networking_protocols, energy_management
+
+**Interfaces**:
+
+#### com.victronenergy.mqtt_to_dbus (/Connected)
+- Methods: None
+- Signals: None
+- Properties: /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /ProductId, /ProductName
 
 
 ### com.victronenergy.BusItem
@@ -1092,7 +1176,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 0
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1120,7 +1204,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1138,7 +1222,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, energy_management
 
 **Interfaces**:
 
@@ -1156,7 +1240,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 15
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: battery_management, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1164,96 +1248,6 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - Methods: None
 - Signals: None
 - Properties: /Ac/Energy/Forward, /Ac/L1/Power, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /IsGenericEnergyMeter, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Position, /ProductId, /ProductName, /Status
-
-
-### com.victronenergy.battery.
-
-- **Interfaces**: 1
-- **Object Paths**: /Alarms/CellImbalance, /Alarms/CommunicationError, /Alarms/HighCellVoltage, /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowCellVoltage, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /Dc/0/Temperature, /History/ChargeCycles, /Info/MaxChargeCellVoltage, /Info/MaxChargeCurrent, /Info/MaxChargeVoltage, /Info/MaxDischargeCurrent, /InstalledCapacity, /Io/AllowToBalance, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MOSTemperature, /System/MaxCellTemperature, /System/MaxCellVoltage, /System/MaxTemperatureCellId, /System/MaxVoltageCellId, /System/MinCellTemperature, /System/MinCellVoltage, /System/MinTemperatureCellId, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCells, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge, /System/NrOfModulesOffline, /System/NrOfModulesOnline, /System/StaleData, /Voltages/Diff, /Voltages/Sum
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 40
-- **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management
-
-**Interfaces**:
-
-#### com.victronenergy.battery. (/Alarms/CellImbalance)
-- Methods: None
-- Signals: None
-- Properties: /Alarms/CellImbalance, /Alarms/CommunicationError, /Alarms/HighCellVoltage, /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowCellVoltage, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /Dc/0/Temperature, /History/ChargeCycles, /Info/MaxChargeCellVoltage, /Info/MaxChargeCurrent, /Info/MaxChargeVoltage, /Info/MaxDischargeCurrent, /InstalledCapacity, /Io/AllowToBalance, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MOSTemperature, /System/MaxCellTemperature, /System/MaxCellVoltage, /System/MaxTemperatureCellId, /System/MaxVoltageCellId, /System/MinCellTemperature, /System/MinCellVoltage, /System/MinTemperatureCellId, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCells, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge
-
-
-### dbus_utils
-
-- **Interfaces**: 1
-- **Object Paths**: /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /TimeToGo
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 15
-- **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management
-
-**Interfaces**:
-
-#### com.victronenergy.dbus_utils (/Connected)
-- Methods: None
-- Signals: None
-- Properties: /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /TimeToGo
-
-
-### com.victronenergy.BusItem
-
-- **Interfaces**: 1
-- **Object Paths**: /, /Ac/Grid/L1/P, /Ac/L1/Power, /Ac/Out/L1/P, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /Soc, /State, /Yield/Power, /org/freedesktop/DBus, {path}
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 15
-- **Complexity**: low
-- **Focus Areas**: energy_management, battery_management
-
-**Interfaces**:
-
-#### com.victronenergy.BusItem (/)
-- Methods: None
-- Signals: None
-- Properties: /, /Ac/Grid/L1/P, /Ac/L1/Power, /Ac/Out/L1/P, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /Soc, /State, /Yield/Power, /org/freedesktop/DBus, {path}
-
-
-### com.victronenergy.battery.ttyO1
-
-- **Interfaces**: 1
-- **Object Paths**: /ac/grid/power, /ac/loads/power, /ac/power, /dc/0/power, /dc/0/voltages/cell, /dc/pv/power, /power, /soc, /state, /temperatures/cell, /yield/power
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 11
-- **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management
-
-**Interfaces**:
-
-#### com.victronenergy.battery.ttyO1 (/ac/grid/power)
-- Methods: None
-- Signals: None
-- Properties: /ac/grid/power, /ac/loads/power, /ac/power, /dc/0/power, /dc/0/voltages/cell, /dc/pv/power, /power, /soc, /state, /temperatures/cell, /yield/power
-
-
-### mqtt_to_dbus
-
-- **Interfaces**: 1
-- **Object Paths**: /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /ProductId, /ProductName
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 6
-- **Complexity**: low
-- **Focus Areas**: energy_management, networking_protocols
-
-**Interfaces**:
-
-#### com.victronenergy.mqtt_to_dbus (/Connected)
-- Methods: None
-- Signals: None
-- Properties: /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /ProductId, /ProductName
 
 
 ### monitor
@@ -1282,7 +1276,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 32
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1300,7 +1294,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management
+- **Focus Areas**: battery_management, energy_management
 
 **Interfaces**:
 
@@ -1318,7 +1312,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1331,19 +1325,19 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ### server
 
 - **Interfaces**: 1
-- **Object Paths**: /, /api/settings, /api/state, /api/update, /static, /ws
+- **Object Paths**: /, /api/settings, /api/state, /api/update, /app/src/inverter_dashboard/static, /assets, /static, /ws
 - **Total Methods**: 0
 - **Total Signals**: 0
-- **Total Properties**: 6
+- **Total Properties**: 8
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
 #### com.victronenergy.server (/)
 - Methods: None
 - Signals: None
-- Properties: /, /api/settings, /api/state, /api/update, /static, /ws
+- Properties: /, /api/settings, /api/state, /api/update, /app/src/inverter_dashboard/static, /assets, /static, /ws
 
 
 ### com.victronenergy.tank.
@@ -1372,7 +1366,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1390,7 +1384,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 13
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1408,7 +1402,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, energy_management
 
 **Interfaces**:
 
@@ -1426,7 +1420,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1444,7 +1438,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 20
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: battery_management, networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1462,7 +1456,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management
+- **Focus Areas**: battery_management, energy_management
 
 **Interfaces**:
 
@@ -1480,7 +1474,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: energy_management, networking_protocols
+- **Focus Areas**: networking_protocols, energy_management
 
 **Interfaces**:
 
@@ -1498,7 +1492,7 @@ The developer exhibits a strong focus on energy management and battery systems, 
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: battery_management, home_automation, energy_management
 
 **Interfaces**:
 
@@ -1516,8 +1510,8 @@ The developer exhibits a strong focus on energy management and battery systems, 
 ```json
 {
   "errors": [],
-  "iot_repos": 31,
-  "scanned_at": "2026-09-10T04:03:55.445105",
-  "total_repos": 42
+  "iot_repos": 33,
+  "scanned_at": "2026-09-10T05:05:25.695205",
+  "total_repos": 44
 }
 ```
