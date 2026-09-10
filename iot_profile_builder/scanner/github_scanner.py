@@ -282,8 +282,8 @@ class GitHubScanner:
             ]
         )
 
-        # Language match
-        if repo.language in IOT_LANGUAGES:
+        # Language match (ESPHome/YAML repos are often language-null in GitHub)
+        if repo.language in IOT_LANGUAGES or "esphome" in text or "yaml" in text:
             score += 0.15
 
         # Topic/keyword matches
@@ -294,10 +294,10 @@ class GitHubScanner:
         if repo.description and len(repo.description) > 50:
             score += 0.1
 
-        # Stars/forks indicate activity
-        if repo.stargazers_count > 10:
+        # Popularity OR rich IoT metadata (public niche repos often have 0 stars)
+        if repo.stargazers_count > 10 or matches >= 6:
             score += 0.1
-        if repo.forks_count > 5:
+        if repo.forks_count > 5 or matches >= 8:
             score += 0.05
 
         # Recent activity

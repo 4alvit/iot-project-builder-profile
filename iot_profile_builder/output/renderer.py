@@ -201,6 +201,13 @@ class ProfileRenderer:
                 "            <p>{{ profile.username }} • Generated ",
                 "{{ profile.generated_at.strftime('%B %d, %Y') }}</p>\n",
                 "        </header>\n\n",
+                "        {% if profile.narrative_summary %}\n",
+                "        <section>\n",
+                "            <h2>\u2728 Summary</h2>\n",
+                '            <p style="line-height: 1.7; font-size: 1.05rem;">'
+                "{{ profile.narrative_summary }}</p>\n",
+                "        </section>\n\n",
+                "        {% endif %}\n",
                 "        <section>\n",
                 "            <h2>\U0001f4ca Overview</h2>\n",
                 '            <div class="stats-grid">\n',
