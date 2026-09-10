@@ -22,6 +22,26 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+
+def _esphome_yaml_load(content: str) -> Any:
+    """Parse ESPHome YAML, tolerating !secret / !lambda / custom tags."""
+
+    class ESPHomeLoader(yaml.SafeLoader):
+        """SafeLoader that accepts ESPHome custom tags (!secret, !lambda, …)."""
+
+    def _unknown_tag(loader: yaml.SafeLoader, _tag_suffix: str, node: yaml.Node) -> Any:
+        if isinstance(node, yaml.ScalarNode):
+            return loader.construct_scalar(node)
+        if isinstance(node, yaml.SequenceNode):
+            return loader.construct_sequence(node)
+        if isinstance(node, yaml.MappingNode):
+            return loader.construct_mapping(node)
+        return None
+
+    ESPHomeLoader.add_multi_constructor("!", _unknown_tag)
+    return yaml.load(content, Loader=ESPHomeLoader)
+
+
 COMPONENT_TYPES = {
     "sensor",
     "binary_sensor",
@@ -199,7 +219,7 @@ class ESPHomeAnalyzer:
     def analyze_content(self, content: str, file_path: str) -> ESPHomeAnalysis:
         """Analyze ESPHome YAML content."""
         try:
-            config = yaml.safe_load(content)
+            config = _esphome_yaml_load(content)
         except yaml.YAMLError as e:
             logger.error(f"Failed to parse YAML {file_path}: {e}")
             return ESPHomeAnalysis(
@@ -248,7 +268,7 @@ class ESPHomeAnalyzer:
         """Check if YAML file is ESPHome config."""
         try:
             content = path.read_text(encoding="utf-8")
-            config = yaml.safe_load(content)
+            config = _esphome_yaml_load(content)
             if not isinstance(config, dict):
                 return False
             # ESPHome configs typically have 'esphome:' or 'esp32:' or 'esp8266:' keys

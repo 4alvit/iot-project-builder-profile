@@ -11,7 +11,9 @@ import plotly.graph_objects as go  # type: ignore[import-untyped]
 from jinja2 import Environment, FileSystemLoader
 
 from ..models import (
+    DBusAnalysis,
     EngineeringProfile,
+    ESPHomeAnalysis,
     RepositoryMetrics,
 )
 
@@ -329,7 +331,7 @@ class ProfileRenderer:
                 "        // Focus Areas Radar Chart\n",
                 "        const focusData = [{\n",
                 "            type: 'scatterpolar',\n",
-                "            r: [{{ profile.focus_areas.values()|map('round')|join(', ') }}],\n",
+                "            r: [{% for score in profile.focus_areas.values() %}{{ (score * 100)|round }}{% if not loop.last %}, {% endif %}{% endfor %}],\n",
                 "            theta: {{ profile.focus_areas.keys()|map(attribute='value')",
                 "|map('replace', '_', ' ')|map('title')|list|tojson }},\n",
                 "            fill: 'toself',\n",
@@ -491,6 +493,45 @@ def generate_profile_outputs(
     return results
 
 
+def _esphome_to_dict(e: ESPHomeAnalysis) -> dict[str, Any]:
+    return {
+        "file_path": e.file_path,
+        "devices": e.devices,
+        "components": [
+            {
+                "type": c.type,
+                "platform": c.platform,
+                "name": c.name,
+                "integrations": c.integrations,
+            }
+            for c in e.components
+        ],
+        "custom_components": e.custom_components,
+        "external_libs": e.external_libs,
+        "complexity": e.complexity.value,
+        "focus_areas": [a.value for a in e.focus_areas],
+    }
+
+
+def _dbus_to_dict(d: DBusAnalysis) -> dict[str, Any]:
+    return {
+        "service_name": d.service_name,
+        "interfaces": [
+            {
+                "name": i.name,
+                "path": i.path,
+                "methods": i.methods,
+                "signals": i.signals,
+                "properties": i.properties,
+            }
+            for i in d.interfaces
+        ],
+        "object_paths": d.object_paths,
+        "complexity": d.complexity.value,
+        "focus_areas": [a.value for a in d.focus_areas],
+    }
+
+
 def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
     """Convert EngineeringProfile to dictionary for JSON serialization."""
     from ..models import SkillAssessment
@@ -507,6 +548,7 @@ def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
     def repo_to_dict(r: RepositoryMetrics) -> dict[str, Any]:
         return {
             "name": r.name,
+            "full_name": r.full_name,
             "description": r.description,
             "stars": r.stars,
             "forks": r.forks,
@@ -534,4 +576,6 @@ def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
         "key_strengths": profile.key_strengths,
         "growth_areas": profile.growth_areas,
         "github_stats": profile.github_stats,
+        "esphome_analyses": [_esphome_to_dict(e) for e in profile.esphome_analyses],
+        "dbus_analyses": [_dbus_to_dict(d) for d in profile.dbus_analyses],
     }

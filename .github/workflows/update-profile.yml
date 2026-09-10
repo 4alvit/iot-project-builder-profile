@@ -49,10 +49,18 @@ jobs:
         if [ "${{ github.event.inputs.use-llm }}" = "false" ]; then
           EXTRA+=(--no-llm)
         fi
+        # Prefer BOT_PAT for org-private repo reads; GITHUB_TOKEN can only see public
+        # repos outside this repository's permissions.
+        SCAN_TOKEN="${{ secrets.BOT_PAT }}"
+        if [ -z "$SCAN_TOKEN" ]; then
+          SCAN_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          echo "NOTE: BOT_PAT unset; using GITHUB_TOKEN (public org repos only)"
+        fi
         iot-profile-builder "${{ github.event.inputs.username || '4alvit' }}" \
-          --token "${{ secrets.GITHUB_TOKEN }}" \
+          --token "$SCAN_TOKEN" \
           --output ./profile \
           --max-repos 100 \
+          --orgs victron-venus,ha-homelab,open-ott-play \
           "${EXTRA[@]}"
     - name: Copy profile to docs
       run: |

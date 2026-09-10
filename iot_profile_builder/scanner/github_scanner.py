@@ -366,6 +366,7 @@ class GitHubScanner:
 
         return RepositoryMetrics(
             name=repo.name,
+            full_name=repo.full_name,
             description=repo.description,
             stars=repo.stargazers_count,
             forks=repo.forks_count,
@@ -380,6 +381,16 @@ class GitHubScanner:
             iot_score=iot_score,
         )
 
+    def _iter_org_repos(self, org_name: str, limit: int) -> list[Repository]:
+        """List up to `limit` repos for an org without PaginatedList IndexError."""
+        org = self.client.get_organization(org_name)
+        org_repos: list[Repository] = []
+        for i, org_repo in enumerate(org.get_repos(type="all")):
+            if i >= limit:
+                break
+            org_repos.append(org_repo)
+        return org_repos
+
     async def scan(self) -> ScanResult:
         """Scan user's repositories for IoT projects."""
         repos: list[RepositoryMetrics] = []
@@ -388,24 +399,49 @@ class GitHubScanner:
         iot_count = 0
 
         try:
+            seen: set[str] = set()
+            gh_repos: list[Repository] = []
+
             user_repos: PaginatedList[Repository] = self.user.get_repos(
                 type="owner" if not self.config.include_forks else "all",
                 sort="updated",
                 direction="desc",
             )
+            for i, user_repo in enumerate(user_repos):
+                if i >= self.config.max_repos:
+                    break
+                gh_repos.append(user_repo)
 
-            repos_slice: list[Repository] = list(user_repos[: self.config.max_repos])
-            for repo in repos_slice:
+            # Explicit orgs (e.g. victron-venus) — public repos readable with any token
+            for org_name in self.config.include_orgs:
+                try:
+                    org_repos = self._iter_org_repos(org_name, self.config.max_repos)
+                    gh_repos.extend(org_repos)
+                    logger.info(f"Included {len(org_repos)} repos from org {org_name}")
+                except Exception as e:
+                    errors.append(f"org:{org_name}: {e!s}")
+                    logger.warning(f"Failed to list org {org_name}: {e}")
+
+            for repo in gh_repos:
+                if repo.full_name in seen:
+                    continue
+                seen.add(repo.full_name)
+                if len(seen) > self.config.max_repos * 2:
+                    break
                 total += 1
                 try:
+                    if repo.fork and not self.config.include_forks:
+                        continue
                     metrics = self._repo_to_metrics(repo)
                     if metrics.iot_score >= self.config.min_iot_score:
                         repos.append(metrics)
                         iot_count += 1
-                        logger.info(f"Found IoT repo: {repo.name} (score: {metrics.iot_score:.2f})")
+                        logger.info(
+                            f"Found IoT repo: {repo.full_name} (score: {metrics.iot_score:.2f})"
+                        )
                 except Exception as e:
-                    errors.append(f"{repo.name}: {e!s}")
-                    logger.warning(f"Error processing {repo.name}: {e}")
+                    errors.append(f"{repo.full_name}: {e!s}")
+                    logger.warning(f"Error processing {repo.full_name}: {e}")
 
         except Exception as e:
             errors.append(f"Scan failed: {e!s}")
@@ -418,10 +454,15 @@ class GitHubScanner:
             errors=errors,
         )
 
+    def _resolve_repo(self, repo_ref: str):
+        """Resolve owner/name or bare name under configured username."""
+        full = repo_ref if "/" in repo_ref else f"{self.config.username}/{repo_ref}"
+        return self.client.get_repo(full)
+
     async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict[str, Any]]:
-        """Get repository contents for deeper analysis."""
+        """Get repository contents for deeper analysis (single directory)."""
         try:
-            repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
+            repo = self._resolve_repo(repo_name)
             contents = repo.get_contents(path)
             # get_contents returns a single ContentFile for files, list for dirs
             if isinstance(contents, ContentFile):
@@ -433,10 +474,66 @@ class GitHubScanner:
             logger.error(f"Failed to get contents for {repo_name}: {e}")
             return []
 
+    async def list_repo_files(
+        self,
+        repo_name: str,
+        suffixes: tuple[str, ...] = (".yaml", ".yml", ".py"),
+        max_files: int = 200,
+    ) -> list[dict[str, Any]]:
+        """List matching files recursively via Git Trees API (falls back to root listing)."""
+        try:
+            repo = self._resolve_repo(repo_name)
+            sha = repo.get_branch(repo.default_branch).commit.sha
+            tree = repo.get_git_tree(sha, recursive=True)
+            files: list[dict[str, Any]] = []
+            skip_parts = (
+                ".git/",
+                "node_modules/",
+                "vendor/",
+                ".venv/",
+                "dist/",
+                "build/",
+                "__pycache__/",
+            )
+            for entry in tree.tree:
+                if entry.type != "blob":
+                    continue
+                path = entry.path
+                if any(p in path for p in skip_parts):
+                    continue
+                lower = path.lower()
+                if not any(lower.endswith(sfx) or lower.endswith(sfx + ".j2") for sfx in suffixes):
+                    continue
+                # Skip secrets examples / lock-ish yaml noise at root of CI configs optionally
+                name = path.rsplit("/", 1)[-1]
+                files.append(
+                    {
+                        "name": name,
+                        "path": path,
+                        "type": "file",
+                        "size": entry.size or 0,
+                    }
+                )
+                if len(files) >= max_files:
+                    break
+            return files
+        except Exception as e:
+            logger.warning(f"Tree listing failed for {repo_name} ({e}); falling back to root")
+            contents = await self.get_repo_contents(repo_name)
+            return [
+                c
+                for c in contents
+                if c.get("type") == "file"
+                and any(
+                    c["path"].lower().endswith(sfx) or c["path"].lower().endswith(sfx + ".j2")
+                    for sfx in suffixes
+                )
+            ]
+
     async def get_file_content(self, repo_name: str, path: str) -> str | None:
         """Get file content from repository."""
         try:
-            repo = self.client.get_repo(f"{self.config.username}/{repo_name}")
+            repo = self._resolve_repo(repo_name)
             file = repo.get_contents(path)
             if isinstance(file, list):
                 raise ValueError(f"{path} is a directory, not a file")

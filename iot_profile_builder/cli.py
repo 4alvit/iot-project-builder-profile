@@ -124,57 +124,138 @@ class IoTProfileBuilder:
 
         return output_dir / f"{self.config.username}_profile.md"
 
+    @staticmethod
+    def _repo_ref(repo: RepositoryMetrics) -> str:
+        """Prefer owner/name so org repos resolve correctly."""
+        return repo.full_name or repo.name
+
+    @staticmethod
+    def _prioritize_repos(
+        repos: list[RepositoryMetrics], needles: tuple[str, ...]
+    ) -> list[RepositoryMetrics]:
+        """Prefer name/topic matches, then IoT score — do not drop relevant repos via [:10]."""
+
+        def rank(r: RepositoryMetrics) -> tuple[int, float]:
+            blob = " ".join([r.name, r.full_name or "", *(r.topics or [])]).lower()
+            matched = 1 if any(n in blob for n in needles) else 0
+            return (matched, r.iot_score)
+
+        return sorted(repos, key=rank, reverse=True)
+
     async def _analyze_esphome(self, repos: list[RepositoryMetrics]) -> list[ESPHomeAnalysis]:
-        """Analyze ESPHome configurations in repositories."""
-        analyses = []
-        local_cache = Path.home() / ".cache" / "iot-profile-builder" / "repos"
-        local_cache.mkdir(parents=True, exist_ok=True)
+        """Analyze ESPHome configurations in repositories (recursive file discovery)."""
+        analyses: list[ESPHomeAnalysis] = []
+        candidates = self._prioritize_repos(repos, ("esphome", "esp32", "esp8266", "ble"))
 
-        for repo in repos[:10]:  # Limit to top 10 repos
+        for repo in candidates[:25]:
+            ref = self._repo_ref(repo)
             try:
-                # Look for YAML files in the repo
-                contents = await self.scanner.get_repo_contents(repo.name)
-                yaml_files = [c for c in contents if c["path"].endswith((".yaml", ".yml"))]
-
-                for yaml_file in yaml_files[:5]:  # Max 5 YAML files per repo
-                    if yaml_file["type"] == "file":
-                        content = await self.scanner.get_file_content(repo.name, yaml_file["path"])
-                        is_esphome = content and (
-                            "esphome" in content or "esp32" in content or "esp8266" in content
+                yaml_files = await self.scanner.list_repo_files(
+                    ref, suffixes=(".yaml", ".yml"), max_files=80
+                )
+                # Prefer likely ESPHome configs over CI/pre-commit yaml
+                yaml_files = sorted(
+                    yaml_files,
+                    key=lambda c: (
+                        0
+                        if any(
+                            p in c["path"].lower()
+                            for p in ("pattern", "esphome", "esp32", "sensor", "device")
                         )
-                        if is_esphome:
-                            analysis = self.esphome_analyzer.analyze_content(
-                                str(content),
-                                f"{repo.name}/{yaml_file['path']}",  # content may be None -> empty
-                            )
-                            if analysis.components:
-                                analyses.append(analysis)
+                        else 1,
+                        0 if "/.github/" not in c["path"] else 1,
+                    ),
+                )
+                per_repo = 0
+                for yaml_file in yaml_files:
+                    if per_repo >= 15:
+                        break
+                    if yaml_file.get("type") != "file":
+                        continue
+                    if "/.github/" in yaml_file["path"] or yaml_file["path"].startswith(".github/"):
+                        continue
+                    if "secrets.example" in yaml_file["path"]:
+                        continue
+                    content = await self.scanner.get_file_content(ref, yaml_file["path"])
+                    if not content:
+                        continue
+                    lower = content.lower()
+                    is_esphome = "esphome:" in lower or (
+                        ("esp32:" in lower or "esp8266:" in lower or "rp2040:" in lower)
+                        and ("sensor:" in lower or "mqtt:" in lower or "api:" in lower)
+                    )
+                    if not is_esphome:
+                        continue
+                    analysis = self.esphome_analyzer.analyze_content(
+                        content,
+                        f"{ref}/{yaml_file['path']}",
+                    )
+                    # Keep clearly matching configs even if component parse is sparse
+                    if analysis.components or analysis.devices or is_esphome:
+                        if not analysis.devices and ("esp32" in lower or "esp8266" in lower):
+                            analysis.devices = [
+                                d for d in ("esp32", "esp8266", "rp2040") if f"{d}:" in lower
+                            ] or analysis.devices
+                        analyses.append(analysis)
+                        per_repo += 1
             except Exception as e:
-                logger.warning(f"Failed to analyze ESPHome in {repo.name}: {e}")
+                logger.warning(f"Failed to analyze ESPHome in {ref}: {e}")
 
         return analyses
 
     async def _analyze_dbus(self, repos: list[RepositoryMetrics]) -> list[DBusAnalysis]:
-        """Analyze D-Bus services in repositories."""
-        analyses = []
+        """Analyze D-Bus services in repositories (recursive; includes .py.j2 templates)."""
+        analyses: list[DBusAnalysis] = []
+        candidates = self._prioritize_repos(repos, ("dbus", "vedbus", "victron", "venus"))
 
-        for repo in repos[:10]:  # Limit to top 10 repos
+        for repo in candidates[:25]:
+            ref = self._repo_ref(repo)
             try:
-                contents = await self.scanner.get_repo_contents(repo.name)
-                py_files = [c for c in contents if c["path"].endswith(".py")]
-
-                for py_file in py_files[:5]:
-                    if py_file["type"] == "file":
-                        content = await self.scanner.get_file_content(repo.name, py_file["path"])
-                        dbus_keywords = ["dbus", "pydbus", "gi.repository", "com.victronenergy"]
-                        if content and any(kw in content.lower() for kw in dbus_keywords):
-                            analysis = self.dbus_analyzer.analyze_content(
-                                content, f"{repo.name}/{py_file['path']}"
-                            )
-                            if analysis.interfaces:
-                                analyses.append(analysis)
+                py_files = await self.scanner.list_repo_files(ref, suffixes=(".py",), max_files=80)
+                py_files = sorted(
+                    py_files,
+                    key=lambda c: (
+                        0
+                        if any(
+                            n in c["path"].lower() for n in ("dbus", "service", "vedbus", "bridge")
+                        )
+                        else 1,
+                        0 if "/test" not in c["path"].lower() else 1,
+                    ),
+                )
+                per_repo = 0
+                for py_file in py_files:
+                    if per_repo >= 10:
+                        break
+                    if py_file.get("type") != "file":
+                        continue
+                    path_l = py_file["path"].lower()
+                    if "/tests/" in path_l or path_l.startswith("tests/"):
+                        continue
+                    content = await self.scanner.get_file_content(ref, py_file["path"])
+                    if not content:
+                        continue
+                    dbus_keywords = [
+                        "dbus",
+                        "pydbus",
+                        "gi.repository",
+                        "com.victronenergy",
+                        "vedbus",
+                        "vedbusservice",
+                    ]
+                    if not any(kw in content.lower() for kw in dbus_keywords):
+                        continue
+                    analysis = self.dbus_analyzer.analyze_content(
+                        content, f"{ref}/{py_file['path']}"
+                    )
+                    has_signal = any(
+                        i.methods or i.signals or i.properties for i in analysis.interfaces
+                    )
+                    if analysis.object_paths or has_signal:
+                        analyses.append(analysis)
+                        per_repo += 1
             except Exception as e:
-                logger.warning(f"Failed to analyze D-Bus in {repo.name}: {e}")
+                logger.warning(f"Failed to analyze D-Bus in {ref}: {e}")
 
         return analyses
 
@@ -229,12 +310,18 @@ async def main(
     max_repos: int = 100,
     use_llm: bool = True,
     model: str | None = None,
+    include_orgs: list[str] | None = None,
 ) -> int:
     """Main entry point."""
     config_kwargs: dict[str, Any] = {
         "username": username,
         "token": token,
         "max_repos": max_repos,
+        "include_orgs": (
+            include_orgs
+            if include_orgs is not None
+            else ["victron-venus", "ha-homelab", "open-ott-play"]
+        ),
     }
     if model:
         config_kwargs["llm_model"] = model
@@ -273,6 +360,11 @@ def cli() -> int:
         default=None,
         help="LLM model id (default: claude-3-5-sonnet-20241022; any id exposed by the gateway works)",
     )
+    parser.add_argument(
+        "--orgs",
+        default="",
+        help="Comma-separated GitHub orgs to include (default: victron-venus,ha-homelab,open-ott-play)",
+    )
 
     args = parser.parse_args()
 
@@ -287,6 +379,7 @@ def cli() -> int:
                 max_repos=args.max_repos,
                 use_llm=not args.no_llm,
                 model=args.model,
+                include_orgs=[o.strip() for o in args.orgs.split(",") if o.strip()] or None,
             )
         )
     except KeyboardInterrupt:
