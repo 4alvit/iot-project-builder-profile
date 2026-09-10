@@ -33,6 +33,9 @@ DBUS_KEYWORDS = {
     "system-bus",
     "session-bus",
     "message-bus",
+    "vedbus",
+    "vedbusservice",
+    "velib_python",
 }
 
 FOCUS_KEYWORDS: dict[FocusArea, set[str]] = {
@@ -98,6 +101,23 @@ class DBusAnalyzer:
         service_name = self._extract_service_name(content, file_path)
         interfaces = self._extract_interfaces(content)
         object_paths = self._extract_object_paths(content)
+
+        # Victron VeDbus services often expose paths without classic dbus.service
+        # decorators — synthesize an interface so the analysis is retained.
+        if not interfaces and object_paths:
+            props = [{"name": p, "type": "property"} for p in object_paths[:40]]
+            interfaces = [
+                DBusInterface(
+                    name=service_name
+                    if "." in service_name
+                    else f"com.victronenergy.{service_name}",
+                    path=object_paths[0] if object_paths else "/",
+                    methods=[],
+                    signals=[],
+                    properties=props,
+                )
+            ]
+
         complexity = self._assess_complexity(interfaces, content)
         focus_areas = self._detect_focus_areas(interfaces, content)
 
@@ -139,18 +159,24 @@ class DBusAnalyzer:
     def _extract_service_name(self, content: str, file_path: str) -> str:
         """Extract D-Bus service name from content."""
         patterns = [
+            r"com\.victronenergy\.[A-Za-z0-9_.]+",
             r'request_name\s*\(\s*["\']([^"\']+)["\']',
             r'BusName\s*\(\s*["\']([^"\']+)["\']',
             r'service_name\s*[=:]\s*["\']([^"\']+)["\']',
-            r'NAME\s*[=:]\s*["\']([^"\']+)["\']',
         ]
 
         for pattern in patterns:
             match = re.search(pattern, content)
             if match:
-                return match.group(1)
+                return match.group(1) if match.lastindex else match.group(0)
 
-        return Path(file_path).stem
+        stem = Path(file_path).stem
+        if stem.endswith(".py"):
+            stem = Path(stem).stem
+        # Copier templates: service.py.j2 -> service
+        while stem.endswith(".py") or stem.endswith(".j2"):
+            stem = Path(stem).stem
+        return stem.replace(".py", "").replace(".j2", "")
 
     def _extract_interfaces(self, content: str) -> list[DBusInterface]:
         """Extract D-Bus interfaces from content."""
@@ -259,6 +285,9 @@ class DBusAnalyzer:
                 "gi.repository",
                 "com.victronenergy",
                 "org.freedesktop",
+                "vedbus",
+                "vedbusservice",
+                "dbus",
             ]
         )
 
@@ -349,7 +378,7 @@ class DBusAnalyzer:
 
     def _extract_object_paths(self, content: str) -> list[str]:
         """Extract all object paths from content."""
-        paths = set()
+        paths: set[str] = set()
 
         for match in re.finditer(r'path\s*[=:]\s*["\']([^"\']+)["\']', content):
             paths.add(match.group(1))
@@ -357,7 +386,23 @@ class DBusAnalyzer:
         for match in re.finditer(r'OBJECT_PATH\s*[=:]\s*["\']([^"\']+)["\']', content):
             paths.add(match.group(1))
 
-        return list(paths)
+        # Victron style: PATH_DC_VOLTAGE = "/Dc/0/Voltage" or _PATH_CONNECTED = "/Connected"
+        for match in re.finditer(
+            r'(?:^|\n)\s*(?:[A-Z_]*PATH[A-Z0-9_]*)\s*=\s*["\'](/[^"\']+)["\']',
+            content,
+        ):
+            paths.add(match.group(1))
+
+        # Bare D-Bus path string literals (bounded; avoid nested quantifiers / ReDoS)
+        for match in re.finditer(
+            r'["\'](/[A-Za-z0-9_]+(?:/[A-Za-z0-9_]+){0,16})["\']',
+            content,
+        ):
+            path_lit = match.group(1)
+            if len(path_lit) > 1:
+                paths.add(path_lit)
+
+        return sorted(paths)
 
     def _parse_introspection_xml(self, content: str, file_path: str) -> DBusAnalysis:
         """Parse full introspection XML."""

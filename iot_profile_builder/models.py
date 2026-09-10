@@ -38,6 +38,7 @@ class RepositoryMetrics:
     """Metrics for a single repository."""
 
     name: str
+    full_name: str  # owner/name for API access (org or user repos)
     description: str | None
     stars: int
     forks: int
@@ -156,4 +157,7 @@ class ScanConfig:
     min_iot_score: float = 0.3
     analyze_esphome: bool = True
     analyze_dbus: bool = True
+    include_orgs: list[str] = field(
+        default_factory=lambda: ["victron-venus", "ha-homelab", "open-ott-play"]
+    )
     llm_model: str = "claude-3-5-sonnet-20241022"

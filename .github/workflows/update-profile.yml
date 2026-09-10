@@ -49,10 +49,12 @@ jobs:
         if [ "${{ github.event.inputs.use-llm }}" = "false" ]; then
           EXTRA+=(--no-llm)
         fi
+        # Public repos only (user + orgs); GITHUB_TOKEN is sufficient.
         iot-profile-builder "${{ github.event.inputs.username || '4alvit' }}" \
           --token "${{ secrets.GITHUB_TOKEN }}" \
           --output ./profile \
           --max-repos 100 \
+          --orgs victron-venus,ha-homelab,open-ott-play \
           "${EXTRA[@]}"
     - name: Copy profile to docs
       run: |
