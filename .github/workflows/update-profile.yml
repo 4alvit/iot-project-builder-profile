@@ -44,10 +44,16 @@ jobs:
         ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://fcc.energy-rag.svc.cluster.local:8082'
           }}
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
-      run: "iot-profile-builder ${{ github.event.inputs.username || '4alvit' }} \\\
-        \n  --token ${{ secrets.GITHUB_TOKEN }} \\\n  --output ./profile \\\n  --max-repos\
-        \ 100 \\\n  ${{ github.event.inputs.use-llm != 'false' && '' || '--no-llm'\
-        \ }}\n"
+      run: |
+        EXTRA=()
+        if [ "${{ github.event.inputs.use-llm }}" = "false" ]; then
+          EXTRA+=(--no-llm)
+        fi
+        iot-profile-builder "${{ github.event.inputs.username || '4alvit' }}" \
+          --token "${{ secrets.GITHUB_TOKEN }}" \
+          --output ./profile \
+          --max-repos 100 \
+          "${EXTRA[@]}"
     - name: Copy profile to docs
       run: |
         echo "Copying profile artifacts to docs for GitHub Pages"
