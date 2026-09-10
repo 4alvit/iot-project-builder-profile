@@ -393,11 +393,14 @@ class DBusAnalyzer:
         ):
             paths.add(match.group(1))
 
-        # Bare D-Bus path string literals commonly used with add_path / set_value
-        for match in re.finditer(r'["\'](/(?:[A-Za-z0-9_]+(?:/[A-Za-z0-9_]+)*)+)["\']', content):
-            p = match.group(1)
-            if len(p) > 1 and not p.startswith("//"):
-                paths.add(p)
+        # Bare D-Bus path string literals (bounded; avoid nested quantifiers / ReDoS)
+        for match in re.finditer(
+            r'["\'](/[A-Za-z0-9_]+(?:/[A-Za-z0-9_]+){0,16})["\']',
+            content,
+        ):
+            path_lit = match.group(1)
+            if len(path_lit) > 1:
+                paths.add(path_lit)
 
         return sorted(paths)
 

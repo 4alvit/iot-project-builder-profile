@@ -456,7 +456,7 @@ class GitHubScanner:
             errors=errors,
         )
 
-    def _resolve_repo(self, repo_ref: str):
+    def _resolve_repo(self, repo_ref: str) -> Repository:
         """Resolve owner/name or bare name under configured username."""
         full = repo_ref if "/" in repo_ref else f"{self.config.username}/{repo_ref}"
         return self.client.get_repo(full)
