@@ -41,17 +41,19 @@ jobs:
     - name: Generate profile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
+        PROFILE_USE_LLM: ${{ github.event.inputs.use-llm || 'true' }}
         ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://fcc.energy-rag.svc.cluster.local:8082'
           }}
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
       run: |
         EXTRA=()
-        if [ "${{ github.event.inputs.use-llm }}" = "false" ]; then
+        if [ "$PROFILE_USE_LLM" = "false" ]; then
           EXTRA+=(--no-llm)
         fi
         # Public repos only (user + orgs); GITHUB_TOKEN is sufficient.
-        iot-profile-builder "${{ github.event.inputs.username || '4alvit' }}" \
-          --token "${{ secrets.GITHUB_TOKEN }}" \
+        iot-profile-builder "$PROFILE_USERNAME" \
+          --token "$GITHUB_TOKEN" \
           --output ./profile \
           --max-repos 100 \
           --orgs victron-venus,ha-homelab,open-ott-play \
@@ -68,8 +70,10 @@ jobs:
           done
         }
         # Pages entrypoint at site root
-        html=$(ls docs/*_profile.html 2>/dev/null | head -1)
-        if [ -n "$html" ]; then
+        shopt -s nullglob
+        html_files=(docs/*_profile.html)
+        if [ "${#html_files[@]}" -gt 0 ]; then
+          html=${html_files[0]}
           cp "$html" docs/index.html
           echo "Installed Pages entrypoint: docs/index.html <- $html"
         else
@@ -77,12 +81,20 @@ jobs:
         fi
         ls -la docs/
     - name: Create summary
-      run: "markdown_file=$(find ./profile -name \"*_profile.md\" | head -1)\nif [\
-        \ -f \"$markdown_file\" ]; then\n  echo \"Profile generated: $markdown_file\"\
-        \n  echo \"## Latest Profile Update\" >> $GITHUB_STEP_SUMMARY\n  echo \"\"\
-        \ >> $GITHUB_STEP_SUMMARY\n  head -50 \"$markdown_file\" >> $GITHUB_STEP_SUMMARY\n\
-        \  echo \"\" >> $GITHUB_STEP_SUMMARY\n  echo \"[View full profile]($markdown_file)\"\
-        \ >> $GITHUB_STEP_SUMMARY\nfi\n"
+      run: |
+        shopt -s nullglob
+        markdown_files=(profile/*_profile.md)
+        if [ "${#markdown_files[@]}" -gt 0 ]; then
+          markdown_file=${markdown_files[0]}
+          echo "Profile generated: $markdown_file"
+          {
+            echo "## Latest Profile Update"
+            echo ""
+            head -50 "$markdown_file"
+            echo ""
+            echo "[View full profile]($markdown_file)"
+          } >> "$GITHUB_STEP_SUMMARY"
+        fi
     # BOT_PAT creates the PR so normal CI events run. Because that account is
     # the PR author, approval needs an independent APPROVAL_PAT or a human review.
     # Never use the author's own token to approve; no credentials are provisioned here.
