@@ -27,7 +27,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.BOT_PAT }}
         fetch-depth: 0
     - name: Set up Python
       uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -83,23 +83,26 @@ jobs:
         \ >> $GITHUB_STEP_SUMMARY\n  head -50 \"$markdown_file\" >> $GITHUB_STEP_SUMMARY\n\
         \  echo \"\" >> $GITHUB_STEP_SUMMARY\n  echo \"[View full profile]($markdown_file)\"\
         \ >> $GITHUB_STEP_SUMMARY\nfi\n"
+    # BOT_PAT creates the PR so normal CI events run. Because that account is
+    # the PR author, approval needs an independent APPROVAL_PAT or a human review.
+    # Never use the author's own token to approve; no credentials are provisioned here.
     - name: Open profile update PR
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: "BRANCH=\"profile-update/$(date +%Y%m%d-%H%M%S)\"\ngit checkout -b \"$BRANCH\"\
-        \ngit config user.name \"github-actions[bot]\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\
-        \ngit add -A\nif git diff --staged --quiet; then\n  echo \"No profile\
-        \ changes to land\"; exit 0\nfi\ngit commit -m \"chore: update IoT developer\
-        \ profile [skip ci]\"\ngit push -u origin \"$BRANCH\"\ngh pr create \\\n \
-        \ --base main --head \"$BRANCH\" \\\n  --title \"chore: update IoT developer\
-        \ profile\" \\\n  --body \"Automated regeneration on the self-hosted fcc runner.\"\
-        \ \\\n  --label auto-merge\n"
-    - name: Approve and queue merge
-      if: env.BOT_PAT != ''
-      env:
-        BOT_PAT: ${{ secrets.BOT_PAT }}
         GH_TOKEN: ${{ secrets.BOT_PAT }}
-        PR_URL: ${{ github.server_url }}/${{ github.repository }}
-      run: "PR=$(gh pr list --repo \"$PR_URL\" --state open \\\n       --head \"profile-update/*\"\
-        \ --limit 1 --json number --jq '.[0].number')\ngh pr review \"$PR\" --repo\
-        \ \"$PR_URL\" --approve\ngh pr merge \"$PR\" --repo \"$PR_URL\" --squash --auto\n"
+      run: |
+        BRANCH="profile-update/$(date +%Y%m%d-%H%M%S)"
+        git checkout -b "$BRANCH"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add -A
+        if git diff --staged --quiet; then
+          echo "No profile changes to land"; exit 0
+        fi
+        git commit -m "chore: update IoT developer profile"
+        git push -u origin "$BRANCH"
+        gh label create automerge --description "Eligible for automatic merge after checks" --color 0E8A16 --force
+        gh pr create \
+          --base main --head "$BRANCH" \
+          --title "chore: update IoT developer profile" \
+          --body "Automated regeneration on the self-hosted fcc runner." \
+          --label automerge
