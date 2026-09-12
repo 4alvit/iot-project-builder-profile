@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "repository": "4alvit/iot-project-builder-profile",
+  "mode": "release",
+  "default_branch": "main",
+  "validation_workflows": [
+    "ci.yml",
+    "codeql.yml",
+    "release-security.yml"
+  ],
+  "artifact_pattern": "release-assets*",
+  "version_file": "pyproject.toml",
+  "local_checks": [
+    "bash scripts/ci.sh",
+    "bash scripts/ci.sh security"
+  ],
+  "notes": [
+    "No application test suite is committed."
+  ],
+  "container_assets": {},
+  "stable_blockers": [
+    "Add an application unit test suite before stable release."
+  ]
+}
