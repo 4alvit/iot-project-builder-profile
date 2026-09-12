@@ -7,6 +7,12 @@
 ![Languages](https://img.shields.io/badge/languages-Python%20%7C%20Go%20%7C%20Vue%2FTypeScript%20%7C%20HCL%20%7C%20YAML-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+<!-- ci-release-process:start -->
+## Release process
+
+See the [release strategy](RELEASING.md) for validation, nightly, beta, RC and stable promotion rules, and the [operator runbook](docs/release-workflow.md) for local commands.
+<!-- ci-release-process:end -->
+
 ## 🏗️ Architecture Overview
 
 ```mermaid

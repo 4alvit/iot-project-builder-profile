@@ -1,0 +1,7 @@
+{
+  "required": [
+    "iot_profile_builder",
+    "pyproject.toml",
+    "uv.lock"
+  ]
+}

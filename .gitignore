@@ -23,3 +23,15 @@ htmlcov/
 # Runtime-generated jinja templates (recreated from renderer.py defaults)
 iot_profile_builder/output/templates/
 *.backup
+
+# Local CI/release artifacts
+release-dist/
+.release-download/
+.release-assets/
+.release-evidence/
+
+# The CI lockfile is part of the reproducible build contract.
+!uv.lock
+
+# Local CI coverage output
+coverage.xml
