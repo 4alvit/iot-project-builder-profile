@@ -20,5 +20,6 @@
   "container_assets": {},
   "stable_blockers": [
     "Add an application unit test suite before stable release."
-  ]
+  ],
+  "visibility": "public"
 }
