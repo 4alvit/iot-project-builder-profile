@@ -220,6 +220,8 @@ class ESPHomeAnalyzer:
         """Analyze ESPHome YAML content."""
         try:
             config = _esphome_yaml_load(content)
+            if not isinstance(config, dict):
+                raise yaml.YAMLError("ESPHome configuration must be a mapping")
         except yaml.YAMLError as e:
             logger.error(f"Failed to parse YAML {file_path}: {e}")
             return ESPHomeAnalysis(
