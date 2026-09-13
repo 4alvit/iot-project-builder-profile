@@ -31,7 +31,7 @@ def main() -> None:
                 summary.write(message)
         return
     subprocess.run(
-        [sys.executable, "-m", "pytest", "tests/", "--cov", "--cov-report=xml"],
+        [sys.executable, "-m", "pytest", "tests/", "--cov-report=xml"],
         cwd=component,
         check=True,
     )
