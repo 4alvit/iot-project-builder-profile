@@ -1,73 +1,38 @@
 {
   "username": "4alvit",
-  "generated_at": "2026-09-10T04:05:14.186416",
-  "total_repos_analyzed": 76,
-  "iot_repos_count": 31,
+  "generated_at": "2026-09-14T12:18:06.809263",
+  "total_repos_analyzed": 88,
+  "iot_repos_count": 39,
   "skills": [
-    {
-      "name": "Python",
-      "category": "python_iot",
-      "proficiency": 9,
-      "evidence": [
-        "fastapi-mqtt-gateway",
-        "solar-forecast-langgraph",
-        "energy-data-rag-pipeline",
-        "mqtt-observability-opentelemetry",
-        "mcp-venus-os",
-        "dbus-service-template",
-        "dbus-mqtt-battery",
-        "dbus-tasmota-pv",
-        "inverter-control",
-        "inverter-dashboard",
-        "inverter-monitoring",
-        "integration-tests",
-        "venus-os-observability",
-        "dbus-event-log"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "name": "AsyncIO",
-      "category": "python_iot",
-      "proficiency": 8,
-      "evidence": [
-        "fastapi-mqtt-gateway",
-        "mqtt-observability-opentelemetry",
-        "mcp-venus-os",
-        "dbus-mqtt-battery",
-        "dbus-tasmota-pv",
-        "inverter-control"
-      ],
-      "confidence": 0.8
-    },
     {
       "name": "MQTT",
       "category": "protocols_networking",
       "proficiency": 9,
       "evidence": [
-        "fastapi-mqtt-gateway",
         "mqtt-observability-opentelemetry",
-        "esphome-ble-sensor-patterns",
+        "fastapi-mqtt-gateway",
+        "dbus-mqtt-battery",
         "esphome-jbd-bms-mqtt",
-        "inverter-control",
         "inverter-dashboard",
         "inverter-monitoring",
         "inverter-dashboard-go",
-        "inverter-desktop",
-        "dbus-mqtt-battery",
-        "dbus-tasmota-pv"
+        "inverter-desktop"
       ],
-      "confidence": 0.9
+      "confidence": 0.95
     },
     {
-      "name": "BLE",
+      "name": "Home Assistant",
       "category": "home_automation",
-      "proficiency": 8,
+      "proficiency": 9,
       "evidence": [
+        "amazon-echo-home-voice",
+        "google-home-voice-stats",
         "esphome-ble-sensor-patterns",
-        "esphome-jbd-bms-mqtt"
+        "inverter-control",
+        "inverter-dashboard-go",
+        "inverter-desktop"
       ],
-      "confidence": 0.85
+      "confidence": 0.9
     },
     {
       "name": "ESPHome",
@@ -76,285 +41,186 @@
       "evidence": [
         "esphome-ble-sensor-patterns",
         "esphome-jbd-bms-mqtt",
-        "victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml",
-        "victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml"
+        "ESPHome Analyses (13 files)"
       ],
       "confidence": 0.85
-    },
-    {
-      "name": "Home Assistant",
-      "category": "home_automation",
-      "proficiency": 7,
-      "evidence": [
-        "inverter-control",
-        "inverter-desktop",
-        "inverter-dashboard-go",
-        "esphome-ble-sensor-patterns"
-      ],
-      "confidence": 0.75
     },
     {
       "name": "D-Bus",
       "category": "protocols_networking",
       "proficiency": 8,
       "evidence": [
+        "mcp-venus-os",
         "dbus-service-template",
         "dbus-mqtt-battery",
         "dbus-tasmota-pv",
-        "venus-os-observability",
-        "dbus-event-log"
+        "D-Bus Analyses (36 services)"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "Battery Management (BMS)",
+      "category": "energy_systems",
+      "proficiency": 8,
+      "evidence": [
+        "esphome-ble-sensor-patterns",
+        "dbus-mqtt-battery",
+        "esphome-jbd-bms-mqtt",
+        "esphome-ble-sensor-patterns DALY/JBD patterns"
       ],
       "confidence": 0.85
     },
     {
-      "name": "Victron Energy Systems",
+      "name": "Energy Management",
       "category": "energy_systems",
       "proficiency": 9,
       "evidence": [
+        "solar-forecast-langgraph",
+        "inverter-control",
+        "inverter-dashboard",
+        "inverter-monitoring",
+        "inverter-dashboard-go",
+        "inverter-desktop",
+        "dbus-tasmota-pv",
+        "energy-data-rag-pipeline"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "name": "Voice Assistant",
+      "category": "voice_ai",
+      "proficiency": 7,
+      "evidence": [
+        "amazon-echo-home-voice",
+        "google-home-voice-stats",
+        "esphome-ble-sensor-patterns",
+        "inverter-control",
+        "inverter-dashboard-go",
+        "inverter-desktop"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "name": "Edge Computing",
+      "category": "edge_computing",
+      "proficiency": 6,
+      "evidence": [
+        "mqtt-observability-opentelemetry",
+        "inverter-monitoring",
+        "inverter-dashboard-go"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "Data Pipeline",
+      "category": "data_pipeline",
+      "proficiency": 8,
+      "evidence": [
+        "mqtt-observability-opentelemetry",
+        "inverter-monitoring",
+        "energy-data-rag-pipeline",
+        "fastapi-mqtt-gateway",
+        "inverter-dashboard",
+        "inverter-dashboard-go",
+        "inverter-desktop"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "Python IoT",
+      "category": "python_iot",
+      "proficiency": 9,
+      "evidence": [
+        "mqtt-observability-opentelemetry",
+        "amazon-echo-home-voice",
+        "esphome-ble-sensor-patterns",
+        "google-home-voice-stats",
+        "mcp-venus-os",
+        "solar-forecast-langgraph",
+        "fastapi-mqtt-gateway",
+        "energy-data-rag-pipeline",
+        "dbus-service-template",
         "dbus-mqtt-battery",
         "dbus-tasmota-pv",
         "esphome-jbd-bms-mqtt",
         "inverter-control",
         "inverter-dashboard",
         "inverter-monitoring",
-        "inverter-dashboard-go",
-        "inverter-desktop",
-        "venus-os-observability",
-        "dbus-event-log"
+        "integration-tests",
+        "inverter-dashboard-vue"
       ],
-      "confidence": 0.9
+      "confidence": 0.95
     },
     {
-      "name": "Battery Management",
-      "category": "energy_systems",
+      "name": "BLE",
+      "category": "protocols_networking",
       "proficiency": 8,
       "evidence": [
-        "dbus-mqtt-battery",
-        "esphome-jbd-bms-mqtt",
-        "esphome-ble-sensor-patterns"
+        "esphome-ble-sensor-patterns",
+        "esphome-jbd-bms-mqtt"
       ],
       "confidence": 0.8
-    },
-    {
-      "name": "Data Pipeline & Observability",
-      "category": "data_pipeline",
-      "proficiency": 8,
-      "evidence": [
-        "mqtt-observability-opentelemetry",
-        "venus-os-observability",
-        "inverter-monitoring",
-        "dbus-event-log"
-      ],
-      "confidence": 0.8
-    },
-    {
-      "name": "Edge Computing / Docker",
-      "category": "edge_computing",
-      "proficiency": 7,
-      "evidence": [
-        "mqtt-observability-opentelemetry",
-        "inverter-dashboard",
-        "inverter-monitoring",
-        "inverter-dashboard-go",
-        "inverter-desktop"
-      ],
-      "confidence": 0.75
-    },
-    {
-      "name": "Rust",
-      "category": "embedded_firmware",
-      "proficiency": 6,
-      "evidence": [
-        "inverter-desktop"
-      ],
-      "confidence": 0.6
     }
   ],
   "focus_areas": {
-    "home_automation": 0.78,
-    "industrial_iot": 0.2,
-    "energy_management": 0.92,
-    "battery_management": 0.82,
-    "environmental_monitoring": 0.55,
-    "voice_assistant": 0.7,
-    "networking_protocols": 0.95,
-    "edge_computing": 0.6,
-    "firmware_development": 0.65,
-    "data_pipeline": 0.86,
-    "unknown": 0.1
+    "home_automation": 0.38,
+    "industrial_iot": 0.0,
+    "energy_management": 0.69,
+    "battery_management": 0.25,
+    "environmental_monitoring": 0.06,
+    "voice_assistant": 0.38,
+    "networking_protocols": 1.0,
+    "edge_computing": 0.25,
+    "firmware_development": 0.5,
+    "data_pipeline": 0.81,
+    "unknown": 0.06
   },
   "complexity_distribution": {
+    "medium": 46,
     "low": 40,
-    "medium": 36
+    "high": 2
   },
   "top_repositories": [
     {
-      "name": "dbus-tasmota-pv",
-      "full_name": "victron-venus/dbus-tasmota-pv",
-      "description": "Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS",
-      "stars": 0,
-      "forks": 1,
-      "language": "Python",
-      "topics": [
-        "dbus",
-        "mqtt",
-        "python",
-        "solar",
-        "tasmota",
-        "venus-os",
-        "victron",
-        "pv-inverter"
-      ],
-      "is_fork": false,
-      "created_at": "2026-03-30T17:51:01+00:00",
-      "updated_at": "2026-09-07T17:08:52+00:00",
-      "size_kb": 377,
-      "complexity": "medium",
-      "focus_areas": [
-        "energy_management",
-        "networking_protocols",
-        "data_pipeline"
-      ],
-      "iot_score": 0.85
-    },
-    {
-      "name": "dbus-esphome-grid-sensor",
-      "full_name": "victron-venus/dbus-esphome-grid-sensor",
-      "description": "ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS",
+      "name": "esphome-ble-sensor-patterns",
+      "full_name": "4alvit/esphome-ble-sensor-patterns",
+      "description": "Production-ready patterns for ESPHome BLE sensors \u2014 iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.",
       "stars": 0,
       "forks": 0,
       "language": "Python",
       "topics": [
-        "ct-sensor",
-        "dbus",
-        "docker",
+        "ble",
+        "bms",
         "esp32",
         "esphome",
-        "grid-meter",
-        "home-automation",
-        "mqtt",
-        "python",
-        "venus-os",
-        "victron"
-      ],
-      "is_fork": false,
-      "created_at": "2026-08-09T06:37:28+00:00",
-      "updated_at": "2026-09-02T18:00:53+00:00",
-      "size_kb": 57,
-      "complexity": "medium",
-      "focus_areas": [
-        "energy_management",
-        "networking_protocols",
-        "edge_computing",
-        "data_pipeline"
-      ],
-      "iot_score": 0.85
-    },
-    {
-      "name": "esphome-jbd-bms-mqtt",
-      "full_name": "victron-venus/esphome-jbd-bms-mqtt",
-      "description": "ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS",
-      "stars": 1,
-      "forks": 1,
-      "language": "YAML",
-      "topics": [
-        "bluetooth",
-        "esp32",
-        "esphome",
-        "jbd-bms",
-        "lifepo4",
-        "mqtt",
+        "plant-sensor",
+        "reference-implementation",
+        "bluetooth-low-energy",
+        "bluetooth-proxy",
+        "home-assistant",
+        "iot",
+        "lambda",
+        "passive-scanning",
+        "sensor",
+        "ibeacon",
+        "temperature-sensor",
         "venus-os",
         "victron",
-        "battery-monitor",
-        "cerbo-gx"
+        "xiaomi"
       ],
       "is_fork": false,
-      "created_at": "2026-03-31T03:11:26+00:00",
-      "updated_at": "2026-09-02T16:34:58+00:00",
-      "size_kb": 456,
+      "created_at": "2026-07-31T01:53:11+00:00",
+      "updated_at": "2026-09-13T04:03:45+00:00",
+      "size_kb": 89,
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
         "energy_management",
         "battery_management",
-        "networking_protocols",
-        "data_pipeline"
-      ],
-      "iot_score": 0.83
-    },
-    {
-      "name": "inverter-control",
-      "full_name": "victron-venus/inverter-control",
-      "description": "Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard",
-      "stars": 0,
-      "forks": 1,
-      "language": "Python",
-      "topics": [
-        "dbus",
-        "energy-management",
-        "grid-tie",
-        "home-assistant",
-        "python",
-        "raspberry-pi",
-        "solar",
-        "venus-os",
-        "victron",
-        "cerbo-gx",
-        "emporia-vue",
-        "hass",
-        "quattro",
-        "vm-3p75ct",
-        "ess",
-        "external-control",
-        "mqtt"
-      ],
-      "is_fork": false,
-      "created_at": "2026-03-31T03:41:04+00:00",
-      "updated_at": "2026-09-09T22:31:37+00:00",
-      "size_kb": 3967,
-      "complexity": "medium",
-      "focus_areas": [
-        "home_automation",
-        "energy_management",
-        "voice_assistant",
-        "networking_protocols",
-        "data_pipeline"
-      ],
-      "iot_score": 0.83
-    },
-    {
-      "name": "dbus-emporia-vue",
-      "full_name": "victron-venus/dbus-emporia-vue",
-      "description": "Emporia Vue submeter channels as individual Victron D-Bus AC loads for Venus OS \u2014 Home Assistant WebSocket power data via com.victronenergy.acload services",
-      "stars": 0,
-      "forks": 1,
-      "language": "Python",
-      "topics": [
-        "acload",
-        "cerbo-gx",
-        "dbus",
-        "emporia-vue",
-        "energy-management",
-        "hass",
-        "home-assistant",
-        "python",
-        "submetering",
-        "venus-os",
-        "victron",
-        "websocket"
-      ],
-      "is_fork": false,
-      "created_at": "2026-08-14T12:19:19+00:00",
-      "updated_at": "2026-09-07T17:08:08+00:00",
-      "size_kb": 76,
-      "complexity": "medium",
-      "focus_areas": [
-        "home_automation",
-        "energy_management",
         "voice_assistant",
         "networking_protocols"
       ],
-      "iot_score": 0.83
+      "iot_score": 1.0
     },
     {
       "name": "dbus-mqtt-battery",
@@ -374,12 +240,17 @@
         "battery-management",
         "cerbo-gx",
         "dvcc",
-        "jbd-bms"
+        "jbd-bms",
+        "battery",
+        "energy",
+        "power",
+        "sensor",
+        "solar"
       ],
       "is_fork": false,
       "created_at": "2026-03-30T17:49:11+00:00",
-      "updated_at": "2026-09-07T17:08:21+00:00",
-      "size_kb": 400,
+      "updated_at": "2026-09-14T03:37:28+00:00",
+      "size_kb": 674,
       "complexity": "medium",
       "focus_areas": [
         "energy_management",
@@ -387,7 +258,121 @@
         "networking_protocols",
         "data_pipeline"
       ],
-      "iot_score": 0.75
+      "iot_score": 1.0
+    },
+    {
+      "name": "dbus-tasmota-pv",
+      "full_name": "victron-venus/dbus-tasmota-pv",
+      "description": "Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "dbus",
+        "mqtt",
+        "python",
+        "solar",
+        "tasmota",
+        "venus-os",
+        "victron",
+        "pv-inverter",
+        "energy",
+        "inverter",
+        "meter",
+        "power",
+        "sensor"
+      ],
+      "is_fork": false,
+      "created_at": "2026-03-30T17:51:01+00:00",
+      "updated_at": "2026-09-14T03:37:45+00:00",
+      "size_kb": 405,
+      "complexity": "medium",
+      "focus_areas": [
+        "energy_management",
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 1.0
+    },
+    {
+      "name": "esphome-jbd-bms-mqtt",
+      "full_name": "victron-venus/esphome-jbd-bms-mqtt",
+      "description": "ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS",
+      "stars": 1,
+      "forks": 1,
+      "language": "YAML",
+      "topics": [
+        "bluetooth",
+        "esp32",
+        "esphome",
+        "jbd-bms",
+        "lifepo4",
+        "mqtt",
+        "venus-os",
+        "victron",
+        "battery-monitor",
+        "cerbo-gx",
+        "battery",
+        "ble",
+        "bms",
+        "energy",
+        "sensor"
+      ],
+      "is_fork": false,
+      "created_at": "2026-03-31T03:11:26+00:00",
+      "updated_at": "2026-09-13T04:55:30+00:00",
+      "size_kb": 488,
+      "complexity": "medium",
+      "focus_areas": [
+        "energy_management",
+        "battery_management",
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 1.0
+    },
+    {
+      "name": "inverter-control",
+      "full_name": "victron-venus/inverter-control",
+      "description": "Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard",
+      "stars": 0,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "dbus",
+        "energy-management",
+        "grid-tie",
+        "home-assistant",
+        "python",
+        "raspberry-pi",
+        "solar",
+        "cerbo-gx",
+        "emporia-vue",
+        "hass",
+        "quattro",
+        "ess",
+        "external-control",
+        "mqtt",
+        "battery",
+        "energy",
+        "inverter",
+        "meter",
+        "power",
+        "sensor"
+      ],
+      "is_fork": false,
+      "created_at": "2026-03-31T03:41:04+00:00",
+      "updated_at": "2026-09-14T03:36:22+00:00",
+      "size_kb": 3953,
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "energy_management",
+        "voice_assistant",
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 1.0
     },
     {
       "name": "inverter-monitoring",
@@ -408,12 +393,20 @@
         "time-series",
         "venus-os",
         "victron",
-        "python"
+        "python",
+        "battery",
+        "dbus",
+        "energy",
+        "inverter",
+        "meter",
+        "power",
+        "sensor",
+        "solar"
       ],
       "is_fork": false,
       "created_at": "2026-04-10T01:38:08+00:00",
-      "updated_at": "2026-09-08T13:19:16+00:00",
-      "size_kb": 217,
+      "updated_at": "2026-09-14T03:36:27+00:00",
+      "size_kb": 390,
       "complexity": "medium",
       "focus_areas": [
         "energy_management",
@@ -421,7 +414,88 @@
         "edge_computing",
         "data_pipeline"
       ],
-      "iot_score": 0.75
+      "iot_score": 1.0
+    },
+    {
+      "name": "inverter-dashboard-go",
+      "full_name": "victron-venus/inverter-dashboard-go",
+      "description": "Real-time Victron inverter web dashboard (Go) \u2014 same role as inverter-dashboard, implemented in Go with MQTT and optional Home Assistant direct control",
+      "stars": 0,
+      "forks": 1,
+      "language": "Go",
+      "topics": [
+        "cerbo-gx",
+        "dashboard",
+        "docker",
+        "go",
+        "golang",
+        "hass",
+        "home-assistant",
+        "mqtt",
+        "real-time",
+        "venus-os",
+        "victron",
+        "websocket",
+        "battery",
+        "energy",
+        "inverter",
+        "power",
+        "sensor",
+        "solar"
+      ],
+      "is_fork": false,
+      "created_at": "2026-04-28T23:06:24+00:00",
+      "updated_at": "2026-09-14T04:48:00+00:00",
+      "size_kb": 1161,
+      "complexity": "high",
+      "focus_areas": [
+        "home_automation",
+        "energy_management",
+        "voice_assistant",
+        "networking_protocols",
+        "edge_computing",
+        "data_pipeline"
+      ],
+      "iot_score": 1.0
+    },
+    {
+      "name": "inverter-desktop",
+      "full_name": "victron-venus/inverter-desktop",
+      "description": "Desktop version of Web dashboard for Victron inverter control with Home Assistant integration",
+      "stars": 0,
+      "forks": 1,
+      "language": "Rust",
+      "topics": [
+        "cerbo-gx",
+        "dashboard",
+        "energy-management",
+        "grid-tie",
+        "hass",
+        "home-assistant",
+        "mqtt",
+        "venus-os",
+        "victron",
+        "web-dashboard",
+        "battery",
+        "energy",
+        "inverter",
+        "power",
+        "sensor",
+        "solar"
+      ],
+      "is_fork": false,
+      "created_at": "2026-05-13T02:45:10+00:00",
+      "updated_at": "2026-09-14T06:59:48+00:00",
+      "size_kb": 18971,
+      "complexity": "high",
+      "focus_areas": [
+        "home_automation",
+        "energy_management",
+        "voice_assistant",
+        "networking_protocols",
+        "data_pipeline"
+      ],
+      "iot_score": 1.0
     },
     {
       "name": "venus-os-observability",
@@ -441,120 +515,98 @@
         "tempo",
         "venus-os",
         "victron",
-        "python"
+        "python",
+        "energy",
+        "inverter",
+        "power",
+        "sensor",
+        "solar"
       ],
       "is_fork": false,
       "created_at": "2026-07-30T00:24:31+00:00",
-      "updated_at": "2026-09-07T01:23:53+00:00",
-      "size_kb": 225,
+      "updated_at": "2026-09-14T03:35:25+00:00",
+      "size_kb": 414,
       "complexity": "medium",
       "focus_areas": [
         "energy_management",
         "networking_protocols",
         "data_pipeline"
       ],
-      "iot_score": 0.75
+      "iot_score": 1.0
     },
     {
-      "name": "venus-os-integration-patterns",
-      "full_name": "victron-venus/venus-os-integration-patterns",
-      "description": "Reference implementations for common Venus OS integrations \u2014 MQTT\u2194D-Bus bridges, HTTP API wrappers, scheduled control, Home Assistant automations",
+      "name": "dbus-esphome-grid-sensor",
+      "full_name": "victron-venus/dbus-esphome-grid-sensor",
+      "description": "ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS",
       "stars": 0,
-      "forks": 1,
+      "forks": 0,
       "language": "Python",
       "topics": [
-        "cerbo-gx",
+        "ct-sensor",
         "dbus",
-        "fastapi",
-        "home-assistant",
-        "integration-patterns",
+        "docker",
+        "esp32",
+        "esphome",
+        "grid-meter",
+        "home-automation",
         "mqtt",
         "python",
         "venus-os",
         "victron",
-        "ha-automation"
+        "energy",
+        "grid",
+        "meter",
+        "power",
+        "sensor",
+        "solar"
       ],
       "is_fork": false,
-      "created_at": "2026-08-09T15:58:08+00:00",
-      "updated_at": "2026-09-02T16:07:41+00:00",
-      "size_kb": 51,
+      "created_at": "2026-08-09T06:37:28+00:00",
+      "updated_at": "2026-09-14T03:48:47+00:00",
+      "size_kb": 262,
       "complexity": "medium",
       "focus_areas": [
-        "home_automation",
-        "voice_assistant",
+        "energy_management",
         "networking_protocols",
+        "edge_computing",
         "data_pipeline"
       ],
-      "iot_score": 0.75
-    },
-    {
-      "name": "esphome-ble-sensor-patterns",
-      "full_name": "4alvit/esphome-ble-sensor-patterns",
-      "description": "Production-ready patterns for ESPHome BLE sensors \u2014 iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.",
-      "stars": 0,
-      "forks": 0,
-      "language": null,
-      "topics": [
-        "ble",
-        "bms",
-        "esp32",
-        "esphome",
-        "plant-sensor",
-        "reference-implementation",
-        "temperature-sensor",
-        "venus-os",
-        "xiaomi",
-        "bluetooth-low-energy",
-        "bluetooth-proxy",
-        "home-assistant",
-        "iot",
-        "lambda",
-        "passive-scanning",
-        "sensor",
-        "ibeacon",
-        "victron"
-      ],
-      "is_fork": false,
-      "created_at": "2026-07-31T01:53:11+00:00",
-      "updated_at": "2026-09-02T01:30:57+00:00",
-      "size_kb": 66,
-      "complexity": "low",
-      "focus_areas": [
-        "home_automation",
-        "energy_management",
-        "battery_management",
-        "voice_assistant",
-        "networking_protocols"
-      ],
-      "iot_score": 0.7
+      "iot_score": 1.0
     }
   ],
-  "narrative_summary": "The developer exhibits a strong focus on energy management and battery systems, particularly around Victron Venus OS infrastructure. They have built numerous integrations bridging MQTT, D-Bus, and ESPHome to monitor and control inverters, solar arrays, and BMS batteries. Their work includes production\u2011grade observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT\u2011based IoT systems, as well as ESPHome BLE sensor patterns for battery\u2011powered devices. They are proficient in Python\u2011based IoT services, leveraging asyncio, FastAPI, and DBus bindings to create reliable gateways and dashboards. In addition, they have experience with edge computing technologies such as Docker and containerized deployments, and have begun exploring Rust for desktop applications. Overall, their skill set centers on protocols, data pipelines, and home/energy automation, with room to grow in lower\u2011level embedded firmware (C/C++) and broader industrial IoT scenarios.",
+  "narrative_summary": "This developer demonstrates a strong focus on energy and battery management systems, particularly around Victron Venus OS and Home Assistant ecosystems. Their work spans from low\u2011level firmware patterns in ESPHome for BLE battery sensors to high\u2011level orchestration using MQTT, D\u2011Bus, and Python\u2011based services. They have built comprehensive observability stacks for MQTT, integrated voice assistants (Alexa, Google Home) for home automation, and created data pipelines leveraging InfluxDB, Grafana, and Prometheus for monitoring solar inverters and energy flows.\n\nTheir proficiency in MQTT is evident across multiple projects, including bridges, observability tools, and battery\u2011to\u2011D\u2011Bus gateways. They routinely combine ESPHome YAML configurations with custom lambda filters to parse BLE telemetry from JBD and Daly BMS units, publishing results to MQTT for Victron systems. Additionally, they have produced production\u2011grade D\u2011Bus service templates and bridges that enable seamless communication between Tasmota power meters, JBD batteries, and the Venus OS platform.\n\nWhile their expertise in edge computing and containerization is solid (Docker Compose stacks, Go\u2011based dashboards), there is room to grow in industrial IoT protocols such as Modbus or CANbus, and in deeper embedded firmware development using C/C++ or Rust beyond the current ESPHome and desktop applications. Expanding into Kubernetes\u2011based edge orchestration and applying machine learning for predictive maintenance would further broaden their IoT skill set.",
   "key_strengths": [
-    "Deep expertise in MQTT and D-Bus based IoT bridging",
-    "Strong battery management and BMS integration via ESPHome and Python",
-    "Proficiency in building observability and data pipeline solutions for IoT",
-    "Effective use of Home Assistant and ESPHome for home automation"
+    "Deep expertise in MQTT\u2011based IoT systems and observability",
+    "Strong Home Assistant and ESPHome integration for home automation",
+    "Proficiency in energy management and battery management using Victron Venus OS and D\u2011Bus",
+    "Skill in building data pipelines with InfluxDB, Grafana, and Prometheus",
+    "Experience with voice assistant integration (Alexa, Google Home)"
   ],
   "growth_areas": [
-    "Lower\u2011level embedded firmware development (C/C++, ESP-IDF)",
-    "Industrial IoT protocols such as Modbus TCP/RTU and CANbus",
-    "Advanced orchestration with Kubernetes/K3s for edge workloads",
-    "Voice AI integration pipelines (wake word, STT/TTS) beyond basic patterns"
+    "Industrial IoT protocols like Modbus and CANbus",
+    "Low\u2011level embedded firmware development in C/C++",
+    "Kubernetes orchestration for edge computing",
+    "Machine learning for predictive maintenance"
   ],
   "github_stats": {
-    "total_repos": 42,
-    "iot_repos": 31,
+    "total_repos": 46,
+    "iot_repos": 39,
     "errors": [],
-    "scanned_at": "2026-09-10T04:03:55.445105"
+    "scanned_at": "2026-09-14T12:16:28.842428"
   },
   "esphome_analyses": [
     {
-      "file_path": "victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml",
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml",
       "devices": [
         "esp32:esp32dev"
       ],
       "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
         {
           "type": "api",
           "platform": null,
@@ -564,24 +616,180 @@
           ]
         },
         {
+          "type": "sensor",
+          "platform": "ble_client",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Temperature",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Humidity",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Battery",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
           "type": "ota",
           "platform": "esphome",
           "name": "",
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Grid Sensor Restart",
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt",
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "template",
-          "name": "Toggle Calibration Mode",
+          "type": "api",
+          "platform": null,
+          "name": "",
           "integrations": [
-            "mqtt"
+            "api"
           ]
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Inkbird Temperature",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Inkbird Humidity",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Inkbird Battery",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
         },
         {
           "type": "mqtt",
@@ -590,39 +798,221 @@
           "integrations": [
             "mqtt"
           ]
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
         },
         {
-          "type": "sensor",
-          "platform": "adc",
-          "name": "Grid Current",
+          "type": "api",
+          "platform": null,
+          "name": "",
           "integrations": [
-            "gpio"
+            "api"
           ]
         },
         {
           "type": "sensor",
-          "platform": "template",
-          "name": "Grid Power",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "integration",
-          "name": "Grid Energy Forward",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "integration",
-          "name": "Grid Energy Reverse",
-          "integrations": []
-        },
-        {
-          "type": "light",
-          "platform": "binary",
-          "name": "Grid Sensor LED",
+          "platform": "xiaomi_ble",
+          "name": "",
           "integrations": [
-            "gpio"
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        }
+      ],
+      "custom_components": [
+        "xiaomi_ble"
+      ],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
           ]
         },
         {
@@ -632,104 +1022,20 @@
           "integrations": []
         },
         {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "Grid Sensor Status",
+          "type": "esp32_ble",
+          "platform": null,
+          "name": "",
           "integrations": []
         },
         {
-          "type": "binary_sensor",
-          "platform": "template",
-          "name": "Grid Feed-In Active",
+          "type": "web_server",
+          "platform": null,
+          "name": "",
           "integrations": []
-        },
-        {
-          "type": "i2c",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "switch",
-          "platform": "template",
-          "name": "MQTT Publishing",
-          "integrations": [
-            "mqtt",
-            "ble"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "uart",
-            "homeassistant"
-          ]
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "firmware_development",
-        "energy_management",
-        "networking_protocols",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "victron-venus/dbus-esphome-grid-sensor/docker-compose.yml",
-      "devices": [],
-      "components": [],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "networking_protocols",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
         },
         {
           "type": "ota",
           "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "restart",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
           "name": "",
           "integrations": []
         },
@@ -742,12 +1048,239 @@
           ]
         },
         {
+          "type": "interval",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "daly_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
           "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "daly_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
           ]
         },
         {
@@ -755,8 +1288,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -764,8 +1297,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -773,8 +1306,174 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Total Voltage (All)",
+          "integrations": [
             "homeassistant"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Total Power (All)",
+          "integrations": [
+            "homeassistant"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Min SOC (All)",
+          "integrations": [
+            "homeassistant"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "interval",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "jbd_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
           ]
         },
         {
@@ -782,8 +1481,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -791,8 +1490,7 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "ble"
           ]
         },
         {
@@ -800,8 +1498,323 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "jbd_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "xiaomi_ble",
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "xiaomi_ble"
+      ],
+      "external_libs": [],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "environmental_monitoring",
+        "networking_protocols",
+        "firmware_development",
+        "energy_management"
+      ]
+    },
+    {
+      "file_path": "victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
           ]
         },
         {
@@ -809,8 +1822,71 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -906,13 +1982,15 @@
           ]
         },
         {
-          "type": "web_server",
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "ble"
+          ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
@@ -926,160 +2004,115 @@
           "integrations": []
         },
         {
-          "type": "ble_client",
+          "type": "esp32_ble",
           "platform": null,
           "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
           "integrations": []
         },
         {
-          "type": "logger",
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "interval",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
             "ble"
           ]
         }
@@ -1090,12 +2123,12 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
+        "battery_management",
         "environmental_monitoring",
         "networking_protocols",
         "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -1105,6 +2138,48 @@
       ],
       "components": [
         {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
           "type": "api",
           "platform": null,
           "name": "",
@@ -1113,37 +2188,12 @@
           ]
         },
         {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "restart",
-          "integrations": []
-        },
-        {
-          "type": "script",
-          "platform": null,
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1151,8 +2201,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1160,8 +2210,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1169,17 +2219,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1235,13 +2276,15 @@
           ]
         },
         {
-          "type": "web_server",
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "ble"
+          ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
@@ -1257,81 +2300,71 @@
           ]
         },
         {
-          "type": "ble_client",
+          "type": "script",
           "platform": null,
           "name": "",
           "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
             "homeassistant"
           ]
         },
         {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
+          "type": "esp32_ble",
+          "platform": null,
           "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
           "integrations": []
         },
         {
-          "type": "logger",
+          "type": "web_server",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "restart",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
           "platform": null,
           "name": "",
           "integrations": [
@@ -1345,12 +2378,12 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
+        "battery_management",
         "environmental_monitoring",
         "networking_protocols",
         "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -1360,6 +2393,48 @@
       ],
       "components": [
         {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
           "type": "api",
           "platform": null,
           "name": "",
@@ -1368,37 +2443,12 @@
           ]
         },
         {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "restart",
-          "integrations": []
-        },
-        {
-          "type": "script",
-          "platform": null,
+          "type": "sensor",
+          "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1406,8 +2456,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1415,8 +2465,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1424,17 +2474,8 @@
           "platform": "jbd_bms_ble",
           "name": "",
           "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
+            "homeassistant",
+            "ble"
           ]
         },
         {
@@ -1490,13 +2531,15 @@
           ]
         },
         {
-          "type": "web_server",
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "ble"
+          ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
@@ -1512,446 +2555,11 @@
           ]
         },
         {
-          "type": "ble_client",
+          "type": "script",
           "platform": null,
           "name": "",
           "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
             "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        }
-      ],
-      "custom_components": [
-        "jbd_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "medium",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt",
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "ble_client",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Temperature",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Humidity",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Battery",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Inkbird Temperature",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Inkbird Humidity",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Inkbird Battery",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [
-        "xiaomi_ble"
-      ],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
           ]
         },
         {
@@ -1961,165 +2569,16 @@
           "integrations": []
         },
         {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
           "type": "web_server",
           "platform": null,
           "name": "",
           "integrations": []
         },
         {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
+          "type": "button",
+          "platform": "restart",
+          "name": "restart",
           "integrations": []
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        }
-      ],
-      "custom_components": [
-        "daly_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "medium",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
         },
         {
           "type": "ota",
@@ -2128,12 +2587,6 @@
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        },
-        {
           "type": "mqtt",
           "platform": null,
           "name": "",
@@ -2142,245 +2595,6 @@
           ]
         },
         {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [
-        "daly_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "medium",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Total Voltage (All)",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Total Power (All)",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "template",
-          "name": "Min SOC (All)",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
           "type": "ble_client",
           "platform": null,
           "name": "",
@@ -2405,40 +2619,7 @@
           ]
         },
         {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
+          "type": "ble_client",
           "platform": null,
           "name": "",
           "integrations": [
@@ -2452,1156 +2633,159 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
+        "battery_management",
         "environmental_monitoring",
         "networking_protocols",
         "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "ble",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [
-        "jbd_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "medium",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "xiaomi_ble",
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "web_server",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        }
-      ],
-      "custom_components": [
-        "xiaomi_ble"
-      ],
-      "external_libs": [],
-      "complexity": "medium",
-      "focus_areas": [
-        "environmental_monitoring",
-        "networking_protocols",
-        "firmware_development",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    }
-  ],
-  "dbus_analyses": [
-    {
-      "service_name": "com.victronenergy.pvinverter.tasmota_",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.pvinverter.tasmota_",
-          "path": "/Ac/Energy/Daily",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Energy/Daily",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Energy/Forward",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Current",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Voltage",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Connected",
-              "type": "property"
-            },
-            {
-              "name": "/CustomName",
-              "type": "property"
-            },
-            {
-              "name": "/DeviceInstance",
-              "type": "property"
-            },
-            {
-              "name": "/Energy/Daily/Yesterday",
-              "type": "property"
-            },
-            {
-              "name": "/ErrorCode",
-              "type": "property"
-            },
-            {
-              "name": "/FirmwareVersion",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessName",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessVersion",
-              "type": "property"
-            },
-            {
-              "name": "/Position",
-              "type": "property"
-            },
-            {
-              "name": "/ProductId",
-              "type": "property"
-            },
-            {
-              "name": "/ProductName",
-              "type": "property"
-            },
-            {
-              "name": "/Serial",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Energy/Daily",
-        "/Ac/Energy/Forward",
-        "/Ac/L1/Current",
-        "/Ac/L1/Power",
-        "/Ac/L1/Voltage",
-        "/Ac/Power",
-        "/Connected",
-        "/CustomName",
-        "/DeviceInstance",
-        "/Energy/Daily/Yesterday",
-        "/ErrorCode",
-        "/FirmwareVersion",
-        "/Mgmt/ProcessName",
-        "/Mgmt/ProcessVersion",
-        "/Position",
-        "/ProductId",
-        "/ProductName",
-        "/Serial"
-      ],
-      "complexity": "medium",
-      "focus_areas": [
-        "energy_management",
-        "networking_protocols",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.grid",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.grid",
-          "path": "/Ac/Energy/Forward",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Energy/Forward",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Energy/Reverse",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Frequency",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Current",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Voltage",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Connected",
-              "type": "property"
-            },
-            {
-              "name": "/CustomName",
-              "type": "property"
-            },
-            {
-              "name": "/DeviceInstance",
-              "type": "property"
-            },
-            {
-              "name": "/ErrorCode",
-              "type": "property"
-            },
-            {
-              "name": "/FirmwareVersion",
-              "type": "property"
-            },
-            {
-              "name": "/HardwareVersion",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/Connection",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessName",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessVersion",
-              "type": "property"
-            },
-            {
-              "name": "/ProductId",
-              "type": "property"
-            },
-            {
-              "name": "/ProductName",
-              "type": "property"
-            },
-            {
-              "name": "/Status",
-              "type": "property"
-            },
-            {
-              "name": "/run/dbus-grid-service.pid",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Energy/Forward",
-        "/Ac/Energy/Reverse",
-        "/Ac/Frequency",
-        "/Ac/L1/Current",
-        "/Ac/L1/Power",
-        "/Ac/L1/Voltage",
-        "/Ac/Power",
-        "/Connected",
-        "/CustomName",
-        "/DeviceInstance",
-        "/ErrorCode",
-        "/FirmwareVersion",
-        "/HardwareVersion",
-        "/Mgmt/Connection",
-        "/Mgmt/ProcessName",
-        "/Mgmt/ProcessVersion",
-        "/ProductId",
-        "/ProductName",
-        "/Status",
-        "/run/dbus-grid-service.pid"
-      ],
-      "complexity": "medium",
-      "focus_areas": [
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.acload.",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.acload.",
-          "path": "/Ac/Power",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/CustomName",
-              "type": "property"
-            },
-            {
-              "name": "/org/freedesktop/DBus",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Power",
-        "/CustomName",
-        "/org/freedesktop/DBus"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.BusItem",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.BusItem",
-          "path": "/org/freedesktop/DBus",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/org/freedesktop/DBus",
-              "type": "property"
-            },
-            {
-              "name": "{path}",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/org/freedesktop/DBus",
-        "{path}"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.tank.ha_tank",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.tank.ha_tank",
-          "path": "/Ac/Power",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Soc",
-              "type": "property"
-            },
-            {
-              "name": "/sys/class/net/eth0/address",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Power",
-        "/Soc",
-        "/sys/class/net/eth0/address"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "networking_protocols",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.evcharger.",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.evcharger.",
-          "path": "/Ac/L1/Voltage",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/L1/Voltage",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Current",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/Connection",
-              "type": "property"
-            },
-            {
-              "name": "/Soc",
-              "type": "property"
-            },
-            {
-              "name": "/VIN",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/L1/Voltage",
-        "/Ac/Power",
-        "/Current",
-        "/Mgmt/Connection",
-        "/Soc",
-        "/VIN"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "battery_management"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.settings",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.settings",
-          "path": "/Ac/Consumption/L1/Power",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Consumption/L1/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Consumption/L2/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Energy/Daily",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Energy/Forward",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Grid/L1/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Grid/L2/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/CustomName",
-              "type": "property"
-            },
-            {
-              "name": "/Dc/0/Current",
-              "type": "property"
-            },
-            {
-              "name": "/Dc/0/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Dc/0/Voltage",
-              "type": "property"
-            },
-            {
-              "name": "/Dc/Battery/Soc",
-              "type": "property"
-            },
-            {
-              "name": "/Dc/Pv/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Devices/0/Ac/Inverter/P",
-              "type": "property"
-            },
-            {
-              "name": "/Energy/Daily/Yesterday",
-              "type": "property"
-            },
-            {
-              "name": "/History/Daily/0/Yield",
-              "type": "property"
-            },
-            {
-              "name": "/History/Daily/1/Yield",
-              "type": "property"
-            },
-            {
-              "name": "/Hub4/L1/AcPowerSetpoint",
-              "type": "property"
-            },
-            {
-              "name": "/Info/AllowCharge",
-              "type": "property"
-            },
-            {
-              "name": "/Info/AllowDischarge",
-              "type": "property"
-            },
-            {
-              "name": "/ProductName",
-              "type": "property"
-            },
-            {
-              "name": "/Pv/V",
-              "type": "property"
-            },
-            {
-              "name": "/Settings",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/CGwacs/BatteryLife/State",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/InverterControl/TouExpensiveEndHour",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/InverterControl/TouExpensiveStartHour",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/System/TimeZone",
-              "type": "property"
-            },
-            {
-              "name": "/Soc",
-              "type": "property"
-            },
-            {
-              "name": "/State",
-              "type": "property"
-            },
-            {
-              "name": "/TimeToGo",
-              "type": "property"
-            },
-            {
-              "name": "/Yield/Power",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Consumption/L1/Power",
-        "/Ac/Consumption/L2/Power",
-        "/Ac/Energy/Daily",
-        "/Ac/Energy/Forward",
-        "/Ac/Grid/L1/Power",
-        "/Ac/Grid/L2/Power",
-        "/Ac/Power",
-        "/CustomName",
-        "/Dc/0/Current",
-        "/Dc/0/Power",
-        "/Dc/0/Voltage",
-        "/Dc/Battery/Soc",
-        "/Dc/Pv/Power",
-        "/Devices/0/Ac/Inverter/P",
-        "/Energy/Daily/Yesterday",
-        "/History/Daily/0/Yield",
-        "/History/Daily/1/Yield",
-        "/Hub4/L1/AcPowerSetpoint",
-        "/Info/AllowCharge",
-        "/Info/AllowDischarge",
-        "/ProductName",
-        "/Pv/V",
-        "/Settings",
-        "/Settings/CGwacs/BatteryLife/State",
-        "/Settings/InverterControl/TouExpensiveEndHour",
-        "/Settings/InverterControl/TouExpensiveStartHour",
-        "/Settings/System/TimeZone",
-        "/Soc",
-        "/State",
-        "/TimeToGo",
-        "/Yield/Power"
-      ],
-      "complexity": "medium",
-      "focus_areas": [
-        "networking_protocols",
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.tank.ha_tank",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.tank.ha_tank",
-          "path": "/Level",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Level",
-              "type": "property"
-            },
-            {
-              "name": "/State",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Level",
-        "/State"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.BusItem",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.BusItem",
-          "path": "/",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/",
-              "type": "property"
-            },
-            {
-              "name": "/Array",
-              "type": "property"
-            },
-            {
-              "name": "/AsyncItem",
-              "type": "property"
-            },
-            {
-              "name": "/DeviceInstance",
-              "type": "property"
-            },
-            {
-              "name": "/Double",
-              "type": "property"
-            },
-            {
-              "name": "/DoubleArray",
-              "type": "property"
-            },
-            {
-              "name": "/Int",
-              "type": "property"
-            },
-            {
-              "name": "/Text",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/",
-        "/Array",
-        "/AsyncItem",
-        "/DeviceInstance",
-        "/Double",
-        "/DoubleArray",
-        "/Int",
-        "/Text"
-      ],
-      "complexity": "low",
-      "focus_areas": [
         "energy_management"
       ]
     },
     {
-      "service_name": "com.victronenergy.BusItem",
-      "interfaces": [
+      "file_path": "victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
-          "name": "com.example.servicehandler",
-          "path": "/servicehandler",
-          "methods": [],
-          "signals": [],
-          "properties": []
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "Grid Sensor Status",
+          "integrations": []
         },
         {
-          "name": "com.example.gridservice",
-          "path": "/gridservice",
-          "methods": [],
-          "signals": [],
-          "properties": []
+          "type": "binary_sensor",
+          "platform": "template",
+          "name": "Grid Feed-In Active",
+          "integrations": []
         },
         {
-          "name": "com.example.settingsservice",
-          "path": "/settingsservice",
-          "methods": [],
-          "signals": [],
-          "properties": []
-        }
-      ],
-      "object_paths": [
-        "/",
-        "/Double",
-        "/Int",
-        "/Nothing",
-        "/Settings/Vrmlogger/LogInterval",
-        "/Text",
-        "/org/freedesktop/DBus"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.settings",
-      "interfaces": [
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
         {
-          "name": "com.victronenergy.settings",
-          "path": "/Settings",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Settings",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/AioVelib/OptionA",
-              "type": "property"
-            },
-            {
-              "name": "/Settings/AioVelib/OptionB",
-              "type": "property"
-            }
+          "type": "sensor",
+          "platform": "adc",
+          "name": "Grid Current",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "sensor",
+          "platform": "template",
+          "name": "Grid Power",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "integration",
+          "name": "Grid Energy Forward",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "integration",
+          "name": "Grid Energy Reverse",
+          "integrations": []
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "uart",
+            "homeassistant"
+          ]
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Grid Sensor Restart",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "template",
+          "name": "Toggle Calibration Mode",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "light",
+          "platform": "binary",
+          "name": "Grid Sensor LED",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "i2c",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "switch",
+          "platform": "template",
+          "name": "MQTT Publishing",
+          "integrations": [
+            "mqtt",
+            "ble"
           ]
         }
       ],
-      "object_paths": [
-        "/Settings",
-        "/Settings/AioVelib/OptionA",
-        "/Settings/AioVelib/OptionB"
-      ],
+      "custom_components": [],
+      "external_libs": [],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.acload.emporia_ch",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.acload.emporia_ch",
-          "path": "/api",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/api",
-              "type": "property"
-            },
-            {
-              "name": "/states",
-              "type": "property"
-            },
-            {
-              "name": "/websocket",
-              "type": "property"
-            },
-            {
-              "name": "config.json",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/api",
-        "/states",
-        "/websocket",
-        "config.json"
-      ],
-      "complexity": "low",
-      "focus_areas": [
-        "energy_management",
-        "battery_management",
-        "home_automation"
-      ]
-    },
-    {
-      "service_name": "com.victronenergy.acload.",
-      "interfaces": [
-        {
-          "name": "com.victronenergy.acload.",
-          "path": "/Ac/Energy/Forward",
-          "methods": [],
-          "signals": [],
-          "properties": [
-            {
-              "name": "/Ac/Energy/Forward",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/L1/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Ac/Power",
-              "type": "property"
-            },
-            {
-              "name": "/Connected",
-              "type": "property"
-            },
-            {
-              "name": "/CustomName",
-              "type": "property"
-            },
-            {
-              "name": "/DeviceInstance",
-              "type": "property"
-            },
-            {
-              "name": "/FirmwareVersion",
-              "type": "property"
-            },
-            {
-              "name": "/IsGenericEnergyMeter",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/Connection",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessName",
-              "type": "property"
-            },
-            {
-              "name": "/Mgmt/ProcessVersion",
-              "type": "property"
-            },
-            {
-              "name": "/Position",
-              "type": "property"
-            },
-            {
-              "name": "/ProductId",
-              "type": "property"
-            },
-            {
-              "name": "/ProductName",
-              "type": "property"
-            },
-            {
-              "name": "/Status",
-              "type": "property"
-            }
-          ]
-        }
-      ],
-      "object_paths": [
-        "/Ac/Energy/Forward",
-        "/Ac/L1/Power",
-        "/Ac/Power",
-        "/Connected",
-        "/CustomName",
-        "/DeviceInstance",
-        "/FirmwareVersion",
-        "/IsGenericEnergyMeter",
-        "/Mgmt/Connection",
-        "/Mgmt/ProcessName",
-        "/Mgmt/ProcessVersion",
-        "/Position",
-        "/ProductId",
-        "/ProductName",
-        "/Status"
-      ],
-      "complexity": "low",
-      "focus_areas": [
+        "home_automation",
         "networking_protocols",
         "energy_management",
-        "battery_management"
+        "firmware_development"
       ]
     },
+    {
+      "file_path": "victron-venus/dbus-esphome-grid-sensor/docker-compose.yml",
+      "devices": [],
+      "components": [],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "networking_protocols"
+      ]
+    }
+  ],
+  "dbus_analyses": [
     {
       "service_name": "com.victronenergy.battery.",
       "interfaces": [
@@ -3824,8 +3008,8 @@
       "complexity": "medium",
       "focus_areas": [
         "networking_protocols",
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -3920,8 +3104,584 @@
       "complexity": "low",
       "focus_areas": [
         "networking_protocols",
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.pvinverter.tasmota_",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.pvinverter.tasmota_",
+          "path": "/Ac/Energy/Daily",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Energy/Daily",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Energy/Forward",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Current",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Voltage",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Connected",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/Energy/Daily/Yesterday",
+              "type": "property"
+            },
+            {
+              "name": "/ErrorCode",
+              "type": "property"
+            },
+            {
+              "name": "/FirmwareVersion",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/Connection",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessName",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessVersion",
+              "type": "property"
+            },
+            {
+              "name": "/Position",
+              "type": "property"
+            },
+            {
+              "name": "/ProductId",
+              "type": "property"
+            },
+            {
+              "name": "/ProductName",
+              "type": "property"
+            },
+            {
+              "name": "/Serial",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Energy/Daily",
+        "/Ac/Energy/Forward",
+        "/Ac/L1/Current",
+        "/Ac/L1/Power",
+        "/Ac/L1/Voltage",
+        "/Ac/Power",
+        "/Connected",
+        "/CustomName",
+        "/DeviceInstance",
+        "/Energy/Daily/Yesterday",
+        "/ErrorCode",
+        "/FirmwareVersion",
+        "/Mgmt/Connection",
+        "/Mgmt/ProcessName",
+        "/Mgmt/ProcessVersion",
+        "/Position",
+        "/ProductId",
+        "/ProductName",
+        "/Serial"
+      ],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "networking_protocols",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.acload.",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.acload.",
+          "path": "/Ac/Power",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/org/freedesktop/DBus",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Power",
+        "/CustomName",
+        "/org/freedesktop/DBus"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.BusItem",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.BusItem",
+          "path": "/org/freedesktop/DBus",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/org/freedesktop/DBus",
+              "type": "property"
+            },
+            {
+              "name": "{path}",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/org/freedesktop/DBus",
+        "{path}"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.tank.ha_tank",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.tank.ha_tank",
+          "path": "/Ac/Power",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Soc",
+              "type": "property"
+            },
+            {
+              "name": "/sys/class/net/eth0/address",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Power",
+        "/Soc",
+        "/sys/class/net/eth0/address"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "networking_protocols",
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.evcharger.",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.evcharger.",
+          "path": "/Ac/L1/Voltage",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/L1/Voltage",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Current",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/Connection",
+              "type": "property"
+            },
+            {
+              "name": "/Soc",
+              "type": "property"
+            },
+            {
+              "name": "/VIN",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/L1/Voltage",
+        "/Ac/Power",
+        "/Current",
+        "/DeviceInstance",
+        "/Mgmt/Connection",
+        "/Soc",
+        "/VIN"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "grid_backup",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.grid_backup",
+          "path": "/Ac/Power",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Connected",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/LastUpdate",
+              "type": "property"
+            },
+            {
+              "name": "/ProductName",
+              "type": "property"
+            },
+            {
+              "name": "/Role",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Power",
+        "/Connected",
+        "/CustomName",
+        "/DeviceInstance",
+        "/LastUpdate",
+        "/ProductName",
+        "/Role"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.grid.",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.grid.",
+          "path": "/Ac/Grid/NumberOfPhases",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Grid/NumberOfPhases",
+              "type": "property"
+            },
+            {
+              "name": "/Connected",
+              "type": "property"
+            },
+            {
+              "name": "/NrOfPhases",
+              "type": "property"
+            },
+            {
+              "name": "/ServiceName",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Grid/NumberOfPhases",
+        "/Connected",
+        "/NrOfPhases",
+        "/ServiceName"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.settings",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.settings",
+          "path": "/Ac/Consumption/L1/Power",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Consumption/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Consumption/L2/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Energy/Daily",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Energy/Forward",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Grid/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Grid/L2/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/Dc/0/Current",
+              "type": "property"
+            },
+            {
+              "name": "/Dc/0/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Dc/0/Voltage",
+              "type": "property"
+            },
+            {
+              "name": "/Dc/Battery/Soc",
+              "type": "property"
+            },
+            {
+              "name": "/Dc/Pv/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Devices/0/Ac/Inverter/P",
+              "type": "property"
+            },
+            {
+              "name": "/Energy/Daily/Yesterday",
+              "type": "property"
+            },
+            {
+              "name": "/History/Daily/0/Yield",
+              "type": "property"
+            },
+            {
+              "name": "/History/Daily/1/Yield",
+              "type": "property"
+            },
+            {
+              "name": "/Hub4/L1/AcPowerSetpoint",
+              "type": "property"
+            },
+            {
+              "name": "/Info/AllowCharge",
+              "type": "property"
+            },
+            {
+              "name": "/Info/AllowDischarge",
+              "type": "property"
+            },
+            {
+              "name": "/ProductName",
+              "type": "property"
+            },
+            {
+              "name": "/Pv/V",
+              "type": "property"
+            },
+            {
+              "name": "/Settings",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/CGwacs/BatteryLife/State",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/InverterControl/TouExpensiveEndHour",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/InverterControl/TouExpensiveStartHour",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/System/TimeZone",
+              "type": "property"
+            },
+            {
+              "name": "/Soc",
+              "type": "property"
+            },
+            {
+              "name": "/State",
+              "type": "property"
+            },
+            {
+              "name": "/TimeToGo",
+              "type": "property"
+            },
+            {
+              "name": "/Yield/Power",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Consumption/L1/Power",
+        "/Ac/Consumption/L2/Power",
+        "/Ac/Energy/Daily",
+        "/Ac/Energy/Forward",
+        "/Ac/Grid/L1/Power",
+        "/Ac/Grid/L2/Power",
+        "/Ac/Power",
+        "/CustomName",
+        "/Dc/0/Current",
+        "/Dc/0/Power",
+        "/Dc/0/Voltage",
+        "/Dc/Battery/Soc",
+        "/Dc/Pv/Power",
+        "/Devices/0/Ac/Inverter/P",
+        "/Energy/Daily/Yesterday",
+        "/History/Daily/0/Yield",
+        "/History/Daily/1/Yield",
+        "/Hub4/L1/AcPowerSetpoint",
+        "/Info/AllowCharge",
+        "/Info/AllowDischarge",
+        "/ProductName",
+        "/Pv/V",
+        "/Settings",
+        "/Settings/CGwacs/BatteryLife/State",
+        "/Settings/InverterControl/TouExpensiveEndHour",
+        "/Settings/InverterControl/TouExpensiveStartHour",
+        "/Settings/System/TimeZone",
+        "/Soc",
+        "/State",
+        "/TimeToGo",
+        "/Yield/Power"
+      ],
+      "complexity": "medium",
+      "focus_areas": [
+        "home_automation",
+        "networking_protocols",
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.tank.ha_tank",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.tank.ha_tank",
+          "path": "/Level",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Level",
+              "type": "property"
+            },
+            {
+              "name": "/State",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Level",
+        "/State"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
       ]
     },
     {
@@ -4015,8 +3775,32 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "dbus_owners",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.dbus_owners",
+          "path": "/org/freedesktop/DBus",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/org/freedesktop/DBus",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/org/freedesktop/DBus"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "energy_management"
       ]
     },
     {
@@ -4091,8 +3875,128 @@
       "complexity": "low",
       "focus_areas": [
         "networking_protocols",
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.grid",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.grid",
+          "path": "/Ac/Energy/Forward",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Energy/Forward",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Energy/Reverse",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Frequency",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Current",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Voltage",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Connected",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/ErrorCode",
+              "type": "property"
+            },
+            {
+              "name": "/FirmwareVersion",
+              "type": "property"
+            },
+            {
+              "name": "/HardwareVersion",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/Connection",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessName",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessVersion",
+              "type": "property"
+            },
+            {
+              "name": "/ProductId",
+              "type": "property"
+            },
+            {
+              "name": "/ProductName",
+              "type": "property"
+            },
+            {
+              "name": "/Status",
+              "type": "property"
+            },
+            {
+              "name": "/run/dbus-grid-service.pid",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Energy/Forward",
+        "/Ac/Energy/Reverse",
+        "/Ac/Frequency",
+        "/Ac/L1/Current",
+        "/Ac/L1/Power",
+        "/Ac/L1/Voltage",
+        "/Ac/Power",
+        "/Connected",
+        "/CustomName",
+        "/DeviceInstance",
+        "/ErrorCode",
+        "/FirmwareVersion",
+        "/HardwareVersion",
+        "/Mgmt/Connection",
+        "/Mgmt/ProcessName",
+        "/Mgmt/ProcessVersion",
+        "/ProductId",
+        "/ProductName",
+        "/Status",
+        "/run/dbus-grid-service.pid"
+      ],
+      "complexity": "medium",
+      "focus_areas": [
+        "networking_protocols",
+        "energy_management"
       ]
     },
     {
@@ -4141,8 +4045,314 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "networking_protocols"
+        "networking_protocols",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.BusItem",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.BusItem",
+          "path": "/",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/",
+              "type": "property"
+            },
+            {
+              "name": "/Array",
+              "type": "property"
+            },
+            {
+              "name": "/AsyncItem",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/Double",
+              "type": "property"
+            },
+            {
+              "name": "/DoubleArray",
+              "type": "property"
+            },
+            {
+              "name": "/Int",
+              "type": "property"
+            },
+            {
+              "name": "/Text",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/",
+        "/Array",
+        "/AsyncItem",
+        "/DeviceInstance",
+        "/Double",
+        "/DoubleArray",
+        "/Int",
+        "/Text"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.BusItem",
+      "interfaces": [
+        {
+          "name": "com.example.servicehandler",
+          "path": "/servicehandler",
+          "methods": [],
+          "signals": [],
+          "properties": []
+        },
+        {
+          "name": "com.example.gridservice",
+          "path": "/gridservice",
+          "methods": [],
+          "signals": [],
+          "properties": []
+        },
+        {
+          "name": "com.example.settingsservice",
+          "path": "/settingsservice",
+          "methods": [],
+          "signals": [],
+          "properties": []
+        }
+      ],
+      "object_paths": [
+        "/",
+        "/Double",
+        "/Int",
+        "/Nothing",
+        "/Settings/Vrmlogger/LogInterval",
+        "/Text",
+        "/org/freedesktop/DBus"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.settings",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.settings",
+          "path": "/Settings",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Settings",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/AioVelib/OptionA",
+              "type": "property"
+            },
+            {
+              "name": "/Settings/AioVelib/OptionB",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Settings",
+        "/Settings/AioVelib/OptionA",
+        "/Settings/AioVelib/OptionB"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.acload.emporia_ch",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.acload.emporia_ch",
+          "path": "/api",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/api",
+              "type": "property"
+            },
+            {
+              "name": "/states",
+              "type": "property"
+            },
+            {
+              "name": "/websocket",
+              "type": "property"
+            },
+            {
+              "name": "config.json",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/api",
+        "/states",
+        "/websocket",
+        "config.json"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.acload.",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.acload.",
+          "path": "/Ac/Energy/Forward",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/Ac/Energy/Forward",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Power",
+              "type": "property"
+            },
+            {
+              "name": "/AllowedRoles",
+              "type": "property"
+            },
+            {
+              "name": "/Connected",
+              "type": "property"
+            },
+            {
+              "name": "/CustomName",
+              "type": "property"
+            },
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/FirmwareVersion",
+              "type": "property"
+            },
+            {
+              "name": "/IsGenericEnergyMeter",
+              "type": "property"
+            },
+            {
+              "name": "/LastUpdate",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/Connection",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessName",
+              "type": "property"
+            },
+            {
+              "name": "/Mgmt/ProcessVersion",
+              "type": "property"
+            },
+            {
+              "name": "/NrOfPhases",
+              "type": "property"
+            },
+            {
+              "name": "/Position",
+              "type": "property"
+            },
+            {
+              "name": "/ProductId",
+              "type": "property"
+            },
+            {
+              "name": "/ProductName",
+              "type": "property"
+            },
+            {
+              "name": "/RefreshTime",
+              "type": "property"
+            },
+            {
+              "name": "/Role",
+              "type": "property"
+            },
+            {
+              "name": "/Serial",
+              "type": "property"
+            },
+            {
+              "name": "/Source/EntityId",
+              "type": "property"
+            },
+            {
+              "name": "/Status",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/Ac/Energy/Forward",
+        "/Ac/L1/Power",
+        "/Ac/Power",
+        "/AllowedRoles",
+        "/Connected",
+        "/CustomName",
+        "/DeviceInstance",
+        "/FirmwareVersion",
+        "/IsGenericEnergyMeter",
+        "/LastUpdate",
+        "/Mgmt/Connection",
+        "/Mgmt/ProcessName",
+        "/Mgmt/ProcessVersion",
+        "/NrOfPhases",
+        "/Position",
+        "/ProductId",
+        "/ProductName",
+        "/RefreshTime",
+        "/Role",
+        "/Serial",
+        "/Source/EntityId",
+        "/Status"
+      ],
+      "complexity": "medium",
+      "focus_areas": [
+        "networking_protocols",
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -4350,10 +4560,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
         "networking_protocols",
-        "energy_management",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -4377,8 +4587,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -4417,17 +4627,17 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "home_automation",
         "networking_protocols",
-        "energy_management",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
-      "service_name": "server",
+      "service_name": "cerbo",
       "interfaces": [
         {
-          "name": "com.victronenergy.server",
+          "name": "com.victronenergy.cerbo",
           "path": "/",
           "methods": [],
           "signals": [],
@@ -4436,6 +4646,39 @@
               "name": "/",
               "type": "property"
             },
+            {
+              "name": "/AcPowerSetpoint",
+              "type": "property"
+            },
+            {
+              "name": "/Power",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/",
+        "/AcPowerSetpoint",
+        "/Power"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "home_automation",
+        "networking_protocols",
+        "battery_management",
+        "energy_management"
+      ]
+    },
+    {
+      "service_name": "server",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.server",
+          "path": "/api/settings",
+          "methods": [],
+          "signals": [],
+          "properties": [
             {
               "name": "/api/settings",
               "type": "property"
@@ -4446,6 +4689,14 @@
             },
             {
               "name": "/api/update",
+              "type": "property"
+            },
+            {
+              "name": "/app/src/inverter_dashboard/static",
+              "type": "property"
+            },
+            {
+              "name": "/assets",
               "type": "property"
             },
             {
@@ -4460,19 +4711,20 @@
         }
       ],
       "object_paths": [
-        "/",
         "/api/settings",
         "/api/state",
         "/api/update",
+        "/app/src/inverter_dashboard/static",
+        "/assets",
         "/static",
         "/ws"
       ],
       "complexity": "low",
       "focus_areas": [
+        "home_automation",
         "networking_protocols",
-        "energy_management",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -4805,10 +5057,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "home_automation",
         "networking_protocols",
-        "energy_management",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -4822,6 +5074,42 @@
           "properties": [
             {
               "name": "/Ac/Energy/Forward",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/Frequency",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Current",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/PowerFactor",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L1/Voltage",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L2/Current",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L2/Power",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L2/PowerFactor",
+              "type": "property"
+            },
+            {
+              "name": "/Ac/L2/Voltage",
               "type": "property"
             },
             {
@@ -4853,7 +5141,15 @@
               "type": "property"
             },
             {
+              "name": "/Session/Energy",
+              "type": "property"
+            },
+            {
               "name": "/Session/SavedCost",
+              "type": "property"
+            },
+            {
+              "name": "/Session/Time",
               "type": "property"
             },
             {
@@ -4877,6 +5173,15 @@
       ],
       "object_paths": [
         "/Ac/Energy/Forward",
+        "/Ac/Frequency",
+        "/Ac/L1/Current",
+        "/Ac/L1/Power",
+        "/Ac/L1/PowerFactor",
+        "/Ac/L1/Voltage",
+        "/Ac/L2/Current",
+        "/Ac/L2/Power",
+        "/Ac/L2/PowerFactor",
+        "/Ac/L2/Voltage",
         "/Ac/Power",
         "/Current",
         "/MaxCurrent",
@@ -4884,18 +5189,20 @@
         "/NrOfPhases",
         "/Position",
         "/Session/Cost",
+        "/Session/Energy",
         "/Session/SavedCost",
+        "/Session/Time",
         "/Session/UserId",
         "/Session/UserIdType",
         "/StartStop",
         "/Status"
       ],
-      "complexity": "low",
+      "complexity": "medium",
       "focus_areas": [
+        "home_automation",
         "networking_protocols",
-        "energy_management",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -5137,11 +5444,11 @@
         "/StartStop",
         "/Status"
       ],
-      "complexity": "low",
+      "complexity": "medium",
       "focus_areas": [
-        "energy_management",
+        "home_automation",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     },
     {
@@ -5165,8 +5472,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "home_automation"
+        "home_automation",
+        "energy_management"
       ]
     },
     {
@@ -5286,8 +5593,8 @@
       "complexity": "medium",
       "focus_areas": [
         "networking_protocols",
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -5527,8 +5834,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -5552,8 +5859,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "networking_protocols"
+        "networking_protocols",
+        "energy_management"
       ]
     },
     {
@@ -5577,9 +5884,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
+        "home_automation",
         "battery_management",
-        "home_automation"
+        "energy_management"
       ]
     }
   ]
