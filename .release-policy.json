@@ -6,7 +6,8 @@
   "validation_workflows": [
     "ci.yml",
     "codeql.yml",
-    "release-security.yml"
+    "release-security.yml",
+    "dependency-review.yml"
   ],
   "artifact_pattern": "release-assets*",
   "version_file": "pyproject.toml",
@@ -18,5 +19,6 @@
     "Offline application tests cover public repository scanning, ESPHome/D-Bus analysis, profile generation and JSON/HTML/Markdown outputs; required CI enforces 65% application coverage."
   ],
   "container_assets": {},
-  "visibility": "public"
+  "visibility": "public",
+  "single_entry_ci": true
 }
