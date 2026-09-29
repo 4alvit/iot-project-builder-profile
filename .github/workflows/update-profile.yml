@@ -95,26 +95,9 @@ jobs:
             echo "[View full profile]($markdown_file)"
           } >> "$GITHUB_STEP_SUMMARY"
         fi
-    # BOT_PAT creates the PR so normal CI events run. Because that account is
-    # the PR author, approval needs an independent APPROVAL_PAT or a human review.
-    # Never use the author's own token to approve; no credentials are provisioned here.
-    - name: Open profile update PR
+    # BOT_PAT authors the server-signed commit and PR so normal CI events run.
+    # Approval uses the independent Actions identity for this same-repository bot.
+    - name: Open signed profile update PR
       env:
         GH_TOKEN: ${{ secrets.BOT_PAT }}
-      run: |
-        BRANCH="profile-update/$(date +%Y%m%d-%H%M%S)"
-        git checkout -b "$BRANCH"
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add -A
-        if git diff --staged --quiet; then
-          echo "No profile changes to land"; exit 0
-        fi
-        git commit -m "chore: update IoT developer profile"
-        git push -u origin "$BRANCH"
-        gh label create automerge --description "Eligible for automatic merge after checks" --color 0E8A16 --force
-        gh pr create \
-          --base main --head "$BRANCH" \
-          --title "chore: update IoT developer profile" \
-          --body "Automated regeneration on the self-hosted fcc runner." \
-          --label automerge
+      run: python3 -I scripts/publish_profile.py
