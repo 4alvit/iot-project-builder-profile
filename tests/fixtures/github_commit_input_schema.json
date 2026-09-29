@@ -1,0 +1,193 @@
+{
+  "source": "GitHub GraphQL introspection, 2026-09-29",
+  "types": {
+    "CreateCommitOnBranchInput": {
+      "inputFields": [
+        {
+          "name": "clientMutationId",
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          }
+        },
+        {
+          "name": "branch",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommittableBranch",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "fileChanges",
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "FileChanges",
+            "ofType": null
+          }
+        },
+        {
+          "name": "message",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommitMessage",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "expectedHeadOid",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "GitObjectID",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "CommittableBranch": {
+      "inputFields": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          }
+        },
+        {
+          "name": "repositoryNameWithOwner",
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          }
+        },
+        {
+          "name": "branchName",
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    "FileChanges": {
+      "inputFields": [
+        {
+          "name": "deletions",
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "FileDeletion",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "additions",
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "FileAddition",
+                "ofType": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FileAddition": {
+      "inputFields": [
+        {
+          "name": "path",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "contents",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "Base64String",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "FileDeletion": {
+      "inputFields": [
+        {
+          "name": "path",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "CommitMessage": {
+      "inputFields": [
+        {
+          "name": "headline",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "body",
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          }
+        }
+      ]
+    }
+  }
+}

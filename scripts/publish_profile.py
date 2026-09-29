@@ -35,7 +35,13 @@ def api(path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
     args = ["api", path]
     if payload is not None:
         args.extend(["--method", "POST", "--input", "-"])
-    result = cast(dict[str, Any], json.loads(gh(*args, payload=payload)))
+    try:
+        result = cast(dict[str, Any], json.loads(gh(*args, payload=payload)))
+    except subprocess.CalledProcessError:
+        # GitHub errors can echo the complete input, including file contents.
+        raise RuntimeError(
+            f"GitHub API request failed for {path}; inspect the branch before retrying"
+        ) from None
     if result.get("errors"):
         raise RuntimeError("GitHub rejected the commit; inspect the branch before retrying")
     return result
@@ -99,7 +105,7 @@ def publish(repository: str, branch: str) -> str:
             "query": MUTATION,
             "variables": {
                 "input": {
-                    "branch": {"repositoryNameWithOwner": repository, "refName": branch},
+                    "branch": {"repositoryNameWithOwner": repository, "branchName": branch},
                     "expectedHeadOid": base,
                     "message": {"headline": "chore: update IoT developer profile"},
                     "fileChanges": changes,

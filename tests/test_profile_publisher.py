@@ -55,7 +55,7 @@ class GitHub:
             assert self.input["expectedHeadOid"] == self.base
             assert self.input["branch"] == {
                 "repositoryNameWithOwner": REPOSITORY,
-                "refName": BRANCH,
+                "branchName": BRANCH,
             }
             if self.race_commit:
                 raise RuntimeError("expectedHeadOid no longer matches")
@@ -193,3 +193,42 @@ class ProfilePublisherTests(unittest.TestCase):
             self.assertRaisesRegex(RuntimeError, "rejected"),
         ):
             self.publisher.api("graphql", {"query": "mutation"})
+
+    def test_request_matches_recorded_github_input_schema(self) -> None:
+        schema = json.loads(
+            (SCRIPT.parents[1] / "tests/fixtures/github_commit_input_schema.json").read_text()
+        )["types"]
+
+        def validate(field_type: dict[str, Any], value: Any) -> None:
+            kind = field_type["kind"]
+            if kind == "NON_NULL":
+                self.assertIsNotNone(value)
+                validate(field_type["ofType"], value)
+            elif value is not None and kind == "LIST":
+                for item in value:
+                    validate(field_type["ofType"], item)
+            elif value is not None and kind == "INPUT_OBJECT":
+                fields = {f["name"]: f["type"] for f in schema[field_type["name"]]["inputFields"]}
+                self.assertFalse(set(value) - fields.keys(), "Unknown GitHub input field")
+                for name, nested in fields.items():
+                    validate(nested, value.get(name))
+
+        api = GitHub(self.publisher)
+        self.publish(api)
+        root = {"kind": "INPUT_OBJECT", "name": "CreateCommitOnBranchInput"}
+        validate(root, api.input)
+        # The former mock accepted this typo; the actual GitHub schema rejects it.
+        api.input["branch"]["refName"] = api.input["branch"].pop("branchName")
+        with self.assertRaisesRegex(AssertionError, "Unknown GitHub input field"):
+            validate(root, api.input)
+
+    def test_failed_cli_request_does_not_echo_file_contents(self) -> None:
+        failure = subprocess.CalledProcessError(
+            1, ["gh", "api"], output="private file contents", stderr="private file contents"
+        )
+        with (
+            patch.object(self.publisher, "gh", side_effect=failure),
+            self.assertRaisesRegex(RuntimeError, "inspect the branch") as error,
+        ):
+            self.publisher.api("graphql", {"query": "mutation"})
+        self.assertNotIn("private file contents", str(error.exception))
