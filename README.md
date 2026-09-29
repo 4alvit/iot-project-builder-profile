@@ -13,6 +13,17 @@
 See the [release strategy](RELEASING.md) for validation, nightly, beta, RC and stable promotion rules, and the [operator runbook](docs/release-workflow.md) for local commands.
 <!-- ci-release-process:end -->
 
+## Automated profile updates
+
+The scheduled updater uses `scripts/publish_profile.py` and `BOT_PAT` to create a
+[GitHub-signed commit](https://docs.github.com/en/graphql/reference/commits#createcommitonbranch)
+before opening its PR. It publishes only generated profile files and the Pages
+entrypoint, including deletions, and verifies the signature and complete tree.
+If the default branch or target branch advances, publication stops rather than
+overwriting it. Regenerate from the current default branch before retrying.
+The independent Actions reviewer approves bot-authored PRs; required CI and
+signed-commit rules continue to apply before merge.
+
 ## 🏗️ Architecture Overview
 
 ```mermaid
