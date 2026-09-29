@@ -1,32 +1,30 @@
 # IoT Engineering Profile: 4alvit
 
-*Generated: 2026-09-21 12:30*
+*Generated: 2026-09-28 13:25*
 
 ## Summary
 
-This developer demonstrates a strong focus on integrating Victron Venus OS equipment with modern IoT stacks, particularly through Python-based services that bridge D-Bus, MQTT, and Home Assistant. Their work includes production-ready templates for D-Bus services, MQTT-to-D-Bus bridges for battery management systems (JBD, Daly), and photovoltaic inverter bridges, showcasing deep expertise in energy systems and battery management. They have built extensive ESPHome BLE sensor patterns for battery monitoring and environmental sensors, leveraging ESP32 Bluetooth proxy capabilities and integrating with Home Assistant for seamless automation.
+The developer demonstrates a strong focus on energy and battery management systems, particularly within the Victron Venus OS ecosystem. Their work spans from low-level firmware patterns using ESPHome for BLE sensor integration to high-level orchestration layers involving MQTT, D-Bus, and Home Assistant. They have built comprehensive observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT-based IoT deployments, indicating a deep understanding of data pipelines and edge monitoring. Their proficiency in Python is evident across numerous repos, ranging from REST/MQTT gateways to RAG pipelines for energy documentation, showcasing versatility in both infrastructure and application layers.
 
-Beyond energy systems, the developer has created observability stacks for MQTT using OpenTelemetry, developed REST/WebSocket-to-MQTT gateways, and built monitoring solutions with Telegraf, InfluxDB, and Grafana. They also explore voice assistant integration via Amazon Echo and Google Home, enabling voice-controlled Home Assistant environments. Their projects span multiple languages (Python, Go, Rust) and edge computing technologies (Docker, containerized services), indicating versatility in deploying IoT solutions from embedded firmware to cloud-connected dashboards.
-
-Overall, the profile highlights a specialist in renewable energy IoT, battery management, and protocol bridging, with growing capabilities in data pipelines, edge computing, and voice-enabled home automation. There is room to expand into industrial IoT protocols (Modbus, CAN) and advanced orchestration platforms like Kubernetes, as well as to deepen expertise in machine learning at the edge for predictive energy management.
+In the realm of home automation and voice assistance, they have integrated Amazon Echo and Google Home with Home Assistant, enabling voice-controlled energy systems. The developer also exhibits solid edge computing skills, utilizing Docker Compose and lightweight monitoring stacks suitable for deployment on devices like Venus OS. While their embedded firmware work is primarily expressed through ESPHome YAML configurations (which generate C++ code), there is room to grow in native C/C++ or Rust firmware development for more constrained environments. Overall, the profile reflects a well-rounded IoT engineer with particular strength in energy systems, networking protocols, and Python-based service development.
 
 ---
 
 ## 📊 Repository Overview
 
 - **Total Repositories Analyzed**: 93
-- **IoT-Related Repositories**: 40
+- **IoT-Related Repositories**: 41
 - **ESPHome Configurations**: 13
-- **D-Bus Services**: 40
+- **D-Bus Services**: 39
 
 ### Complexity Distribution
 
 
-- **Medium**: 48
+- **Medium**: 51
 
-- **Low**: 43
+- **Low**: 39
 
-- **High**: 2
+- **High**: 3
 
 
 ---
@@ -34,43 +32,43 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 ## 🎯 Focus Areas
 
 
-### Home Automation: 30.0%
+### Home Automation: 85.0%
 
 ![home_automation](home_automation_chart.png)
 
-### Industrial Iot: 0.0%
+### Industrial Iot: 10.0%
 
 ![industrial_iot](industrial_iot_chart.png)
 
-### Energy Management: 55.0%
+### Energy Management: 90.0%
 
 ![energy_management](energy_management_chart.png)
 
-### Battery Management: 15.0%
+### Battery Management: 80.0%
 
 ![battery_management](battery_management_chart.png)
 
-### Environmental Monitoring: 5.0%
+### Environmental Monitoring: 40.0%
 
 ![environmental_monitoring](environmental_monitoring_chart.png)
 
-### Voice Assistant: 30.0%
+### Voice Assistant: 60.0%
 
 ![voice_assistant](voice_assistant_chart.png)
 
-### Networking Protocols: 80.0%
+### Networking Protocols: 90.0%
 
 ![networking_protocols](networking_protocols_chart.png)
 
-### Edge Computing: 20.0%
+### Edge Computing: 50.0%
 
 ![edge_computing](edge_computing_chart.png)
 
-### Firmware Development: 40.0%
+### Firmware Development: 60.0%
 
 ![firmware_development](firmware_development_chart.png)
 
-### Data Pipeline: 65.0%
+### Data Pipeline: 85.0%
 
 ![data_pipeline](data_pipeline_chart.png)
 
@@ -86,35 +84,23 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 | Skill | Category | Proficiency | Confidence | Evidence |
 |-------|----------|-------------|------------|----------|
 
-| Python | python_iot | 9/10 | 95.0% | dbus-service-template, mcp-venus-os, fastapi-mqtt-gateway, mqtt-observability-opentelemetry, amazon-echo-home-voice, google-home-voice-stats, esphome-ble-sensor-patterns, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, integration-tests, inverter-dashboard-vue |
+| Home Assistant / ESPHome | home_automation | 9/10 | 95.0% | esphome-ble-sensor-patterns, inverter-control, inverter-dashboard-go, inverter-desktop, amazon-echo-home-voice, google-home-voice-stats, esphome-jbd-bms-mqtt |
 
-| MQTT | protocols_networking | 9/10 | 94.0% | fastapi-mqtt-gateway, mqtt-observability-opentelemetry, dbus-mqtt-battery, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, integration-tests, inverter-dashboard-vue |
+| Energy Management | energy_systems | 9/10 | 95.0% | solar-forecast-langgraph, inverter-control, inverter-dashboard, inverter-monitoring, dbus-tasmota-pv, dbus-mqtt-battery, mqtt-observability-opentelemetry |
 
-| D-Bus / dbus-python | protocols_networking | 8/10 | 90.0% | dbus-service-template, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, integration-tests |
+| MQTT &amp; Networking Protocols | protocols_networking | 9/10 | 95.0% | mqtt-observability-opentelemetry, fastapi-mqtt-gateway, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, inverter-dashboard, inverter-dashboard-go, inverter-desktop, inverter-monitoring |
 
-| ESPHome | home_automation | 8/10 | 88.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml |
+| Python IoT | python_iot | 9/10 | 95.0% | solar-forecast-langgraph, mqtt-observability-opentelemetry, energy-data-rag-pipeline, iot-project-builder-profile, mcp-venus-os, fastapi-mqtt-gateway, dbus-service-template, amazon-echo-home-voice, google-home-voice-stats, dbus-mqtt-battery, dbus-tasmota-pv, inverter-control, inverter-dashboard, inverter-monitoring, integration-tests, inverter-dashboard-vue |
 
-| Home Assistant | home_automation | 8/10 | 90.0% | amazon-echo-home-voice, google-home-voice-stats, esphome-ble-sensor-patterns, inverter-control, inverter-dashboard-go, inverter-desktop |
+| Battery Management | energy_systems | 8/10 | 90.0% | esphome-ble-sensor-patterns, dbus-mqtt-battery, esphome-jbd-bms-mqtt, inverter-control |
 
-| Energy Systems (Solar, Inverter, Power Monitoring) | energy_systems | 8/10 | 92.0% | energy-data-rag-pipeline, solar-forecast-langgraph, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, solar-forecast-langgraph |
+| Data Pipeline &amp; Observability | data_pipeline | 8/10 | 90.0% | mqtt-observability-opentelemetry, inverter-monitoring, inverter-dashboard-go, inverter-desktop, energy-data-rag-pipeline |
 
-| Battery Management / BMS | energy_systems | 8/10 | 88.0% | dbus-mqtt-battery, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml |
+| Embedded Firmware Development | embedded_firmware | 7/10 | 80.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, inverter-desktop |
 
-| Data Pipeline &amp; Observability (InfluxDB, Grafana, Prometheus, Telegraf, RAG) | data_pipeline | 8/10 | 88.0% | mqtt-observability-opentelemetry, inverter-monitoring, energy-data-rag-pipeline, fastapi-mqtt-gateway, integration-tests |
+| Edge Computing | edge_computing | 6/10 | 70.0% | mqtt-observability-opentelemetry, inverter-dashboard-go, inverter-monitoring, inverter-desktop |
 
-| Bluetooth Low Energy (BLE) | protocols_networking | 7/10 | 85.0% | esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml |
-
-| Edge Computing (Docker, Containerized Services) | edge_computing | 7/10 | 80.0% | mqtt-observability-opentelemetry, inverter-monitoring, inverter-dashboard-go, inverter-desktop |
-
-| Voice Assistant Integration (Amazon Alexa, Google Home) | voice_ai | 7/10 | 75.0% | amazon-echo-home-voice, google-home-voice-stats |
-
-| Go (Golang) | edge_computing | 6/10 | 60.0% | inverter-dashboard-go |
-
-| Rust | embedded_firmware | 6/10 | 60.0% | inverter-desktop |
-
-| RAG / LLM Pipelines (LangChain, LangGraph, pgvector) | data_pipeline | 6/10 | 70.0% | energy-data-rag-pipeline, solar-forecast-langgraph |
-
-| Integration Testing | python_iot | 5/10 | 60.0% | integration-tests |
+| Voice AI / Voice Assistant | voice_ai | 6/10 | 80.0% | amazon-echo-home-voice, google-home-voice-stats, inverter-control, inverter-dashboard-go, inverter-desktop |
 
 
 ---
@@ -122,15 +108,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 ## 💪 Key Strengths
 
 
-- Deep expertise in Victron Venus OS integration via D-Bus and MQTT bridging
+- Deep expertise in Home Assistant/ESPHome integration for battery and energy systems
 
-- Proficiency in ESPHome BLE sensor patterns for battery and environmental monitoring
+- Strong MQTT-based data pipelines and observability solutions (OpenTelemetry, Prometheus, Grafana)
 
-- Strong background in energy management systems, including solar inverters and BMS
-
-- Experience building observability and data pipeline solutions for IoT (OpenTelemetry, InfluxDB/Grafana)
-
-- Skill in voice assistant and Home Assistant automation integration
+- Proficiency in Python for building IoT services, gateways, and edge deployments
 
 
 ---
@@ -138,15 +120,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 ## 📈 Growth Areas
 
 
-- Industrial IoT protocols (Modbus, CANbus, IEC 61850)
+- Expand into industrial IoT protocols such as Modbus TCP, CANbus, and IEC 61850
 
-- Kubernetes and advanced edge orchestration (K3s, KubeEdge)
+- Deepen low-level embedded firmware development in C/C++ or Rust for resource‑constrained MCUs
 
-- Machine learning at the edge for predictive energy forecasting
-
-- Standardization Matter/Thread for broader home automation compatibility
-
-- Expanding Rust embedded firmware development for resource-constrained nodes
+- Explore AI/ML at the edge for predictive maintenance and solar forecasting enhancement
 
 
 ---
@@ -267,11 +245,23 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (ble_client): unnamed
 
@@ -285,19 +275,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (wifi_signal): WiFi Signal
 
-- wifi: unnamed
-
-- api: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml
@@ -307,11 +285,23 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (template): Inkbird Temperature
 
@@ -323,19 +313,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (wifi_signal): WiFi Signal
 
-- wifi: unnamed
-
-- api: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml
@@ -345,11 +323,25 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: xiaomi_ble
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- button (restart): Restart
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (xiaomi_ble): unnamed
 
@@ -357,21 +349,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (uptime): Uptime
 
-- button (restart): Restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml
@@ -381,39 +359,17 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: daly_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
-- esp32_ble: unnamed
-
-- esp32_ble_tracker: unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (daly_bms_ble): unnamed
-
-- sensor (wifi_signal): WiFi Signal
-
-- sensor (uptime): Uptime
-
-- interval: unnamed
+- web_server: unnamed
 
 - wifi: unnamed
 
-- api: unnamed
+- ota (esphome): unnamed
 
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
-- mqtt: unnamed
+- esp32_ble_tracker: unnamed
 
 - binary_sensor (daly_bms_ble): unnamed
 
@@ -425,7 +381,29 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - logger: unnamed
 
-- ota (esphome): unnamed
+- api: unnamed
+
+- interval: unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (daly_bms_ble): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- sensor (uptime): Uptime
+
+- mqtt: unnamed
+
+- esp32_ble: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
+
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml
@@ -435,11 +413,29 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: daly_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- button (restart): Restart
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (daly_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (daly_bms_ble): unnamed
 
@@ -451,27 +447,9 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (uptime): Uptime
 
-- button (restart): Restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (daly_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml
@@ -481,13 +459,33 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
-- esp32_ble: unnamed
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - esp32_ble_tracker: unnamed
+
+- button (restart): Restart
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
+
+- interval: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -505,35 +503,15 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (template): Min SOC (All)
 
-- interval: unnamed
-
-- button (restart): Restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- esp32_ble: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml
@@ -543,11 +521,27 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- button (restart): Restart
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -559,25 +553,9 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (uptime): Uptime
 
-- button (restart): Restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
-
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml
@@ -587,11 +565,23 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: xiaomi_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
 - esp32_ble_tracker: unnamed
+
+- binary_sensor (status): ESP32 Status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (xiaomi_ble): unnamed
 
@@ -609,21 +599,9 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (wifi_signal): WiFi Signal
 
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (status): ESP32 Status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml
@@ -633,13 +611,43 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
-- esp32_ble: unnamed
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - esp32_ble_tracker: unnamed
+
+- button (restart): restart
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): esp32_status
+
+- logger: unnamed
+
+- api: unnamed
+
+- interval: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -681,55 +689,25 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (template): capacity_total_c2
 
-- interval: unnamed
-
-- button (restart): restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- esp32_ble: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (status): esp32_status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml
@@ -739,13 +717,35 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
-- esp32_ble: unnamed
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- script: unnamed
 
 - esp32_ble_tracker: unnamed
+
+- button (restart): restart
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): esp32_status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -769,39 +769,17 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (template): capacity_total
 
-- button (restart): restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
-- script: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- esp32_ble: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (status): esp32_status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml
@@ -811,13 +789,35 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management
+- **Focus Areas**: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols
 
 **Component Breakdown**:
 
-- esp32_ble: unnamed
+- web_server: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- script: unnamed
 
 - esp32_ble_tracker: unnamed
+
+- button (restart): restart
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (jbd_bms_ble): unnamed
+
+- binary_sensor (status): esp32_status
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -841,39 +841,17 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (template): capacity_total
 
-- button (restart): restart
-
-- wifi: unnamed
-
-- api: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- web_server: unnamed
-
-- script: unnamed
-
 - mqtt: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- esp32_ble: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (jbd_bms_ble): unnamed
+- ble_client: unnamed
 
-- binary_sensor (status): esp32_status
-
-- logger: unnamed
-
-- ota (esphome): unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml
@@ -883,9 +861,29 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development, energy_management, home_automation
+- **Focus Areas**: energy_management, home_automation, firmware_development, networking_protocols
 
 **Component Breakdown**:
+
+- i2c: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- button (restart): Grid Sensor Restart
+
+- button (template): Toggle Calibration Mode
+
+- switch (template): MQTT Publishing
+
+- binary_sensor (status): Grid Sensor Status
+
+- binary_sensor (template): Grid Feed-In Active
+
+- logger: unnamed
+
+- api: unnamed
 
 - sensor (adc): Grid Current
 
@@ -895,29 +893,9 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
 - sensor (integration): Grid Energy Reverse
 
-- i2c: unnamed
-
-- switch (template): MQTT Publishing
-
-- button (restart): Grid Sensor Restart
-
-- button (template): Toggle Calibration Mode
-
-- wifi: unnamed
-
-- api: unnamed
-
 - light (binary): Grid Sensor LED
 
 - mqtt: unnamed
-
-- binary_sensor (status): Grid Sensor Status
-
-- binary_sensor (template): Grid Feed-In Active
-
-- logger: unnamed
-
-- ota (esphome): unnamed
 
 
 ### victron-venus/dbus-esphome-grid-sensor/docker-compose.yml
@@ -927,7 +905,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, home_automation
+- **Focus Areas**: home_automation, networking_protocols
 
 **Component Breakdown**:
 
@@ -946,7 +924,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, networking_protocols
 
 **Interfaces**:
 
@@ -964,7 +942,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 15
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, networking_protocols
 
 **Interfaces**:
 
@@ -982,7 +960,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 19
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, home_automation
+- **Focus Areas**: energy_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1018,7 +996,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: home_automation, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation
 
 **Interfaces**:
 
@@ -1036,7 +1014,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1108,7 +1086,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 31
 - **Complexity**: medium
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1180,7 +1158,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 11
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, networking_protocols
 
 **Interfaces**:
 
@@ -1198,7 +1176,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 20
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management
+- **Focus Areas**: energy_management, networking_protocols
 
 **Interfaces**:
 
@@ -1216,7 +1194,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 6
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management
+- **Focus Areas**: energy_management, networking_protocols
 
 **Interfaces**:
 
@@ -1298,7 +1276,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: home_automation, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation
 
 **Interfaces**:
 
@@ -1316,7 +1294,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 25
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, networking_protocols
 
 **Interfaces**:
 
@@ -1352,7 +1330,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 32
 - **Complexity**: medium
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1388,7 +1366,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1406,7 +1384,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1424,7 +1402,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 7
 - **Complexity**: low
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1455,37 +1433,37 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 ### cerbo_mqtt
 
 - **Interfaces**: 1
-- **Object Paths**: /availability
+- **Object Paths**: /availability, /state
 - **Total Methods**: 0
 - **Total Signals**: 0
-- **Total Properties**: 1
+- **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management
+- **Focus Areas**: energy_management, networking_protocols
 
 **Interfaces**:
 
 #### com.victronenergy.cerbo_mqtt (/availability)
 - Methods: None
 - Signals: None
-- Properties: /availability
+- Properties: /availability, /state
 
 
 ### charger
 
 - **Interfaces**: 1
-- **Object Paths**: /Ac/Current, /Ac/Energy/Forward, /Ac/Frequency, /Ac/Power, /Current, /NrOfPhases, /Status
+- **Object Paths**: /Ac/Current, /Ac/Energy/Forward, /Ac/Frequency, /Ac/Power, /Connected, /Current, /NrOfPhases, /Status
 - **Total Methods**: 0
 - **Total Signals**: 0
-- **Total Properties**: 7
+- **Total Properties**: 8
 - **Complexity**: low
-- **Focus Areas**: energy_management
+- **Focus Areas**: energy_management, networking_protocols
 
 **Interfaces**:
 
 #### com.victronenergy.charger (/Ac/Current)
 - Methods: None
 - Signals: None
-- Properties: /Ac/Current, /Ac/Energy/Forward, /Ac/Frequency, /Ac/Power, /Current, /NrOfPhases, /Status
+- Properties: /Ac/Current, /Ac/Energy/Forward, /Ac/Frequency, /Ac/Power, /Connected, /Current, /NrOfPhases, /Status
 
 
 ### com.victronenergy.evcharger.
@@ -1496,7 +1474,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: home_automation, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation
 
 **Interfaces**:
 
@@ -1514,7 +1492,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: home_automation, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation
 
 **Interfaces**:
 
@@ -1532,7 +1510,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1550,7 +1528,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 20
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, networking_protocols
 
 **Interfaces**:
 
@@ -1586,7 +1564,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management
+- **Focus Areas**: energy_management, networking_protocols
 
 **Interfaces**:
 
@@ -1594,24 +1572,6 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - Methods: None
 - Signals: None
 - Properties: /opt/victronenergy/velib_python
-
-
-### com.victronenergy.veboard
-
-- **Interfaces**: 1
-- **Object Paths**: /org/freedesktop/DBus
-- **Total Methods**: 0
-- **Total Signals**: 0
-- **Total Properties**: 1
-- **Complexity**: low
-- **Focus Areas**: home_automation, energy_management, battery_management
-
-**Interfaces**:
-
-#### com.victronenergy.veboard (/org/freedesktop/DBus)
-- Methods: None
-- Signals: None
-- Properties: /org/freedesktop/DBus
 
 
 ### main
@@ -1622,7 +1582,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 24
 - **Complexity**: medium
-- **Focus Areas**: home_automation, networking_protocols, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation, networking_protocols
 
 **Interfaces**:
 
@@ -1640,7 +1600,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: home_automation, energy_management, battery_management
+- **Focus Areas**: energy_management, battery_management, home_automation
 
 **Interfaces**:
 
@@ -1676,8 +1636,8 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 ```json
 {
   "errors": [],
-  "iot_repos": 40,
-  "scanned_at": "2026-09-21T12:28:50.765681",
-  "total_repos": 49
+  "iot_repos": 41,
+  "scanned_at": "2026-09-28T13:24:27.980950",
+  "total_repos": 51
 }
 ```
