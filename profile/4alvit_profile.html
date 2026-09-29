@@ -40,17 +40,15 @@
     <div class="container">
         <header>
             <h1>IoT Engineering Profile</h1>
-            <p>4alvit • Generated September 21, 2026</p>
+            <p>4alvit • Generated September 28, 2026</p>
         </header>
 
         
         <section>
             <h2>✨ Summary</h2>
-            <p style="line-height: 1.7; font-size: 1.05rem;">This developer demonstrates a strong focus on integrating Victron Venus OS equipment with modern IoT stacks, particularly through Python-based services that bridge D-Bus, MQTT, and Home Assistant. Their work includes production-ready templates for D-Bus services, MQTT-to-D-Bus bridges for battery management systems (JBD, Daly), and photovoltaic inverter bridges, showcasing deep expertise in energy systems and battery management. They have built extensive ESPHome BLE sensor patterns for battery monitoring and environmental sensors, leveraging ESP32 Bluetooth proxy capabilities and integrating with Home Assistant for seamless automation.
+            <p style="line-height: 1.7; font-size: 1.05rem;">The developer demonstrates a strong focus on energy and battery management systems, particularly within the Victron Venus OS ecosystem. Their work spans from low-level firmware patterns using ESPHome for BLE sensor integration to high-level orchestration layers involving MQTT, D-Bus, and Home Assistant. They have built comprehensive observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT-based IoT deployments, indicating a deep understanding of data pipelines and edge monitoring. Their proficiency in Python is evident across numerous repos, ranging from REST/MQTT gateways to RAG pipelines for energy documentation, showcasing versatility in both infrastructure and application layers.
 
-Beyond energy systems, the developer has created observability stacks for MQTT using OpenTelemetry, developed REST/WebSocket-to-MQTT gateways, and built monitoring solutions with Telegraf, InfluxDB, and Grafana. They also explore voice assistant integration via Amazon Echo and Google Home, enabling voice-controlled Home Assistant environments. Their projects span multiple languages (Python, Go, Rust) and edge computing technologies (Docker, containerized services), indicating versatility in deploying IoT solutions from embedded firmware to cloud-connected dashboards.
-
-Overall, the profile highlights a specialist in renewable energy IoT, battery management, and protocol bridging, with growing capabilities in data pipelines, edge computing, and voice-enabled home automation. There is room to expand into industrial IoT protocols (Modbus, CAN) and advanced orchestration platforms like Kubernetes, as well as to deepen expertise in machine learning at the edge for predictive energy management.</p>
+In the realm of home automation and voice assistance, they have integrated Amazon Echo and Google Home with Home Assistant, enabling voice-controlled energy systems. The developer also exhibits solid edge computing skills, utilizing Docker Compose and lightweight monitoring stacks suitable for deployment on devices like Venus OS. While their embedded firmware work is primarily expressed through ESPHome YAML configurations (which generate C++ code), there is room to grow in native C/C++ or Rust firmware development for more constrained environments. Overall, the profile reflects a well-rounded IoT engineer with particular strength in energy systems, networking protocols, and Python-based service development.</p>
         </section>
 
         
@@ -62,7 +60,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                     <div class="stat-label">Total Analyzed</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">40</div>
+                    <div class="stat-value">41</div>
                     <div class="stat-label">IoT Repositories</div>
                 </div>
                 <div class="stat-card">
@@ -70,7 +68,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                     <div class="stat-label">ESPHome Configs</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">40</div>
+                    <div class="stat-value">39</div>
                     <div class="stat-label">D-Bus Services</div>
                 </div>
             </div>
@@ -81,25 +79,25 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div id="focus-chart" class="chart-container"></div>
             <div class="focus-details">
                 
-                <span class="badge badge-primary">Home Automation: 30%</span>
+                <span class="badge badge-primary">Home Automation: 85%</span>
                 
-                <span class="badge badge-primary">Industrial Iot: 0%</span>
+                <span class="badge badge-primary">Industrial Iot: 10%</span>
                 
-                <span class="badge badge-primary">Energy Management: 55%</span>
+                <span class="badge badge-primary">Energy Management: 90%</span>
                 
-                <span class="badge badge-primary">Battery Management: 15%</span>
+                <span class="badge badge-primary">Battery Management: 80%</span>
                 
-                <span class="badge badge-primary">Environmental Monitoring: 5%</span>
+                <span class="badge badge-primary">Environmental Monitoring: 40%</span>
                 
-                <span class="badge badge-primary">Voice Assistant: 30%</span>
+                <span class="badge badge-primary">Voice Assistant: 60%</span>
                 
-                <span class="badge badge-primary">Networking Protocols: 80%</span>
+                <span class="badge badge-primary">Networking Protocols: 90%</span>
                 
-                <span class="badge badge-primary">Edge Computing: 20%</span>
+                <span class="badge badge-primary">Edge Computing: 50%</span>
                 
-                <span class="badge badge-primary">Firmware Development: 40%</span>
+                <span class="badge badge-primary">Firmware Development: 60%</span>
                 
-                <span class="badge badge-primary">Data Pipeline: 65%</span>
+                <span class="badge badge-primary">Data Pipeline: 85%</span>
                 
                 <span class="badge badge-primary">Unknown: 5%</span>
                 
@@ -126,7 +124,46 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                 <tbody>
                     
                     <tr>
-                        <td><strong>Python</strong></td>
+                        <td><strong>Home Assistant / ESPHome</strong></td>
+                        <td><span class="badge badge-primary">home_automation</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                            <small>9/10</small>
+                        </td>
+                        <td>95%</td>
+                        <td>esphome-ble-sensor-patterns, inverter-control, inverter-dashboard-go, inverter-desktop, amazon-echo-home-voice, google-home-voice-stats, esphome-jbd-bms-mqtt</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Energy Management</strong></td>
+                        <td><span class="badge badge-primary">energy_systems</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                            <small>9/10</small>
+                        </td>
+                        <td>95%</td>
+                        <td>solar-forecast-langgraph, inverter-control, inverter-dashboard, inverter-monitoring, dbus-tasmota-pv, dbus-mqtt-battery, mqtt-observability-opentelemetry</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>MQTT &amp; Networking Protocols</strong></td>
+                        <td><span class="badge badge-primary">protocols_networking</span></td>
+                        <td>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="width: 90%"></div>
+                            </div>
+                            <small>9/10</small>
+                        </td>
+                        <td>95%</td>
+                        <td>mqtt-observability-opentelemetry, fastapi-mqtt-gateway, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, inverter-dashboard, inverter-dashboard-go, inverter-desktop, inverter-monitoring</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>Python IoT</strong></td>
                         <td><span class="badge badge-primary">python_iot</span></td>
                         <td>
                             <div class="skill-bar">
@@ -135,63 +172,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                             <small>9/10</small>
                         </td>
                         <td>95%</td>
-                        <td>dbus-service-template, mcp-venus-os, fastapi-mqtt-gateway, mqtt-observability-opentelemetry, amazon-echo-home-voice, google-home-voice-stats, esphome-ble-sensor-patterns, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, integration-tests, inverter-dashboard-vue</td>
+                        <td>solar-forecast-langgraph, mqtt-observability-opentelemetry, energy-data-rag-pipeline, iot-project-builder-profile, mcp-venus-os, fastapi-mqtt-gateway, dbus-service-template, amazon-echo-home-voice, google-home-voice-stats, dbus-mqtt-battery, dbus-tasmota-pv, inverter-control, inverter-dashboard, inverter-monitoring, integration-tests, inverter-dashboard-vue</td>
                     </tr>
                     
                     <tr>
-                        <td><strong>MQTT</strong></td>
-                        <td><span class="badge badge-primary">protocols_networking</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 90%"></div>
-                            </div>
-                            <small>9/10</small>
-                        </td>
-                        <td>94%</td>
-                        <td>fastapi-mqtt-gateway, mqtt-observability-opentelemetry, dbus-mqtt-battery, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, integration-tests, inverter-dashboard-vue</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>D-Bus / dbus-python</strong></td>
-                        <td><span class="badge badge-primary">protocols_networking</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>90%</td>
-                        <td>dbus-service-template, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, integration-tests</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>ESPHome</strong></td>
-                        <td><span class="badge badge-primary">home_automation</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>88%</td>
-                        <td>esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Home Assistant</strong></td>
-                        <td><span class="badge badge-primary">home_automation</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>90%</td>
-                        <td>amazon-echo-home-voice, google-home-voice-stats, esphome-ble-sensor-patterns, inverter-control, inverter-dashboard-go, inverter-desktop</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Energy Systems (Solar, Inverter, Power Monitoring)</strong></td>
+                        <td><strong>Battery Management</strong></td>
                         <td><span class="badge badge-primary">energy_systems</span></td>
                         <td>
                             <div class="skill-bar">
@@ -199,25 +184,12 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                             </div>
                             <small>8/10</small>
                         </td>
-                        <td>92%</td>
-                        <td>energy-data-rag-pipeline, solar-forecast-langgraph, dbus-mqtt-battery, dbus-tasmota-pv, esphome-jbd-bms-mqtt, inverter-control, inverter-dashboard, inverter-monitoring, inverter-dashboard-go, inverter-desktop, solar-forecast-langgraph</td>
+                        <td>90%</td>
+                        <td>esphome-ble-sensor-patterns, dbus-mqtt-battery, esphome-jbd-bms-mqtt, inverter-control</td>
                     </tr>
                     
                     <tr>
-                        <td><strong>Battery Management / BMS</strong></td>
-                        <td><span class="badge badge-primary">energy_systems</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>88%</td>
-                        <td>dbus-mqtt-battery, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Data Pipeline &amp; Observability (InfluxDB, Grafana, Prometheus, Telegraf, RAG)</strong></td>
+                        <td><strong>Data Pipeline &amp; Observability</strong></td>
                         <td><span class="badge badge-primary">data_pipeline</span></td>
                         <td>
                             <div class="skill-bar">
@@ -225,26 +197,13 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                             </div>
                             <small>8/10</small>
                         </td>
-                        <td>88%</td>
-                        <td>mqtt-observability-opentelemetry, inverter-monitoring, energy-data-rag-pipeline, fastapi-mqtt-gateway, integration-tests</td>
+                        <td>90%</td>
+                        <td>mqtt-observability-opentelemetry, inverter-monitoring, inverter-dashboard-go, inverter-desktop, energy-data-rag-pipeline</td>
                     </tr>
                     
                     <tr>
-                        <td><strong>Bluetooth Low Energy (BLE)</strong></td>
-                        <td><span class="badge badge-primary">protocols_networking</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 70%"></div>
-                            </div>
-                            <small>7/10</small>
-                        </td>
-                        <td>85%</td>
-                        <td>esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml, esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Edge Computing (Docker, Containerized Services)</strong></td>
-                        <td><span class="badge badge-primary">edge_computing</span></td>
+                        <td><strong>Embedded Firmware Development</strong></td>
+                        <td><span class="badge badge-primary">embedded_firmware</span></td>
                         <td>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="width: 70%"></div>
@@ -252,24 +211,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                             <small>7/10</small>
                         </td>
                         <td>80%</td>
-                        <td>mqtt-observability-opentelemetry, inverter-monitoring, inverter-dashboard-go, inverter-desktop</td>
+                        <td>esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, inverter-desktop</td>
                     </tr>
                     
                     <tr>
-                        <td><strong>Voice Assistant Integration (Amazon Alexa, Google Home)</strong></td>
-                        <td><span class="badge badge-primary">voice_ai</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 70%"></div>
-                            </div>
-                            <small>7/10</small>
-                        </td>
-                        <td>75%</td>
-                        <td>amazon-echo-home-voice, google-home-voice-stats</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Go (Golang)</strong></td>
+                        <td><strong>Edge Computing</strong></td>
                         <td><span class="badge badge-primary">edge_computing</span></td>
                         <td>
                             <div class="skill-bar">
@@ -277,47 +223,21 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                             </div>
                             <small>6/10</small>
                         </td>
-                        <td>60%</td>
-                        <td>inverter-dashboard-go</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Rust</strong></td>
-                        <td><span class="badge badge-primary">embedded_firmware</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 60%"></div>
-                            </div>
-                            <small>6/10</small>
-                        </td>
-                        <td>60%</td>
-                        <td>inverter-desktop</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>RAG / LLM Pipelines (LangChain, LangGraph, pgvector)</strong></td>
-                        <td><span class="badge badge-primary">data_pipeline</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 60%"></div>
-                            </div>
-                            <small>6/10</small>
-                        </td>
                         <td>70%</td>
-                        <td>energy-data-rag-pipeline, solar-forecast-langgraph</td>
+                        <td>mqtt-observability-opentelemetry, inverter-dashboard-go, inverter-monitoring, inverter-desktop</td>
                     </tr>
                     
                     <tr>
-                        <td><strong>Integration Testing</strong></td>
-                        <td><span class="badge badge-primary">python_iot</span></td>
+                        <td><strong>Voice AI / Voice Assistant</strong></td>
+                        <td><span class="badge badge-primary">voice_ai</span></td>
                         <td>
                             <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 50%"></div>
+                                <div class="skill-bar-fill" style="width: 60%"></div>
                             </div>
-                            <small>5/10</small>
+                            <small>6/10</small>
                         </td>
-                        <td>60%</td>
-                        <td>integration-tests</td>
+                        <td>80%</td>
+                        <td>amazon-echo-home-voice, google-home-voice-stats, inverter-control, inverter-dashboard-go, inverter-desktop</td>
                     </tr>
                     
                 </tbody>
@@ -328,15 +248,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <h2>💪 Key Strengths</h2>
             <ul>
                 
-                <li>Deep expertise in Victron Venus OS integration via D-Bus and MQTT bridging</li>
+                <li>Deep expertise in Home Assistant/ESPHome integration for battery and energy systems</li>
                 
-                <li>Proficiency in ESPHome BLE sensor patterns for battery and environmental monitoring</li>
+                <li>Strong MQTT-based data pipelines and observability solutions (OpenTelemetry, Prometheus, Grafana)</li>
                 
-                <li>Strong background in energy management systems, including solar inverters and BMS</li>
-                
-                <li>Experience building observability and data pipeline solutions for IoT (OpenTelemetry, InfluxDB/Grafana)</li>
-                
-                <li>Skill in voice assistant and Home Assistant automation integration</li>
+                <li>Proficiency in Python for building IoT services, gateways, and edge deployments</li>
                 
             </ul>
         </section>
@@ -345,15 +261,11 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <h2>📈 Growth Areas</h2>
             <ul>
                 
-                <li>Industrial IoT protocols (Modbus, CANbus, IEC 61850)</li>
+                <li>Expand into industrial IoT protocols such as Modbus TCP, CANbus, and IEC 61850</li>
                 
-                <li>Kubernetes and advanced edge orchestration (K3s, KubeEdge)</li>
+                <li>Deepen low-level embedded firmware development in C/C++ or Rust for resource‑constrained MCUs</li>
                 
-                <li>Machine learning at the edge for predictive energy forecasting</li>
-                
-                <li>Standardization Matter/Thread for broader home automation compatibility</li>
-                
-                <li>Expanding Rust embedded firmware development for resource-constrained nodes</li>
+                <li>Explore AI/ML at the edge for predictive maintenance and solar forecasting enhancement</li>
                 
             </ul>
         </section>
@@ -490,91 +402,91 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 14 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 13 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 12 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 21 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 17 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 25 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 16 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 17 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 47 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 30 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 30 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: firmware_development, networking_protocols, environmental_monitoring, energy_management, home_automation, battery_management</p>
+                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml</h4>
                 <p>Devices: esp32:esp32dev</p>
                 <p>Components: 16 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: networking_protocols, firmware_development, energy_management, home_automation</p>
+                <p>Focus: energy_management, home_automation, firmware_development, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>victron-venus/dbus-esphome-grid-sensor/docker-compose.yml</h4>
                 <p>Devices: </p>
                 <p>Components: 0 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: networking_protocols, home_automation</p>
+                <p>Focus: home_automation, networking_protocols</p>
             </div>
             
         </section>
@@ -585,19 +497,19 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.battery.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>dbus_utils</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.pvinverter.tasmota_</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: networking_protocols, energy_management, home_automation</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -609,13 +521,13 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.BusItem</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.tank.ha_tank</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -639,7 +551,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.settings</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -663,19 +575,19 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.battery.ttyO1</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.grid</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: networking_protocols, energy_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>mqtt_to_dbus</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: networking_protocols, energy_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -699,13 +611,13 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.acload.emporia_ch</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.acload.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -717,7 +629,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>com.victronenergy.battery.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -729,19 +641,19 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>server</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>cerbo</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>server</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -753,37 +665,37 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>cerbo_mqtt</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: networking_protocols, energy_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>charger</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.evcharger.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation</p>
             </div>
             
             <div class="repo-card">
                 <h4>client</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.ev.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>mqtt_bridge</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
@@ -795,25 +707,19 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
             <div class="repo-card">
                 <h4>__main__</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: networking_protocols, energy_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.veboard</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>main</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, networking_protocols, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
             </div>
             
             <div class="repo-card">
                 <h4>com.victronenergy.evcharger.</h4>
                 <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: home_automation, energy_management, battery_management</p>
+                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation</p>
             </div>
             
             <div class="repo-card">
@@ -829,7 +735,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
         // Focus Areas Radar Chart
         const focusData = [{
             type: 'scatterpolar',
-            r: [30.0, 0.0, 55.0, 15.0, 5.0, 30.0, 80.0, 20.0, 40.0, 65.0, 5.0],
+            r: [85.0, 10.0, 90.0, 80.0, 40.0, 60.0, 90.0, 50.0, 60.0, 85.0, 5.0],
             theta: ["Home Automation", "Industrial Iot", "Energy Management", "Battery Management", "Environmental Monitoring", "Voice Assistant", "Networking Protocols", "Edge Computing", "Firmware Development", "Data Pipeline", "Unknown"],
             fill: 'toself',
             name: 'Focus Areas',
@@ -843,7 +749,7 @@ Overall, the profile highlights a specialist in renewable energy IoT, battery ma
 
         // Complexity Distribution Pie Chart
         const complexityLabels = ["Medium", "Low", "High"];
-        const complexityValues = [48, 43, 2];
+        const complexityValues = [51, 39, 3];
         Plotly.newPlot('complexity-chart', [{
             values: complexityValues,
             labels: complexityLabels,
