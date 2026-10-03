@@ -39,6 +39,7 @@ class AutomaticBetaPreparationTests(unittest.TestCase):
     """An occupied base skips only automatic builds, never explicit requests."""
 
     def test_existing_stable_tag_closes_only_push_cycle(self):
+        """Skip automatic builds for an existing stable tag only on push events."""
         gh = Mock()
         gh.api.return_value = {
             "ref": "refs/tags/v1.2.3",
@@ -55,6 +56,7 @@ class AutomaticBetaPreparationTests(unittest.TestCase):
             gh.api.assert_not_called()
 
     def test_missing_tag_continues_but_api_errors_cannot_authorize_skip(self):
+        """Continue on a missing tag and propagate other GitHub API errors."""
         gh = rc.GitHub(REPO)
         with patch.object(gh, "api", side_effect=rc.GitHubError("HTTP 404", True)):
             self.assertIsNone(rc.closed_push_cycle(gh, "1.2.3", "push"))
@@ -67,6 +69,7 @@ class AutomaticBetaPreparationTests(unittest.TestCase):
                 rc.closed_push_cycle(gh, "1.2.3", "push")
 
     def test_malformed_or_wrong_tag_response_fails_closed(self):
+        """Reject malformed or mismatched tag responses before skipping a build."""
         gh = Mock()
         for ref in (
             None,
@@ -1277,6 +1280,7 @@ class TransportTests(unittest.TestCase):
         tag = "v1.2.3-beta.7"
 
         def accepted_upload_then_failed_response(upload_tag, path):
+            """Record an accepted upload before simulating a client response failure."""
             FakeGitHub.upload(gh, upload_tag, path)
             client.upload(upload_tag, path)
 
