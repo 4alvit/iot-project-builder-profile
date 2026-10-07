@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import inspect
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
@@ -204,6 +205,45 @@ FOCUS_AREA_KEYWORDS: dict[FocusArea, set[str]] = {
 }
 
 
+_MISSING = object()
+_GUARDED_DIRECTORY_METHODS = ("_is_esphome_file", "analyze_file", "analyze_content")
+# Function objects captured once after this module creates ESPHomeAnalyzer.
+# This is not a live view of the class dictionary.
+_ORIGINAL_DIRECTORY_IMPLEMENTATIONS: dict[str, Any] | None = None
+
+
+def _custom_attribute_resolution(analyzer: object) -> bool:
+    """Return whether attribute lookup is not the default object resolution.
+
+    ``getattr_static`` does not call ``__getattribute__`` or ``__getattr__``.
+    A custom lookup can therefore present a different callable while the
+    original function object is still stored on the class. That case keeps
+    the historical virtual calls.
+    """
+    found = inspect.getattr_static(analyzer, "__getattribute__", _MISSING)
+    if found is not object.__getattribute__:
+        return True
+    return inspect.getattr_static(analyzer, "__getattr__", _MISSING) is not _MISSING
+
+
+def _directory_fast_path_allowed(analyzer: ESPHomeAnalyzer) -> bool:
+    """Return whether directory analysis can skip the second read and parse.
+
+    The reference is the function identity captured once when the class was
+    created, not the current class dictionary. A class-level replacement
+    changes only the live dictionary, so it does not match. Instance
+    assignments and custom attribute resolution also stay on the historical
+    virtual-call path. An identity that cannot be proved does the same.
+    """
+    originals = _ORIGINAL_DIRECTORY_IMPLEMENTATIONS
+    if not originals or _custom_attribute_resolution(analyzer):
+        return False
+    for name in _GUARDED_DIRECTORY_METHODS:
+        if inspect.getattr_static(analyzer, name, _MISSING) is not originals[name]:
+            return False
+    return True
+
+
 class ESPHomeAnalyzer:
     """Analyzes ESPHome YAML configurations."""
 
@@ -224,16 +264,80 @@ class ESPHomeAnalyzer:
                 raise yaml.YAMLError("ESPHome configuration must be a mapping")
         except yaml.YAMLError as e:
             logger.error(f"Failed to parse YAML {file_path}: {e}")
-            return ESPHomeAnalysis(
-                file_path=file_path,
-                devices=[],
-                components=[],
-                custom_components=[],
-                external_libs=[],
-                complexity=ComplexityLevel.LOW,
-                focus_areas=[FocusArea.UNKNOWN],
-            )
+            return self._unparsed_analysis(file_path)
 
+        return self._analyze_mapping(config, file_path)
+
+    def analyze_directory(self, directory: str | Path) -> list[ESPHomeAnalysis]:
+        """Analyze all ESPHome YAML files in a directory."""
+        if _directory_fast_path_allowed(self):
+            return self._analyze_directory_single_pass(directory)
+        return self._analyze_directory_with_virtual_calls(directory)
+
+    def _analyze_directory_with_virtual_calls(self, directory: str | Path) -> list[ESPHomeAnalysis]:
+        """Use the historical ``_is_esphome_file`` then ``analyze_file`` dispatch."""
+        path = Path(directory)
+        analyses = []
+
+        for yaml_file in path.rglob("*.yaml"):
+            if self._is_esphome_file(yaml_file):
+                analyses.append(self.analyze_file(yaml_file))
+
+        for yml_file in path.rglob("*.yml"):
+            if self._is_esphome_file(yml_file):
+                analyses.append(self.analyze_file(yml_file))
+
+        return analyses
+
+    def _analyze_directory_single_pass(self, directory: str | Path) -> list[ESPHomeAnalysis]:
+        """Read and parse each unchanged-base candidate once."""
+        path = Path(directory)
+        analyses = []
+
+        for yaml_file in path.rglob("*.yaml"):
+            analysis = self._analyze_directory_candidate(yaml_file)
+            if analysis is not None:
+                analyses.append(analysis)
+
+        for yml_file in path.rglob("*.yml"):
+            analysis = self._analyze_directory_candidate(yml_file)
+            if analysis is not None:
+                analyses.append(analysis)
+
+        return analyses
+
+    def _analyze_directory_candidate(self, path: Path) -> ESPHomeAnalysis | None:
+        """Read and parse one directory candidate a single time.
+
+        Rejection matches _is_esphome_file. A read or parse failure, a
+        non-mapping document, or a mapping without an ESPHome device key is
+        omitted. An accepted file is analyzed from that same parsed mapping.
+        """
+        try:
+            content = path.read_text(encoding="utf-8")
+            config = _esphome_yaml_load(content)
+            if not isinstance(config, dict):
+                return None
+            if not any(k in config for k in ("esphome", "esp32", "esp8266", "rp2040")):
+                return None
+        except Exception:
+            return None
+        return self._analyze_mapping(config, str(path))
+
+    def _unparsed_analysis(self, file_path: str) -> ESPHomeAnalysis:
+        """Return the public result used when YAML parsing fails."""
+        return ESPHomeAnalysis(
+            file_path=file_path,
+            devices=[],
+            components=[],
+            custom_components=[],
+            external_libs=[],
+            complexity=ComplexityLevel.LOW,
+            focus_areas=[FocusArea.UNKNOWN],
+        )
+
+    def _analyze_mapping(self, config: dict[str, Any], file_path: str) -> ESPHomeAnalysis:
+        """Build an analysis from an already parsed mapping."""
         devices = self._extract_devices(config)
         components = self._extract_components(config)
         custom_components = self._extract_custom_components(config)
@@ -250,21 +354,6 @@ class ESPHomeAnalyzer:
             complexity=complexity,
             focus_areas=focus_areas,
         )
-
-    def analyze_directory(self, directory: str | Path) -> list[ESPHomeAnalysis]:
-        """Analyze all ESPHome YAML files in a directory."""
-        path = Path(directory)
-        analyses = []
-
-        for yaml_file in path.rglob("*.yaml"):
-            if self._is_esphome_file(yaml_file):
-                analyses.append(self.analyze_file(yaml_file))
-
-        for yml_file in path.rglob("*.yml"):
-            if self._is_esphome_file(yml_file):
-                analyses.append(self.analyze_file(yml_file))
-
-        return analyses
 
     def _is_esphome_file(self, path: Path) -> bool:
         """Check if YAML file is ESPHome config."""
@@ -457,3 +546,8 @@ class ESPHomeAnalyzer:
                 areas.add(area)
 
         return list(areas) if areas else [FocusArea.UNKNOWN]
+
+
+_ORIGINAL_DIRECTORY_IMPLEMENTATIONS = {
+    name: ESPHomeAnalyzer.__dict__[name] for name in _GUARDED_DIRECTORY_METHODS
+}
