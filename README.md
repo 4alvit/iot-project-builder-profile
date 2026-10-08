@@ -132,3 +132,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development, bug reports and proposal
 [SECURITY.md](SECURITY.md) for confidential vulnerability reports and deployment
 boundaries, and the [OpenSSF evidence index](docs/openssf-evidence.md) for assessment
 scope and verification.
+
+TLS client requirements and supported proxy behavior are documented in
+[the TLS policy](docs/tls-policy.md).
