@@ -11,6 +11,7 @@ from github import Github
 from github.ContentFile import ContentFile
 from github.Repository import Repository
 
+from ..github_tls import enforce_github_tls
 from ..models import (
     ComplexityLevel,
     FocusArea,
@@ -268,7 +269,7 @@ class GitHubScanner:
 
     def __init__(self, config: ScanConfig):
         self.config = config
-        self.client = Github(config.token) if config.token else Github()
+        self.client = enforce_github_tls(Github(config.token) if config.token else Github())
         self.user = self.client.get_user(config.username)
 
     def _calculate_iot_score(self, repo: Repository) -> float:

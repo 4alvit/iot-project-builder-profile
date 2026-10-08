@@ -69,6 +69,13 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         self.addCleanup(shutil.rmtree, temporary)
         self.tmp_path = Path(temporary)
         self.github_client = MagicMock()
+        # Unit-only fake client has no PyGithub transport; real TLS is tested separately.
+        self.enterContext(
+            patch(
+                "iot_profile_builder.scanner.github_scanner.enforce_github_tls",
+                lambda client: client,
+            )
+        )
         self.enterContext(
             patch("iot_profile_builder.scanner.github_scanner.Github", lambda: self.github_client)
         )
