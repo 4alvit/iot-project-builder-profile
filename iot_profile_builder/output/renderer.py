@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import plotly.graph_objects as go  # type: ignore[import-untyped]
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader
 
 from ..models import (
     DBusAnalysis,
@@ -29,23 +29,22 @@ class ProfileRenderer:
     def __init__(self, template_dir: Path | None = None):
         if template_dir is None:
             template_dir = Path(__file__).parent / "templates"
+        # Installed packages may be read-only. User templates take precedence,
+        # while built-in defaults are loaded without creating package files.
         self.env = Environment(
-            loader=FileSystemLoader(template_dir),
+            loader=ChoiceLoader(
+                [
+                    FileSystemLoader(template_dir),
+                    DictLoader(
+                        {
+                            "profile.md.j2": self._default_markdown_template(),
+                            "profile.html.j2": self._default_html_template(),
+                        }
+                    ),
+                ]
+            ),
             autoescape=True,
         )
-        self._ensure_templates(template_dir)
-
-    def _ensure_templates(self, template_dir: Path) -> None:
-        """Create default templates if they don't exist."""
-        template_dir.mkdir(parents=True, exist_ok=True)
-
-        md_template = template_dir / "profile.md.j2"
-        if not md_template.exists():
-            md_template.write_text(self._default_markdown_template())
-
-        html_template = template_dir / "profile.html.j2"
-        if not html_template.exists():
-            html_template.write_text(self._default_html_template())
 
     def _default_markdown_template(self) -> str:
         return (
