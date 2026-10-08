@@ -212,6 +212,30 @@ _GUARDED_DIRECTORY_METHODS = ("_is_esphome_file", "analyze_file", "analyze_conte
 _ORIGINAL_DIRECTORY_IMPLEMENTATIONS: dict[str, Any] | None = None
 
 
+def _add_external_components(custom: set[str], external: Any) -> None:
+    """Collect named components and shorthand external source references."""
+    if not isinstance(external, list):
+        return
+    for item in external:
+        if isinstance(item, dict) and "components" in item:
+            for component in item["components"]:
+                custom.add(component)
+        elif isinstance(item, str):
+            custom.add(item)
+
+
+def _add_custom_platforms(custom: set[str], components: Any) -> None:
+    """Collect dotted platform names from one component list."""
+    if not isinstance(components, list):
+        return
+    for component in components:
+        if not isinstance(component, dict):
+            continue
+        platform = component.get("platform", "")
+        if platform and "." in platform:
+            custom.add(platform)
+
+
 def _custom_attribute_resolution(analyzer: object) -> bool:
     """Return whether attribute lookup is not the default object resolution.
 
@@ -421,27 +445,15 @@ class ESPHomeAnalyzer:
 
     def _extract_custom_components(self, config: dict[str, Any]) -> list[str]:
         """Extract custom component references."""
-        custom = set()
+        custom: set[str] = set()
 
         # Check for external_components
         if "external_components" in config:
-            ext = config["external_components"]
-            if isinstance(ext, list):
-                for item in ext:
-                    if isinstance(item, dict) and "components" in item:
-                        for comp in item["components"]:
-                            custom.add(comp)
-                    elif isinstance(item, str):
-                        custom.add(item)
+            _add_external_components(custom, config["external_components"])
 
         # Check for custom_component in individual components
         for comp_list in config.values():
-            if isinstance(comp_list, list):
-                for comp in comp_list:
-                    if isinstance(comp, dict):
-                        platform = comp.get("platform", "")
-                        if platform and "." in platform:
-                            custom.add(platform)
+            _add_custom_platforms(custom, comp_list)
 
         return list(custom)
 
