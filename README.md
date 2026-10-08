@@ -45,6 +45,10 @@ For username `4alvit`, the output directory contains `4alvit_profile.md`,
 belong under `profile/`; GitHub Pages copies them into `docs/` and installs the
 HTML entry point as `docs/index.html`.
 
+Only the output directory needs to be writable. Standard templates are loaded
+from memory; `ProfileRenderer(template_dir=...)` reads any supplied overrides
+and uses the standard template for each missing file without creating it there.
+
 This README is maintained documentation. The generator does not rewrite its
 project links or provide live CI, deployment or hardware-acceptance status.
 Repository counts, scores and language summaries belong in dated generated
