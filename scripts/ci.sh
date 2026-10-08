@@ -7,7 +7,7 @@ run_bandit() (
   trap 'rm -f "$report"' EXIT
   # Bandit appends /* to existing directories; match its ./-prefixed scan paths.
   if uvx --python 3.12 --from bandit==1.8.6 bandit -r . -lll \
-      -x ./.git,./.venv,./.venv-ci,./tests,./scripts/release.py,./scripts/release_control.py \
+      -x ./.git/,./.venv/,./.venv-ci/,./tests/,./scripts/release.py,./scripts/release_control.py \
       --format json --output "$report"; then
     scanner_status=0
   else
