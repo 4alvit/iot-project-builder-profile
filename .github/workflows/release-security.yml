@@ -18,14 +18,14 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: '3.12'
-      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7
         with:
           version: 0.12.18
       - name: Verify Bandit directory discovery
         run: uvx --python 3.12 --from bandit==1.8.6 python -m unittest discover -s .github/security-tests -p test_bandit_discovery.py -v
       - run: bash scripts/ci.sh bandit
       - name: Block high and critical dependencies, secrets and misconfiguration
-        uses: aquasecurity/trivy-action@d2a0b60797ff03db6132bd4e2b293f9b37081297
+        uses: aquasecurity/trivy-action@c03d123cb480c08c69b054af418ea5e69fe6e57e
         with:
           scan-type: fs
           scan-ref: .
