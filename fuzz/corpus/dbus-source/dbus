@@ -1,0 +1,2 @@
+service = "com.victronenergy.battery"
+service.add_path("/Soc", 50)

@@ -1,0 +1,1 @@
+<node><interface name="com.example.Sample"><method name="Read"/></interface></node>

@@ -1,5 +1,7 @@
 # IoT Project Builder
 
+[![Fuzzing: RC only](https://img.shields.io/badge/Fuzzing-RC%20only-blue)](docs/fuzzing.md)
+
 Generate an engineering profile from public GitHub repositories. The scanner
 collects repository metadata and IoT signals; analyzers inspect ESPHome and
 D-Bus patterns; the renderer produces Markdown, HTML, JSON and charts.
@@ -135,3 +137,9 @@ scope and verification.
 
 TLS client requirements and supported proxy behavior are documented in
 [the TLS policy](docs/tls-policy.md).
+
+## Release-candidate fuzzing
+
+The actual D-Bus source analyzer receives synthetic Python/XML-like text in memory. Repeated analysis must produce the same typed service/interface/path result. It does not scan files, fetch GitHub data or execute submitted source text.
+
+[RC-only fuzzing policy, local reproduction and failure handling](docs/fuzzing.md).
