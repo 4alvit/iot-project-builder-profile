@@ -21,5 +21,41 @@
   "container_assets": {},
   "visibility": "public",
   "single_entry_ci": true,
-  "release_notes": "CHANGELOG.md"
+  "release_notes": "CHANGELOG.md",
+  "versioning": {
+    "schema": 1,
+    "promotion": "promote-bytes",
+    "files": [
+      {
+        "path": "pyproject.toml",
+        "format": "toml",
+        "field": "project.version",
+        "package": "iot-profile-builder",
+        "value": "package",
+        "ecosystem": "pep440"
+      },
+      {
+        "path": "uv.lock",
+        "format": "uv-lock",
+        "package": "iot-profile-builder",
+        "value": "package",
+        "ecosystem": "pep440"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "iot-project-builder-profile-*.tar.gz",
+        "format": "tar-toml",
+        "member": "iot-project-builder-profile/pyproject.toml",
+        "field": "project.version",
+        "package": "iot-profile-builder",
+        "value": "package",
+        "ecosystem": "pep440"
+      }
+    ],
+    "toolkit_revision": "685054a71f85d5e4cd727791027cc8b61d6ad8f6"
+  },
+  "fuzzing": {
+    "toolkit_ref": "685054a71f85d5e4cd727791027cc8b61d6ad8f6"
+  }
 }
