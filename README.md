@@ -143,3 +143,6 @@ TLS client requirements and supported proxy behavior are documented in
 The actual D-Bus source analyzer receives synthetic Python/XML-like text in memory. Repeated analysis must produce the same typed service/interface/path result. It does not scan files, fetch GitHub data or execute submitted source text.
 
 [RC-only fuzzing policy, local reproduction and failure handling](docs/fuzzing.md).
+
+Release artifact identity, build receipts and local reproduction are documented in
+[release packaging](docs/release-packaging.md).
