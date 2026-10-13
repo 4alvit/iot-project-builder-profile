@@ -1,8 +1,17 @@
 import sys
 import types
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import atheris
+
+# Typeshed does not yet re-export the instrumentation APIs at the package root.
+if TYPE_CHECKING:
+    from atheris.import_hook import instrument_imports
+    from atheris.instrument_bytecode import instrument_func
+else:
+    instrument_imports = atheris.instrument_imports
+    instrument_func = atheris.instrument_func
 
 ROOT = Path(__file__).resolve().parents[1]
 package = types.ModuleType("iot_profile_builder")
@@ -12,7 +21,7 @@ package = types.ModuleType("iot_profile_builder.analyzers")
 package.__path__ = [str(ROOT / "iot_profile_builder/analyzers")]
 sys.modules[package.__name__] = package
 
-with atheris.instrument_imports():
+with instrument_imports():
     from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalyzer
 
 
@@ -26,5 +35,5 @@ def test_one_input(data: bytes) -> None:
 
 
 if __name__ == "__main__":
-    atheris.Setup(sys.argv, atheris.instrument_func(test_one_input))
+    atheris.Setup(sys.argv, instrument_func(test_one_input))
     atheris.Fuzz()
