@@ -15,7 +15,7 @@ permissions: {}
 jobs:
   request-review:
     if: github.event.repository.private == false
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/coderabbit-review-reusable.yml@5892b68cf18ac330b76773532ca28bb716492fe9
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/coderabbit-review-reusable.yml@3ee3558ff523dc31d89d8f5e3fd39b98efe36f0a
     with:
       pull-request-number: ${{ inputs.pull-request-number || '' }}
     secrets:
