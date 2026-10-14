@@ -29,7 +29,23 @@
         "-max_len=4096"
       ],
       "seconds": 60,
-      "corpus": "fuzz/corpus/dbus-source"
+      "corpus": "fuzz/corpus/dbus-source",
+      "instrumentation": [
+        {
+          "module": "iot_profile_builder.analyzers.dbus_analyzer",
+          "functions": [
+            "DBusAnalyzer.analyze_content",
+            "DBusAnalyzer._extract_object_paths"
+          ]
+        }
+      ]
     }
+  ],
+  "preflight-paths": [
+    ".github/requirements-fuzz.in",
+    "fuzz",
+    "iot_profile_builder",
+    "pyproject.toml",
+    "uv.lock"
   ]
 }
