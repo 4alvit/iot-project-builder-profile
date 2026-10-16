@@ -36,7 +36,7 @@ class IoTProfileBuilder:
         self.scanner = GitHubScanner(config)
         self.esphome_analyzer = ESPHomeAnalyzer()
         self.dbus_analyzer = DBusAnalyzer()
-        self.generator = ProfileGenerator(config)
+        self.generator: ProfileGenerator | None = None
 
     async def run(self, output_dir: Path, use_llm: bool = True) -> Path:
         """Run the complete profile generation pipeline."""
@@ -98,6 +98,8 @@ class IoTProfileBuilder:
             gen_task = progress.add_task("Generating engineering profile...", total=None)
 
             if use_llm:
+                if self.generator is None:
+                    self.generator = ProfileGenerator(self.config)
                 profile = self.generator.generate(
                     scan_result.repositories,
                     esphome_analyses,

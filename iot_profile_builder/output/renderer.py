@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Any
 
 import plotly.graph_objects as go  # type: ignore[import-untyped]
 from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader
+from plotly.offline import get_plotlyjs  # type: ignore[import-untyped]
 
 from ..models import (
     DBusAnalysis,
@@ -149,7 +150,7 @@ class ProfileRenderer:
                 '    <meta charset="UTF-8">\n',
                 '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n',
                 "    <title>IoT Engineering Profile: {{ profile.username }}</title>\n",
-                '    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n',
+                "    <script>{{ plotly_js|safe }}</script>\n",
                 "    <style>\n",
                 "        * { box-sizing: border-box; margin: 0; padding: 0; }\n",
                 "        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', ",
@@ -379,7 +380,9 @@ class ProfileRenderer:
     def render_html(self, profile: EngineeringProfile, output_path: Path) -> None:
         """Render profile to HTML with embedded charts."""
         template = self.env.get_template("profile.html.j2")
-        content = template.render(profile=profile)
+        # Only the installed, locked Plotly library is trusted as executable code.
+        # Repository and model data retain Jinja escaping / JSON serialization.
+        content = template.render(profile=profile, plotly_js=get_plotlyjs())
         output_path.write_text(content, encoding="utf-8")
 
     def generate_charts(self, profile: EngineeringProfile, output_dir: Path) -> dict[str, Path]:

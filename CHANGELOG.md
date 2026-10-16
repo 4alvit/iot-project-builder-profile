@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Heuristic generation no longer initializes the Anthropic client, so `--no-llm` works without provider credentials.
+- Built-in HTML embeds the locked Plotly library and no longer downloads an unversioned CDN script.
+
+### Documentation
+
+- Define the complete supported heuristic/TLS profile and document governance, conduct and a one-year roadmap.
+
 ## [0.1.4] - 2026-10-14
 
 ### Changed

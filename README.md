@@ -146,3 +146,9 @@ The actual D-Bus source analyzer receives synthetic Python/XML-like text in memo
 
 Release artifact identity, build receipts and local reproduction are documented in
 [release packaging](docs/release-packaging.md).
+
+## Maintenance and supported profiles
+
+See the [complete heuristic and TLS profile](docs/SUPPORTED_PROFILE.md), [governance](GOVERNANCE.md), [Code of Conduct](CODE_OF_CONDUCT.md), and [one-year roadmap](ROADMAP.md). The public OpenSSF questionnaire records evidence and remaining limitations.
+
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15569/badge)](https://www.bestpractices.dev/projects/15569)

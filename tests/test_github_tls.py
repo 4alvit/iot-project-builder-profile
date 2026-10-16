@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 import pytest
 import requests
-from github import Github
+from github import Auth, Github
 from github.Requester import HTTPSRequestsConnectionClass
 
 from iot_profile_builder.github_tls import enforce_github_tls
@@ -36,8 +36,8 @@ def test_actual_scanner_rejects_weak_chain_before_auth(
     with peer(chain, version, response_body=b'{"login":"synthetic","id":1}') as (port, seen):
         host = "127.0.0.1" if case == "wrong-host" else "localhost"
 
-        def client(token: str) -> Github:
-            return Github(token, base_url=f"https://{host}:{port}", retry=0)
+        def client(*, auth: Auth.Auth) -> Github:
+            return Github(auth=auth, base_url=f"https://{host}:{port}", retry=0)
 
         with patch("iot_profile_builder.scanner.github_scanner.Github", client):
             if case.startswith("strong"):
@@ -225,7 +225,7 @@ def test_retry_pagination_and_auth_use_real_pygithub(
             retry = Retry(total=1, status_forcelist=[503], backoff_factor=0)
             with enforce_github_tls(
                 Github(
-                    "synthetic-secret",
+                    auth=Auth.Token("synthetic-secret"),
                     base_url=f"https://localhost:{server.server_port}",
                     retry=retry,
                     seconds_between_requests=0,
