@@ -2,7 +2,7 @@
 
 The required gate runs Ruff, formatting, strict mypy and pytest using the frozen uv lock. The application suite exercises source analysis, public GitHub scanning, heuristic/optional LLM generation, rendering and publishing helpers. Actual temporary-CA tests check the selected certificate chain and prove credentials are not sent to a rejected peer. Python assertions remain enabled.
 
-The October 2026 application coverage measurement is about 69 percent. It is not full-source 80 percent coverage: release tooling and every supported platform branch require separate evidence. Five native macOS decoder cases skip on non-macOS systems; they run on macOS. Deprecation warnings in synthetic PyGithub construction are tracked separately from required lint/type errors. Neither maximal warning strictness nor exhaustive test coverage is claimed.
+The October 2026 application coverage measurement is about 69 percent. It is not full-source 80 percent coverage: release tooling and every supported platform branch require separate evidence. Five native macOS decoder cases skip on non-macOS systems; they run on macOS. PyGithub client construction uses the current Auth.Token interface in production and TLS tests, avoiding the deprecated positional-token API. Neither maximal warning strictness nor exhaustive test coverage is claimed.
 
 [RC fuzzing](fuzzing.md) is source-bound; ordinary branch runs do not start mutation campaigns. No new campaign is claimed merely because normal CI is green.
 

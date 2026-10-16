@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
-from github import Github
+from github import Auth, Github
 from github.ContentFile import ContentFile
 from github.Repository import Repository
 
@@ -269,7 +269,9 @@ class GitHubScanner:
 
     def __init__(self, config: ScanConfig):
         self.config = config
-        self.client = enforce_github_tls(Github(config.token) if config.token else Github())
+        self.client = enforce_github_tls(
+            Github(auth=Auth.Token(config.token)) if config.token else Github()
+        )
         self.user = self.client.get_user(config.username)
 
     def _calculate_iot_score(self, repo: Repository) -> float:

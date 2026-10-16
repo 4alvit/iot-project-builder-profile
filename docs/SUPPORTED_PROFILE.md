@@ -7,6 +7,8 @@ uv sync --locked --all-extras
 uv run --locked iot-profile-builder USERNAME --no-llm --output ./profile
 ```
 
+Use a fresh virtual environment and the built-in package templates for this profile. Do not copy manually generated template files from an older installation into the new package.
+
 No Anthropic credential, client construction or connection is needed in this mode. The LLM client is created only when generation actually requests LLM analysis. Built-in HTML embeds the installed locked Plotly library, so opening it makes no CDN script request. Custom user templates can introduce their own external resources and must be separately reviewed. PNG export remains optional and may require extra Plotly image-export tooling; readable HTML, JSON and Markdown are the complete supported output contract.
 
 The scanner's owned PyGithub transport enforces [the exact certificate-chain key policy](tls-policy.md), including every selected trust anchor, before requests or credentials. It requires RSA >= 2048 significant bits, EC >= 224 bits, and DSA p >= 2048/q >= 224; Ed25519 and Ed448 are supported by the general decoder. Unsupported algorithms fail closed. CA/hostname verification is retained. The real temporary-CA suite tests both TLS 1.2 and TLS 1.3, RSA-2047 trust anchors, weak leaves/intermediates, proxies and custom allowed URLs. Use supported CPython 3.11+ with the locked dependencies; Intel macOS has the documented narrower native-decoder contract.
