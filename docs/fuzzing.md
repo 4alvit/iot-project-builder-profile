@@ -1,5 +1,9 @@
 # Release-candidate fuzz testing
 
+See the [illustrated RC fuzzing process and verified rollout results](https://github.com/victron-venus/venus-os-ci-toolkit/blob/main/docs/rc-fuzzing-results.md)
+for the shared release flow, evidence requirements and a dated cross-project
+snapshot. The project-specific scope and reproduction guidance below still apply.
+
 ## Scope and assertions
 
 **dbus-source.** The actual D-Bus source analyzer receives synthetic Python/XML-like text in memory. Repeated analysis must produce the same typed service/interface/path result. It does not scan files, fetch GitHub data or execute submitted source text.
