@@ -41,3 +41,5 @@ sections. The release controller reads that file from the exact packaged source
 commit, validates its Git blob, and retains build provenance in the public notes.
 Run `python3 -m unittest discover -s .github/release-tests -p "test_*.py"`
 after changing release tooling.
+
+Participation follows [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Decision roles and the current continuity limitation are in [GOVERNANCE.md](GOVERNANCE.md). When an OpenSSF badge is achieved or its status changes, keep its README badge and evidence links accurate within 48 hours.

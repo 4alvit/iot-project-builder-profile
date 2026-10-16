@@ -30,8 +30,8 @@ CI results are evidence for the tested revision and environment, not proof of sa
 
 Follow `RELEASING.md`. Release notes should identify output/schema changes, publication behavior and security fixes. Publishing a package or source release does not authorize publishing a user profile. The [release policy](../.release-policy.json) records automation behavior. A new release must identify its source revision and explain notable changes; security fixes must identify relevant advisories when known.
 
-## Criteria still requiring verification
+## Assessment evidence and limits
 
-Before submitting or updating the questionnaire, verify the actual project-specific record: responses to bug and enhancement reports, vulnerability reports in every supported channel, release-note history, unresolved scanner findings, dependency status and required review settings. The primary maintainer must personally confirm knowledge of secure design and common implementation vulnerabilities. A confirmation about another repository does not establish these answers here.
+The maintainer confirmed secure-design/common-vulnerability knowledge and no outside GitHub bug, enhancement or vulnerability reports in the preceding 12 months. The public GitHub issue inventory and advisory inventory were empty on 16 October 2026. Private vulnerability reporting was verified enabled. These statements do not imply a third-party audit.
 
-Assess transport encryption, credential storage and privilege limits against the implementation and deployment documented in [SECURITY.md](../SECURITY.md). Do not mark a requirement satisfied solely because a policy says it should be. Record justified non-applicability only where the actual architecture supports it. No paid certification, blanket compliance guarantee or third-party audit is claimed.
+The current [quality evidence](quality.md), [complete supported profile](SUPPORTED_PROFILE.md), [governance](../GOVERNANCE.md), [conduct policy](../CODE_OF_CONDUCT.md) and [roadmap](../ROADMAP.md) describe source-specific scope and limitations. Follow actual current CI results and the official badge service for awarded status. The questionnaire must not infer all optional transport properties from an HTTPS URL.
