@@ -1,15 +1,20 @@
 # Changelog
 
-## Unreleased
+## [0.1.5] - 2026-10-17
 
-### Fixed
+### Changed
 
-- Heuristic generation no longer initializes the Anthropic client, so `--no-llm` works without provider credentials.
-- Built-in HTML embeds the locked Plotly library and no longer downloads an unversioned CDN script.
+- Keep heuristic profile generation independent of Anthropic credentials and client initialization.
+- Embed the locked Plotly library in generated HTML instead of downloading an unversioned CDN script.
+- Use the current PyGithub authentication interface, update Pydantic and the Trivy action, and document RC fuzzing and reviewed assessment evidence.
 
-### Documentation
+### Upgrade
 
-- Define the complete supported heuristic/TLS profile and document governance, conduct and a one-year roadmap.
+Existing profile inputs remain supported. Regenerate HTML reports to use the bundled Plotly library; heuristic --no-llm operation no longer needs provider credentials. Preserve custom templates and previous outputs for rollback.
+
+### Security
+
+Generated HTML no longer relies on an unversioned external Plotly script. Required CI and source-bound RC fuzzing remain enabled; this does not establish acceptance of external LLM or deployment services.
 
 ## [0.1.4] - 2026-10-14
 
