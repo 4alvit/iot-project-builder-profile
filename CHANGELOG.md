@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.6] - 2026-10-18
+
+### Changed
+
+- Refresh the project preview and grouped Python dependency updates.
+
+### Upgrade
+
+Preserve installation-specific configuration and retain the previous immutable release for rollback. Required CI and source-bound RC qualification remain enabled. Publishing this release does not deploy it to an installation or establish hardware acceptance.
+
+### Security
+
+Provider credentials remain optional for heuristic generation and must stay outside generated artifacts. Required dependency and source security checks remain enabled.
+
 ## [0.1.5] - 2026-10-17
 
 ### Changed
