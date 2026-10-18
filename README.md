@@ -1,5 +1,11 @@
 # IoT Project Builder
 
+[![Generated IoT engineering profile in perspective](docs/images/hero.png)](docs/images/iot-profile-report.jpg)
+
+*Actual HTML output from the public profile dated 28 September 2026.
+Counts and assessments are historical generated output, not a current project inventory.
+[Original screenshot and regeneration](docs/images/README.md).*
+
 [![Fuzzing: RC only](https://img.shields.io/badge/Fuzzing-RC%20only-blue)](docs/fuzzing.md)
 
 Generate an engineering profile from public GitHub repositories. The scanner

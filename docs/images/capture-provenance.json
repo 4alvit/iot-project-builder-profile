@@ -1,0 +1,20 @@
+{
+  "source_commit": "56c975e08ea4aeb2175d9f81c6e56f2ae93f52d9",
+  "source_path": "docs/index.html",
+  "report_date": "2026-09-28",
+  "capture_date": "2026-10-17",
+  "browser": "Codex in-app browser",
+  "image_dimensions": {
+    "width": 1280,
+    "height": 1260
+  },
+  "source_image": "iot-profile-report.jpg",
+  "source_sha256": "18b9e5b12c04c41a10b06cff3be96243f3b783c07fed29c5e736290340f546ee",
+  "hero_crop": {
+    "width": 1280,
+    "height": 1090,
+    "x": 0,
+    "y": 0
+  },
+  "content": "Existing public report, header through overview; no regeneration or edits to report."
+}
