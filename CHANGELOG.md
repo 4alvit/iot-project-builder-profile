@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.7] - 2026-10-20
+
+### Changed
+
+- Update Anthropic to 1.15.0, including its OpenTelemetry API dependency, and Ruff to 0.17.1. Refresh pinned review and CodeQL workflows.
+
+### Upgrade
+
+Use the existing update procedure, preserve local configuration and retain the previous immutable package for rollback. No configuration migration is required.
+
+### Security
+
+Required dependency, source and release checks remain enabled. This maintenance beta does not claim a new application vulnerability fix or device acceptance.
+
 ## [0.1.6] - 2026-10-18
 
 ### Changed
