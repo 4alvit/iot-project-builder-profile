@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.8] - Unreleased
+
+### Changed
+
+- Update the locked optional Anthropic client to 1.17.0 and Markdown renderer to 3.11.2, retaining their resolved dependency hashes.
+- Refresh reviewed workflow dependencies while preserving offline profile-generation tests and security checks.
+
+### Upgrade
+
+Recreate the documented locked environment from this release and preserve local configuration, custom templates and previous outputs for rollback. Heuristic generation remains available without provider credentials; external LLM use and profile publication remain explicit operations.
+
+### Security
+
+Keep provider credentials outside generated artifacts. Required dependency and source checks remain enabled. This maintenance preview does not claim acceptance of a paid provider, live GitHub credentials or publication of a user profile.
+
 ## [0.1.7] - 2026-10-20
 
 ### Changed
