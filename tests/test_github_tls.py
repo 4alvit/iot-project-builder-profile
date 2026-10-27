@@ -2,7 +2,9 @@
 
 import socket
 import ssl
+import threading
 from collections import deque
+from contextlib import suppress
 from http.server import HTTPServer
 from pathlib import Path
 from typing import Any, cast
@@ -16,6 +18,7 @@ from github.Requester import HTTPSRequestsConnectionClass
 from iot_profile_builder.github_tls import enforce_github_tls
 from iot_profile_builder.models import ScanConfig
 from iot_profile_builder.scanner.github_scanner import GitHubScanner
+from tests import test_tls_policy
 from tests.test_tls_policy import CHAIN_CASES, calibrate, peer, proxy
 from tests.test_tls_policy import chains as chains
 from tests.test_tls_policy import clean_environment as clean_environment
@@ -111,11 +114,16 @@ def test_github_proxy_tunnel(
     roots = tmp_path / "roots.pem"
     roots.write_bytes(chains["strong"][2].read_bytes() + chains[case][2].read_bytes())
     monkeypatch.setenv("REQUESTS_CA_BUNDLE", str(roots))
+    rejected = threading.Event()
     with (
         peer(
             chains[case], ssl.TLSVersion.TLSv1_3, response_body=b'{"login":"synthetic","id":1}'
         ) as (port, seen),
-        proxy(port, chains["strong"] if encrypted_proxy else None) as (proxy_port, messages),
+        proxy(
+            port,
+            chains["strong"] if encrypted_proxy else None,
+            expected_tls_rejection=rejected,
+        ) as (proxy_port, messages),
     ):
         scheme = "https" if encrypted_proxy else "http"
         monkeypatch.setenv("HTTPS_PROXY", f"{scheme}://localhost:{proxy_port}")
@@ -123,10 +131,41 @@ def test_github_proxy_tunnel(
             if case == "strong":
                 assert client.get_user("synthetic").login == "synthetic"
             else:
-                with pytest.raises((requests.exceptions.SSLError, requests.exceptions.ProxyError)):
+                with pytest.raises(
+                    (requests.exceptions.SSLError, requests.exceptions.ProxyError),
+                    match="TLS certificate key is below the supported security minimum",
+                ):
                     client.get_user("synthetic")
+                rejected.set()
     assert len(messages) == 1
     assert bool(seen["application_bytes"]) == (case == "strong")
+
+
+@pytest.mark.parametrize("error_type", [ConnectionResetError, BrokenPipeError, TimeoutError])
+@pytest.mark.parametrize("case", ["strong", "weak-2047-root"])
+def test_proxy_reset_after_tls_result(
+    chains: dict[str, tuple[Path, Path, Path]],
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    error_type: type[OSError],
+    case: str,
+) -> None:
+    relay = test_tls_policy._relay_proxy_tunnel
+    injected = []
+
+    def reset_after_close(incoming: socket.socket, out: socket.socket) -> None:
+        with suppress(ConnectionResetError, BrokenPipeError):
+            relay(incoming, out)
+        injected.append(True)
+        raise error_type("Synthetic tunnel close reset")
+
+    monkeypatch.setattr(test_tls_policy, "_relay_proxy_tunnel", reset_after_close)
+    if case == "strong" or error_type is TimeoutError:
+        with pytest.raises(AssertionError, match="Synthetic tunnel close reset"):
+            test_github_proxy_tunnel(chains, monkeypatch, tmp_path, case, False)
+    else:
+        test_github_proxy_tunnel(chains, monkeypatch, tmp_path, case, False)
+    assert injected == [True]
 
 
 def test_weak_proxy_receives_no_connect_or_credentials(
