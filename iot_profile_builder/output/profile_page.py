@@ -3,16 +3,18 @@
 # ruff: noqa: E501
 # Embedded HTML keeps related attributes and template expressions together.
 
+from .profile_behavior import PROFILE_SCRIPT
+
 PROFILE_STYLE = r"""
 :root {
   color-scheme:dark;
-  --bg:#111214;
-  --surface:#191a1e;
-  --ink:#f3f1ed;
-  --muted:#aaa8b2;
-  --line:#323139;
+  --bg:#0b0e13;
+  --surface:#141a22;
+  --ink:#f4f5f0;
+  --muted:#aab3bf;
+  --line:#2a343f;
   --accent:#c6b5ff;
-  --green:#a7d9c0;
+  --green:#b5efd7;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
@@ -21,11 +23,11 @@ PROFILE_STYLE = r"""
 }
 html {
   scroll-behavior:smooth;
-  scroll-padding-top:100px
+  scroll-padding-top:calc(var(--site-header-height,90px) + 36px)
 }
 body {
   margin:0;
-  background:var(--bg);
+  background:radial-gradient(ellipse at 78% 8%,#29463822,transparent 33%),radial-gradient(ellipse at 9% 22%,#45356120,transparent 36%),var(--bg);
   color:var(--ink);
   line-height:1.6
 }
@@ -59,8 +61,8 @@ h1,h2,h3 {
   letter-spacing:-.04em
 }
 h1 {
-  font-size:clamp(3.2rem,6.6vw,6.1rem);
-  max-width:10ch
+  font-size:clamp(3.4rem,6.9vw,6.5rem);
+  max-width:11ch
 }
 h2 {
   font-size:clamp(2rem,4vw,3.7rem)
@@ -93,18 +95,24 @@ p {
 }
 .topbar {
   position:sticky;
-  top:0;
+  top:16px;
   z-index:20;
-  border-bottom:1px solid var(--line);
-  background:rgba(17,18,20,.94);
-  backdrop-filter:blur(16px)
+  width:min(1320px,calc(100% - 32px));
+  margin:16px auto 0;
+  border:1px solid #ffffff1a;
+  border-radius:22px;
+  background:rgba(20,26,34,.82);
+  box-shadow:0 10px 40px #0003,inset 0 1px #ffffff09;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px)
 }
 .nav {
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:24px;
-  min-height:78px
+  min-height:76px;
+  width:calc(100% - 44px)
 }
 .brand {
   display:flex;
@@ -132,8 +140,8 @@ p {
 .nav-links {
   display:flex;
   align-items:center;
-  gap:28px;
-  font-size:.82rem;
+  gap:22px;
+  font-size:.79rem;
   color:var(--muted)
 }
 .nav-links a {
@@ -169,17 +177,18 @@ p {
   background:var(--green)
 }
 .hero {
-  padding-block:88px 72px;
+  padding-block:98px 82px;
   display:grid;
-  grid-template-columns:1.07fr 1fr;
-  gap:64px;
-  align-items:center
+  grid-template-columns:1.05fr 1fr;
+  gap:42px;
+  align-items:center;
+  min-height:740px
 }
 .hero h1 {
   margin-top:24px
 }
 .hero h1 span {
-  color:var(--accent)
+  color:var(--green)
 }
 .hero-copy {
   max-width:43ch;
@@ -204,15 +213,15 @@ p {
   justify-content:center;
   gap:22px;
   padding:13px 20px;
-  border-radius:8px;
+  border-radius:12px;
   font-size:.82rem;
   font-weight:600;
   border:1px solid var(--line)
 }
 .button-primary {
-  background:var(--ink);
-  border-color:var(--ink);
-  color:#18191c
+  background:var(--green);
+  border-color:var(--green);
+  color:#0b211a
 }
 .button-primary:hover {
   background:var(--accent);
@@ -274,8 +283,10 @@ p {
 .stats {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  border-block:1px solid var(--line);
-  padding-block:30px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(110deg,#ffffff04,#ffffff01);
+  padding:30px;
   gap:28px
 }
 .stat {
@@ -1149,79 +1160,207 @@ body {
 
 }
 
+/* The presentation remains complete before any enhancement is mounted. */
+.hero-content { position:relative; z-index:1 }
+.hero h1 { letter-spacing:-.062em; line-height:1.01 }
+.hero h1 span { display:inline-block; margin-top:.08em }
+.hero-copy { max-width:40ch; font-size:1.02rem }
+.hero .eyebrow { font-size:.61rem; letter-spacing:.11em }
+.nav-links a { white-space:nowrap; transition:color .2s }
+.nav-links a[aria-current] { color:var(--green) }
+.motion-toggle {
+  flex-shrink:0; min-height:38px; padding:8px 11px; border:1px solid #ffffff20;
+  border-radius:9px; background:#ffffff05; color:var(--muted); font-size:.64rem; cursor:pointer
+}
+.motion-toggle:hover,.motion-toggle:focus-visible { color:var(--ink); border-color:var(--accent) }
+.motion-toggle:disabled { cursor:default; opacity:.6 }
+.system-scene { position:relative; min-width:0; isolation:isolate }
+.scene-eyebrow { display:flex; justify-content:space-between; gap:12px; padding:0 10px; align-items:center }
+.scene-eyebrow .label { font-size:.58rem; color:#a7b5b0 }
+.scene-date { color:#7d9489; font: .62rem ui-monospace,SFMono-Regular,Consolas,monospace }
+.scene-space { position:relative; height:500px; transform-style:preserve-3d }
+.scene-space::before {
+  content:""; position:absolute; inset:8% -6%; z-index:-1;
+  background-image:linear-gradient(#b5efd706 1px,transparent 1px),linear-gradient(90deg,#b5efd706 1px,transparent 1px);
+  background-size:32px 32px; mask-image:radial-gradient(ellipse,#000 20%,transparent 70%)
+}
+.scene-orbits { position:absolute; width:112%; max-width:none; height:100%; left:-6%; top:0; overflow:hidden }
+.scene-core {
+  position:absolute; left:calc(50% - 38px); top:calc(50% - 38px); width:76px; height:76px;
+  display:grid; place-items:center; border:1px solid #b5efd770; border-radius:22px;
+  background:linear-gradient(140deg,#253b36,#101c1d); color:var(--green);
+  box-shadow:0 0 65px #96f0c721,inset 0 1px #e8fff524; transform:rotate(-12deg)
+}
+.scene-core svg { width:46px; height:46px }
+.floating-card {
+  position:absolute; padding:20px 22px 18px; border:1px solid #ffffff24; border-radius:17px;
+  background:linear-gradient(135deg,#27312eed,#151e22f5); box-shadow:0 22px 42px #0005,inset 0 1px #ffffff0d;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transform:rotate(var(--card-rotate,0deg)); animation:card-float 7s ease-in-out infinite; animation-play-state:paused
+}
+.card-sources { left:1%; top:8%; width:50%; --card-rotate:-7deg; animation-delay:-1.5s }
+.card-signals { right:-1%; top:43%; width:48%; --card-rotate:6deg; animation-delay:-3.8s; background:linear-gradient(135deg,#302c3eed,#191d29f5) }
+.card-profile { left:6%; bottom:0; width:58%; --card-rotate:-3deg; animation-delay:-5.5s; background:linear-gradient(135deg,#252c34f5,#151c25f5) }
+.card-index { display:block; font:.6rem ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--green); letter-spacing:.04em }
+.card-index span { color:#a3b5ae }
+.card-signals .card-index { color:#d0c3fa }
+.card-signals .card-index span { color:#b4aac8 }
+.floating-value { display:flex; align-items:center; gap:15px; font-size:3.6rem; font-weight:500; line-height:1.12; letter-spacing:-.06em; margin-top:15px; font-variant-numeric:tabular-nums }
+.floating-value>span { font-size:.64rem; line-height:1.5; letter-spacing:0; color:#bec8c5 }
+.card-trace { display:flex; height:20px; align-items:flex-end; gap:5px; margin-top:15px }
+.card-trace i { flex:1; height:5px; border-radius:2px; background:#b5efd755 }
+.card-trace i:nth-child(3n) { height:12px; background:#b5efd788 }
+.card-trace i:nth-child(3n+2) { height:8px }
+.card-trace i:nth-last-child(2) { height:17px; background:#b5efd7 }
+.card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:14px }
+.card-tags span { padding:3px 6px; border:1px solid #d2bef52e; border-radius:4px; font:.52rem ui-monospace,SFMono-Regular,Consolas,monospace; color:#d0c3e5 }
+.card-footnote { display:flex; justify-content:space-between; gap:10px; border-top:1px solid #ffffff15; padding-top:11px; margin-top:14px; font-size:.55rem; color:#adb9c6 }
+.scene-caption { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:28px; font-size:.57rem; color:#81908d }
+.scene-caption .status-dot { width:4px; height:4px; opacity:.7 }
+.scene-flow { animation:scene-flow 16s linear infinite; animation-play-state:paused }
+.is-in-view .floating-card,.is-in-view .scene-flow { animation-play-state:running }
+@keyframes card-float { 0%,100% { transform:translateY(0) rotate(var(--card-rotate,0deg)) } 50% { transform:translateY(-8px) rotate(var(--card-rotate,0deg)) } }
+@keyframes scene-flow { to { stroke-dashoffset:-120 } }
+[data-tilt] { transform:perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transition:transform .22s ease,border-color .22s ease,background .22s ease }
+[data-reveal] { opacity:1; transition:opacity .65s ease,transform .65s ease }
+html.motion-ready [data-reveal]:not(.is-visible) { opacity:0; transform:translateY(18px) }
+html.motion-ready [data-reveal]:focus-within { opacity:1; transform:none }
+html[data-motion="paused"] .floating-card,html[data-motion="paused"] .scene-flow { animation-play-state:paused }
+html[data-motion="paused"] [data-tilt] { transform:none }
+html[data-profile-loading] .topbar::after { content:""; position:absolute; bottom:0; left:8%; right:8%; height:2px; background:var(--green); opacity:.8 }
+.page-lead { padding:96px 0 34px; max-width:780px }
+.page-lead h1 { max-width:13ch; margin:28px 0; font-size:clamp(3.8rem,7.5vw,7rem); letter-spacing:-.06em; line-height:1.03 }
+.page-lead h1 span { color:var(--green) }
+.page-lead>p:not(.label) { max-width:58ch; font-size:1rem; line-height:1.8 }
+.text-link { display:inline-flex; gap:14px; font-size:.76rem; color:var(--green); padding:15px 0; margin-top:10px }
+.page-lead+.section { padding-top:48px }
+.repo { border-radius:18px; background:linear-gradient(135deg,#192129,#141a21); box-shadow:inset 0 1px #ffffff04 }
+.repo:hover { border-color:#77877e; background:linear-gradient(135deg,#202a32,#171e26) }
+.github-metadata { margin-top:16px; border-top:1px solid #ffffff0a; padding-top:14px }
+.github-counts { display:flex; flex-wrap:wrap; column-gap:16px; row-gap:7px; color:#9faeb7; font-size:.64rem }
+.github-counts strong { color:#e0e7e6; font-weight:500 }
+.github-status-row { display:flex; align-items:flex-start; gap:16px; margin-top:11px }
+.github-status-row p { margin:0; color:#8e9ca5; font-size:.6rem; line-height:1.6; flex:1 }
+.github-status-row button { flex-shrink:0; min-height:32px; padding:5px 9px; background:#ffffff04; border:1px solid #ffffff20; border-radius:6px; color:#c4d6cf; font-size:.61rem; cursor:pointer }
+.github-status-row button:hover { border-color:var(--green) }
+.github-status-row button:disabled { opacity:.55; cursor:wait }
+@media(min-width:1450px) { .hero { min-height:800px } }
+@media(max-width:1150px) {
+  .nav { gap:16px }
+  .nav-links { gap:16px }
+  .brand-detail { display:none }
+  .scene-space { height:450px }
+  .floating-card { padding:18px }
+  .floating-value { font-size:3.1rem; gap:10px }
+}
+@media(max-width:1000px) {
+  .hero { min-height:650px; padding-block:70px 64px; gap:26px }
+  .scene-space { height:400px }
+  .floating-card { padding:15px }
+  .floating-value { font-size:2.7rem; gap:9px }
+  .floating-value>span { font-size:.58rem }
+  .card-index { font-size:.53rem }
+  .card-tags span { font-size:.47rem; padding:2px 4px }
+  .card-profile { width:62% }
+  .card-footnote { font-size:.48rem }
+  .scene-eyebrow { padding:0 }
+  .scene-eyebrow .label { font-size:.5rem }
+}
+@media(max-width:760px) {
+  html { scroll-padding-top:calc(var(--site-header-height,120px) + 28px) }
+  .topbar { top:10px; width:calc(100% - 24px); margin-top:10px; border-radius:17px }
+  .nav { width:calc(100% - 30px); min-height:108px; flex-wrap:wrap; flex-direction:row; justify-content:space-between; align-items:center; gap:0 12px; padding:12px 0 }
+  .brand { font-size:.86rem; order:0 }
+  .brand-detail { display:inline }
+  .motion-toggle { order:1; font-size:.57rem; min-height:32px; padding:5px 8px }
+  .nav-links { order:2; width:100%; justify-content:space-between; gap:14px; font-size:.69rem; margin-top:5px }
+  .nav-capabilities { display:none }
+  .nav-source { display:block; padding:5px 10px }
+  .hero { grid-template-columns:1fr; min-height:0; gap:50px; padding:62px 0 45px }
+  .hero h1 { max-width:12ch; font-size:clamp(3.3rem,9.5vw,5.5rem) }
+  .hero-copy { max-width:46ch; font-size:.93rem }
+  .system-scene { max-width:500px; width:100%; margin-inline:auto }
+  .scene-space { height:450px }
+  .scene-orbits { width:100%; left:0 }
+  .scene-space::before { inset:8% 0 }
+  .floating-card { padding:20px }
+  .floating-value { font-size:3.5rem; gap:15px }
+  .floating-value>span { font-size:.65rem }
+  .card-index { font-size:.6rem }
+  .card-tags span { font-size:.52rem; padding:3px 6px }
+  .card-profile { width:58% }
+  .card-footnote { font-size:.55rem }
+  .scene-eyebrow .label { font-size:.55rem }
+  .stats { padding:25px; gap:24px }
+  .page-lead { padding-top:62px }
+  .page-lead h1 { font-size:clamp(3.5rem,12vw,5.5rem) }
+}
+@media(max-width:420px) {
+  .container { width:calc(100% - 32px) }
+  .nav { width:calc(100% - 24px) }
+  .brand-detail { display:none }
+  .nav-links { gap:8px; font-size:.65rem }
+  .nav-source { padding:5px 8px; font-size:.61rem }
+  .hero { padding-top:48px; gap:42px }
+  .hero h1 { font-size:clamp(3.05rem,12.6vw,4.5rem) }
+  .hero .eyebrow { font-size:.51rem; letter-spacing:.08em }
+  .hero-copy { font-size:.88rem }
+  .scene-space { height:440px }
+  .floating-card { padding:14px; border-radius:13px }
+  .floating-value { font-size:2.7rem; gap:9px; margin-top:12px }
+  .floating-value>span { font-size:.54rem }
+  .card-index { font-size:.48rem }
+  .card-tags { gap:3px; margin-top:10px }
+  .card-tags span { font-size:.43rem; padding:3px 4px }
+  .card-sources { width:52%; top:4% }
+  .card-signals { top:38%; right:0 }
+  .card-profile { width:60%; left:0 }
+  .card-footnote { font-size:.45rem; gap:4px }
+  .card-trace { gap:4px; margin-top:9px }
+  .scene-core { width:58px; height:58px; left:calc(50% - 29px); top:calc(50% - 29px); border-radius:17px }
+  .scene-core svg { width:36px; height:36px }
+  .scene-caption { font-size:.5rem; margin-top:23px }
+  .scene-date { font-size:.52rem }
+  .stats { padding:20px }
+  .stat strong { font-size:1.9rem }
+  .stat span { font-size:.62rem }
+  .repo { padding:20px }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto }
+  *,*::before,*::after { animation:none!important; transition:none!important }
+  html.motion-ready [data-reveal] { opacity:1; transform:none }
+  [data-tilt] { transform:none!important }
+}
+@media print {
+  body { background:#fff }
+  .topbar { width:100%; margin:0; border:0; box-shadow:none; backdrop-filter:none }
+  .nav { min-height:0; width:100%; padding:0 }
+  .system-scene,.motion-toggle,.github-status-row button { display:none!important }
+  .hero { min-height:0 }
+  .stats,.repo { background:#fff; box-shadow:none }
+  .page-lead { padding:20px 0 }
+  .page-lead h1 { font-size:36pt }
+  html.motion-ready [data-reveal] { opacity:1!important; transform:none!important }
+  [data-tilt] { transform:none!important }
+  *,*::before,*::after { animation:none!important; transition:none!important }
+  .github-counts,.github-counts strong,.github-status-row p { color:#444 }
+}
+
 """
 
-PROFILE_SCRIPT = r"""
-(function () {
-  "use strict";
-
-  // The full repository list is the no-JavaScript default.
-  const filters = document.getElementById("repository-filters");
-  const search = document.getElementById("repository-search");
-  const language = document.getElementById("repository-language");
-  const count = document.getElementById("repository-count");
-  const empty = document.getElementById("repository-empty");
-  const cards = Array.from(document.querySelectorAll(".repo"));
-
-  if (filters && search && language && count && empty) {
-    function apply() {
-      const terms = search.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
-      let visible = 0;
-      cards.forEach(function (card) {
-        const content = card.textContent.toLocaleLowerCase();
-        const matches = terms.every(function (term) { return content.includes(term); }) &&
-          (!language.value || card.dataset.language === language.value);
-        card.hidden = !matches;
-        if (matches) visible++;
-      });
-      count.textContent = visible + " of " + cards.length + " repositories";
-      empty.hidden = visible !== 0;
-    }
-    filters.hidden = false;
-    search.addEventListener("input", apply);
-    language.addEventListener("change", apply);
-    apply();
-  }
-
-  if ("IntersectionObserver" in window) {
-    const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-    const visible = new Map();
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { visible.set(entry.target.id, entry.isIntersecting); });
-      const current = links.find(function (link) { return visible.get(link.hash.slice(1)); });
-      links.forEach(function (link) {
-        if (link === current) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    }, { rootMargin: "-18% 0px -52% 0px", threshold: 0 });
-    links.forEach(function (link) {
-      const section = document.getElementById(link.hash.slice(1));
-      if (section) observer.observe(section);
-    });
-  }
-
-  // Print all evidence, then restore the reader's expansion choices.
-  let printDetails = [];
-  window.addEventListener("beforeprint", function () {
-    printDetails = Array.from(document.querySelectorAll("details:not([open])"));
-    printDetails.forEach(function (detail) { detail.open = true; });
-  });
-  window.addEventListener("afterprint", function () {
-    printDetails.forEach(function (detail) { detail.open = false; });
-    printDetails = [];
-  });
-})();
-"""
 
 PROFILE_HTML = (
-    r"""<!DOCTYPE html>
+    r"""{% set current_page = page_kind|default('overview') %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#111214">
+<meta name="theme-color" content="#0b0e13">
+<meta http-equiv="Content-Security-Policy" content="{{ content_security_policy|default("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.github.com; base-uri 'none'; object-src 'none'; form-action 'none'") }}">
 <meta name="description" content="Explore {{ profile.username }}'s IoT engineering profile: public repository signals, focus areas, skills and source evidence. Generated {{ profile.generated_at.strftime('%B %d, %Y') }}.">
-<title>{{ profile.username }} — IoT Engineering Profile</title>
+<title>{{ profile.username }} — {% if current_page == 'repositories' %}Repositories{% elif current_page == 'evidence' %}Source Evidence{% else %}IoT Engineering Profile{% endif %}</title>
 <style>"""
     + PROFILE_STYLE
     + r"""</style>
@@ -1230,7 +1369,7 @@ PROFILE_HTML = (
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
 <nav class="container nav" aria-label="Main navigation">
-<a class="brand" href="#top">
+<a class="brand" href="{{ profile.username|urlencode }}_profile.html" data-nav-page="overview">
 <span class="brand-mark" aria-hidden="true">
 <i>
 </i>
@@ -1240,107 +1379,75 @@ PROFILE_HTML = (
 </i>
 <i>
 </i>
-</span>IoT / Engineering profile</a>
+</span>IoT<span class="brand-detail"> / Engineering profile</span></a>
 <div class="nav-links">
-<a href="#overview">Overview</a>
-<a href="#capabilities">Capabilities</a>
-<a href="#repositories">Repositories</a>
-<a href="#evidence">Evidence</a>
+<a href="{{ profile.username|urlencode }}_profile.html" data-nav-page="overview"{% if current_page == 'overview' %} aria-current="page"{% endif %}>Overview</a>
+<a class="nav-capabilities" href="{{ profile.username|urlencode }}_profile.html#capabilities">Capabilities</a>
+<a href="repositories.html" data-nav-page="repositories"{% if current_page == 'repositories' %} aria-current="page"{% endif %}>Repositories</a>
+<a href="evidence.html" data-nav-page="evidence"{% if current_page == 'evidence' %} aria-current="page"{% endif %}>Evidence</a>
 <a class="nav-source" href="https://github.com/{{ profile.username|urlencode }}">GitHub ↗</a>
 </div>
+<button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" hidden>Pause motion</button>
 </nav>
 </header>
-<main id="main" class="container">
+<p class="sr-only" id="profile-navigation-status" role="status" aria-live="polite"></p>
+<main id="main" class="container" data-profile-version="2" data-profile-page="{{ current_page }}" data-profile-user="{{ profile.username }}" data-profile-generated="{{ profile.generated_at.isoformat() }}">
+{% if current_page == 'overview' %}
 <section class="hero" aria-labelledby="hero-title">
-<div>
+<div class="hero-content" data-reveal>
 <p class="label eyebrow">
 <span class="status-dot" aria-hidden="true">
 </span>Public repository snapshot · {{ profile.generated_at.strftime('%b %Y') }}</p>
-<h1 id="hero-title">Engineering,<br>
-<span>in evidence.</span>
+<h1 id="hero-title">Connected systems.<br>
+<span>Clear evidence.</span>
 </h1>
 <p class="hero-copy">A closer look at <a href="https://github.com/{{ profile.username|urlencode }}">
 <strong>@{{ profile.username }}</strong>
 </a>’s IoT work. Explore the repositories, technical focus and implementation signals behind this profile.</p>
 <div class="actions">
-<a class="button button-primary" href="#repositories">Explore the work <span aria-hidden="true">↗</span>
+<a class="button button-primary" href="repositories.html" data-nav-page="repositories">Explore the work <span aria-hidden="true">↗</span>
 </a>
 <a class="button button-secondary" href="#capabilities">View capabilities <span aria-hidden="true">↓</span>
 </a>
 </div>
 <p class="hero-note">Generated {{ profile.generated_at.strftime('%B %d, %Y') }} · A dated analysis of public code.</p>
 </div>
-<div class="signal-card">
-<div class="signal-card-top">
-<span class="label">The profile, at a glance</span>
-<span class="signal-window" aria-hidden="true">
-<i>
-</i>
-<i>
-</i>
-<i>
-</i>
-</span>
-</div>
-<svg viewBox="0 0 440 332" role="img" aria-labelledby="signal-title signal-description">
+<div class="system-scene" data-scene data-reveal>
+<div class="scene-eyebrow"><span class="label">From code to capability</span><span class="scene-date">{{ profile.generated_at.strftime('%Y.%m.%d') }}</span></div>
+<div class="scene-space" data-tilt>
+<svg class="scene-orbits" viewBox="0 0 520 500" role="img" aria-labelledby="signal-title signal-description">
 <title id="signal-title">From repository evidence to an engineering profile</title>
 <desc id="signal-description">{{ profile.total_repos_analyzed }} public repositories scanned, with {{ profile.iot_repos_count }} identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to {{ profile.skills|length }} skill assessments. This illustrates the analysis process, not a deployed system.</desc>
 <defs>
-<radialGradient id="signal-glow">
-<stop stop-color="#ac90ee" stop-opacity=".2"/>
-<stop offset="1" stop-color="#ac90ee" stop-opacity="0"/>
-</radialGradient>
-<linearGradient id="signal-edge" x2="1" y2="1">
-<stop stop-color="#a08bbb"/>
-<stop offset="1" stop-color="#605869"/>
-</linearGradient>
+<radialGradient id="scene-glow"><stop stop-color="#b5efd7" stop-opacity=".15"/><stop offset="1" stop-color="#b5efd7" stop-opacity="0"/></radialGradient>
+<linearGradient id="scene-line"><stop stop-color="#b5efd7" stop-opacity=".6"/><stop offset="1" stop-color="#c6b5ff" stop-opacity=".2"/></linearGradient>
 </defs>
-<circle cx="220" cy="170" r="150" fill="url(#signal-glow)"/>
-<g fill="none" stroke="#8f81a1" stroke-opacity=".18">
-<circle cx="220" cy="170" r="63"/>
-<circle cx="220" cy="170" r="106"/>
-<circle cx="220" cy="170" r="147"/>
-<path d="M18 170H422M220 20V320" stroke-dasharray="2 7"/>
-</g>
-<g fill="none" stroke="url(#signal-edge)" stroke-width="1.1">
-<path d="M104 91L184 149M337 103L251 151M220 201V263"/>
-<circle cx="220" cy="170" r="41"/>
-</g>
-<circle cx="220" cy="170" r="33" fill="#292331" stroke="#aa94cd" stroke-opacity=".5"/>
-<g fill="#d5c2f8">
-<rect x="207" y="157" width="10" height="10" rx="2"/>
-<rect x="223" y="157" width="10" height="10" rx="2"/>
-<rect x="207" y="173" width="10" height="10" rx="2"/>
-<rect x="223" y="173" width="10" height="10" rx="2" opacity=".45"/>
-</g>
-<g font-family="Inter,system-ui,sans-serif">
-<rect x="20" y="52" width="152" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
-<text x="35" y="73" fill="#c4b9d3" font-size="8" letter-spacing="1">01 / REPOSITORIES</text>
-<text x="35" y="104" fill="#eee8f6" font-size="23">{{ profile.total_repos_analyzed }}</text>
-<text x="78" y="104" fill="#c2b9cf" font-size="9">sources scanned</text>
-<rect x="274" y="68" width="146" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
-<text x="289" y="89" fill="#c4b9d3" font-size="8" letter-spacing="1">02 / IOT SIGNALS</text>
-<text x="289" y="120" fill="#eee8f6" font-size="23">{{ profile.iot_repos_count }}</text>
-<text x="331" y="120" fill="#c2b9cf" font-size="9">related repos</text>
-<rect x="132" y="250" width="178" height="66" rx="10" fill="#2d2738" stroke="#736183"/>
-<text x="149" y="272" fill="#d3c2e9" font-size="8" letter-spacing="1">03 / ENGINEERING PROFILE</text>
-<text x="149" y="299" fill="#eee8f6" font-size="20">{{ profile.skills|length }}</text>
-<text x="178" y="297" fill="#d4c6e4" font-size="10">skills with source evidence</text>
-</g>
-<g fill="#c6b5ff">
-<circle cx="154" cy="127" r="3"/>
-<circle cx="289" cy="136" r="3"/>
-<circle cx="220" cy="227" r="3"/>
-</g>
+<circle cx="260" cy="250" r="245" fill="url(#scene-glow)"/>
+<g fill="none" stroke="#b5efd7" stroke-opacity=".12"><ellipse cx="260" cy="250" rx="230" ry="190" transform="rotate(-24 260 250)"/><ellipse cx="260" cy="250" rx="168" ry="220" transform="rotate(35 260 250)"/><circle cx="260" cy="250" r="122"/><path d="M10 250H510M260 10V490" stroke-dasharray="2 8"/></g>
+<g fill="none" stroke="url(#scene-line)" stroke-width="1.5"><path class="scene-flow" d="M120 137C240 135 154 244 260 250S368 288 404 286M260 250C255 340 142 305 179 405" stroke-dasharray="5 7"/></g>
+<g fill="#b5efd7"><circle cx="118" cy="137" r="4"/><circle cx="405" cy="286" r="4"/><circle cx="180" cy="406" r="4"/></g>
 </svg>
-<div class="signal-card-bottom">
-<span>
-<strong>Public code.</strong> Traceable signals.</span>
-<span>{{ profile.generated_at.strftime('%Y.%m.%d') }}</span>
+<div class="scene-core" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="16" y="16" width="16" height="16" rx="4"/><path d="M24 4V16M24 32V44M4 24H16M32 24H44M10 10L17 17M31 31L38 38M38 10L31 17M17 31L10 38"/><circle cx="24" cy="24" r="3"/></svg></div>
+<div class="floating-card card-sources">
+<span class="card-index">01 <span> / Sources</span></span>
+<div class="floating-value">{{ profile.total_repos_analyzed }}<span>public repositories<br>scanned</span></div>
+<div class="card-trace" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </div>
+<div class="floating-card card-signals">
+<span class="card-index">02 <span> / Connections</span></span>
+<div class="floating-value">{{ profile.iot_repos_count }}<span>IoT-related<br>repositories</span></div>
+<div class="card-tags"><span>ESPHome</span><span>D-Bus</span><span>IoT</span></div>
+</div>
+<div class="floating-card card-profile">
+<span class="card-index">03 <span> / The profile</span></span>
+<div class="floating-value">{{ profile.skills|length }}<span>skill assessments<br>with source evidence</span></div>
+<span class="card-footnote">Patterns, grounded in public code <span aria-hidden="true">↗</span></span>
+</div>
+</div>
+<p class="scene-caption"><span class="status-dot" aria-hidden="true"></span>Analysis pipeline illustration · a dated snapshot</p>
 </div>
 </section>
-<div class="stats" aria-label="Scan totals">
+<div class="stats" aria-label="Scan totals" data-reveal>
 <div class="stat">
 <strong>{{ profile.total_repos_analyzed }}</strong>
 <span>Public repositories scanned</span>
@@ -1358,7 +1465,7 @@ PROFILE_HTML = (
 <span>D-Bus analysis records</span>
 </div>
 </div>
-<section class="section intro" id="overview" aria-labelledby="overview-title">
+<section class="section intro" id="overview" aria-labelledby="overview-title" data-reveal>
 <div>
 <span class="label">
 <span class="section-index">01</span>Overview</span>
@@ -1386,7 +1493,7 @@ PROFILE_HTML = (
 <p class="snapshot-note">This is a snapshot from {{ profile.generated_at.strftime('%B %d, %Y') }}. Scores are automated assessments of repository signals, not independent proficiency ratings or deployment verification. Repository descriptions are recorded as they appeared in the scan.</p>
 </div>
 </section>
-<section class="section" id="capabilities" aria-labelledby="capabilities-title">
+<section class="section" id="capabilities" aria-labelledby="capabilities-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -1483,7 +1590,17 @@ PROFILE_HTML = (
 {% endfor %}
 </div>
 </section>
-<section class="section" id="repositories" aria-labelledby="repositories-title">
+{% endif %}
+{% if current_page != 'overview' %}
+<section class="page-lead" data-reveal aria-labelledby="page-title">
+<p class="label eyebrow"><span class="status-dot" aria-hidden="true"></span>@{{ profile.username }} / Public code, in context</p>
+<h1 id="page-title">{% if current_page == 'repositories' %}The work.<br><span>In the open.</span>{% else %}Follow<br><span>the evidence.</span>{% endif %}</h1>
+<p>{% if current_page == 'repositories' %}Explore the projects behind the profile. Source descriptions and analysis stay tied to their snapshot; public GitHub activity can be checked independently.{% else %}Look inside the configuration and service records that informed the analysis. Every entry below comes from the public code scanned for this profile.{% endif %}</p>
+<a class="text-link" href="{{ profile.username|urlencode }}_profile.html" data-nav-page="overview">Back to the full profile <span aria-hidden="true">↗</span></a>
+</section>
+{% endif %}
+{% if current_page in ('overview', 'repositories') %}
+<section class="section" id="repositories" aria-labelledby="repositories-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -1516,7 +1633,7 @@ PROFILE_HTML = (
 </div>
 <div class="repositories">
 {% for repo in profile.top_repositories %}
-<article class="repo" data-language="{{ repo.language or '' }}">
+<article class="repo" data-language="{{ repo.language or '' }}" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">{{ repo.full_name.split('/')[0] }} /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -1539,7 +1656,10 @@ PROFILE_HTML = (
 <span class="language">{{ repo.language or 'Unspecified' }}</span>
 <span>{{ repo.complexity.value.capitalize() }} complexity</span>
 <span>{{ '%.0f'|format(repo.iot_score * 100) }}% IoT relevance</span>
-<span>{{ repo.stars }} stars</span>
+</div>
+<div class="github-metadata" data-github-repo="{{ repo.full_name }}">
+<div class="github-counts"><span><strong data-github-stars>{{ repo.stars }}</strong> stars</span><span><strong data-github-forks>{{ repo.forks }}</strong> forks</span><span>Updated <span data-github-updated>{{ repo.updated_at.strftime('%b %d, %Y') }}</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · {{ profile.generated_at.strftime('%b %d, %Y') }}. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 {% else %}
@@ -1549,8 +1669,9 @@ PROFILE_HTML = (
 <p class="empty" id="repository-empty" hidden>No repositories match these filters. Try another term or language.</p>
 </section>
 
-{% if profile.key_strengths or profile.growth_areas %}
-<section class="section" aria-labelledby="insights-title">
+{% endif %}
+{% if current_page == 'overview' and (profile.key_strengths or profile.growth_areas) %}
+<section class="section" aria-labelledby="insights-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">Analysis notes</span>
@@ -1585,7 +1706,8 @@ PROFILE_HTML = (
 </section>
 {% endif %}
 
-<section class="section" id="evidence" aria-labelledby="evidence-title">
+{% if current_page in ('overview', 'evidence') %}
+<section class="section" id="evidence" aria-labelledby="evidence-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -1661,6 +1783,7 @@ PROFILE_HTML = (
 </div>
 </div>
 </section>
+{% endif %}
 <footer class="footer">
 <div>
 <p>IoT Engineering Profile / @{{ profile.username }}<br>Generated {{ profile.generated_at.strftime('%B %d, %Y') }} from repository evidence. Check individual repositories for current documentation and installation requirements.</p>

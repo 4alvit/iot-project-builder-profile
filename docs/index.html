@@ -1,21 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#111214">
+<meta name="theme-color" content="#0b0e13">
+<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;sha256-9l3UAeYGF6YDQOIfaHUCtECmmSiGwa14wywJ8Xw/10w=&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39;; connect-src &#39;self&#39; https://api.github.com; base-uri &#39;none&#39;; object-src &#39;none&#39;; form-action &#39;none&#39;">
 <meta name="description" content="Explore 4alvit's IoT engineering profile: public repository signals, focus areas, skills and source evidence. Generated October 30, 2026.">
 <title>4alvit — IoT Engineering Profile</title>
 <style>
 :root {
   color-scheme:dark;
-  --bg:#111214;
-  --surface:#191a1e;
-  --ink:#f3f1ed;
-  --muted:#aaa8b2;
-  --line:#323139;
+  --bg:#0b0e13;
+  --surface:#141a22;
+  --ink:#f4f5f0;
+  --muted:#aab3bf;
+  --line:#2a343f;
   --accent:#c6b5ff;
-  --green:#a7d9c0;
+  --green:#b5efd7;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
@@ -24,11 +26,11 @@
 }
 html {
   scroll-behavior:smooth;
-  scroll-padding-top:100px
+  scroll-padding-top:calc(var(--site-header-height,90px) + 36px)
 }
 body {
   margin:0;
-  background:var(--bg);
+  background:radial-gradient(ellipse at 78% 8%,#29463822,transparent 33%),radial-gradient(ellipse at 9% 22%,#45356120,transparent 36%),var(--bg);
   color:var(--ink);
   line-height:1.6
 }
@@ -62,8 +64,8 @@ h1,h2,h3 {
   letter-spacing:-.04em
 }
 h1 {
-  font-size:clamp(3.2rem,6.6vw,6.1rem);
-  max-width:10ch
+  font-size:clamp(3.4rem,6.9vw,6.5rem);
+  max-width:11ch
 }
 h2 {
   font-size:clamp(2rem,4vw,3.7rem)
@@ -96,18 +98,24 @@ p {
 }
 .topbar {
   position:sticky;
-  top:0;
+  top:16px;
   z-index:20;
-  border-bottom:1px solid var(--line);
-  background:rgba(17,18,20,.94);
-  backdrop-filter:blur(16px)
+  width:min(1320px,calc(100% - 32px));
+  margin:16px auto 0;
+  border:1px solid #ffffff1a;
+  border-radius:22px;
+  background:rgba(20,26,34,.82);
+  box-shadow:0 10px 40px #0003,inset 0 1px #ffffff09;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px)
 }
 .nav {
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:24px;
-  min-height:78px
+  min-height:76px;
+  width:calc(100% - 44px)
 }
 .brand {
   display:flex;
@@ -135,8 +143,8 @@ p {
 .nav-links {
   display:flex;
   align-items:center;
-  gap:28px;
-  font-size:.82rem;
+  gap:22px;
+  font-size:.79rem;
   color:var(--muted)
 }
 .nav-links a {
@@ -172,17 +180,18 @@ p {
   background:var(--green)
 }
 .hero {
-  padding-block:88px 72px;
+  padding-block:98px 82px;
   display:grid;
-  grid-template-columns:1.07fr 1fr;
-  gap:64px;
-  align-items:center
+  grid-template-columns:1.05fr 1fr;
+  gap:42px;
+  align-items:center;
+  min-height:740px
 }
 .hero h1 {
   margin-top:24px
 }
 .hero h1 span {
-  color:var(--accent)
+  color:var(--green)
 }
 .hero-copy {
   max-width:43ch;
@@ -207,15 +216,15 @@ p {
   justify-content:center;
   gap:22px;
   padding:13px 20px;
-  border-radius:8px;
+  border-radius:12px;
   font-size:.82rem;
   font-weight:600;
   border:1px solid var(--line)
 }
 .button-primary {
-  background:var(--ink);
-  border-color:var(--ink);
-  color:#18191c
+  background:var(--green);
+  border-color:var(--green);
+  color:#0b211a
 }
 .button-primary:hover {
   background:var(--accent);
@@ -277,8 +286,10 @@ p {
 .stats {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  border-block:1px solid var(--line);
-  padding-block:30px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(110deg,#ffffff04,#ffffff01);
+  padding:30px;
   gap:28px
 }
 .stat {
@@ -1152,13 +1163,200 @@ body {
 
 }
 
+/* The presentation remains complete before any enhancement is mounted. */
+.hero-content { position:relative; z-index:1 }
+.hero h1 { letter-spacing:-.062em; line-height:1.01 }
+.hero h1 span { display:inline-block; margin-top:.08em }
+.hero-copy { max-width:40ch; font-size:1.02rem }
+.hero .eyebrow { font-size:.61rem; letter-spacing:.11em }
+.nav-links a { white-space:nowrap; transition:color .2s }
+.nav-links a[aria-current] { color:var(--green) }
+.motion-toggle {
+  flex-shrink:0; min-height:38px; padding:8px 11px; border:1px solid #ffffff20;
+  border-radius:9px; background:#ffffff05; color:var(--muted); font-size:.64rem; cursor:pointer
+}
+.motion-toggle:hover,.motion-toggle:focus-visible { color:var(--ink); border-color:var(--accent) }
+.motion-toggle:disabled { cursor:default; opacity:.6 }
+.system-scene { position:relative; min-width:0; isolation:isolate }
+.scene-eyebrow { display:flex; justify-content:space-between; gap:12px; padding:0 10px; align-items:center }
+.scene-eyebrow .label { font-size:.58rem; color:#a7b5b0 }
+.scene-date { color:#7d9489; font: .62rem ui-monospace,SFMono-Regular,Consolas,monospace }
+.scene-space { position:relative; height:500px; transform-style:preserve-3d }
+.scene-space::before {
+  content:""; position:absolute; inset:8% -6%; z-index:-1;
+  background-image:linear-gradient(#b5efd706 1px,transparent 1px),linear-gradient(90deg,#b5efd706 1px,transparent 1px);
+  background-size:32px 32px; mask-image:radial-gradient(ellipse,#000 20%,transparent 70%)
+}
+.scene-orbits { position:absolute; width:112%; max-width:none; height:100%; left:-6%; top:0; overflow:hidden }
+.scene-core {
+  position:absolute; left:calc(50% - 38px); top:calc(50% - 38px); width:76px; height:76px;
+  display:grid; place-items:center; border:1px solid #b5efd770; border-radius:22px;
+  background:linear-gradient(140deg,#253b36,#101c1d); color:var(--green);
+  box-shadow:0 0 65px #96f0c721,inset 0 1px #e8fff524; transform:rotate(-12deg)
+}
+.scene-core svg { width:46px; height:46px }
+.floating-card {
+  position:absolute; padding:20px 22px 18px; border:1px solid #ffffff24; border-radius:17px;
+  background:linear-gradient(135deg,#27312eed,#151e22f5); box-shadow:0 22px 42px #0005,inset 0 1px #ffffff0d;
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transform:rotate(var(--card-rotate,0deg)); animation:card-float 7s ease-in-out infinite; animation-play-state:paused
+}
+.card-sources { left:1%; top:8%; width:50%; --card-rotate:-7deg; animation-delay:-1.5s }
+.card-signals { right:-1%; top:43%; width:48%; --card-rotate:6deg; animation-delay:-3.8s; background:linear-gradient(135deg,#302c3eed,#191d29f5) }
+.card-profile { left:6%; bottom:0; width:58%; --card-rotate:-3deg; animation-delay:-5.5s; background:linear-gradient(135deg,#252c34f5,#151c25f5) }
+.card-index { display:block; font:.6rem ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--green); letter-spacing:.04em }
+.card-index span { color:#a3b5ae }
+.card-signals .card-index { color:#d0c3fa }
+.card-signals .card-index span { color:#b4aac8 }
+.floating-value { display:flex; align-items:center; gap:15px; font-size:3.6rem; font-weight:500; line-height:1.12; letter-spacing:-.06em; margin-top:15px; font-variant-numeric:tabular-nums }
+.floating-value>span { font-size:.64rem; line-height:1.5; letter-spacing:0; color:#bec8c5 }
+.card-trace { display:flex; height:20px; align-items:flex-end; gap:5px; margin-top:15px }
+.card-trace i { flex:1; height:5px; border-radius:2px; background:#b5efd755 }
+.card-trace i:nth-child(3n) { height:12px; background:#b5efd788 }
+.card-trace i:nth-child(3n+2) { height:8px }
+.card-trace i:nth-last-child(2) { height:17px; background:#b5efd7 }
+.card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:14px }
+.card-tags span { padding:3px 6px; border:1px solid #d2bef52e; border-radius:4px; font:.52rem ui-monospace,SFMono-Regular,Consolas,monospace; color:#d0c3e5 }
+.card-footnote { display:flex; justify-content:space-between; gap:10px; border-top:1px solid #ffffff15; padding-top:11px; margin-top:14px; font-size:.55rem; color:#adb9c6 }
+.scene-caption { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:28px; font-size:.57rem; color:#81908d }
+.scene-caption .status-dot { width:4px; height:4px; opacity:.7 }
+.scene-flow { animation:scene-flow 16s linear infinite; animation-play-state:paused }
+.is-in-view .floating-card,.is-in-view .scene-flow { animation-play-state:running }
+@keyframes card-float { 0%,100% { transform:translateY(0) rotate(var(--card-rotate,0deg)) } 50% { transform:translateY(-8px) rotate(var(--card-rotate,0deg)) } }
+@keyframes scene-flow { to { stroke-dashoffset:-120 } }
+[data-tilt] { transform:perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transition:transform .22s ease,border-color .22s ease,background .22s ease }
+[data-reveal] { opacity:1; transition:opacity .65s ease,transform .65s ease }
+html.motion-ready [data-reveal]:not(.is-visible) { opacity:0; transform:translateY(18px) }
+html.motion-ready [data-reveal]:focus-within { opacity:1; transform:none }
+html[data-motion="paused"] .floating-card,html[data-motion="paused"] .scene-flow { animation-play-state:paused }
+html[data-motion="paused"] [data-tilt] { transform:none }
+html[data-profile-loading] .topbar::after { content:""; position:absolute; bottom:0; left:8%; right:8%; height:2px; background:var(--green); opacity:.8 }
+.page-lead { padding:96px 0 34px; max-width:780px }
+.page-lead h1 { max-width:13ch; margin:28px 0; font-size:clamp(3.8rem,7.5vw,7rem); letter-spacing:-.06em; line-height:1.03 }
+.page-lead h1 span { color:var(--green) }
+.page-lead>p:not(.label) { max-width:58ch; font-size:1rem; line-height:1.8 }
+.text-link { display:inline-flex; gap:14px; font-size:.76rem; color:var(--green); padding:15px 0; margin-top:10px }
+.page-lead+.section { padding-top:48px }
+.repo { border-radius:18px; background:linear-gradient(135deg,#192129,#141a21); box-shadow:inset 0 1px #ffffff04 }
+.repo:hover { border-color:#77877e; background:linear-gradient(135deg,#202a32,#171e26) }
+.github-metadata { margin-top:16px; border-top:1px solid #ffffff0a; padding-top:14px }
+.github-counts { display:flex; flex-wrap:wrap; column-gap:16px; row-gap:7px; color:#9faeb7; font-size:.64rem }
+.github-counts strong { color:#e0e7e6; font-weight:500 }
+.github-status-row { display:flex; align-items:flex-start; gap:16px; margin-top:11px }
+.github-status-row p { margin:0; color:#8e9ca5; font-size:.6rem; line-height:1.6; flex:1 }
+.github-status-row button { flex-shrink:0; min-height:32px; padding:5px 9px; background:#ffffff04; border:1px solid #ffffff20; border-radius:6px; color:#c4d6cf; font-size:.61rem; cursor:pointer }
+.github-status-row button:hover { border-color:var(--green) }
+.github-status-row button:disabled { opacity:.55; cursor:wait }
+@media(min-width:1450px) { .hero { min-height:800px } }
+@media(max-width:1150px) {
+  .nav { gap:16px }
+  .nav-links { gap:16px }
+  .brand-detail { display:none }
+  .scene-space { height:450px }
+  .floating-card { padding:18px }
+  .floating-value { font-size:3.1rem; gap:10px }
+}
+@media(max-width:1000px) {
+  .hero { min-height:650px; padding-block:70px 64px; gap:26px }
+  .scene-space { height:400px }
+  .floating-card { padding:15px }
+  .floating-value { font-size:2.7rem; gap:9px }
+  .floating-value>span { font-size:.58rem }
+  .card-index { font-size:.53rem }
+  .card-tags span { font-size:.47rem; padding:2px 4px }
+  .card-profile { width:62% }
+  .card-footnote { font-size:.48rem }
+  .scene-eyebrow { padding:0 }
+  .scene-eyebrow .label { font-size:.5rem }
+}
+@media(max-width:760px) {
+  html { scroll-padding-top:calc(var(--site-header-height,120px) + 28px) }
+  .topbar { top:10px; width:calc(100% - 24px); margin-top:10px; border-radius:17px }
+  .nav { width:calc(100% - 30px); min-height:108px; flex-wrap:wrap; flex-direction:row; justify-content:space-between; align-items:center; gap:0 12px; padding:12px 0 }
+  .brand { font-size:.86rem; order:0 }
+  .brand-detail { display:inline }
+  .motion-toggle { order:1; font-size:.57rem; min-height:32px; padding:5px 8px }
+  .nav-links { order:2; width:100%; justify-content:space-between; gap:14px; font-size:.69rem; margin-top:5px }
+  .nav-capabilities { display:none }
+  .nav-source { display:block; padding:5px 10px }
+  .hero { grid-template-columns:1fr; min-height:0; gap:50px; padding:62px 0 45px }
+  .hero h1 { max-width:12ch; font-size:clamp(3.3rem,9.5vw,5.5rem) }
+  .hero-copy { max-width:46ch; font-size:.93rem }
+  .system-scene { max-width:500px; width:100%; margin-inline:auto }
+  .scene-space { height:450px }
+  .scene-orbits { width:100%; left:0 }
+  .scene-space::before { inset:8% 0 }
+  .floating-card { padding:20px }
+  .floating-value { font-size:3.5rem; gap:15px }
+  .floating-value>span { font-size:.65rem }
+  .card-index { font-size:.6rem }
+  .card-tags span { font-size:.52rem; padding:3px 6px }
+  .card-profile { width:58% }
+  .card-footnote { font-size:.55rem }
+  .scene-eyebrow .label { font-size:.55rem }
+  .stats { padding:25px; gap:24px }
+  .page-lead { padding-top:62px }
+  .page-lead h1 { font-size:clamp(3.5rem,12vw,5.5rem) }
+}
+@media(max-width:420px) {
+  .container { width:calc(100% - 32px) }
+  .nav { width:calc(100% - 24px) }
+  .brand-detail { display:none }
+  .nav-links { gap:8px; font-size:.65rem }
+  .nav-source { padding:5px 8px; font-size:.61rem }
+  .hero { padding-top:48px; gap:42px }
+  .hero h1 { font-size:clamp(3.05rem,12.6vw,4.5rem) }
+  .hero .eyebrow { font-size:.51rem; letter-spacing:.08em }
+  .hero-copy { font-size:.88rem }
+  .scene-space { height:440px }
+  .floating-card { padding:14px; border-radius:13px }
+  .floating-value { font-size:2.7rem; gap:9px; margin-top:12px }
+  .floating-value>span { font-size:.54rem }
+  .card-index { font-size:.48rem }
+  .card-tags { gap:3px; margin-top:10px }
+  .card-tags span { font-size:.43rem; padding:3px 4px }
+  .card-sources { width:52%; top:4% }
+  .card-signals { top:38%; right:0 }
+  .card-profile { width:60%; left:0 }
+  .card-footnote { font-size:.45rem; gap:4px }
+  .card-trace { gap:4px; margin-top:9px }
+  .scene-core { width:58px; height:58px; left:calc(50% - 29px); top:calc(50% - 29px); border-radius:17px }
+  .scene-core svg { width:36px; height:36px }
+  .scene-caption { font-size:.5rem; margin-top:23px }
+  .scene-date { font-size:.52rem }
+  .stats { padding:20px }
+  .stat strong { font-size:1.9rem }
+  .stat span { font-size:.62rem }
+  .repo { padding:20px }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto }
+  *,*::before,*::after { animation:none!important; transition:none!important }
+  html.motion-ready [data-reveal] { opacity:1; transform:none }
+  [data-tilt] { transform:none!important }
+}
+@media print {
+  body { background:#fff }
+  .topbar { width:100%; margin:0; border:0; box-shadow:none; backdrop-filter:none }
+  .nav { min-height:0; width:100%; padding:0 }
+  .system-scene,.motion-toggle,.github-status-row button { display:none!important }
+  .hero { min-height:0 }
+  .stats,.repo { background:#fff; box-shadow:none }
+  .page-lead { padding:20px 0 }
+  .page-lead h1 { font-size:36pt }
+  html.motion-ready [data-reveal] { opacity:1!important; transform:none!important }
+  [data-tilt] { transform:none!important }
+  *,*::before,*::after { animation:none!important; transition:none!important }
+  .github-counts,.github-counts strong,.github-status-row p { color:#444 }
+}
+
 </style>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
 <nav class="container nav" aria-label="Main navigation">
-<a class="brand" href="#top">
+<a class="brand" href="4alvit_profile.html" data-nav-page="overview">
 <span class="brand-mark" aria-hidden="true">
 <i>
 </i>
@@ -1168,107 +1366,75 @@ body {
 </i>
 <i>
 </i>
-</span>IoT / Engineering profile</a>
+</span>IoT<span class="brand-detail"> / Engineering profile</span></a>
 <div class="nav-links">
-<a href="#overview">Overview</a>
-<a href="#capabilities">Capabilities</a>
-<a href="#repositories">Repositories</a>
-<a href="#evidence">Evidence</a>
+<a href="4alvit_profile.html" data-nav-page="overview" aria-current="page">Overview</a>
+<a class="nav-capabilities" href="4alvit_profile.html#capabilities">Capabilities</a>
+<a href="repositories.html" data-nav-page="repositories">Repositories</a>
+<a href="evidence.html" data-nav-page="evidence">Evidence</a>
 <a class="nav-source" href="https://github.com/4alvit">GitHub ↗</a>
 </div>
+<button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" hidden>Pause motion</button>
 </nav>
 </header>
-<main id="main" class="container">
+<p class="sr-only" id="profile-navigation-status" role="status" aria-live="polite"></p>
+<main id="main" class="container" data-profile-version="2" data-profile-page="overview" data-profile-user="4alvit" data-profile-generated="2026-10-30T13:32:50.992007+00:00">
+
 <section class="hero" aria-labelledby="hero-title">
-<div>
+<div class="hero-content" data-reveal>
 <p class="label eyebrow">
 <span class="status-dot" aria-hidden="true">
 </span>Public repository snapshot · Oct 2026</p>
-<h1 id="hero-title">Engineering,<br>
-<span>in evidence.</span>
+<h1 id="hero-title">Connected systems.<br>
+<span>Clear evidence.</span>
 </h1>
 <p class="hero-copy">A closer look at <a href="https://github.com/4alvit">
 <strong>@4alvit</strong>
 </a>’s IoT work. Explore the repositories, technical focus and implementation signals behind this profile.</p>
 <div class="actions">
-<a class="button button-primary" href="#repositories">Explore the work <span aria-hidden="true">↗</span>
+<a class="button button-primary" href="repositories.html" data-nav-page="repositories">Explore the work <span aria-hidden="true">↗</span>
 </a>
 <a class="button button-secondary" href="#capabilities">View capabilities <span aria-hidden="true">↓</span>
 </a>
 </div>
 <p class="hero-note">Generated October 30, 2026 · A dated analysis of public code.</p>
 </div>
-<div class="signal-card">
-<div class="signal-card-top">
-<span class="label">The profile, at a glance</span>
-<span class="signal-window" aria-hidden="true">
-<i>
-</i>
-<i>
-</i>
-<i>
-</i>
-</span>
-</div>
-<svg viewBox="0 0 440 332" role="img" aria-labelledby="signal-title signal-description">
+<div class="system-scene" data-scene data-reveal>
+<div class="scene-eyebrow"><span class="label">From code to capability</span><span class="scene-date">2026.10.30</span></div>
+<div class="scene-space" data-tilt>
+<svg class="scene-orbits" viewBox="0 0 520 500" role="img" aria-labelledby="signal-title signal-description">
 <title id="signal-title">From repository evidence to an engineering profile</title>
 <desc id="signal-description">91 public repositories scanned, with 80 identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to 8 skill assessments. This illustrates the analysis process, not a deployed system.</desc>
 <defs>
-<radialGradient id="signal-glow">
-<stop stop-color="#ac90ee" stop-opacity=".2"/>
-<stop offset="1" stop-color="#ac90ee" stop-opacity="0"/>
-</radialGradient>
-<linearGradient id="signal-edge" x2="1" y2="1">
-<stop stop-color="#a08bbb"/>
-<stop offset="1" stop-color="#605869"/>
-</linearGradient>
+<radialGradient id="scene-glow"><stop stop-color="#b5efd7" stop-opacity=".15"/><stop offset="1" stop-color="#b5efd7" stop-opacity="0"/></radialGradient>
+<linearGradient id="scene-line"><stop stop-color="#b5efd7" stop-opacity=".6"/><stop offset="1" stop-color="#c6b5ff" stop-opacity=".2"/></linearGradient>
 </defs>
-<circle cx="220" cy="170" r="150" fill="url(#signal-glow)"/>
-<g fill="none" stroke="#8f81a1" stroke-opacity=".18">
-<circle cx="220" cy="170" r="63"/>
-<circle cx="220" cy="170" r="106"/>
-<circle cx="220" cy="170" r="147"/>
-<path d="M18 170H422M220 20V320" stroke-dasharray="2 7"/>
-</g>
-<g fill="none" stroke="url(#signal-edge)" stroke-width="1.1">
-<path d="M104 91L184 149M337 103L251 151M220 201V263"/>
-<circle cx="220" cy="170" r="41"/>
-</g>
-<circle cx="220" cy="170" r="33" fill="#292331" stroke="#aa94cd" stroke-opacity=".5"/>
-<g fill="#d5c2f8">
-<rect x="207" y="157" width="10" height="10" rx="2"/>
-<rect x="223" y="157" width="10" height="10" rx="2"/>
-<rect x="207" y="173" width="10" height="10" rx="2"/>
-<rect x="223" y="173" width="10" height="10" rx="2" opacity=".45"/>
-</g>
-<g font-family="Inter,system-ui,sans-serif">
-<rect x="20" y="52" width="152" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
-<text x="35" y="73" fill="#c4b9d3" font-size="8" letter-spacing="1">01 / REPOSITORIES</text>
-<text x="35" y="104" fill="#eee8f6" font-size="23">91</text>
-<text x="78" y="104" fill="#c2b9cf" font-size="9">sources scanned</text>
-<rect x="274" y="68" width="146" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
-<text x="289" y="89" fill="#c4b9d3" font-size="8" letter-spacing="1">02 / IOT SIGNALS</text>
-<text x="289" y="120" fill="#eee8f6" font-size="23">80</text>
-<text x="331" y="120" fill="#c2b9cf" font-size="9">related repos</text>
-<rect x="132" y="250" width="178" height="66" rx="10" fill="#2d2738" stroke="#736183"/>
-<text x="149" y="272" fill="#d3c2e9" font-size="8" letter-spacing="1">03 / ENGINEERING PROFILE</text>
-<text x="149" y="299" fill="#eee8f6" font-size="20">8</text>
-<text x="178" y="297" fill="#d4c6e4" font-size="10">skills with source evidence</text>
-</g>
-<g fill="#c6b5ff">
-<circle cx="154" cy="127" r="3"/>
-<circle cx="289" cy="136" r="3"/>
-<circle cx="220" cy="227" r="3"/>
-</g>
+<circle cx="260" cy="250" r="245" fill="url(#scene-glow)"/>
+<g fill="none" stroke="#b5efd7" stroke-opacity=".12"><ellipse cx="260" cy="250" rx="230" ry="190" transform="rotate(-24 260 250)"/><ellipse cx="260" cy="250" rx="168" ry="220" transform="rotate(35 260 250)"/><circle cx="260" cy="250" r="122"/><path d="M10 250H510M260 10V490" stroke-dasharray="2 8"/></g>
+<g fill="none" stroke="url(#scene-line)" stroke-width="1.5"><path class="scene-flow" d="M120 137C240 135 154 244 260 250S368 288 404 286M260 250C255 340 142 305 179 405" stroke-dasharray="5 7"/></g>
+<g fill="#b5efd7"><circle cx="118" cy="137" r="4"/><circle cx="405" cy="286" r="4"/><circle cx="180" cy="406" r="4"/></g>
 </svg>
-<div class="signal-card-bottom">
-<span>
-<strong>Public code.</strong> Traceable signals.</span>
-<span>2026.10.30</span>
+<div class="scene-core" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="16" y="16" width="16" height="16" rx="4"/><path d="M24 4V16M24 32V44M4 24H16M32 24H44M10 10L17 17M31 31L38 38M38 10L31 17M17 31L10 38"/><circle cx="24" cy="24" r="3"/></svg></div>
+<div class="floating-card card-sources">
+<span class="card-index">01 <span> / Sources</span></span>
+<div class="floating-value">91<span>public repositories<br>scanned</span></div>
+<div class="card-trace" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </div>
+<div class="floating-card card-signals">
+<span class="card-index">02 <span> / Connections</span></span>
+<div class="floating-value">80<span>IoT-related<br>repositories</span></div>
+<div class="card-tags"><span>ESPHome</span><span>D-Bus</span><span>IoT</span></div>
+</div>
+<div class="floating-card card-profile">
+<span class="card-index">03 <span> / The profile</span></span>
+<div class="floating-value">8<span>skill assessments<br>with source evidence</span></div>
+<span class="card-footnote">Patterns, grounded in public code <span aria-hidden="true">↗</span></span>
+</div>
+</div>
+<p class="scene-caption"><span class="status-dot" aria-hidden="true"></span>Analysis pipeline illustration · a dated snapshot</p>
 </div>
 </section>
-<div class="stats" aria-label="Scan totals">
+<div class="stats" aria-label="Scan totals" data-reveal>
 <div class="stat">
 <strong>91</strong>
 <span>Public repositories scanned</span>
@@ -1286,7 +1452,7 @@ body {
 <span>D-Bus analysis records</span>
 </div>
 </div>
-<section class="section intro" id="overview" aria-labelledby="overview-title">
+<section class="section intro" id="overview" aria-labelledby="overview-title" data-reveal>
 <div>
 <span class="label">
 <span class="section-index">01</span>Overview</span>
@@ -1312,7 +1478,7 @@ body {
 <p class="snapshot-note">This is a snapshot from October 30, 2026. Scores are automated assessments of repository signals, not independent proficiency ratings or deployment verification. Repository descriptions are recorded as they appeared in the scan.</p>
 </div>
 </section>
-<section class="section" id="capabilities" aria-labelledby="capabilities-title">
+<section class="section" id="capabilities" aria-labelledby="capabilities-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -1868,7 +2034,10 @@ body {
 
 </div>
 </section>
-<section class="section" id="repositories" aria-labelledby="repositories-title">
+
+
+
+<section class="section" id="repositories" aria-labelledby="repositories-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -1907,7 +2076,7 @@ body {
 </div>
 <div class="repositories">
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">4alvit /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -1940,11 +2109,14 @@ body {
 <span class="language">Python</span>
 <span>Medium complexity</span>
 <span>100% IoT relevance</span>
-<span>1 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="4alvit/esphome-ble-sensor-patterns">
+<div class="github-counts"><span><strong data-github-stars>1</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -1977,11 +2149,14 @@ body {
 <span class="language">Python</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/dbus-mqtt-battery">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2014,11 +2189,14 @@ body {
 <span class="language">Python</span>
 <span>Medium complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/dbus-tasmota-pv">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="YAML">
+<article class="repo" data-language="YAML" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2051,11 +2229,14 @@ body {
 <span class="language">YAML</span>
 <span>Medium complexity</span>
 <span>100% IoT relevance</span>
-<span>1 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/esphome-jbd-bms-mqtt">
+<div class="github-counts"><span><strong data-github-stars>1</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2088,11 +2269,14 @@ body {
 <span class="language">Python</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/inverter-control">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2125,11 +2309,14 @@ body {
 <span class="language">Python</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/inverter-monitoring">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Go">
+<article class="repo" data-language="Go" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2162,11 +2349,14 @@ body {
 <span class="language">Go</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/inverter-dashboard-go">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Rust">
+<article class="repo" data-language="Rust" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2199,11 +2389,14 @@ body {
 <span class="language">Rust</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/inverter-desktop">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2236,11 +2429,14 @@ body {
 <span class="language">Python</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>0 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/venus-os-observability">
+<div class="github-counts"><span><strong data-github-stars>0</strong> stars</span><span><strong data-github-forks>1</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
-<article class="repo" data-language="Python">
+<article class="repo" data-language="Python" data-tilt>
 <div class="repo-top">
 <span class="repo-owner">victron-venus /</span>
 <span class="repo-arrow" aria-hidden="true">↗</span>
@@ -2273,7 +2469,10 @@ body {
 <span class="language">Python</span>
 <span>High complexity</span>
 <span>100% IoT relevance</span>
-<span>1 stars</span>
+</div>
+<div class="github-metadata" data-github-repo="victron-venus/dbus-esphome-grid-sensor">
+<div class="github-counts"><span><strong data-github-stars>1</strong> stars</span><span><strong data-github-forks>2</strong> forks</span><span>Updated <span data-github-updated>Oct 30, 2026</span></span></div>
+<div class="github-status-row"><p data-github-status role="status">Snapshot · Oct 30, 2026. Live GitHub values are checked separately.</p><button type="button" data-github-refresh hidden>Refresh</button></div>
 </div>
 </article>
 
@@ -2282,7 +2481,8 @@ body {
 </section>
 
 
-<section class="section" aria-labelledby="insights-title">
+
+<section class="section" aria-labelledby="insights-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">Analysis notes</span>
@@ -2347,7 +2547,8 @@ body {
 </section>
 
 
-<section class="section" id="evidence" aria-labelledby="evidence-title">
+
+<section class="section" id="evidence" aria-labelledby="evidence-title" data-reveal>
 <div class="section-heading">
 <div>
 <span class="label">
@@ -6792,6 +6993,7 @@ body {
 </div>
 </div>
 </section>
+
 <footer class="footer">
 <div>
 <p>IoT Engineering Profile / @4alvit<br>Generated October 30, 2026 from repository evidence. Check individual repositories for current documentation and installation requirements.</p>
@@ -6805,62 +7007,304 @@ body {
 <script>
 (function () {
   "use strict";
+  const main = document.getElementById("main");
+  if (!main || main.dataset.profileVersion !== "2") return;
+  const username = main.dataset.profileUser;
+  if (!/^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(username || "")) return;
+  const base = new URL("./", location.href);
+  const routes = new Map([["", "overview"], ["index.html", "overview"],
+    [username + "_profile.html", "overview"], ["repositories.html", "repositories"], ["evidence.html", "evidence"]]);
+  const TIMEOUT = 8000, MAX_HTML = 2 * 1024 * 1024, MAX_JSON = 128 * 1024;
+  const TTL = 20 * 60 * 1000, CACHE_LIMIT = 7 * 24 * 60 * 60 * 1000;
+  const HISTORY = "iotProfileDocumentV2", CACHE = "iot-profile.public-repository.v1.";
+  const snapshots = new Map();
+  let retryUntil = 0, paused = false;
+  try { paused = sessionStorage.getItem("iot-profile.motion.v1") === "paused"; } catch { /* Optional storage. */ }
 
-  // The full repository list is the no-JavaScript default.
-  const filters = document.getElementById("repository-filters");
-  const search = document.getElementById("repository-search");
-  const language = document.getElementById("repository-language");
-  const count = document.getElementById("repository-count");
-  const empty = document.getElementById("repository-empty");
-  const cards = Array.from(document.querySelectorAll(".repo"));
-
-  if (filters && search && language && count && empty) {
-    function apply() {
+  function route(value) {
+    try {
+      const url = new URL(value, base);
+      if (!/^https?:$/.test(url.protocol) || url.origin !== base.origin || url.username || url.password || !url.pathname.startsWith(base.pathname)) return null;
+      return routes.has(url.pathname.slice(base.pathname.length)) ? url : null;
+    } catch { return null; }
+  }
+  function pageName(url) { return routes.get(url.pathname.slice(base.pathname.length)); }
+  const siteEnabled = Boolean(route(location.href));
+  function count(value) { return Number.isSafeInteger(value) && value >= 0; }
+  function validRepo(value) { return typeof value === "string" && /^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?\/[a-z\d_.-]{1,100}$/i.test(value) && !/[/.]\.($|\/)/.test(value); }
+  function snapshot(data, repo, checkedAt = Date.now()) {
+    if (!data || data.full_name !== repo || data.private !== false || data.html_url !== "https://github.com/" + repo || !count(data.stargazers_count) || !count(data.forks_count)) return null;
+    return { repo, checkedAt, stars: data.stargazers_count, forks: data.forks_count,
+      updatedAt: typeof data.updated_at === "string" && Number.isFinite(Date.parse(data.updated_at)) ? data.updated_at : null };
+  }
+  function cached(repo) {
+    let row = snapshots.get(repo);
+    if (!row) { try { row = JSON.parse(sessionStorage.getItem(CACHE + repo)); } catch { /* Storage may be unavailable or malformed. */ } }
+    if (!row || row.version !== 1 || row.repo !== repo || !count(row.stars) || !count(row.forks) || !Number.isFinite(row.checkedAt) || row.checkedAt < 0 || row.checkedAt > Date.now() || Date.now() - row.checkedAt > CACHE_LIMIT || (row.updatedAt !== null && (typeof row.updatedAt !== "string" || !Number.isFinite(Date.parse(row.updatedAt))))) return null;
+    return row;
+  }
+  async function limitedText(response, limit, signal) {
+    if (Number(response.headers.get("content-length")) > limit) throw new Error("Response too large");
+    if (!response.body?.getReader) {
+      const text = await response.text();
+      if (new TextEncoder().encode(text).length > limit || signal.aborted) throw new Error("Response unavailable");
+      return text;
+    }
+    const reader = response.body.getReader(), decoder = new TextDecoder();
+    let size = 0, text = "", done = false;
+    try {
+      while (!done) {
+        if (signal.aborted) throw new Error("Request canceled");
+        const part = await reader.read(); done = part.done;
+        if (part.value) { size += part.value.byteLength; if (size > limit) throw new Error("Response too large"); text += decoder.decode(part.value, { stream: true }); }
+      }
+      return text + decoder.decode();
+    } finally { if (!done) await reader.cancel().catch(() => {}); reader.releaseLock(); }
+  }
+  function retryDelay(response) {
+    const value = response.headers.get("retry-after"), seconds = Number(value);
+    const retry = value ? (Number.isFinite(seconds) && seconds >= 0 ? Date.now() + seconds * 1000 : Date.parse(value)) : 0;
+    const reset = response.headers.get("x-ratelimit-remaining") === "0" ? Number(response.headers.get("x-ratelimit-reset")) * 1000 : 0;
+    return Math.max(Date.now() + 60000, Number.isFinite(retry) ? retry : 0, Number.isFinite(reset) ? reset : 0);
+  }
+  function mountMetadata(signal) {
+    const regions = [...document.querySelectorAll("[data-github-repo]")].filter(node => validRepo(node.dataset.githubRepo));
+    const groups = new Map(), jobs = new Map(), queue = [], requests = new Set(), started = new Set();
+    let active = 0, observer = null;
+    for (const node of regions) {
+      const repo = node.dataset.githubRepo;
+      if (!groups.has(repo)) groups.set(repo, []);
+      groups.get(repo).push(node);
+    }
+    function status(repo, text) { for (const node of groups.get(repo) || []) { const field = node.querySelector("[data-github-status]"); if (field) field.textContent = text; } }
+    function busy(repo, value) {
+      for (const node of groups.get(repo) || []) {
+        node.setAttribute("aria-busy", String(value));
+        const button = node.querySelector("[data-github-refresh]"); if (button) button.disabled = value;
+      }
+    }
+    function render(repo, row, prefix) {
+      for (const node of groups.get(repo) || []) {
+        for (const [selector, value] of [["stars", row.stars.toLocaleString()], ["forks", row.forks.toLocaleString()], ["updated", row.updatedAt ? new Date(row.updatedAt).toLocaleDateString() : "Not reported"]]) {
+          const field = node.querySelector("[data-github-" + selector + "]"); if (field) field.textContent = value;
+        }
+      }
+      status(repo, prefix + " " + new Date(row.checkedAt).toLocaleString() + ". Public GitHub data; the analysis snapshot is unchanged.");
+    }
+    function unavailable(repo, message) {
+      const row = cached(repo);
+      if (row) { render(repo, row, "Saved data; checked"); status(repo, "Saved data checked " + new Date(row.checkedAt).toLocaleString() + ". " + message); }
+      else status(repo, "Showing the generated snapshot. " + message);
+    }
+    async function run(repo) {
+      const controller = new AbortController(); requests.add(controller);
+      const timer = setTimeout(() => controller.abort(), TIMEOUT);
+      busy(repo, true); status(repo, "Loading public GitHub data; existing values remain visible.");
+      try {
+        const response = await fetch("https://api.github.com/repos/" + repo, { signal: controller.signal, credentials: "omit", referrerPolicy: "no-referrer", redirect: "error", headers: { Accept: "application/vnd.github+json" } });
+        if (response.status === 403 || response.status === 429) {
+          retryUntil = Math.max(retryUntil, retryDelay(response));
+          for (const waiting of queue.splice(0)) { jobs.delete(waiting); busy(waiting, false); unavailable(waiting, "GitHub requests are paused after a rate limit. Try Refresh later."); }
+          throw new Error("limited");
+        }
+        if (!response.ok) throw new Error("unavailable");
+        const row = snapshot(JSON.parse(await limitedText(response, MAX_JSON, controller.signal)), repo);
+        if (!row) throw new Error("unexpected");
+        if (signal.aborted || controller.signal.aborted) return;
+        const saved = { version: 1, ...row }; snapshots.set(repo, saved);
+        try { sessionStorage.setItem(CACHE + repo, JSON.stringify(saved)); } catch { /* Memory cache remains available. */ }
+        render(repo, row, "Checked");
+      } catch {
+        if (!signal.aborted) unavailable(repo, retryUntil > Date.now() ? "GitHub requests are paused after a rate limit. Try Refresh later." : "Live GitHub data is unavailable. Try Refresh or open the repository on GitHub.");
+      } finally { clearTimeout(timer); requests.delete(controller); jobs.delete(repo); active--; if (!signal.aborted) { busy(repo, false); drain(); } }
+    }
+    function drain() {
+      if (signal.aborted || document.hidden || retryUntil > Date.now()) return;
+      while (active < 2 && queue.length) { active++; void run(queue.shift()); }
+    }
+    function load(repo, force = false) {
+      if (signal.aborted || jobs.has(repo) || (!force && started.has(repo))) return;
+      started.add(repo);
+      const row = cached(repo);
+      if (row) render(repo, row, "Saved data; checked");
+      if (!force && row && Date.now() - row.checkedAt < TTL) return;
+      if (retryUntil > Date.now()) { unavailable(repo, "GitHub requests are paused after a rate limit. Try Refresh later."); return; }
+      jobs.set(repo, true); queue.push(repo); drain();
+    }
+    for (const [repo, nodes] of groups) {
+      const row = cached(repo); if (row) render(repo, row, "Saved data; checked");
+      for (const node of nodes) {
+        const button = node.querySelector("[data-github-refresh]");
+        if (button) { button.hidden = false; button.addEventListener("click", () => load(repo, true), { signal }); }
+      }
+    }
+    if (siteEnabled && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) { observer.unobserve(entry.target); load(entry.target.dataset.githubRepo); } }, { rootMargin: "80px" });
+      regions.forEach(node => observer.observe(node));
+    } else if (siteEnabled) groups.forEach((_, repo) => load(repo));
+    // Local saved HTML remains offline unless the reader explicitly uses Refresh.
+    document.addEventListener("visibilitychange", drain, { signal });
+    return () => { observer?.disconnect(); requests.forEach(request => request.abort()); queue.length = 0; };
+  }
+  function mountFilters(signal) {
+    const filters = document.getElementById("repository-filters"), search = document.getElementById("repository-search"), language = document.getElementById("repository-language"), countNode = document.getElementById("repository-count"), empty = document.getElementById("repository-empty");
+    const cards = [...document.querySelectorAll(".repo")];
+    if (!filters || !search || !language || !countNode || !empty) return;
+    const content = new Map(cards.map(card => [card, card.textContent.toLocaleLowerCase()]));
+    const apply = () => {
       const terms = search.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
       let visible = 0;
-      cards.forEach(function (card) {
-        const content = card.textContent.toLocaleLowerCase();
-        const matches = terms.every(function (term) { return content.includes(term); }) &&
-          (!language.value || card.dataset.language === language.value);
-        card.hidden = !matches;
-        if (matches) visible++;
-      });
-      count.textContent = visible + " of " + cards.length + " repositories";
-      empty.hidden = visible !== 0;
+      for (const card of cards) { const matches = terms.every(term => content.get(card).includes(term)) && (!language.value || card.dataset.language === language.value); card.hidden = !matches; if (matches) visible++; }
+      countNode.textContent = visible + " of " + cards.length + " repositories"; empty.hidden = visible !== 0;
+    };
+    filters.hidden = false; search.addEventListener("input", apply, { signal }); language.addEventListener("change", apply, { signal }); apply();
+  }
+  function mountMotion(signal) {
+    const root = document.documentElement, reduced = matchMedia("(prefers-reduced-motion: reduce)"), fine = matchMedia("(hover: hover) and (pointer: fine)");
+    const reveals = [...document.querySelectorAll("[data-reveal]")], scenes = [...document.querySelectorAll("[data-scene]")], tiles = [...document.querySelectorAll("[data-tilt]")];
+    const frames = new Map(), onscreen = new Set();
+    let revealObserver, sceneObserver;
+    const reset = tile => { cancelAnimationFrame(frames.get(tile)); frames.delete(tile); tile.style.removeProperty("--tilt-x"); tile.style.removeProperty("--tilt-y"); };
+    const buttons = [...document.querySelectorAll("[data-motion-toggle]")];
+    function configure() {
+      revealObserver?.disconnect(); sceneObserver?.disconnect(); onscreen.clear(); tiles.forEach(reset); scenes.forEach(node => node.classList.remove("is-in-view"));
+      const stopped = paused || reduced.matches || document.hidden;
+      root.dataset.motion = stopped ? "paused" : "active";
+      buttons.forEach(button => { button.hidden = false; button.setAttribute("aria-pressed", String(paused)); button.textContent = paused ? "Resume motion" : "Pause motion"; button.disabled = reduced.matches; button.title = reduced.matches ? "Motion follows your reduced-motion preference" : "Toggle decorative motion"; });
+      if (stopped || !("IntersectionObserver" in window)) { root.classList.remove("motion-ready"); reveals.forEach(node => node.classList.add("is-visible")); return; }
+      revealObserver = new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); } }, { threshold: 0.06 });
+      reveals.forEach(node => { if (!node.classList.contains("is-visible")) revealObserver.observe(node); });
+      sceneObserver = new IntersectionObserver(entries => { for (const entry of entries) { if (entry.isIntersecting) onscreen.add(entry.target); else { onscreen.delete(entry.target); reset(entry.target); } if (entry.target.hasAttribute("data-scene")) entry.target.classList.toggle("is-in-view", entry.isIntersecting); } });
+      [...new Set([...scenes, ...tiles])].forEach(node => sceneObserver.observe(node));
+      root.classList.add("motion-ready");
     }
-    filters.hidden = false;
-    search.addEventListener("input", apply);
-    language.addEventListener("change", apply);
-    apply();
+    buttons.forEach(button => button.addEventListener("click", () => { paused = !paused; try { sessionStorage.setItem("iot-profile.motion.v1", paused ? "paused" : "active"); } catch { /* Optional storage. */ } configure(); }, { signal }));
+    for (const tile of tiles) {
+      tile.addEventListener("pointermove", event => {
+        if (paused || reduced.matches || !fine.matches || document.hidden || !onscreen.has(tile) || event.pointerType === "touch") return;
+        const box = tile.getBoundingClientRect(); if (!box.width || !box.height) return;
+        const x = Math.max(-1, Math.min(1, (event.clientX - box.left) / box.width * 2 - 1)), y = Math.max(-1, Math.min(1, (event.clientY - box.top) / box.height * 2 - 1));
+        cancelAnimationFrame(frames.get(tile)); frames.set(tile, requestAnimationFrame(() => { frames.delete(tile); tile.style.setProperty("--tilt-x", (-y * 3).toFixed(2) + "deg"); tile.style.setProperty("--tilt-y", (x * 3).toFixed(2) + "deg"); }));
+      }, { signal, passive: true });
+      tile.addEventListener("pointerleave", () => reset(tile), { signal }); tile.addEventListener("pointercancel", () => reset(tile), { signal });
+    }
+    document.addEventListener("focusin", event => { if (event.target instanceof Element) { let node = event.target.closest("[data-reveal]"); while (node) { node.classList.add("is-visible"); node = node.parentElement?.closest("[data-reveal]"); } } }, { signal });
+    reduced.addEventListener("change", configure, { signal }); fine.addEventListener("change", configure, { signal }); document.addEventListener("visibilitychange", configure, { signal });
+    const header = document.querySelector(".topbar"), measure = () => { if (header) root.style.setProperty("--site-header-height", Math.ceil(header.getBoundingClientRect().height) + "px"); };
+    const resize = "ResizeObserver" in window ? new ResizeObserver(measure) : null; if (header) resize?.observe(header);
+    window.addEventListener("resize", measure, { signal, passive: true }); measure(); configure();
+    return () => { revealObserver?.disconnect(); sceneObserver?.disconnect(); resize?.disconnect(); tiles.forEach(reset); root.classList.remove("motion-ready"); };
   }
-
-  if ("IntersectionObserver" in window) {
-    const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-    const visible = new Map();
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { visible.set(entry.target.id, entry.isIntersecting); });
-      const current = links.find(function (link) { return visible.get(link.hash.slice(1)); });
-      links.forEach(function (link) {
-        if (link === current) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    }, { rootMargin: "-18% 0px -52% 0px", threshold: 0 });
-    links.forEach(function (link) {
-      const section = document.getElementById(link.hash.slice(1));
-      if (section) observer.observe(section);
+  function markNavigation() {
+    const name = document.getElementById("main")?.dataset.profilePage;
+    document.querySelectorAll("[data-nav-page]").forEach(link => { if (link.dataset.navPage === name) link.setAttribute("aria-current", "page"); else link.removeAttribute("aria-current"); });
+  }
+  let pageController, cleanups = [], printDetails = [];
+  function dispose() { pageController?.abort(); cleanups.forEach(cleanup => cleanup()); cleanups = []; printDetails = []; }
+  function mount() {
+    pageController = new AbortController(); const signal = pageController.signal;
+    cleanups = [mountMetadata(signal), mountMotion(signal)]; mountFilters(signal); markNavigation();
+    window.addEventListener("beforeprint", () => { printDetails = [...document.querySelectorAll("details:not([open])")]; printDetails.forEach(detail => { detail.open = true; }); }, { signal });
+    window.addEventListener("afterprint", () => { printDetails.forEach(detail => { detail.open = false; }); printDetails = []; }, { signal });
+  }
+  function parsedDocument(source, target) {
+    const page = new DOMParser().parseFromString(source, "text/html"), candidates = page.querySelectorAll("#main"), next = candidates[0];
+    if (candidates.length !== 1 || next.tagName !== "MAIN" || !page.title || next.dataset.profileVersion !== "2" || next.dataset.profileUser !== username || next.dataset.profilePage !== pageName(target) || !Number.isFinite(Date.parse(next.dataset.profileGenerated || ""))) throw new Error("Different document");
+    next.querySelectorAll("script,style,link,meta,base,iframe,object,embed,form,foreignObject,animate,animateMotion,animateTransform,set").forEach(node => node.remove());
+    for (const node of [next, ...next.querySelectorAll("*")]) {
+      for (const attr of [...node.attributes]) {
+        const name = attr.name.toLowerCase();
+        if (name.startsWith("on") || ["srcdoc", "ping", "autofocus", "srcset", "formaction"].includes(name)) { node.removeAttribute(attr.name); continue; }
+        if (name === "style") {
+          const width = node.style.width, flex = node.style.flex; node.removeAttribute("style");
+          if (/^(?:\d+(?:\.\d+)?|\.\d+)%$/.test(width) && Number.parseFloat(width) <= 100) node.style.width = width;
+          if (/^\d+(?:\.\d+)?(?:\s+\d+(?:\.\d+)?(?:\s+0%)?)?$/.test(flex)) node.style.flex = flex;
+          continue;
+        }
+        if (!["href", "src", "poster", "action", "xlink:href"].includes(name)) continue;
+        if (attr.value.startsWith("#") && node.namespaceURI === "http://www.w3.org/2000/svg") continue;
+        try {
+          const url = new URL(attr.value, target), isLink = name === "href" && node.tagName === "A";
+          if (url.username || url.password || !(isLink ? /^(https?:|mailto:|tel:)$/.test(url.protocol) : /^https?:$/.test(url.protocol) && url.origin === base.origin)) node.removeAttribute(attr.name);
+          else node.setAttribute(attr.name, url.href);
+        } catch { node.removeAttribute(attr.name); }
+      }
+    }
+    return { page, next };
+  }
+  function focusDestination(url, position) {
+    let target;
+    try { target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null; } catch { /* Invalid fragments use the heading. */ }
+    const focus = target || document.querySelector("#main h1") || document.getElementById("main");
+    if (focus) { const hadTabindex = focus.hasAttribute("tabindex"); if (!hadTabindex) focus.setAttribute("tabindex", "-1"); focus.focus({ preventScroll: true }); if (!hadTabindex) focus.addEventListener("blur", () => focus.removeAttribute("tabindex"), { once: true }); }
+    if (Array.isArray(position) && position.length === 2 && position.every(value => Number.isFinite(value) && value >= 0)) window.scrollTo({ left: position[0], top: position[1], behavior: "instant" });
+    else if (target) target.scrollIntoView({ block: "start", behavior: "instant" });
+    else window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+  }
+  function announce(text) {
+    let node = document.getElementById("profile-navigation-status");
+    if (!node) { node = document.createElement("div"); node.id = "profile-navigation-status"; node.className = "sr-only"; node.setAttribute("role", "status"); node.setAttribute("aria-live", "polite"); node.setAttribute("aria-atomic", "true"); document.body.append(node); }
+    node.textContent = text;
+  }
+  let documentURL = location.href, navigation = null, revision = 0, saveTimer;
+  const initialURL = location.href, initialEntry = history.state?.[HISTORY];
+  const restored = ["reload", "back_forward"].includes(performance.getEntriesByType?.("navigation")[0]?.type);
+  const initialPosition = restored && initialEntry?.url === initialURL ? initialEntry.position : undefined;
+  function savePosition() {
+    clearTimeout(saveTimer); if (location.href !== documentURL || !siteEnabled) return;
+    try { history.replaceState({ ...(history.state && typeof history.state === "object" ? history.state : {}), [HISTORY]: { url: location.href, position: [window.scrollX, window.scrollY] } }, "", location.href); } catch { /* Normal navigation still works. */ }
+  }
+  function cancelNavigation() { revision++; navigation?.abort(); navigation = null; document.documentElement.removeAttribute("data-profile-loading"); }
+  async function navigate(target, pop = false, position) {
+    cancelNavigation(); const attempt = revision, controller = new AbortController(); navigation = controller;
+    if (!pop) savePosition(); else clearTimeout(saveTimer);
+    document.documentElement.setAttribute("data-profile-loading", "true"); announce("Loading page…");
+    const timer = setTimeout(() => controller.abort(), TIMEOUT);
+    try {
+      const response = await fetch(target.href, { signal: controller.signal, credentials: "same-origin", redirect: "error", headers: { Accept: "text/html" } });
+      if (!response.ok || !response.headers.get("content-type")?.toLowerCase().includes("text/html")) throw new Error("Document unavailable");
+      const { page, next } = parsedDocument(await limitedText(response, MAX_HTML, controller.signal), target);
+      if (attempt !== revision) return;
+      if (controller.signal.aborted) throw new Error("Navigation timed out");
+      if (!pop) history.pushState({ [HISTORY]: { url: target.href, position: null } }, "", target.href);
+      dispose(); document.getElementById("main").replaceWith(document.importNode(next, true));
+      document.title = page.title; document.documentElement.lang = page.documentElement.lang || "en";
+      document.documentElement.dir = page.documentElement.dir || "ltr";
+      const description = page.querySelector('meta[name="description"]'); let current = document.querySelector('meta[name="description"]');
+      if (description) { if (!current) { current = document.createElement("meta"); current.name = "description"; document.head.append(current); } current.content = description.content; } else current?.remove();
+      documentURL = location.href; mount(); focusDestination(target, position); savePosition(); announce(document.title + " loaded.");
+      document.dispatchEvent(new CustomEvent("profile:navigated", { detail: { page: pageName(target) } }));
+    } catch { if (attempt === revision) location.assign(target.href); }
+    finally { clearTimeout(timer); if (attempt === revision) { navigation = null; document.documentElement.removeAttribute("data-profile-loading"); } }
+  }
+  function ordinaryClick(event, link) { return link && !event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && !link.hasAttribute("download") && (!link.target || link.target.toLowerCase() === "_self"); }
+  if (siteEnabled) {
+    document.addEventListener("click", event => {
+      const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+      if (!ordinaryClick(event, link)) return;
+      const target = !link.hasAttribute("data-native-navigation") && route(link.href);
+      if (!target) { if (/^https?:$/.test(link.protocol)) cancelNavigation(); return; }
+      event.preventDefault(); const current = new URL(documentURL);
+      if (target.pathname === current.pathname && target.search === current.search) {
+        cancelNavigation(); savePosition();
+        try { if (target.href !== location.href) history.pushState({ [HISTORY]: { url: target.href, position: null } }, "", target.href); documentURL = location.href; focusDestination(target); savePosition(); } catch { location.assign(target.href); }
+      } else void navigate(target);
     });
+    window.addEventListener("popstate", event => {
+      const target = route(location.href); if (!target) { location.reload(); return; }
+      const current = new URL(documentURL), entry = event.state?.[HISTORY], position = entry?.url === target.href ? entry.position : undefined;
+      if (target.pathname === current.pathname && target.search === current.search) { cancelNavigation(); clearTimeout(saveTimer); documentURL = location.href; focusDestination(target, position); savePosition(); }
+      else void navigate(target, true, position);
+    });
+    try { history.scrollRestoration = "manual"; } catch { /* Storage-restricted documents keep normal history. */ }
   }
-
-  // Print all evidence, then restore the reader's expansion choices.
-  let printDetails = [];
-  window.addEventListener("beforeprint", function () {
-    printDetails = Array.from(document.querySelectorAll("details:not([open])"));
-    printDetails.forEach(function (detail) { detail.open = true; });
-  });
-  window.addEventListener("afterprint", function () {
-    printDetails.forEach(function (detail) { detail.open = false; });
-    printDetails = [];
-  });
+  window.addEventListener("scroll", () => { clearTimeout(saveTimer); saveTimer = setTimeout(savePosition, 120); }, { passive: true });
+  window.addEventListener("pagehide", () => { savePosition(); cancelNavigation(); dispose(); });
+  window.addEventListener("pageshow", event => { if (event.persisted) mount(); });
+  mount();
+  let interacted = false; const initialInput = new AbortController();
+  for (const name of ["pointerdown", "wheel", "touchstart", "keydown"]) window.addEventListener(name, () => { interacted = true; }, { signal: initialInput.signal, passive: true });
+  requestAnimationFrame(() => { if (!interacted && revision === 0 && location.href === initialURL && (initialPosition || (!restored && location.hash))) focusDestination(new URL(initialURL), initialPosition); savePosition(); initialInput.abort(); });
 })();
 </script>
 </body>

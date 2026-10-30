@@ -149,6 +149,8 @@ jobs:
           ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.html
           ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.md
           ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.json
+          ${{ steps.refresh.outputs.directory }}/repositories.html
+          ${{ steps.refresh.outputs.directory }}/evidence.html
         if-no-files-found: error
         retention-days: 7
     # BOT_PAT authors the server-signed commit and PR so normal CI events run.

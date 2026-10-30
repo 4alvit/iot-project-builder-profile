@@ -2,6 +2,19 @@ name: CI
 permissions:
   contents: read
 jobs:
+  browsers:
+    name: Profile browser acceptance
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@6f0bf114a398f9c2b7e5407042c3828a8cc28b40
+    permissions:
+      contents: read
+      actions: read
+    with:
+      run-node-ci: false
+      browser-matrix-file: .github/browser-compatibility.json
+      browser-extended: ${{ inputs.browser-extended || false }}
+      browser-prepare-command: python scripts/prepare_browser_checks.py
+      browser-test-command: node tests/browser/profile-experience.mjs
+      browser-evidence-prefix: profile-experience
   ci:
     name: CI
     runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && ((github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) || (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch))) && (vars.CI_RUNNER_LABELS || '[]') || '["ubuntu-latest"]') }}
@@ -44,4 +57,15 @@ jobs:
           uv sync --locked --all-extras
           uv run --locked pytest --no-cov tests/test_tls_policy.py tests/test_github_tls.py
 'on':
-  workflow_call: {}
+  workflow_call:
+    inputs:
+      browser-extended:
+        description: Include all reviewed browser generations and branded targets
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      browser-extended:
+        description: Include all 35 reviewed browser targets instead of the five-target baseline
+        type: boolean
+        default: true
