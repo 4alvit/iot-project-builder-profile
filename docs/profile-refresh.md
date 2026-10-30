@@ -32,6 +32,12 @@ per repository. These sampling limits are recorded in
 `github_stats.analysis_scope` in the JSON; the profile is not an exhaustive
 firmware or service inventory.
 
+The public repository total comes from the scan inventory; the IoT repository
+count is the subset retained for this profile. Complexity counts analysis records
+from those IoT repositories, individual ESPHome configurations and D-Bus analyses,
+so its total is not a repository count. The JSON field `total_repos_analyzed`
+retains its existing name but now reports the scanned repository count.
+
 The refresh job has a 45-minute execution limit. Concurrent refreshes queue
 rather than canceling the current generation. Output from previous runs is never
 used as a fallback. A failed run must not be repaired by changing only its date.

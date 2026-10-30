@@ -1284,7 +1284,7 @@ PROFILE_HTML = (
 </div>
 <svg viewBox="0 0 440 332" role="img" aria-labelledby="signal-title signal-description">
 <title id="signal-title">From repository evidence to an engineering profile</title>
-<desc id="signal-description">{{ profile.total_repos_analyzed }} repositories analyzed, with {{ profile.iot_repos_count }} identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to {{ profile.skills|length }} skill assessments. This illustrates the analysis process, not a deployed system.</desc>
+<desc id="signal-description">{{ profile.total_repos_analyzed }} public repositories scanned, with {{ profile.iot_repos_count }} identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to {{ profile.skills|length }} skill assessments. This illustrates the analysis process, not a deployed system.</desc>
 <defs>
 <radialGradient id="signal-glow">
 <stop stop-color="#ac90ee" stop-opacity=".2"/>
@@ -1317,7 +1317,7 @@ PROFILE_HTML = (
 <rect x="20" y="52" width="152" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
 <text x="35" y="73" fill="#c4b9d3" font-size="8" letter-spacing="1">01 / REPOSITORIES</text>
 <text x="35" y="104" fill="#eee8f6" font-size="23">{{ profile.total_repos_analyzed }}</text>
-<text x="78" y="104" fill="#c2b9cf" font-size="9">sources analyzed</text>
+<text x="78" y="104" fill="#c2b9cf" font-size="9">sources scanned</text>
 <rect x="274" y="68" width="146" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
 <text x="289" y="89" fill="#c4b9d3" font-size="8" letter-spacing="1">02 / IOT SIGNALS</text>
 <text x="289" y="120" fill="#eee8f6" font-size="23">{{ profile.iot_repos_count }}</text>
@@ -1343,7 +1343,7 @@ PROFILE_HTML = (
 <div class="stats" aria-label="Scan totals">
 <div class="stat">
 <strong>{{ profile.total_repos_analyzed }}</strong>
-<span>Repositories analyzed</span>
+<span>Public repositories scanned</span>
 </div>
 <div class="stat">
 <strong>{{ profile.iot_repos_count }}</strong>
@@ -1421,7 +1421,7 @@ PROFILE_HTML = (
 <div class="panel">
 <div class="panel-title">
 <h3>Code complexity</h3>
-<span class="label">Repository distribution</span>
+<span class="label">Analysis records</span>
 </div>
 {% set total = profile.complexity_distribution.values()|sum %}
 <div class="complexity-chart" aria-hidden="true">
@@ -1437,13 +1437,13 @@ PROFILE_HTML = (
 </i>
 <span>{{ level.value.capitalize() }}</span>
 <strong>{{ count }}</strong>
-<span>repos</span>
+<span>records</span>
 </div>
 {% else %}
 <p class="quiet-state">No complexity data in this snapshot.</p>
 {% endfor %}
 </div>
-<p class="chart-note">{{ total }} classified repositories. Complexity reflects detected code patterns. Focus scores measure overlapping areas and do not add up to 100%.</p>
+<p class="chart-note">{{ total }} classified analysis records from IoT repositories, ESPHome configurations and D-Bus analyses. Complexity reflects detected code patterns. Focus scores measure overlapping areas and do not add up to 100%.</p>
 </div>
 </div>
 <div class="skills">

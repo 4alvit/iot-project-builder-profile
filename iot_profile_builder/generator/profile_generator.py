@@ -202,6 +202,14 @@ class GenerationError(RuntimeError):
     """Requested model analysis could not produce a complete, valid profile."""
 
 
+def _scanned_repository_count(repos: list[RepositoryMetrics], github_stats: dict[str, Any]) -> int:
+    """Count scanned repositories without adding their configuration/service records."""
+    count = github_stats.get("total_repos")
+    if isinstance(count, int) and not isinstance(count, bool) and count > 0:
+        return count
+    return len(repos)
+
+
 class ProfileGenerator:
     """Generates engineering profile from scan data using LLM."""
 
@@ -542,7 +550,7 @@ class ProfileGenerator:
         return EngineeringProfile(
             username=self.config.username,
             generated_at=datetime.now(UTC),
-            total_repos_analyzed=len(repos) + len(esphome_analyses) + len(dbus_analyses),
+            total_repos_analyzed=_scanned_repository_count(repos, github_stats),
             iot_repos_count=len(repos),
             skills=skills,
             focus_areas=focus_areas,
@@ -648,7 +656,7 @@ def generate_heuristic_profile(
     return EngineeringProfile(
         username=username,
         generated_at=datetime.now(UTC),
-        total_repos_analyzed=len(repos) + len(esphome_analyses) + len(dbus_analyses),
+        total_repos_analyzed=_scanned_repository_count(repos, github_stats),
         iot_repos_count=len(repos),
         skills=skills,
         focus_areas=focus_areas,
