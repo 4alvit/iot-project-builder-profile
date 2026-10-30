@@ -115,7 +115,16 @@ Set `ANTHROPIC_BASE_URL` as an Actions secret and `PROFILE_LLM_MODEL` as an
 Actions variable. Set `PROFILE_INFERENCE_HOSTNAME` as a separate Actions secret
 containing only that URL's hostname. The runner hardening pre-hook needs it for
 the outbound allowlist and automatic masking before regular steps run. Network
-telemetry upload is disabled; endpoint blocking stays enabled. Use the model ID accepted by the endpoint's Messages API,
+telemetry upload is disabled; endpoint blocking stays configured. On GitHub-hosted
+Linux, the action enforces the listed endpoints. On ARC or other self-hosted
+runners, the pinned action does not enforce that allowlist without a separately
+installed Enterprise agent; a successful step alone is not evidence of network
+enforcement. See its [environment compatibility matrix](https://github.com/step-security/harden-runner/blob/46b06cea07f9e64621fdf066ba77ac6915163d43/README.md#environment-compatibility-matrix).
+Qualify the pool's independent network controls before using it. A node-level
+fence that blocks private, LAN and metadata addresses while allowing public
+HTTP/HTTPS is a different policy from this workflow's endpoint allowlist.
+
+Use the model ID accepted by the endpoint's Messages API,
 which may differ from aliases advertised for other clients. Credentials belong
 in Actions secrets: `ANTHROPIC_API_KEY` for a direct compatible API, or the pair
 `PROFILE_ACCESS_CLIENT_ID` / `PROFILE_ACCESS_CLIENT_SECRET` for Cloudflare Access.
