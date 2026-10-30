@@ -3,10 +3,9 @@
 import base64
 import hashlib
 import json
-import re
 from copy import deepcopy
 from datetime import datetime
-from html import unescape
+from html.parser import HTMLParser
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
@@ -16,6 +15,37 @@ from iot_profile_builder.models import EngineeringProfile, FocusArea
 from iot_profile_builder.output import renderer
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class ScriptPolicyParser(HTMLParser):
+    """Inspect the actual script nodes and decoded CSP attributes in a document."""
+
+    def __init__(self, source: str) -> None:
+        super().__init__()
+        self.scripts: list[str] = []
+        self.policies: list[str] = []
+        self.in_script = False
+        self.feed(source)
+        self.close()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        if tag == "script":
+            self.scripts.append("")
+            self.in_script = True
+        if (
+            tag == "meta"
+            and (attributes.get("http-equiv") or "").lower() == "content-security-policy"
+        ):
+            self.policies.append(attributes.get("content") or "")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "script":
+            self.in_script = False
+
+    def handle_data(self, data: str) -> None:
+        if self.in_script:
+            self.scripts[-1] += data
 
 
 class RendererTemplateTests(TestCase):
@@ -128,16 +158,22 @@ class RendererTemplateTests(TestCase):
         output = self.root / "profile.html"
         renderer.ProfileRenderer().render_html(self.profile, output)
         html = output.read_text()
-        scripts = re.findall(r"<script>(.*?)</script>", html, re.DOTALL)
-        self.assertEqual(len(scripts), 1)
-        digest = base64.b64encode(hashlib.sha256(scripts[0].encode()).digest()).decode()
-        policy = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', html)
-        self.assertIsNotNone(policy)
-        assert policy is not None
-        content = unescape(policy[1])
+        parsed = ScriptPolicyParser(html)
+        self.assertEqual(len(parsed.scripts), 1)
+        self.assertEqual(len(parsed.policies), 1)
+        digest = base64.b64encode(hashlib.sha256(parsed.scripts[0].encode()).digest()).decode()
+        content = parsed.policies[0]
         self.assertIn(f"script-src 'sha256-{digest}'", content)
         self.assertNotIn("script-src 'unsafe-inline'", content)
         self.assertIn("connect-src 'self' https://api.github.com", content)
+
+    def test_script_policy_parser_accepts_html_case_and_attributes(self) -> None:
+        parsed = ScriptPolicyParser(
+            '<META HTTP-EQUIV="Content-Security-Policy" CONTENT="script-src &apos;none&apos;">'
+            '<SCRIPT type="text/javascript">const value = 1;</SCRIPT >'
+        )
+        self.assertEqual(parsed.scripts, ["const value = 1;"])
+        self.assertEqual(parsed.policies, ["script-src 'none'"])
 
     def test_published_profile_roundtrip_preserves_all_json_and_metadata(self) -> None:
         payload = json.loads((ROOT / "docs/4alvit_profile.json").read_text())
