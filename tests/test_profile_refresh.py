@@ -225,6 +225,7 @@ class RefreshWorkflowTests(unittest.TestCase):
         self.assertEqual(self.workflow["on"]["schedule"], [{"cron": "0 6 * * 1"}])
         self.assertTrue(self.workflow["on"]["workflow_dispatch"]["inputs"]["use-llm"]["default"])
         self.assertIn("vars.CI_RUNNER_MODE", self.job["runs-on"])
+        self.assertIn("vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE", self.job["runs-on"])
         self.assertIn("vars.CI_RUNNER_AUTOMATION_LABELS", self.job["runs-on"])
         self.assertIn("ubuntu-latest", self.job["runs-on"])
         self.assertNotIn("fcc", self.job["runs-on"])

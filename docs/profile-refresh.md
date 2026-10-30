@@ -65,6 +65,10 @@ The trusted refresh job checks out only the default branch and receives
 pool when self-hosted routing is enabled, not a pool that runs arbitrary PR code.
 
 - `CI_RUNNER_MODE=github` or an unset variable uses GitHub-hosted Linux.
+- Optional `PROFILE_RUNNER_MODE` overrides that mode for this trusted refresh
+  job only. Leave it unset to inherit the shared mode. This allows a qualified
+  public automation pool to reach inference from its network while all ordinary
+  repository CI jobs retain their existing runner selection.
 - `CI_RUNNER_MODE=self-hosted` or `k3s` selects `CI_RUNNER_AUTOMATION_LABELS`, a
   JSON array containing the registered ARC scale-set name or configured alias.
 - `k3s` is a compatibility routing value, not a request for a static runner;
