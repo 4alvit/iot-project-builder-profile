@@ -1,5 +1,82 @@
 # Changelog
 
+## [0.1.8] - Unreleased
+
+### Changed
+
+- Update the locked optional Anthropic client to 1.17.0 and Markdown renderer to 3.11.2, retaining their resolved dependency hashes.
+- Refresh reviewed workflow dependencies while preserving offline profile-generation tests and security checks.
+
+### Upgrade
+
+Recreate the documented locked environment from this release and preserve local configuration, custom templates and previous outputs for rollback. Heuristic generation remains available without provider credentials; external LLM use and profile publication remain explicit operations.
+
+### Security
+
+Keep provider credentials outside generated artifacts. Required dependency and source checks remain enabled. This maintenance preview does not claim acceptance of a paid provider, live GitHub credentials or publication of a user profile.
+
+## [0.1.7] - 2026-10-20
+
+### Changed
+
+- Update Anthropic to 1.15.0, including its OpenTelemetry API dependency, and Ruff to 0.17.1. Refresh pinned review and CodeQL workflows.
+
+### Upgrade
+
+Use the existing update procedure, preserve local configuration and retain the previous immutable package for rollback. No configuration migration is required.
+
+### Security
+
+- Update the locked development tools to filelock 4.2.1 and virtualenv 21.14.13, addressing CVE-2026-112940 and CVE-2026-115586. Application dependencies and required security checks are unchanged.
+
+Required dependency, source and release checks remain enabled. This maintenance beta does not claim a new application vulnerability fix or device acceptance.
+
+## [0.1.6] - 2026-10-18
+
+### Changed
+
+- Refresh the project preview and grouped Python dependency updates.
+
+### Upgrade
+
+Preserve installation-specific configuration and retain the previous immutable release for rollback. Required CI and source-bound RC qualification remain enabled. Publishing this release does not deploy it to an installation or establish hardware acceptance.
+
+### Security
+
+Provider credentials remain optional for heuristic generation and must stay outside generated artifacts. Required dependency and source security checks remain enabled.
+
+## [0.1.5] - 2026-10-17
+
+### Changed
+
+- Keep heuristic profile generation independent of Anthropic credentials and client initialization.
+- Embed the locked Plotly library in generated HTML instead of downloading an unversioned CDN script.
+- Use the current PyGithub authentication interface, update Pydantic and the Trivy action, and document RC fuzzing and reviewed assessment evidence.
+
+### Upgrade
+
+Existing profile inputs remain supported. Regenerate HTML reports to use the bundled Plotly library; heuristic --no-llm operation no longer needs provider credentials. Preserve custom templates and previous outputs for rollback.
+
+### Security
+
+Generated HTML no longer relies on an unversioned external Plotly script. Required CI and source-bound RC fuzzing remain enabled; this does not establish acceptance of external LLM or deployment services.
+
+## [0.1.4] - 2026-10-14
+
+### Changed
+
+- Validate each public release candidate with bounded, network-isolated fuzz campaigns against its exact source revision.
+- Require positive engine execution counts, instrumented production code and validated seed corpora; retain source-bound reports and diagnostic evidence.
+- Run deterministic seed and configuration checks in ordinary CI without starting mutation campaigns on betas.
+
+### Upgrade
+
+Use the existing installation procedure, preserve local configuration and keep the previous accepted package for rollback. This maintenance release updates release validation and does not change the application configuration format. Deployment and applicable device or integration acceptance remain separate from publication.
+
+### Security
+
+RC publication rejects absent or invalid source-bound fuzz reports. The fuzz runner bounds corpus paths, file types and size. No application vulnerability or new target-device acceptance is claimed by these tooling changes.
+
 ## [0.1.3]
 
 ### Fixed

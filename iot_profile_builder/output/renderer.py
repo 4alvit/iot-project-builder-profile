@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Any
 
 import plotly.graph_objects as go  # type: ignore[import-untyped]
 from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader
+from plotly.offline import get_plotlyjs  # type: ignore[import-untyped]
 
 from ..models import (
     DBusAnalysis,
@@ -153,7 +154,9 @@ class ProfileRenderer:
     def render_html(self, profile: EngineeringProfile, output_path: Path) -> None:
         """Render portable HTML with inline charts and source evidence."""
         template = self.env.get_template("profile.html.j2")
-        content = template.render(profile=profile)
+        # Only the installed, locked Plotly library is trusted as executable code.
+        # Repository and model data retain Jinja escaping / JSON serialization.
+        content = template.render(profile=profile, plotly_js=get_plotlyjs())
         output_path.write_text(content, encoding="utf-8")
 
     def generate_charts(self, profile: EngineeringProfile, output_dir: Path) -> dict[str, Path]:

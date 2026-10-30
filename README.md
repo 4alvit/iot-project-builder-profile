@@ -1,5 +1,13 @@
 # IoT Project Builder
 
+[![Generated IoT engineering profile in perspective](docs/images/hero.png)](docs/images/iot-profile-report.jpg)
+
+*Actual HTML output from the public profile dated 28 September 2026.
+Counts and assessments are historical generated output, not a current project inventory.
+[Original screenshot and regeneration](docs/images/README.md).*
+
+[![Fuzzing: RC only](https://img.shields.io/badge/Fuzzing-RC%20only-blue)](docs/fuzzing.md)
+
 Generate an engineering profile from public GitHub repositories. The scanner
 collects repository metadata and IoT signals; analyzers inspect ESPHome and
 D-Bus patterns; the renderer produces Markdown, HTML, JSON and charts.
@@ -142,3 +150,18 @@ scope and verification.
 
 TLS client requirements and supported proxy behavior are documented in
 [the TLS policy](docs/tls-policy.md).
+
+## Release-candidate fuzzing
+
+The actual D-Bus source analyzer receives synthetic Python/XML-like text in memory. Repeated analysis must produce the same typed service/interface/path result. It does not scan files, fetch GitHub data or execute submitted source text.
+
+[RC-only fuzzing policy, local reproduction and failure handling](docs/fuzzing.md).
+
+Release artifact identity, build receipts and local reproduction are documented in
+[release packaging](docs/release-packaging.md).
+
+## Maintenance and supported profiles
+
+See the [complete heuristic and TLS profile](docs/SUPPORTED_PROFILE.md), [governance](GOVERNANCE.md), [Code of Conduct](CODE_OF_CONDUCT.md), and [one-year roadmap](ROADMAP.md). The public OpenSSF questionnaire records evidence and remaining limitations.
+
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15569/badge)](https://www.bestpractices.dev/projects/15569)

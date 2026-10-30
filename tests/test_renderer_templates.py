@@ -70,3 +70,13 @@ class RendererTemplateTests(TestCase):
             subject = renderer.ProfileRenderer()
             subject.render_markdown(self.profile, self.root / "profile.md")
         self.assertEqual((self.root / "profile.md").read_text(), "Custom fixture")
+
+    def test_custom_templates_keep_the_trusted_plotly_context(self) -> None:
+        templates = self.root / "plotly-template"
+        templates.mkdir()
+        (templates / "profile.html.j2").write_text("<script>{{ plotly_js|safe }}</script>")
+        with patch.object(renderer, "get_plotlyjs", return_value="/* trusted installed chart */"):
+            renderer.ProfileRenderer(templates).render_html(self.profile, self.root / "chart.html")
+        self.assertEqual(
+            (self.root / "chart.html").read_text(), "<script>/* trusted installed chart */</script>"
+        )

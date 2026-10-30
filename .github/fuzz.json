@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "language": "python",
+  "setup": [
+    [
+      "python3",
+      "-m",
+      "venv",
+      ".fuzz-venv"
+    ],
+    [
+      ".fuzz-venv/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--require-hashes",
+      "--only-binary=:all:",
+      "-r",
+      ".github/requirements-fuzz.txt"
+    ]
+  ],
+  "targets": [
+    {
+      "name": "dbus-source",
+      "engine": "atheris",
+      "command": [
+        ".fuzz-venv/bin/python",
+        "fuzz/fuzz_dbus_source.py",
+        "-max_len=4096"
+      ],
+      "seconds": 60,
+      "corpus": "fuzz/corpus/dbus-source",
+      "instrumentation": [
+        {
+          "module": "iot_profile_builder.analyzers.dbus_analyzer",
+          "functions": [
+            "DBusAnalyzer.analyze_content",
+            "DBusAnalyzer._extract_object_paths"
+          ]
+        }
+      ]
+    }
+  ],
+  "preflight-paths": [
+    ".github/requirements-fuzz.in",
+    "fuzz",
+    "iot_profile_builder",
+    "pyproject.toml",
+    "uv.lock"
+  ]
+}

@@ -268,13 +268,30 @@ def calibrate(chain: tuple[Path, Path, Path], version: ssl.TLSVersion) -> None:
     assert observed["application_bytes"].endswith(b"calibration")
 
 
+def _relay_proxy_tunnel(incoming: socket.socket, out: socket.socket) -> None:
+    while True:
+        ready, _, _ = select.select([incoming, out], [], [], 5)
+        if not ready:
+            raise TimeoutError("Synthetic proxy did not finish")
+        for source in ready:
+            data = source.recv(8192)
+            if not data:
+                return
+            destination = out if source is incoming else incoming
+            destination.sendall(data)
+
+
 @contextmanager
 def proxy(
-    target_port: int, chain: tuple[Path, Path, Path] | None
+    target_port: int,
+    chain: tuple[Path, Path, Path] | None,
+    *,
+    expected_tls_rejection: threading.Event | None = None,
 ) -> Iterator[tuple[int, list[bytes]]]:
     """A bounded CONNECT relay whose only permitted destination is our loopback peer."""
     observed: list[bytes] = []
     errors: list[Exception] = []
+    tunnel_resets: list[ConnectionError] = []
     with socket.socket() as listener:
         listener.bind(("127.0.0.1", 0))
         listener.listen(1)
@@ -304,22 +321,16 @@ def proxy(
                         assert request.startswith(f"CONNECT localhost:{target_port} ".encode())
                         with socket.create_connection(("127.0.0.1", target_port), timeout=5) as out:
                             incoming.sendall(b"HTTP/1.1 200 Connection established\r\n\r\n")
-                            while True:
-                                ready, _, _ = select.select([incoming, out], [], [], 5)
-                                if not ready:
-                                    raise TimeoutError("Synthetic proxy did not finish")
-                                for source in ready:
-                                    data = source.recv(8192)
-                                    if not data:
-                                        return
-                                    destination = out if source is incoming else incoming
-                                    destination.sendall(data)
+                            try:
+                                _relay_proxy_tunnel(incoming, out)
+                            except (ConnectionResetError, BrokenPipeError) as error:
+                                tunnel_resets.append(error)
             except ssl.SSLError:
                 # TLS clients may reject this proxy certificate or close its tunnel.
                 pass
             except (ConnectionResetError, BrokenPipeError) as error:
                 # A rejected proxy may observe TCP reset rather than TLS close.
-                # A reset after any CONNECT bytes is an unexpected partial request.
+                # Failure before the tunnel is established is not an upstream rejection.
                 if observed:
                     errors.append(error)
             except Exception as error:
@@ -333,6 +344,11 @@ def proxy(
             thread.join(6)
             assert not thread.is_alive()
             assert not errors, errors
+            # The client confirms the exact rejection before teardown. Checking here
+            # avoids racing its exception handling against the relay thread's reset.
+            assert not tunnel_resets or (
+                expected_tls_rejection is not None and expected_tls_rejection.is_set()
+            ), tunnel_resets
 
 
 @pytest.mark.skipif(__import__("sys").platform != "darwin", reason="Native Apple framework")

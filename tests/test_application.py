@@ -287,13 +287,21 @@ class ApplicationTests(IsolatedAsyncioTestCase):
                 renderer, "ProfileRenderer", lambda: original_renderer(tmp_path / "templates")
             )
         )
+        llm_constructor = self.enterContext(
+            patch("anthropic.Anthropic", side_effect=AssertionError("LLM must stay disabled"))
+        )
         builder = IoTProfileBuilder(
             ScanConfig(username="owner", include_orgs=[], analyze_esphome=False, analyze_dbus=False)
         )
         output = await builder.run(tmp_path / "outputs", use_llm=False)
+        llm_constructor.assert_not_called()
         assert output.is_file()
         assert "mqtt-battery" in output.read_text()
         report = json.loads(output.with_suffix(".json").read_text())
         assert report["top_repositories"][0]["full_name"] == "owner/mqtt-battery"
         assert report["iot_repos_count"] == 1
-        assert "<html" in output.with_suffix(".html").read_text().lower()
+        html = output.with_suffix(".html").read_text()
+        assert "<html" in html.lower()
+        assert '<script src="https://cdn.plot.ly' not in html
+        assert 'class="score-track"' in html
+        assert "plotly.js v" not in html
