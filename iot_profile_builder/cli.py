@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import sys
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -22,7 +22,7 @@ from iot_profile_builder.generator.profile_generator import (
 )
 from iot_profile_builder.models import RepositoryMetrics, ScanConfig
 from iot_profile_builder.output.renderer import generate_profile_outputs
-from iot_profile_builder.scanner.github_scanner import GitHubScanner, ScanResult
+from iot_profile_builder.scanner.github_scanner import GitHubScanner, ScanError, ScanResult
 
 console = Console()
 logger = logging.getLogger(__name__)
@@ -66,6 +66,10 @@ class IoTProfileBuilder:
             )
 
         _print_scan_summary(scan_result)
+        if self.config.strict_scan and (
+            scan_result.errors or not scan_result.total_scanned or not scan_result.repositories
+        ):
+            raise ScanError("Strict scan requires nonempty repository evidence without errors")
 
         # Step 2: Analyze ESPHome configs
         esphome_analyses = []
@@ -86,7 +90,14 @@ class IoTProfileBuilder:
             "total_repos": scan_result.total_scanned,
             "iot_repos": scan_result.iot_repos,
             "errors": scan_result.errors,
-            "scanned_at": datetime.now().isoformat(),
+            "scanned_at": datetime.now(UTC).isoformat(),
+            "analysis_scope": {
+                "max_repositories_per_owner": self.config.max_repos,
+                "max_repositories_per_analyzer": 25,
+                "max_files_per_repository_per_analyzer": 80,
+                "max_esphome_matches_per_repository": 15,
+                "max_dbus_matches_per_repository": 10,
+            },
         }
 
         # Step 5: Generate profile
@@ -200,8 +211,10 @@ class IoTProfileBuilder:
                             ] or analysis.devices
                         analyses.append(analysis)
                         per_repo += 1
+            except ScanError:
+                raise
             except Exception as e:
-                logger.warning(f"Failed to analyze ESPHome in {ref}: {e}")
+                self.scanner.record_error(f"Failed to analyze ESPHome in {ref}: {e}")
 
         return analyses
 
@@ -256,8 +269,10 @@ class IoTProfileBuilder:
                     if analysis.object_paths or has_signal:
                         analyses.append(analysis)
                         per_repo += 1
+            except ScanError:
+                raise
             except Exception as e:
-                logger.warning(f"Failed to analyze D-Bus in {ref}: {e}")
+                self.scanner.record_error(f"Failed to analyze D-Bus in {ref}: {e}")
 
         return analyses
 
@@ -313,12 +328,14 @@ async def main(
     use_llm: bool = True,
     model: str | None = None,
     include_orgs: list[str] | None = None,
+    strict_scan: bool = False,
 ) -> int:
     """Main entry point."""
     config_kwargs: dict[str, Any] = {
         "username": username,
         "token": token,
         "max_repos": max_repos,
+        "strict_scan": strict_scan,
         "include_orgs": (
             include_orgs
             if include_orgs is not None
@@ -352,7 +369,14 @@ def cli() -> int:
     parser.add_argument("username", help="GitHub username")
     parser.add_argument("--token", "-t", help="GitHub personal access token")
     parser.add_argument("--output", "-o", default=".", help="Output directory")
-    parser.add_argument("--max-repos", "-m", type=int, default=100, help="Max repositories to scan")
+    parser.add_argument(
+        "--max-repos", "-m", type=int, default=100, help="Max repositories to scan per owner"
+    )
+    parser.add_argument(
+        "--strict-scan",
+        action="store_true",
+        help="Fail without output if evidence is incomplete/empty or enabled LLM analysis fails",
+    )
     parser.add_argument(
         "--no-llm", action="store_true", help="Disable LLM analysis (heuristic only)"
     )
@@ -360,7 +384,7 @@ def cli() -> int:
         "--model",
         "-M",
         default=None,
-        help="LLM model id (default: claude-3-5-sonnet-20241022; any id exposed by the gateway works)",
+        help="LLM model id (overrides PROFILE_LLM_MODEL; default: claude-3-5-sonnet-20241022)",
     )
     parser.add_argument(
         "--orgs",
@@ -382,6 +406,7 @@ def cli() -> int:
                 use_llm=not args.no_llm,
                 model=args.model,
                 include_orgs=[o.strip() for o in args.orgs.split(",") if o.strip()] or None,
+                strict_scan=args.strict_scan,
             )
         )
     except KeyboardInterrupt:

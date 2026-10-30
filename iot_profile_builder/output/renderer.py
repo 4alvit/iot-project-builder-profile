@@ -68,7 +68,6 @@ class ProfileRenderer:
             "## 🎯 Focus Areas\n\n"
             "{% for area, score in profile.focus_areas.items() %}\n"
             "### {{ area.value.replace('_', ' ').title() }}: {{ \"%.1f\"|format(score * 100) }}%\n\n"
-            "![{{ area.value }}]({{ area.value }}_chart.png)\n"
             "{% endfor %}\n\n"
             "---\n\n"
             "## 🛠️ Skills Assessment\n\n"

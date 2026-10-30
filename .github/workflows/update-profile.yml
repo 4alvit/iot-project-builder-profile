@@ -9,30 +9,40 @@ name: Update IoT Developer Profile
         required: true
         default: 4alvit
       use-llm:
-        description: Enable LLM analysis
+        description: Generate the narrative with the configured model (disable only for an explicit heuristic refresh)
         required: false
         default: true
         type: boolean
 permissions:
   contents: read
+concurrency:
+  group: update-iot-profile
+  cancel-in-progress: false
 jobs:
   generate-profile:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     permissions:
       contents: read
-    runs-on:
-    - self-hosted
-    - fcc
-    timeout-minutes: 30
+    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) && (vars.CI_RUNNER_AUTOMATION_LABELS || '[]') || '["ubuntu-latest"]') }}
+    timeout-minutes: 45
+    env:
+      TZ: UTC
     steps:
     - name: Harden the runner (Audit all outbound calls)
       uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
       with:
         egress-policy: audit
 
+    - name: Prepare a fresh refresh directory
+      id: refresh
+      run: |
+        work_root=$(mktemp -d "$RUNNER_TEMP/iot-profile-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-XXXXXX")
+        printf 'directory=%s/generated\n' "$work_root" >> "$GITHUB_OUTPUT"
+        printf 'started-at=%s\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
     - name: Checkout repository
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        token: ${{ secrets.BOT_PAT }}
+        persist-credentials: false
         fetch-depth: 0
     - name: Set up Python
       uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
@@ -49,62 +59,69 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
-        PROFILE_USE_LLM: ${{ github.event.inputs.use-llm || 'true' }}
-        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || 'http://fcc.energy-rag.svc.cluster.local:8082'
-          }}
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'freecc' }}
+        PROFILE_DIRECTORY: ${{ steps.refresh.outputs.directory }}
+        PROFILE_USE_LLM: ${{ github.event_name != 'workflow_dispatch' || inputs.use-llm }}
+        PROFILE_LLM_MODEL: ${{ vars.PROFILE_LLM_MODEL }}
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        PROFILE_LLM_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        PROFILE_ACCESS_CLIENT_ID: ${{ secrets.PROFILE_ACCESS_CLIENT_ID }}
+        PROFILE_ACCESS_CLIENT_SECRET: ${{ secrets.PROFILE_ACCESS_CLIENT_SECRET }}
       run: |
         EXTRA=()
-        if [ "$PROFILE_USE_LLM" = "false" ]; then
+        if [ "$PROFILE_USE_LLM" = "true" ]; then
+          if [ -z "$ANTHROPIC_BASE_URL" ] || [ -z "$PROFILE_LLM_MODEL" ]; then
+            echo 'Model generation requires ANTHROPIC_BASE_URL and PROFILE_LLM_MODEL; the endpoint must be reachable from the selected runner.' >&2
+            exit 1
+          fi
+        else
           EXTRA+=(--no-llm)
         fi
         # Public repos only (user + orgs); GITHUB_TOKEN is sufficient.
         uv run --locked iot-profile-builder "$PROFILE_USERNAME" \
           --token "$GITHUB_TOKEN" \
-          --output ./profile \
+          --output "$PROFILE_DIRECTORY" \
           --max-repos 100 \
           --orgs victron-venus,ha-homelab,open-ott-play \
+          --strict-scan \
           "${EXTRA[@]}"
-    - name: Copy profile to docs
+    - name: Validate and stage this run's profile
+      env:
+        PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
+        PROFILE_DIRECTORY: ${{ steps.refresh.outputs.directory }}
+        REFRESH_STARTED_AT: ${{ steps.refresh.outputs.started-at }}
+        PROFILE_USE_LLM: ${{ github.event_name != 'workflow_dispatch' || inputs.use-llm }}
       run: |
-        echo "Copying profile artifacts to docs for GitHub Pages"
-        mkdir -p docs
-        # Copy generated profile files (html/md/json); keep existing docs/pipeline.svg
-        cp profile/*_profile.html profile/*_profile.md profile/*_profile.json docs/ 2>/dev/null || {
-          # Fallback if naming differs
-          for f in profile/*.html profile/*.md profile/*.json; do
-            [ -f "$f" ] && cp "$f" docs/
-          done
-        }
-        # Pages entrypoint at site root
-        shopt -s nullglob
-        html_files=(docs/*_profile.html)
-        if [ "${#html_files[@]}" -gt 0 ]; then
-          html=${html_files[0]}
-          cp "$html" docs/index.html
-          echo "Installed Pages entrypoint: docs/index.html <- $html"
-        else
-          echo "WARNING: no *_profile.html found to install as docs/index.html"
-        fi
-        ls -la docs/
-    - name: Create summary
-      run: |
-        shopt -s nullglob
-        markdown_files=(profile/*_profile.md)
-        if [ "${#markdown_files[@]}" -gt 0 ]; then
-          markdown_file=${markdown_files[0]}
-          echo "Profile generated: $markdown_file"
-          {
-            echo "## Latest Profile Update"
-            echo ""
-            head -50 "$markdown_file"
-            echo ""
-            echo "[View full profile]($markdown_file)"
-          } >> "$GITHUB_STEP_SUMMARY"
-        fi
+        EXTRA=()
+        if [ "$PROFILE_USE_LLM" = "true" ]; then EXTRA+=(--require-llm); fi
+        python3 -I scripts/stage_profile.py \
+          --source "$PROFILE_DIRECTORY" \
+          --username "$PROFILE_USERNAME" \
+          --generated-after "$REFRESH_STARTED_AT" \
+          --summary "$GITHUB_STEP_SUMMARY" \
+          "${EXTRA[@]}"
+    - name: Retain the validated snapshot
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      with:
+        name: validated-profile-${{ github.run_id }}-${{ github.run_attempt }}
+        path: |
+          ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.html
+          ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.md
+          ${{ steps.refresh.outputs.directory }}/${{ github.event.inputs.username || '4alvit' }}_profile.json
+        if-no-files-found: error
+        retention-days: 7
     # BOT_PAT authors the server-signed commit and PR so normal CI events run.
     # Approval uses the independent Actions identity for this same-repository bot.
     - name: Open signed profile update PR
       env:
         GH_TOKEN: ${{ secrets.BOT_PAT }}
       run: python3 -I scripts/publish_profile.py
+    - name: Explain a blocked refresh
+      if: ${{ failure() }}
+      run: |
+        {
+          echo '## Profile refresh did not finish'
+          echo ''
+          echo 'Inspect the failed step before retrying. Strict scanning and staging reject incomplete, empty or stale snapshots; they do not relabel the previous profile with a fresh date.'
+          echo 'The published site changes only after a validated signed update PR passes required checks and merges. If publication failed after opening a branch, inspect that branch before rerunning.'
+        } >> "$GITHUB_STEP_SUMMARY"

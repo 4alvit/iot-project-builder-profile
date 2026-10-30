@@ -110,8 +110,28 @@ active installation targets.
 
 ## Automated profile updates
 
-The scheduled workflow scans public repositories using `GITHUB_TOKEN` and
-creates a reviewable update through `scripts/publish_profile.py`. Publication
+The refresh runs every Monday at **06:00 UTC**, and can also be started manually
+from **Actions → Update IoT Developer Profile → Run workflow** on `main`.
+Scheduled runs collect public GitHub evidence and generate the narrative with
+the explicitly configured language model. A failed scan or model request stops
+publication. GitHub may delay scheduled jobs.
+
+Runner routing follows `CI_RUNNER_MODE`: `github` (the default) selects a hosted
+Linux runner; `self-hosted` or its `k3s` alias selects the configured
+`CI_RUNNER_AUTOMATION_LABELS` pool. This supports ARC scale sets, using their
+registered scale-set name or configured alias instead of static `self-hosted`
+and `fcc` labels. A configured variable alone is not proof that an ARC pool is
+registered for this repository. No runner-mode change is made by the workflow.
+
+Each run scans into a fresh temporary directory with `--strict-scan`. Before
+publication, `scripts/stage_profile.py` rejects failed, empty, mismatched or stale
+output, then copies only the selected user's HTML, Markdown and JSON into
+`profile/` and `docs/`, plus the exact HTML into `docs/index.html`. Optional PNG
+exports stay outside the publication tree. A validated snapshot is retained as
+a seven-day Actions artifact for diagnosis.
+
+The workflow scans public repositories using `GITHUB_TOKEN` and creates a
+reviewable update through `scripts/publish_profile.py`. Publication
 uses `BOT_PAT` to create a GitHub-signed commit containing only generated profile
 files and the Pages entry point, including deletions. It verifies the signature
 and complete tree. If the base or target branch advances, publication stops;
@@ -119,6 +139,15 @@ regenerate from the current default branch before retrying.
 
 Required CI and signed-commit rules still apply. The publisher does not make an
 unreviewed profile into a release or change another project's deployment.
+
+Model generation requires an explicit `ANTHROPIC_BASE_URL` secret, a
+`PROFILE_LLM_MODEL` Actions variable and the endpoint's credentials. A protected
+Cloudflare Access route uses the paired `PROFILE_ACCESS_CLIENT_ID` and
+`PROFILE_ACCESS_CLIENT_SECRET` secrets; a direct compatible endpoint can use
+`ANTHROPIC_API_KEY`. The endpoint must be reachable from the selected runner.
+There is no embedded gateway or credential fallback. Disabling `use-llm` on a
+manual run explicitly selects a heuristic refresh. See the [profile refresh runbook](docs/profile-refresh.md)
+for recovery, ARC checks and verification of the published date.
 
 ## Development
 

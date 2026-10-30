@@ -13,12 +13,13 @@ from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalyzer
 from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalyzer
 from iot_profile_builder.cli import IoTProfileBuilder
 from iot_profile_builder.generator.profile_generator import (
+    GenerationError,
     ProfileGenerator,
     generate_heuristic_profile,
 )
 from iot_profile_builder.models import ComplexityLevel, FocusArea, RepositoryMetrics, ScanConfig
 from iot_profile_builder.output import renderer
-from iot_profile_builder.scanner.github_scanner import GitHubScanner
+from iot_profile_builder.scanner.github_scanner import GitHubScanner, ScanError
 
 
 def github_repo(full_name: str, *, private: bool = False, fork: bool = False) -> MagicMock:
@@ -239,6 +240,7 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         """A profile carries repository identity and bounded focus/skill scores."""
         metrics = repository_metrics()
         profile = generate_heuristic_profile([metrics], [], [], {"total_repos": 1}, "owner")
+        assert profile.generated_at.isoformat().endswith("+00:00")
         assert profile.iot_repos_count == 1
         assert profile.top_repositories[0].full_name == "example/mqtt-battery"
         assert profile.focus_areas[FocusArea.BMS] == 1.0
@@ -262,8 +264,9 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         )
         client = MagicMock()
         client.messages.stream.side_effect = RuntimeError("provider unavailable")
-        self.enterContext(patch("anthropic.Anthropic", lambda: client))
+        self.enterContext(patch("anthropic.Anthropic", lambda **_kwargs: client))
         profile = ProfileGenerator(ScanConfig(username="owner")).generate([metrics], [], [], {})
+        assert profile.generated_at.isoformat().endswith("+00:00")
         assert profile.top_repositories == [metrics]
         assert "unavailable" in profile.narrative_summary
         self.assertEqual(profile.skills, [])
@@ -298,6 +301,8 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         assert output.is_file()
         assert "mqtt-battery" in output.read_text()
         report = json.loads(output.with_suffix(".json").read_text())
+        assert report["generated_at"].endswith("+00:00")
+        assert report["github_stats"]["scanned_at"].endswith("+00:00")
         assert report["top_repositories"][0]["full_name"] == "owner/mqtt-battery"
         assert report["iot_repos_count"] == 1
         html = output.with_suffix(".html").read_text()
@@ -305,3 +310,178 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         assert '<script src="https://cdn.plot.ly' not in html
         assert 'class="score-track"' in html
         assert "plotly.js v" not in html
+
+    async def test_public_scan_reuses_topics_repository_head_tree_and_content(self) -> None:
+        """Both analyzers reuse one public snapshot without repeated metadata requests."""
+        repo = github_repo("owner/mqtt")
+        repo.raw_data = {"topics": ["mqtt", "battery"]}
+        repo.get_branch.return_value.commit.sha = "a" * 40
+        repo.get_git_tree.return_value = SimpleNamespace(
+            truncated=False,
+            tree=[
+                SimpleNamespace(path=path, type="blob", size=12)
+                for path in ["device.yaml", "service.py"]
+            ],
+        )
+        repo.get_contents.return_value = SimpleNamespace(decoded_content=b"mqtt source")
+        self.github_client.get_user.return_value.get_repos.return_value = [repo]
+        scanner = GitHubScanner(ScanConfig(username="owner", include_orgs=[]))
+        await scanner.scan()
+        yaml = await scanner.list_repo_files("owner/mqtt", suffixes=(".yaml",))
+        python = await scanner.list_repo_files("owner/mqtt", suffixes=(".py",))
+        assert [item["path"] for item in yaml] == ["device.yaml"]
+        assert [item["path"] for item in python] == ["service.py"]
+        assert await scanner.get_file_content("owner/mqtt", "device.yaml") == "mqtt source"
+        assert await scanner.get_file_content("mqtt", "device.yaml") == "mqtt source"
+        self.github_client.get_repo.assert_not_called()
+        repo.get_topics.assert_not_called()
+        repo.get_branch.assert_called_once()
+        repo.get_git_tree.assert_called_once_with("a" * 40, recursive=True)
+        repo.get_contents.assert_called_once_with("device.yaml", ref="a" * 40)
+
+    async def test_new_scan_drops_prior_snapshot_and_topic_cache(self) -> None:
+        """A second run must not attach a fresh date to cached old evidence."""
+        repo = github_repo("owner/mqtt")
+        repo.raw_data = {}
+        repo.get_branch.return_value.commit.sha = "a" * 40
+        repo.get_contents.return_value = SimpleNamespace(decoded_content=b"old source")
+        self.github_client.get_user.return_value.get_repos.return_value = [repo]
+        scanner = GitHubScanner(ScanConfig(username="owner", include_orgs=[]))
+        await scanner.scan()
+        assert await scanner.get_file_content("mqtt", "device.yaml") == "old source"
+        repo.get_topics.assert_called_once()
+        repo.get_branch.return_value.commit.sha = "b" * 40
+        repo.get_contents.return_value = SimpleNamespace(decoded_content=b"new source")
+        await scanner.scan()
+        assert await scanner.get_file_content("mqtt", "device.yaml") == "new source"
+        assert repo.get_topics.call_count == 2
+        assert repo.get_branch.call_count == 2
+        repo.get_contents.assert_called_with("device.yaml", ref="b" * 40)
+
+    async def test_all_owners_scanned_without_hidden_global_cutoff(self) -> None:
+        """The per-owner limit must not silently discard the third configured owner."""
+        self.github_client.get_user.return_value.get_repos.return_value = [
+            github_repo("owner/mqtt")
+        ]
+        self.github_client.get_organization.side_effect = [
+            SimpleNamespace(get_repos=lambda **_kwargs: [github_repo("one/mqtt")]),
+            SimpleNamespace(get_repos=lambda **_kwargs: [github_repo("two/mqtt")]),
+            SimpleNamespace(get_repos=lambda **_kwargs: [github_repo("three/mqtt")]),
+        ]
+        scanner = GitHubScanner(
+            ScanConfig(
+                username="owner",
+                include_orgs=["one", "two", "three"],
+                max_repos=1,
+                strict_scan=True,
+            )
+        )
+        result = await scanner.scan()
+        assert result.total_scanned == 4
+        assert len(result.repositories) == 4
+        assert not result.errors
+
+    async def test_strict_scan_rejects_owner_truncation_and_api_failures(self) -> None:
+        """Partial enumeration and missing metadata cannot become a published profile."""
+        for case in ("limit", "organization", "languages"):
+            with self.subTest(case=case):
+                repo = github_repo("owner/mqtt")
+                self.github_client.get_user.return_value.get_repos.return_value = [repo]
+                self.github_client.get_organization.side_effect = None
+                config = ScanConfig(username="owner", include_orgs=[], strict_scan=True)
+                if case == "limit":
+                    config.max_repos = 1
+                    self.github_client.get_user.return_value.get_repos.return_value.append(
+                        github_repo("owner/second")
+                    )
+                elif case == "organization":
+                    config.include_orgs = ["unavailable"]
+                    self.github_client.get_organization.side_effect = RuntimeError(
+                        "API unavailable"
+                    )
+                else:
+                    repo.get_languages.side_effect = RuntimeError("API unavailable")
+                with self.assertRaises(ScanError):
+                    await GitHubScanner(config).scan()
+
+    async def test_strict_scan_rejects_incomplete_tree_and_failed_file_reads(self) -> None:
+        """Every evidence request contributes to strict scan integrity."""
+        for case in ("tree-error", "tree-truncated", "file-error", "private"):
+            with self.subTest(case=case):
+                repo = github_repo("owner/mqtt", private=case == "private")
+                repo.get_branch.return_value.commit.sha = "a" * 40
+                repo.get_git_tree.return_value = SimpleNamespace(truncated=True, tree=[])
+                if case == "tree-error":
+                    repo.get_git_tree.side_effect = RuntimeError("tree unavailable")
+                repo.get_contents.side_effect = RuntimeError("file unavailable")
+                self.github_client.get_repo.return_value = repo
+                scanner = GitHubScanner(ScanConfig(username="owner", strict_scan=True))
+                with self.assertRaises(ScanError):
+                    if case.startswith("tree"):
+                        await scanner.list_repo_files("mqtt")
+                    else:
+                        await scanner.get_file_content("mqtt", "device.yaml")
+                if case == "private":
+                    repo.get_contents.assert_not_called()
+
+    async def test_strict_pipeline_writes_nothing_after_analysis_exception(self) -> None:
+        """A failed analyzer cannot drop evidence from a fresh publication."""
+        repo = github_repo("owner/esphome")
+        repo.get_branch.return_value.commit.sha = "a" * 40
+        repo.get_git_tree.return_value = SimpleNamespace(
+            truncated=False, tree=[SimpleNamespace(path="device.yaml", type="blob", size=32)]
+        )
+        repo.get_contents.return_value = SimpleNamespace(
+            decoded_content=b"esphome:\n  name: node\n"
+        )
+        self.github_client.get_user.return_value.get_repos.return_value = [repo]
+        builder = IoTProfileBuilder(
+            ScanConfig(
+                username="owner",
+                include_orgs=[],
+                strict_scan=True,
+                analyze_dbus=False,
+            )
+        )
+        destination = self.tmp_path / "strict-output"
+        with (
+            patch.object(
+                builder.esphome_analyzer, "analyze_content", side_effect=ValueError("bad input")
+            ),
+            self.assertRaises(ScanError),
+        ):
+            await builder.run(destination, use_llm=False)
+        assert not destination.exists()
+
+    async def test_strict_pipeline_writes_nothing_for_empty_scan(self) -> None:
+        """An empty report must not replace an existing published profile."""
+        self.github_client.get_user.return_value.get_repos.return_value = []
+        builder = IoTProfileBuilder(ScanConfig(username="owner", include_orgs=[], strict_scan=True))
+        destination = self.tmp_path / "strict-empty"
+        with self.assertRaises(ScanError):
+            await builder.run(destination, use_llm=False)
+        assert not destination.exists()
+
+    async def test_strict_pipeline_writes_nothing_after_model_failure(self) -> None:
+        """An unavailable provider cannot replace the last valid published report."""
+        self.github_client.get_user.return_value.get_repos.return_value = [
+            github_repo("owner/mqtt")
+        ]
+        client = MagicMock()
+        client.messages.stream.side_effect = TimeoutError("private-provider-detail")
+        builder = IoTProfileBuilder(
+            ScanConfig(
+                username="owner",
+                include_orgs=[],
+                strict_scan=True,
+                analyze_dbus=False,
+                analyze_esphome=False,
+            )
+        )
+        destination = self.tmp_path / "strict-model-failure"
+        with (
+            patch("anthropic.Anthropic", return_value=client),
+            self.assertRaises(GenerationError),
+        ):
+            await builder.run(destination, use_llm=True)
+        assert not destination.exists()
