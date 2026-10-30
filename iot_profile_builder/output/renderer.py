@@ -4,19 +4,30 @@ from __future__ import annotations
 
 import json
 import logging
+from base64 import b64encode
+from copy import deepcopy
+from datetime import datetime
+from hashlib import sha256
+from math import isfinite
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 import plotly.graph_objects as go  # type: ignore[import-untyped]
 from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader
 from plotly.offline import get_plotlyjs  # type: ignore[import-untyped]
 
 from ..models import (
+    ComplexityLevel,
     DBusAnalysis,
+    DBusInterface,
     EngineeringProfile,
     ESPHomeAnalysis,
+    ESPHomeComponent,
+    FocusArea,
     RepositoryMetrics,
+    SkillAssessment,
 )
+from .profile_behavior import PROFILE_SCRIPT
 from .profile_page import PROFILE_HTML
 
 logger = logging.getLogger(__name__)
@@ -151,12 +162,33 @@ class ProfileRenderer:
         content = template.render(profile=profile)
         output_path.write_text(content, encoding="utf-8")
 
-    def render_html(self, profile: EngineeringProfile, output_path: Path) -> None:
+    def render_html(
+        self,
+        profile: EngineeringProfile,
+        output_path: Path,
+        *,
+        page_kind: str = "overview",
+    ) -> None:
         """Render portable HTML with inline charts and source evidence."""
+        if page_kind not in ("overview", "repositories", "evidence"):
+            raise ValueError("Unknown profile page kind")
         template = self.env.get_template("profile.html.j2")
-        # Only the installed, locked Plotly library is trusted as executable code.
-        # Repository and model data retain Jinja escaping / JSON serialization.
-        content = template.render(profile=profile, plotly_js=get_plotlyjs())
+        # The built-in script is static. Repository and model data retain Jinja
+        # escaping; CSP permits only the exact bundled enhancement script.
+        script_digest = b64encode(sha256(PROFILE_SCRIPT.encode("utf-8")).digest()).decode("ascii")
+        policy = (
+            "default-src 'none'; "
+            f"script-src 'sha256-{script_digest}'; "
+            "style-src 'unsafe-inline'; img-src 'self'; "
+            "connect-src 'self' https://api.github.com; "
+            "base-uri 'none'; object-src 'none'; form-action 'none'"
+        )
+        content = template.render(
+            profile=profile,
+            plotly_js=get_plotlyjs(),
+            page_kind=page_kind,
+            content_security_policy=policy,
+        )
         output_path.write_text(content, encoding="utf-8")
 
     def generate_charts(self, profile: EngineeringProfile, output_dir: Path) -> dict[str, Path]:
@@ -258,6 +290,10 @@ def generate_profile_outputs(
         html_path = output_dir / f"{profile.username}_profile.html"
         renderer.render_html(profile, html_path)
         results["html"] = html_path
+        for page_kind in ("repositories", "evidence"):
+            page_path = output_dir / f"{page_kind}.html"
+            renderer.render_html(profile, page_path, page_kind=page_kind)
+            results[page_kind] = page_path
 
     if "json" in formats:
         json_path = output_dir / f"{profile.username}_profile.json"
@@ -317,7 +353,6 @@ def _dbus_to_dict(d: DBusAnalysis) -> dict[str, Any]:
 
 def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
     """Convert EngineeringProfile to dictionary for JSON serialization."""
-    from ..models import SkillAssessment
 
     def skill_to_dict(s: SkillAssessment) -> dict[str, Any]:
         return {
@@ -362,3 +397,183 @@ def _profile_to_dict(profile: EngineeringProfile) -> dict[str, Any]:
         "esphome_analyses": [_esphome_to_dict(e) for e in profile.esphome_analyses],
         "dbus_analyses": [_dbus_to_dict(d) for d in profile.dbus_analyses],
     }
+
+
+def profile_from_dict(value: dict[str, Any]) -> EngineeringProfile:
+    """Reconstruct the published schema without scanning or changing its metadata.
+
+    Unknown fields fail instead of being silently lost. Component configuration
+    is not part of the published schema and is reconstructed as an empty object.
+    """
+
+    def record(data: Any, fields: str, label: str) -> dict[str, Any]:
+        if not isinstance(data, dict) or set(data) != set(fields.split()):
+            raise ValueError(f"Unexpected or missing fields in {label}")
+        return cast(dict[str, Any], data)
+
+    def sequence(data: Any, label: str) -> list[Any]:
+        if not isinstance(data, list):
+            raise ValueError(f"Expected a list for {label}")
+        return data
+
+    def text(data: Any, label: str) -> str:
+        if not isinstance(data, str):
+            raise ValueError(f"Expected text for {label}")
+        return data
+
+    def optional_text(data: Any, label: str) -> str | None:
+        return None if data is None else text(data, label)
+
+    def texts(data: Any, label: str) -> list[str]:
+        return [text(item, label) for item in sequence(data, label)]
+
+    def integer(data: Any, label: str, minimum: int = 0) -> int:
+        if type(data) is not int or data < minimum:
+            raise ValueError(f"Expected an integer >= {minimum} for {label}")
+        return data
+
+    def score(data: Any, label: str) -> float:
+        if type(data) not in (int, float) or not isfinite(data) or not 0 <= data <= 1:
+            raise ValueError(f"Expected a finite score between 0 and 1 for {label}")
+        return cast(float, data)
+
+    def date(data: Any, label: str) -> datetime:
+        try:
+            return datetime.fromisoformat(text(data, label).replace("Z", "+00:00"))
+        except ValueError:
+            raise ValueError(f"Invalid ISO timestamp for {label}") from None
+
+    def areas(data: Any) -> list[FocusArea]:
+        return [FocusArea(item) for item in texts(data, "focus areas")]
+
+    def metadata(data: Any, label: str) -> dict[str, Any]:
+        if not isinstance(data, dict):
+            raise ValueError(f"Expected an object for {label}")
+        try:
+            json.dumps(data, allow_nan=False)
+        except (TypeError, ValueError):
+            raise ValueError(f"Expected finite JSON metadata for {label}") from None
+        return deepcopy(data)
+
+    def repository(data: Any) -> RepositoryMetrics:
+        item = record(
+            data,
+            "name full_name description stars forks language topics is_fork "
+            "created_at updated_at size_kb complexity focus_areas iot_score",
+            "repository",
+        )
+        if type(item["is_fork"]) is not bool:
+            raise ValueError("Expected a boolean for repository is_fork")
+        return RepositoryMetrics(
+            name=text(item["name"], "repository name"),
+            full_name=text(item["full_name"], "repository full_name"),
+            description=optional_text(item["description"], "repository description"),
+            stars=integer(item["stars"], "repository stars"),
+            forks=integer(item["forks"], "repository forks"),
+            language=optional_text(item["language"], "repository language"),
+            topics=texts(item["topics"], "repository topics"),
+            is_fork=item["is_fork"],
+            created_at=date(item["created_at"], "repository created_at"),
+            updated_at=date(item["updated_at"], "repository updated_at"),
+            size_kb=integer(item["size_kb"], "repository size"),
+            complexity=ComplexityLevel(item["complexity"]),
+            focus_areas=areas(item["focus_areas"]),
+            iot_score=score(item["iot_score"], "repository IoT score"),
+        )
+
+    def skill(data: Any) -> SkillAssessment:
+        item = record(data, "name category proficiency evidence confidence", "skill")
+        proficiency = integer(item["proficiency"], "skill proficiency", 1)
+        if proficiency > 10:
+            raise ValueError("Skill proficiency must not exceed 10")
+        return SkillAssessment(
+            name=text(item["name"], "skill name"),
+            category=text(item["category"], "skill category"),
+            proficiency=proficiency,
+            evidence=texts(item["evidence"], "skill evidence"),
+            confidence=score(item["confidence"], "skill confidence"),
+        )
+
+    def component(data: Any) -> ESPHomeComponent:
+        item = record(data, "type platform name integrations", "ESPHome component")
+        return ESPHomeComponent(
+            type=text(item["type"], "component type"),
+            platform=optional_text(item["platform"], "component platform"),
+            name=text(item["name"], "component name"),
+            config={},
+            integrations=texts(item["integrations"], "component integrations"),
+        )
+
+    def esphome(data: Any) -> ESPHomeAnalysis:
+        item = record(
+            data,
+            "file_path devices components custom_components external_libs complexity focus_areas",
+            "ESPHome analysis",
+        )
+        return ESPHomeAnalysis(
+            file_path=text(item["file_path"], "ESPHome path"),
+            devices=texts(item["devices"], "ESPHome devices"),
+            components=[component(x) for x in sequence(item["components"], "components")],
+            custom_components=texts(item["custom_components"], "custom components"),
+            external_libs=texts(item["external_libs"], "external libraries"),
+            complexity=ComplexityLevel(item["complexity"]),
+            focus_areas=areas(item["focus_areas"]),
+        )
+
+    def interface(data: Any) -> DBusInterface:
+        item = record(data, "name path methods signals properties", "D-Bus interface")
+        return DBusInterface(
+            name=text(item["name"], "D-Bus interface name"),
+            path=text(item["path"], "D-Bus interface path"),
+            methods=[metadata(x, "methods") for x in sequence(item["methods"], "methods")],
+            signals=[metadata(x, "signals") for x in sequence(item["signals"], "signals")],
+            properties=[
+                metadata(x, "properties") for x in sequence(item["properties"], "properties")
+            ],
+        )
+
+    def dbus(data: Any) -> DBusAnalysis:
+        item = record(
+            data, "service_name interfaces object_paths complexity focus_areas", "D-Bus analysis"
+        )
+        return DBusAnalysis(
+            service_name=text(item["service_name"], "D-Bus service name"),
+            interfaces=[interface(x) for x in sequence(item["interfaces"], "interfaces")],
+            object_paths=texts(item["object_paths"], "D-Bus object paths"),
+            complexity=ComplexityLevel(item["complexity"]),
+            focus_areas=areas(item["focus_areas"]),
+        )
+
+    data = record(
+        value,
+        "username generated_at total_repos_analyzed iot_repos_count skills focus_areas "
+        "complexity_distribution top_repositories narrative_summary key_strengths growth_areas "
+        "github_stats esphome_analyses dbus_analyses",
+        "profile",
+    )
+    return EngineeringProfile(
+        username=text(data["username"], "username"),
+        generated_at=date(data["generated_at"], "generated_at"),
+        total_repos_analyzed=integer(data["total_repos_analyzed"], "repository count"),
+        iot_repos_count=integer(data["iot_repos_count"], "IoT repository count"),
+        skills=[skill(x) for x in sequence(data["skills"], "skills")],
+        focus_areas={
+            FocusArea(k): score(v, "focus score")
+            for k, v in metadata(data["focus_areas"], "focus areas").items()
+        },
+        complexity_distribution={
+            ComplexityLevel(k): integer(v, "complexity count")
+            for k, v in metadata(data["complexity_distribution"], "complexity distribution").items()
+        },
+        top_repositories=[
+            repository(x) for x in sequence(data["top_repositories"], "repositories")
+        ],
+        narrative_summary=text(data["narrative_summary"], "narrative summary"),
+        key_strengths=texts(data["key_strengths"], "key strengths"),
+        growth_areas=texts(data["growth_areas"], "growth areas"),
+        github_stats=metadata(data["github_stats"], "GitHub metadata"),
+        esphome_analyses=[
+            esphome(x) for x in sequence(data["esphome_analyses"], "ESPHome analyses")
+        ],
+        dbus_analyses=[dbus(x) for x in sequence(data["dbus_analyses"], "D-Bus analyses")],
+    )

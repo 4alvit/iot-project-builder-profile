@@ -1,6 +1,16 @@
 # Profile preview
 
-The README hero is a browser capture of the existing public `docs/index.html`
+The current README uses [`profile-overview.png`](profile-overview.png), an actual
+1440 × 1000 browser viewport of the version-2 template with the public snapshot
+dated **30 October 2026**. No data was regenerated for this design preview. Its
+snapshot commit and capture hashes are recorded in
+[`profile-overview-provenance.json`](profile-overview-provenance.json).
+See the [template guide](../profile-template.md) to regenerate and test the site.
+The [experience diagram](profile-experience.svg) is repository-owned SVG source.
+
+## Historical September preview
+
+The previous README hero is a browser capture of the public `docs/index.html`
 report, dated **28 September 2026**. It demonstrates the generator's HTML
 output. Its counts, assessments and descriptions are historical generated
 results, not independently verified current capabilities or release status.

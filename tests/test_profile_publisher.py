@@ -133,6 +133,40 @@ class ProfilePublisherTests(unittest.TestCase):
         self.assertEqual(api.pr_calls[-1][0:2], ("pr", "create"))
         self.assertEqual(self.publisher.git("rev-parse", "HEAD").decode().strip(), api.base)
 
+    def test_fixed_auxiliary_pages_are_included_in_the_signed_snapshot(self) -> None:
+        expected = {}
+        for directory in ("profile", "docs"):
+            for name in ("repositories.html", "evidence.html"):
+                path = Path(directory) / name
+                data = f"<main>{directory}/{name}</main>"
+                path.write_text(data)
+                expected[str(path)] = data.encode()
+        api = GitHub(self.publisher)
+        self.publish(api)
+        additions = {
+            item["path"]: base64.b64decode(item["contents"])
+            for item in api.input["fileChanges"]["additions"]
+        }
+        self.assertEqual({path: additions[path] for path in expected}, expected)
+
+    def test_arbitrary_auxiliary_names_fail_before_any_api_call(self) -> None:
+        for name in ("repository.html", "evidence.json", "other.html", "repositories.html.bak"):
+            with self.subTest(name=name):
+                path = Path("docs") / name
+                path.write_text("not an allowed output")
+                api = GitHub(self.publisher)
+                with self.assertRaisesRegex(RuntimeError, "workspace is dirty"):
+                    self.publish(api)
+                self.assertFalse(api.calls)
+                path.unlink()
+
+    def test_auxiliary_symlink_is_not_published(self) -> None:
+        Path("docs/repositories.html").symlink_to("../profile/alvit_profile.json")
+        api = GitHub(self.publisher)
+        with self.assertRaisesRegex(RuntimeError, "regular"):
+            self.publish(api)
+        self.assertFalse(api.calls)
+
     def test_races_and_snapshot_mismatch_never_open_pr(self) -> None:
         for flag in (
             "advance_base",

@@ -59,6 +59,89 @@ class ProfileRefreshTests(unittest.TestCase):
         )
         return result
 
+    def write_v2_pages(self) -> None:
+        for kind, filename in (
+            ("overview", "selected-user_profile.html"),
+            ("repositories", "repositories.html"),
+            ("evidence", "evidence.html"),
+        ):
+            (self.source / filename).write_text(
+                '<main id="main" data-profile-version="2" '
+                f'data-profile-page="{kind}" data-profile-user="selected-user" '
+                f'data-profile-generated="{self.profile["generated_at"]}">'
+                f"<p>Fresh {kind}</p></main>"
+            )
+
+    def assert_site_preserved(self) -> None:
+        self.assertEqual((self.root / "docs" / "index.html").read_text(), "previous page")
+        self.assertFalse((self.root / "profile").exists())
+
+    def test_v2_stages_all_eleven_exact_files(self) -> None:
+        self.write_v2_pages()
+        (self.source / "not-a-profile.html").write_text("unrelated")
+        result = self.stage()
+        self.assertEqual(result["staged_files"], 11)
+        for directory in ("docs", "profile"):
+            for name in ("repositories.html", "evidence.html"):
+                self.assertEqual(
+                    (self.root / directory / name).read_bytes(), (self.source / name).read_bytes()
+                )
+            self.assertFalse((self.root / directory / "not-a-profile.html").exists())
+        self.assertEqual(
+            (self.root / "docs" / "index.html").read_bytes(),
+            (self.source / "selected-user_profile.html").read_bytes(),
+        )
+
+    def test_v2_rejects_missing_empty_symlinked_auxiliary_files_before_any_write(self) -> None:
+        for name in ("repositories.html", "evidence.html"):
+            for failure in ("missing", "empty", "symlink"):
+                with self.subTest(name=name, failure=failure):
+                    self.write_v2_pages()
+                    path = self.source / name
+                    path.unlink()
+                    if failure == "empty":
+                        path.write_text(" \n")
+                    elif failure == "symlink":
+                        path.symlink_to(self.source / "selected-user_profile.html")
+                    with self.assertRaises(ValueError):
+                        self.stage()
+                    self.assert_site_preserved()
+                    path.unlink(missing_ok=True)
+
+    def test_v2_rejects_mismatched_or_ambiguous_page_identity(self) -> None:
+        for name in ("selected-user_profile.html", "repositories.html", "evidence.html"):
+            for old, new in (
+                ('data-profile-page="', 'data-profile-page="wrong-'),
+                ('data-profile-user="selected-user"', 'data-profile-user="other"'),
+                ('data-profile-generated="', 'data-profile-generated="stale-'),
+                ('data-profile-version="2"', 'data-profile-version="3"'),
+                ('id="main"', 'id="main" id="other"'),
+                ("</main>", '</main><main id="extra"></main>'),
+                ("</main>", '</main><div id="main"></div>'),
+            ):
+                with self.subTest(name=name, change=new):
+                    self.write_v2_pages()
+                    path = self.source / name
+                    path.write_text(path.read_text().replace(old, new))
+                    with self.assertRaises(ValueError):
+                        self.stage()
+                    self.assert_site_preserved()
+
+    def test_auxiliary_destinations_are_validated_before_any_write(self) -> None:
+        self.write_v2_pages()
+        target = self.root / "docs" / "evidence.html"
+        target.symlink_to(self.root / "docs" / "index.html")
+        with self.assertRaises(ValueError):
+            self.stage()
+        self.assert_site_preserved()
+
+    def test_unmarked_legacy_snapshot_does_not_pick_up_auxiliary_files(self) -> None:
+        (self.source / "repositories.html").write_text("unrelated legacy file")
+        (self.source / "evidence.html").symlink_to(self.root / "docs" / "index.html")
+        self.assertEqual(self.stage()["staged_files"], 7)
+        self.assertFalse((self.root / "docs" / "repositories.html").exists())
+        self.assertFalse((self.root / "docs" / "evidence.html").exists())
+
     def test_only_selected_fresh_files_become_the_entry_point(self) -> None:
         (self.root / "docs" / "aaa_profile.html").write_text("unrelated old profile")
         (self.root / "docs" / "pipeline.svg").write_text("maintained diagram")
@@ -161,6 +244,7 @@ class ProfileRefreshTests(unittest.TestCase):
         self.assertIn("Fresh selected user", (self.root / "docs" / "index.html").read_text())
 
     def test_cli_produces_a_summary_without_claiming_deployment(self) -> None:
+        self.write_v2_pages()
         summary = self.directory / "summary.md"
         result = subprocess.run(
             [
@@ -182,8 +266,9 @@ class ProfileRefreshTests(unittest.TestCase):
             capture_output=True,
             text=True,
         )
-        self.assertEqual(json.loads(result.stdout)["staged_files"], 7)
+        self.assertEqual(json.loads(result.stdout)["staged_files"], 11)
         self.assertIn("ready for review", summary.read_text())
+        self.assertIn("11 exact profile/Pages files", summary.read_text())
         self.assertIn("required checks and merge", summary.read_text())
 
 
@@ -192,6 +277,21 @@ class RefreshWorkflowTests(unittest.TestCase):
         self.workflow = yaml.safe_load(WORKFLOW.read_text())
         self.job = self.workflow["jobs"]["generate-profile"]
         self.steps = {step["name"]: step for step in self.job["steps"]}
+
+    def test_validated_artifact_names_only_the_five_snapshot_files(self) -> None:
+        paths = self.steps["Retain the validated snapshot"]["with"]["path"].splitlines()
+        self.assertEqual(len(paths), 5)
+        self.assertEqual(
+            {path.rsplit("/", 1)[-1] for path in paths},
+            {
+                "${{ github.event.inputs.username || '4alvit' }}_profile.html",
+                "${{ github.event.inputs.username || '4alvit' }}_profile.md",
+                "${{ github.event.inputs.username || '4alvit' }}_profile.json",
+                "repositories.html",
+                "evidence.html",
+            },
+        )
+        self.assertFalse(any("*" in path for path in paths))
 
     def test_model_preflight_precedes_scanning_and_hostname_is_masked(self) -> None:
         names = list(self.steps)

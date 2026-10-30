@@ -2,5 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>victron-venus/venus-os-ci-toolkit:renovate-ci"
+  ],
+  "packageRules": [
+    {
+      "matchFileNames": ["tools/browser-compatibility/**"],
+      "enabled": false,
+      "description": "Advance the reviewed browser generations together with their compatibility inventory."
+    }
   ]
 }

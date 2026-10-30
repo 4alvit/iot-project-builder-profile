@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="590" viewBox="0 0 1200 590" role="img" aria-labelledby="title desc">
+  <title id="title">One dated profile, three connected views</title>
+  <desc id="desc">Public scan evidence and a dated profile feed a shared template. The template renders overview, repositories and evidence pages. Navigation and motion enhance the documents. Public GitHub metadata stays separate from analysis.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101a2b"/><stop offset="1" stop-color="#191329"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#9c8bff"/><stop offset="1" stop-color="#65e4c3"/></linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#a5acc8"/></marker>
+  </defs>
+  <rect width="1200" height="590" rx="30" fill="url(#bg)"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="48" y="64" fill="#8ce7cc" font-size="15" letter-spacing="3">GENERATED PROFILE / EXPERIENCE V2</text>
+    <text x="48" y="112" fill="#f2f3ff" font-size="35" font-weight="700">One snapshot. Three ways to explore.</text>
+    <text x="48" y="146" fill="#b2bdd3" font-size="18">The template changes the presentation; the evidence keeps its original date.</text>
+    <g stroke="#a5acc8" stroke-width="2" fill="none" marker-end="url(#arrow)">
+      <path d="M298 279H351"/><path d="M622 279H674"/>
+      <path d="M809 340V404"/><path d="M440 340V404"/>
+    </g>
+    <rect x="48" y="204" width="250" height="136" rx="20" fill="#162a33" stroke="#42776f"/>
+    <text x="72" y="241" fill="#76e3c4" font-size="15">01 / SOURCE</text>
+    <text x="72" y="274" fill="#f2f3ff" font-size="23" font-weight="650">Dated public profile</text>
+    <text x="72" y="309" fill="#bfccd9" font-size="16">JSON · Markdown · provenance</text>
+    <rect x="357" y="204" width="265" height="136" rx="20" fill="#25213c" stroke="#8070bc"/>
+    <text x="381" y="241" fill="#bcaeff" font-size="15">02 / SHARED TEMPLATE</text>
+    <text x="381" y="274" fill="#f2f3ff" font-size="23" font-weight="650">HTML + CSS + JS</text>
+    <text x="381" y="309" fill="#bfccd9" font-size="16">Versioned, portable, accessible</text>
+    <rect x="680" y="191" width="470" height="161" rx="20" fill="#172639" stroke="#537999"/>
+    <text x="704" y="228" fill="#99ceff" font-size="15">03 / REAL DOCUMENTS</text>
+    <g fill="#f2f3ff" font-size="22" font-weight="650"><text x="704" y="268">Overview</text><text x="878" y="268">Repositories</text><text x="704" y="310">Evidence</text></g>
+    <text x="878" y="310" fill="#bfccd9" font-size="16">+ no-JS navigation</text>
+    <rect x="48" y="413" width="574" height="121" rx="20" fill="#181f31" stroke="#384862"/>
+    <text x="72" y="450" fill="#dfddff" font-size="21" font-weight="650">Progressive enhancement</text>
+    <text x="72" y="483" fill="#b8c5d9" font-size="17">Glass navigation · reveals · bounded tilt · history &amp; focus</text>
+    <text x="72" y="511" fill="#8ce7cc" font-size="16">Reduced motion, keyboard and print remain first-class.</text>
+    <rect x="680" y="413" width="470" height="121" rx="20" fill="#182b2d" stroke="#42776f"/>
+    <text x="704" y="450" fill="#dfddff" font-size="21" font-weight="650">Public GitHub metadata</text>
+    <text x="704" y="483" fill="#b8c5d9" font-size="17">Lazy requests · 20-minute cache · no tokens</text>
+    <text x="704" y="511" fill="#8ce7cc" font-size="16">Fresh counts never replace analysis scores.</text>
+  </g>
+</svg>

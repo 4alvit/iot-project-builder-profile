@@ -1,0 +1,13 @@
+{
+  "source_snapshot_commit": "1cfdb2fa2292cc402e19dabfdabef4579cdd463c",
+  "generated_at": "2026-10-30T13:32:50.992007+00:00",
+  "capture_date": "2026-10-30",
+  "image": "profile-overview.png",
+  "image_sha256": "227b2f7c6a8dc3c1212346e7dda48aebe45591a35a57ca36e40a5fc8e99c70db",
+  "captured_html_sha256": "8c53822f7b2ef5a450d71f5c93ae347fe4aec8aa24e1ccefa3fa19ddada090a5",
+  "dimensions": {
+    "width": 1440,
+    "height": 1000
+  },
+  "description": "Actual browser viewport of the version-2 template rendered with the unchanged public snapshot; no compositing or invented values."
+}

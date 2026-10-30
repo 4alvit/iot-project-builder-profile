@@ -10,7 +10,8 @@ from datetime import UTC, datetime
 from typing import Any, cast
 
 GENERATED = re.compile(
-    r"(?:profile|docs)/[A-Za-z0-9_.-]+_profile\.(?:html|json|md)|docs/index\.html"
+    r"(?:profile|docs)/(?:[A-Za-z0-9_.-]+_profile\.(?:html|json|md)"
+    r"|(?:repositories|evidence)\.html)|docs/index\.html"
 )
 MUTATION = """mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){
 commit{oid tree{oid} signature{isValid}} ref{target{oid}}}}"""

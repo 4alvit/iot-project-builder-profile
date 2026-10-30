@@ -5,11 +5,57 @@ import json
 import re
 import tempfile
 from datetime import UTC, datetime, timedelta
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
 USERNAME = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?")
 EXTENSIONS = ("html", "md", "json")
+AUXILIARY_PAGES = ("repositories", "evidence")
+
+
+class PageMarkers(HTMLParser):
+    """Read static page identity without executing or interpreting page scripts."""
+
+    def __init__(self, html: str) -> None:
+        super().__init__(convert_charrefs=True)
+        self.mains: list[list[tuple[str, str | None]]] = []
+        self.main_ids = 0
+        self.feed(html)
+        self.close()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.main_ids += sum(key == "id" and value == "main" for key, value in attrs)
+        if tag == "main":
+            self.mains.append(attrs)
+
+    @property
+    def declared(self) -> bool:
+        return any(key.startswith("data-profile-") for attrs in self.mains for key, _ in attrs)
+
+    def validate(self, kind: str, username: str, generated_at: str) -> None:
+        expected = {
+            "id": "main",
+            "data-profile-version": "2",
+            "data-profile-page": kind,
+            "data-profile-user": username,
+            "data-profile-generated": generated_at,
+        }
+        if len(self.mains) != 1 or self.main_ids != 1:
+            raise ValueError("Profile page must have one uniquely identified main element")
+        attrs = dict(self.mains[0])
+        if len(attrs) != len(self.mains[0]) or any(attrs.get(k) != v for k, v in expected.items()):
+            raise ValueError("Profile page identity does not match the current snapshot")
+
+
+def read_output(source: Path, name: str) -> bytes:
+    path = source / name
+    if path.is_symlink() or not path.is_file():
+        raise ValueError(f"Missing regular profile file: {name}")
+    data = path.read_bytes()
+    if not data.decode("utf-8").strip():
+        raise ValueError(f"Empty profile file: {name}")
+    return data
 
 
 def timestamp(value: Any) -> datetime:
@@ -36,13 +82,7 @@ def stage_profile(
     contents: dict[str, bytes] = {}
     for extension in EXTENSIONS:
         name = f"{username}_profile.{extension}"
-        path = source / name
-        if path.is_symlink() or not path.is_file():
-            raise ValueError(f"Missing regular profile file: {name}")
-        data = path.read_bytes()
-        if not data.decode("utf-8").strip():
-            raise ValueError(f"Empty profile file: {name}")
-        contents[name] = data
+        contents[name] = read_output(source, name)
     profile = json.loads(contents[f"{username}_profile.json"])
     if not isinstance(profile, dict) or profile.get("username") != username:
         raise ValueError("Profile username does not match the requested user")
@@ -73,6 +113,15 @@ def stage_profile(
     scanned = timestamp(stats.get("scanned_at"))
     if not earliest <= scanned <= generated <= datetime.now(UTC) + timedelta(minutes=5):
         raise ValueError("Profile dates do not belong to this refresh run")
+
+    primary = PageMarkers(contents[f"{username}_profile.html"].decode("utf-8"))
+    if primary.declared:
+        primary.validate("overview", username, profile["generated_at"])
+        for kind in AUXILIARY_PAGES:
+            name = f"{kind}.html"
+            data = read_output(source, name)
+            PageMarkers(data.decode("utf-8")).validate(kind, username, profile["generated_at"])
+            contents[name] = data
 
     targets: dict[Path, bytes] = {}
     for directory in (root / "profile", root / "docs"):
@@ -121,7 +170,7 @@ def main() -> None:
                 f"User: `{receipt['username']}` · Generated: `{receipt['generated_at']}`\n\n"
                 f"Scanned {receipt['total_repos']} repositories; "
                 f"{receipt['iot_repos']} matched IoT criteria. "
-                "Seven exact profile/Pages files were staged. "
+                f"{receipt['staged_files']} exact profile/Pages files were staged. "
                 "Publication follows the signed PR, required checks and merge.\n"
             )
     print(json.dumps(receipt, sort_keys=True))

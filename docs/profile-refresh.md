@@ -15,12 +15,15 @@ then asks the configured model to generate the narrative. The stages are:
 2. Verify model access from the selected runner with one small synthetic request
    and a three-minute deadline. Then fetch public repository evidence and run ESPHome/D-Bus analysis with
    `--strict-scan`, then require a valid structured model response.
-3. Require three nonempty output files for the requested user, zero scan errors,
+3. Require nonempty HTML, Markdown and JSON for the requested user, plus the
+   repository and evidence pages for version-2 output, zero scan errors,
    repository evidence and scan/generation timestamps from this run. Model-mode
    runs also require model-generation provenance in the JSON.
-4. Stage the selected HTML/Markdown/JSON in `profile/` and `docs/`; set
-   `docs/index.html` to that user's exact HTML. Unrelated maintained files remain
-   untouched. Store the three validated outputs as a seven-day Actions artifact.
+4. Validate the same version, username and generation time across all three HTML
+   views. Stage the selected HTML/Markdown/JSON in `profile/` and `docs/`; set
+   `docs/index.html` to that user's exact overview. Unrelated maintained files
+   remain untouched. Store the five validated outputs as a seven-day Actions
+   artifact. See the [template contract](profile-template.md).
 5. Open a signed update PR with the `automerge` label. Required checks, review and
    signed-commit rules must pass before it merges.
 6. GitHub Pages publishes the merged `main` branch's `/docs` directory.

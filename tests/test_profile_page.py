@@ -17,6 +17,7 @@ from iot_profile_builder.models import (
     RepositoryMetrics,
     SkillAssessment,
 )
+from iot_profile_builder.output.profile_behavior import PROFILE_SCRIPT
 from iot_profile_builder.output.renderer import ProfileRenderer
 
 
@@ -26,11 +27,13 @@ class PageStructure(HTMLParser):
         self.ids: list[str] = []
         self.links: list[str] = []
         self.dependencies: list[str] = []
+        self.nodes: list[tuple[str, dict[str, str | None]]] = []
         self.repository_count = 0
         self.feed(html)
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        self.nodes.append((tag, values))
         if values.get("id"):
             self.ids.append(str(values["id"]))
         if tag == "a" and values.get("href"):
@@ -95,8 +98,8 @@ class ProfilePageTests(TestCase):
             ],
         )
 
-    def render(self) -> str:
-        ProfileRenderer().render_html(self.profile, self.output)
+    def render(self, page_kind: str = "overview") -> str:
+        ProfileRenderer().render_html(self.profile, self.output, page_kind=page_kind)
         return self.output.read_text()
 
     def test_portable_document_contains_all_chart_values_without_network_dependencies(self) -> None:
@@ -211,3 +214,84 @@ class ProfilePageTests(TestCase):
             self.assertIn(content, html)
         self.assertNotIn("nan", html)
         self.assertEqual(PageStructure(html).repository_count, 0)
+
+    def test_focused_pages_share_exact_navigation_and_document_identity(self) -> None:
+        """Every client-loadable document is also a complete ordinary HTML page."""
+        expected_sections = {
+            "overview": {"overview", "capabilities", "repositories", "evidence"},
+            "repositories": {"repositories"},
+            "evidence": {"evidence"},
+        }
+        all_sections = expected_sections["overview"]
+        for kind, sections in expected_sections.items():
+            with self.subTest(page=kind):
+                html = self.render(kind)
+                page = PageStructure(html)
+                mains = [attrs for tag, attrs in page.nodes if tag == "main"]
+                self.assertEqual(len(mains), 1)
+                self.assertEqual(mains[0]["data-profile-version"], "2")
+                self.assertEqual(mains[0]["data-profile-page"], kind)
+                self.assertEqual(mains[0]["data-profile-user"], self.profile.username)
+                self.assertEqual(
+                    mains[0]["data-profile-generated"], self.profile.generated_at.isoformat()
+                )
+                self.assertEqual(set(page.ids) & all_sections, sections)
+                self.assertEqual(len(page.ids), len(set(page.ids)))
+                self.assertEqual(page.dependencies, [])
+                for href in (
+                    "fixture_profile.html",
+                    "fixture_profile.html#capabilities",
+                    "repositories.html",
+                    "evidence.html",
+                ):
+                    self.assertIn(href, page.links)
+                self.assertIn(PROFILE_SCRIPT, html)
+                self.assertEqual(sum(tag == "header" for tag, _ in page.nodes), 1)
+                self.assertEqual(sum(tag == "script" for tag, _ in page.nodes), 1)
+
+    def test_live_metadata_keeps_actual_snapshot_and_hidden_no_script_controls(self) -> None:
+        html = self.render("repositories")
+        page = PageStructure(html)
+        regions = [attrs for _, attrs in page.nodes if "data-github-repo" in attrs]
+        self.assertEqual(
+            [item["data-github-repo"] for item in regions], ["example-org/meter-bridge"]
+        )
+        self.assertIn("<strong data-github-stars>2</strong>", html)
+        self.assertIn("<strong data-github-forks>0</strong>", html)
+        self.assertIn("<span data-github-updated>Jan 01, 2026</span>", html)
+        self.assertIn("Snapshot · Jan 02, 2026", html)
+        statuses = [attrs for _, attrs in page.nodes if "data-github-status" in attrs]
+        self.assertEqual([item["role"] for item in statuses], ["status"])
+        controls = [
+            attrs
+            for tag, attrs in page.nodes
+            if tag == "button" and ("data-github-refresh" in attrs or "data-motion-toggle" in attrs)
+        ]
+        self.assertEqual(len(controls), 2)
+        self.assertTrue(all("hidden" in attrs and attrs["type"] == "button" for attrs in controls))
+
+    def test_overview_remains_readable_without_enhancement_or_explicit_page_kind(self) -> None:
+        renderer = ProfileRenderer()
+        html = renderer.env.get_template("profile.html.j2").render(profile=self.profile)
+        page = PageStructure(html)
+        main = next(attrs for tag, attrs in page.nodes if tag == "main")
+        self.assertEqual(main["data-profile-page"], "overview")
+        self.assertIn("devices/meter.yaml", html)
+        self.assertIn("com.example.meter", html)
+        self.assertEqual(page.repository_count, 1)
+        for tag, attrs in page.nodes:
+            if tag in {"html", "main"} or "data-reveal" in attrs:
+                self.assertNotIn("hidden", attrs)
+            if tag == "html":
+                self.assertNotIn("motion-ready", attrs.get("class") or "")
+        self.assertIn("html.motion-ready [data-reveal]:focus-within", html)
+        self.assertIn("@media(prefers-reduced-motion:reduce)", html)
+        self.assertIn("Analysis pipeline illustration · a dated snapshot", html)
+
+    def test_live_metadata_identity_cannot_inject_attributes(self) -> None:
+        identity = 'example-org/unsafe" onmouseover="unexpected'
+        self.profile.top_repositories[0].full_name = identity
+        page = PageStructure(self.render())
+        regions = [attrs for _, attrs in page.nodes if "data-github-repo" in attrs]
+        self.assertEqual(regions[0]["data-github-repo"], identity)
+        self.assertNotIn("onmouseover", regions[0])

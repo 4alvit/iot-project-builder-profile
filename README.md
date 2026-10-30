@@ -1,10 +1,11 @@
 # IoT Project Builder
 
-[![Generated IoT engineering profile in perspective](docs/images/hero.png)](docs/images/iot-profile-report.jpg)
+[![Generated IoT profile with glass navigation and layered analysis cards](docs/images/profile-overview.png)](https://4alvit.github.io/iot-project-builder-profile/)
 
-*Actual HTML output from the public profile dated 28 September 2026.
+*Actual HTML output from the public profile dated 30 October 2026.
 Counts and assessments are historical generated output, not a current project inventory.
-[Original screenshot and regeneration](docs/images/README.md).*
+[Screenshot provenance](docs/images/profile-overview-provenance.json) ·
+[Template and browser checks](docs/profile-template.md).*
 
 [![Fuzzing: RC only](https://img.shields.io/badge/Fuzzing-RC%20only-blue)](docs/fuzzing.md)
 
@@ -49,16 +50,24 @@ context to the configured service; use the heuristic mode when that is unwanted.
 ## Outputs and ownership
 
 For username `4alvit`, the output directory contains `4alvit_profile.md`,
-`4alvit_profile.html`, `4alvit_profile.json` and chart assets. Generated files
+`4alvit_profile.html`, `4alvit_profile.json`, `repositories.html`, `evidence.html`
+and optional chart assets. Generated files
 belong under `profile/`; GitHub Pages copies them into `docs/` and installs the
 HTML entry point as `docs/index.html`.
 
-The HTML profile is self-contained: charts, styling and repository filtering do
-not require external scripts, fonts or network requests. Source records use native
-expandable sections, and repository links, scores and analysis remain readable
-without JavaScript. The presentation is maintained in
-`iot_profile_builder/output/profile_page.py`, so scheduled regeneration keeps
-the same design. A visual refresh does not change the snapshot date or scores.
+The HTML profile includes its own charts, styling and scripts. Floating glass
+navigation, layered analysis cards, scroll reveals and pointer tilt enhance the
+report. The hosted site loads its overview, repository catalogue and evidence
+pages without a full reload; ordinary links also work without JavaScript.
+Repository cards can fetch current public GitHub metadata, labelled separately
+from the dated analysis. No browser token, external script or font is needed.
+Source records remain readable offline, and motion respects the reader's settings.
+
+The presentation is maintained in `iot_profile_builder/output/profile_page.py`
+and `profile_behavior.py`, so scheduled regeneration keeps the same design.
+A visual refresh does not change the snapshot date or scores. See the
+[template guide](docs/profile-template.md) for architecture, privacy, browser
+checks, customization and troubleshooting.
 
 Only the output directory needs to be writable. Standard templates are loaded
 from memory; `ProfileRenderer(template_dir=...)` reads any supplied overrides
@@ -116,8 +125,9 @@ Scheduled runs collect public GitHub evidence and generate the narrative with
 the explicitly configured language model. A failed scan or model request stops
 publication. GitHub may delay scheduled jobs.
 
-Runner routing follows `CI_RUNNER_MODE`: `github` (the default) selects a hosted
-Linux runner; `self-hosted` or its `k3s` alias selects the configured
+Runner routing follows `PROFILE_RUNNER_MODE` when set, otherwise `CI_RUNNER_MODE`:
+`github` (the default) selects a hosted Linux runner; `self-hosted` or its `k3s`
+alias selects the configured
 `CI_RUNNER_AUTOMATION_LABELS` pool. This supports ARC scale sets, using their
 registered scale-set name or configured alias instead of static `self-hosted`
 and `fcc` labels. A configured variable alone is not proof that an ARC pool is
@@ -125,8 +135,9 @@ registered for this repository. No runner-mode change is made by the workflow.
 
 Each run scans into a fresh temporary directory with `--strict-scan`. Before
 publication, `scripts/stage_profile.py` rejects failed, empty, mismatched or stale
-output, then copies only the selected user's HTML, Markdown and JSON into
-`profile/` and `docs/`, plus the exact HTML into `docs/index.html`. Optional PNG
+output, then copies only the selected user's HTML views, Markdown and JSON into
+`profile/` and `docs/`, plus the exact overview into `docs/index.html`. Version-2
+output requires a complete, matching set of all three HTML views. Optional PNG
 exports stay outside the publication tree. A validated snapshot is retained as
 a seven-day Actions artifact for diagnosis.
 
@@ -159,6 +170,10 @@ bash scripts/ci.sh test
 The scanner, analyzers, generator and renderer live in `iot_profile_builder/`.
 Tests use the repository's configured test-readiness check. For security checks
 and required tools, see the operator runbook below.
+
+Required CI also exercises synthetic profiles through the shared browser matrix:
+Chromium, Firefox and WebKit on Linux, Chromium on Windows, and WebKit on macOS.
+[Run the browser acceptance suite locally](docs/profile-template.md#browser-checks).
 
 <!-- ci-release-process:start -->
 ## Release process
