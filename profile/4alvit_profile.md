@@ -1,10 +1,12 @@
 # IoT Engineering Profile: 4alvit
 
-*Generated: 2026-10-30 12:38*
+*Generated: 2026-10-30 13:32*
 
 ## Summary
 
-The developer specializes in Victron Venus OS energy systems, building D-Bus and MQTT bridges for JBD/Daly BMS batteries, Tasmota PV meters, and grid-zero inverter control. ESPHome BLE sensor patterns for ESP32 proxies integrate battery monitors and environmental sensors into Home Assistant, demonstrating end-to-end energy and battery management. Additional work includes MQTT observability with OpenTelemetry, Prometheus, and Grafana, RAG pipelines for Victron documentation, and voice assistant gateways for Alexa and Google Home. Infrastructure experience spans K3s and Docker Compose edge deployments, with a focus on production-ready IoT patterns rather than low-level embedded firmware.
+The developer specializes in Victron Venus OS energy systems, building D-Bus and MQTT bridges for JBD/Daly BMS batteries, Tasmota power meters, and grid-zero inverter control. Their ESPHome work includes production BLE sensor patterns for ESP32 Bluetooth proxies, passive scanning, and Home Assistant integration for battery-powered environmental sensors.
+
+They operate a Python-centric IoT stack with FastAPI MQTT gateways, OpenTelemetry observability for Mosquitto, MCP servers for Venus OS management, and D-Bus service templates. Voice assistant integration spans Alexa and Google Home with Home Assistant as the hub. Edge experience includes K3s and Docker Compose deployments for IoT observability and telephony.
 
 ---
 
@@ -32,31 +34,31 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 ## 🎯 Focus Areas
 
 
+### Home Automation: 90.0%
+
+
 ### Energy Management: 90.0%
 
 
 ### Battery Management: 85.0%
 
 
-### Home Automation: 80.0%
+### Networking Protocols: 80.0%
 
 
-### Networking Protocols: 75.0%
+### Data Pipeline: 70.0%
 
 
-### Data Pipeline: 60.0%
+### Edge Computing: 60.0%
 
 
-### Edge Computing: 50.0%
-
-
-### Voice Assistant: 50.0%
+### Voice Assistant: 60.0%
 
 
 ### Environmental Monitoring: 40.0%
 
 
-### Firmware Development: 35.0%
+### Firmware Development: 30.0%
 
 
 
@@ -67,23 +69,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 | Skill | Category | Proficiency | Confidence | Evidence |
 |-------|----------|-------------|------------|----------|
 
-| Victron Venus OS | energy_systems | 9/10 | 95.0% | victron-venus/inverter-control, victron-venus/dbus-mqtt-battery, 4alvit/mcp-venus-os |
+| home_automation | home_automation | 9/10 | 95.0% | 4alvit/esphome-ble-sensor-patterns, victron-venus/esphome-jbd-bms-mqtt, 4alvit/amazon-echo-home-voice |
 
-| ESPHome | home_automation | 8/10 | 95.0% | 4alvit/esphome-ble-sensor-patterns, victron-venus/esphome-jbd-bms-mqtt |
+| energy_systems | energy_systems | 9/10 | 95.0% | victron-venus/inverter-control, victron-venus/dbus-mqtt-battery, 4alvit/solar-forecast-langgraph |
 
-| MQTT | protocols_networking | 8/10 | 90.0% | 4alvit/fastapi-mqtt-gateway, victron-venus/dbus-mqtt-battery |
+| battery_management | energy_systems | 8/10 | 90.0% | victron-venus/dbus-mqtt-battery, 4alvit/esphome-ble-sensor-patterns, victron-venus/esphome-jbd-bms-mqtt |
 
-| Battery Management Systems (BMS) | energy_systems | 8/10 | 90.0% | victron-venus/dbus-mqtt-battery, 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms |
+| protocols_networking | protocols_networking | 8/10 | 90.0% | 4alvit/fastapi-mqtt-gateway, victron-venus/dbus-mqtt-battery, 4alvit/mqtt-observability-opentelemetry |
 
-| D-Bus | protocols_networking | 8/10 | 85.0% | 4alvit/dbus-service-template, victron-venus/dbus-tasmota-pv |
+| python_iot | python_iot | 8/10 | 90.0% | 4alvit/mcp-venus-os, 4alvit/dbus-service-template, 4alvit/fastapi-mqtt-gateway |
 
-| Python IoT | python_iot | 8/10 | 85.0% | 4alvit/mcp-venus-os, 4alvit/energy-data-rag-pipeline |
+| data_pipeline | data_pipeline | 7/10 | 80.0% | 4alvit/mqtt-observability-opentelemetry, 4alvit/energy-data-rag-pipeline |
 
-| Data Pipeline &amp; Observability | data_pipeline | 7/10 | 80.0% | 4alvit/mqtt-observability-opentelemetry, 4alvit/energy-data-rag-pipeline |
+| edge_computing | edge_computing | 6/10 | 75.0% | 4alvit/cisco-home-telephony, 4alvit/mqtt-observability-opentelemetry |
 
-| Edge Computing | edge_computing | 6/10 | 75.0% | 4alvit/cisco-home-telephony, 4alvit/mqtt-observability-opentelemetry |
-
-| Voice Assistant Integration | voice_ai | 5/10 | 80.0% | 4alvit/amazon-echo-home-voice, 4alvit/google-home-voice-stats |
+| voice_ai | voice_ai | 6/10 | 80.0% | 4alvit/amazon-echo-home-voice, 4alvit/google-home-voice-stats, 4alvit/epg-voice-gateway |
 
 
 ---
@@ -91,15 +91,15 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 ## 💪 Key Strengths
 
 
-- Venus OS D-Bus/MQTT integration for batteries and inverters
+- Victron Venus OS D-Bus and MQTT integration for battery, solar, and inverter control
 
-- ESPHome BLE proxy patterns for JBD and Daly BMS
+- ESPHome BLE sensor patterns for JBD and Daly BMS plus environmental monitoring
 
-- IoT observability with OpenTelemetry and Prometheus/Grafana
+- MQTT-centric architecture with REST/WebSocket gateways and OpenTelemetry observability
 
-- Energy forecasting and Victron documentation RAG pipeline
+- Python IoT services including MCP servers, D-Bus templates, and RAG pipelines
 
-- Multi-protocol bridging across MQTT, D-Bus, WebSocket, and BLE
+- Voice assistant bridging for Home Assistant via Alexa and Google Home
 
 
 ---
@@ -107,11 +107,11 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 ## 📈 Growth Areas
 
 
-- Low-level embedded firmware in C/C++ or RTOS environments
+- Low-level embedded firmware in C/C++ or ESP-IDF beyond ESPHome YAML configuration
 
-- Industrial IoT protocols such as Modbus TCP/RTU and CANbus
+- Industrial IoT protocols such as Modbus and CANbus
 
-- BMS hardware design and cell balancing implementation
+- Edge orchestration at scale beyond K3s and Docker Compose
 
 
 ---
@@ -232,11 +232,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
 
 - binary_sensor (status): ESP32 Status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
 
 - sensor (template): Temperature
 
@@ -248,7 +258,19 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - sensor (wifi_signal): WiFi Signal
 
-- wifi: unnamed
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 11
+- **Custom Components**: None
+- **External Libraries**: None
+- **Complexity**: low
+- **Focus Areas**: environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
+
+**Component Breakdown**:
+
+- binary_sensor (status): ESP32 Status
 
 - mqtt: unnamed
 
@@ -258,19 +280,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - esp32_ble_tracker: unnamed
 
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 11
-- **Custom Components**: None
-- **External Libraries**: None
-- **Complexity**: low
-- **Focus Areas**: battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
-
-**Component Breakdown**:
-
-- binary_sensor (status): ESP32 Status
+- wifi: unnamed
 
 - sensor (template): Inkbird Temperature
 
@@ -282,7 +292,19 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - sensor (wifi_signal): WiFi Signal
 
-- wifi: unnamed
+
+### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml
+
+- **Devices**: esp32:esp32dev
+- **Components**: 10
+- **Custom Components**: None
+- **External Libraries**: None
+- **Complexity**: low
+- **Focus Areas**: environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
+
+**Component Breakdown**:
+
+- binary_sensor (status): ESP32 Status
 
 - mqtt: unnamed
 
@@ -292,19 +314,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - esp32_ble_tracker: unnamed
 
-
-### 4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml
-
-- **Devices**: esp32:esp32dev
-- **Components**: 10
-- **Custom Components**: None
-- **External Libraries**: None
-- **Complexity**: low
-- **Focus Areas**: battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
-
-**Component Breakdown**:
-
-- binary_sensor (status): ESP32 Status
+- wifi: unnamed
 
 - sensor (xiaomi_lywsd03mmc): unnamed
 
@@ -314,16 +324,6 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): Restart
 
-- wifi: unnamed
-
-- mqtt: unnamed
-
-- logger: unnamed
-
-- api: unnamed
-
-- esp32_ble_tracker: unnamed
-
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml
 
@@ -332,15 +332,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: daly_bms_ble
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
 
 - binary_sensor (daly_bms_ble): unnamed
 
@@ -349,6 +343,20 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - binary_sensor (daly_bms_ble): unnamed
 
 - binary_sensor (status): ESP32 Status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- esp32_ble: unnamed
+
+- interval: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
 
 - sensor (daly_bms_ble): unnamed
 
@@ -360,19 +368,11 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - sensor (uptime): Uptime
 
-- wifi: unnamed
+- ble_client: unnamed
 
-- mqtt: unnamed
+- ble_client: unnamed
 
-- logger: unnamed
-
-- api: unnamed
-
-- interval: unnamed
-
-- esp32_ble: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml
@@ -382,17 +382,25 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: daly_bms_ble
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ble_client: unnamed
 
 - binary_sensor (daly_bms_ble): unnamed
 
 - binary_sensor (daly_bms_ble): unnamed
 
 - binary_sensor (status): ESP32 Status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
 
 - sensor (daly_bms_ble): unnamed
 
@@ -408,15 +416,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): Restart
 
-- wifi: unnamed
-
-- mqtt: unnamed
-
-- logger: unnamed
-
-- api: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml
@@ -426,15 +426,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -443,6 +437,20 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): ESP32 Status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- esp32_ble: unnamed
+
+- interval: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -462,19 +470,11 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): Restart
 
-- wifi: unnamed
+- ble_client: unnamed
 
-- mqtt: unnamed
+- ble_client: unnamed
 
-- logger: unnamed
-
-- api: unnamed
-
-- interval: unnamed
-
-- esp32_ble: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml
@@ -484,15 +484,23 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ble_client: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): ESP32 Status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -506,15 +514,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): Restart
 
-- wifi: unnamed
-
-- mqtt: unnamed
-
-- logger: unnamed
-
-- api: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### 4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml
@@ -524,19 +524,11 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
 
 - binary_sensor (status): ESP32 Status
-
-- sensor (xiaomi_hhccjcy01): unnamed
-
-- sensor (uptime): Uptime
-
-- sensor (wifi_signal): WiFi Signal
-
-- wifi: unnamed
 
 - mqtt: unnamed
 
@@ -546,6 +538,14 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - esp32_ble_tracker: unnamed
 
+- wifi: unnamed
+
+- sensor (xiaomi_hhccjcy01): unnamed
+
+- sensor (uptime): Uptime
+
+- sensor (wifi_signal): WiFi Signal
+
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml
 
@@ -554,27 +554,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -593,6 +575,22 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): esp32_status
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- esp32_ble: unnamed
+
+- interval: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -636,19 +634,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): restart
 
-- wifi: unnamed
+- ble_client: unnamed
 
-- mqtt: unnamed
+- ble_client: unnamed
 
-- logger: unnamed
+- ble_client: unnamed
 
-- api: unnamed
+- ble_client: unnamed
 
-- interval: unnamed
+- ble_client: unnamed
 
-- esp32_ble: unnamed
+- ble_client: unnamed
 
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
+
+- ble_client: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml
@@ -658,19 +658,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -681,6 +671,22 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): esp32_status
+
+- script: unnamed
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- esp32_ble: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -706,19 +712,13 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): restart
 
-- wifi: unnamed
+- ble_client: unnamed
 
-- mqtt: unnamed
+- ble_client: unnamed
 
-- logger: unnamed
+- ble_client: unnamed
 
-- api: unnamed
-
-- esp32_ble: unnamed
-
-- script: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml
@@ -728,19 +728,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: jbd_bms_ble
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: firmware_development, battery_management, energy_management, home_automation, networking_protocols, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, battery_management, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
-
-- ble_client: unnamed
 
 - binary_sensor (jbd_bms_ble): unnamed
 
@@ -751,6 +741,22 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - binary_sensor (jbd_bms_ble): unnamed
 
 - binary_sensor (status): esp32_status
+
+- script: unnamed
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- esp32_ble: unnamed
+
+- api: unnamed
+
+- esp32_ble_tracker: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (jbd_bms_ble): unnamed
 
@@ -776,19 +782,13 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - button (restart): restart
 
-- wifi: unnamed
+- ble_client: unnamed
 
-- mqtt: unnamed
+- ble_client: unnamed
 
-- logger: unnamed
+- ble_client: unnamed
 
-- api: unnamed
-
-- esp32_ble: unnamed
-
-- script: unnamed
-
-- esp32_ble_tracker: unnamed
+- ble_client: unnamed
 
 
 ### victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml
@@ -798,15 +798,29 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols, home_automation
+- **Focus Areas**: firmware_development, energy_management, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- i2c: unnamed
+
+- switch (template): MQTT Publishing
 
 - binary_sensor (status): Grid Sensor Status
 
 - binary_sensor (template): Grid Feed-In Active
+
+- light (binary): Grid Sensor LED
+
+- mqtt: unnamed
+
+- logger: unnamed
+
+- api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (adc): Grid Current
 
@@ -816,23 +830,9 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - sensor (integration): Grid Energy Reverse
 
-- light (binary): Grid Sensor LED
-
 - button (restart): Grid Sensor Restart
 
 - button (template): Toggle Calibration Mode
-
-- wifi: unnamed
-
-- mqtt: unnamed
-
-- logger: unnamed
-
-- api: unnamed
-
-- switch (template): MQTT Publishing
-
-- i2c: unnamed
 
 
 ### victron-venus/dbus-esphome-grid-sensor/docker-compose.yml
@@ -842,7 +842,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, home_automation
+- **Focus Areas**: home_automation, networking_protocols
 
 **Component Breakdown**:
 
@@ -854,7 +854,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development
+- **Focus Areas**: firmware_development, networking_protocols
 
 **Component Breakdown**:
 
@@ -866,19 +866,19 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: emporia_vue
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, home_automation
+- **Focus Areas**: firmware_development, energy_management, home_automation
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
-
-- sensor (emporia_vue): unnamed
+- i2c: unnamed
 
 - logger: unnamed
 
 - api: unnamed
 
-- i2c: unnamed
+- ota (esphome): unnamed
+
+- sensor (emporia_vue): unnamed
 
 
 ### victron-venus/esphome-emporia-vue2-ethernet/firmware/validation/fixture.yaml
@@ -888,7 +888,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development
+- **Focus Areas**: firmware_development, networking_protocols
 
 **Component Breakdown**:
 
@@ -900,21 +900,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
-
 - binary_sensor (status): Status
-
-- sensor (wifi_signal): WiFi Signal
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- sensor (wifi_signal): WiFi Signal
 
 
 ### ha-homelab/ha-tuya-esphome/examples/supernight-cv01.yaml
@@ -924,23 +924,23 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, home_automation
+- **Focus Areas**: firmware_development, energy_management, home_automation
 
 **Component Breakdown**:
+
+- switch (gpio): Left Outlet
+
+- switch (gpio): Right Outlet
 
 - binary_sensor (gpio): unnamed
 
 - binary_sensor (template): unnamed
 
+- logger: unnamed
+
 - sensor (adc): unnamed
 
 - sensor (hlw8012): unnamed
-
-- logger: unnamed
-
-- switch (gpio): Left Outlet
-
-- switch (gpio): Right Outlet
 
 
 ### ha-homelab/ha-tuya-esphome/examples/swp1-pw2-v5.yaml
@@ -950,27 +950,27 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- switch (gpio): None
 
 - binary_sensor (gpio): unnamed
 
 - binary_sensor (status): Status
 
-- sensor (wifi_signal): WiFi Signal
-
-- button (restart): Restart
-
-- wifi: unnamed
-
 - logger: unnamed
 
 - api: unnamed
 
-- switch (gpio): None
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- sensor (wifi_signal): WiFi Signal
+
+- button (restart): Restart
 
 
 ### ha-homelab/ha-tuya-esphome/examples/teckin-sp20-metered.yaml
@@ -980,15 +980,31 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols, home_automation
+- **Focus Areas**: firmware_development, energy_management, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- time (homeassistant): unnamed
+
+- time (sntp): unnamed
+
+- switch (gpio): Relay
 
 - binary_sensor (gpio): Physical Button
 
 - binary_sensor (status): Status
+
+- light (binary): unnamed
+
+- logger: unnamed
+
+- interval: unnamed
+
+- api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (hlw8012): unnamed
 
@@ -1008,23 +1024,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - sensor (uptime): Uptime
 
-- light (binary): unnamed
-
 - button (restart): Restart
-
-- wifi: unnamed
-
-- logger: unnamed
-
-- api: unnamed
-
-- time (homeassistant): unnamed
-
-- time (sntp): unnamed
-
-- interval: unnamed
-
-- switch (gpio): Relay
 
 
 ### ha-homelab/ha-tuya-esphome/examples/tuya-plug.yaml
@@ -1034,53 +1034,53 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
-
 - binary_sensor (status): Status
-
-- sensor (wifi_signal): WiFi Signal
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
+
+- sensor (wifi_signal): WiFi Signal
 
 
 ### ha-homelab/ha-radio-hub/firmware/external-antenna/hub.yaml
 
 - **Devices**: esp32:esp32dev
 - **Components**: 10
-- **Custom Components**: zigbee_tcp, low_power_ethernet, low_power_otbr, wk2132_uart
+- **Custom Components**: low_power_otbr, low_power_ethernet, zigbee_tcp, wk2132_uart
 - **External Libraries**: None
 - **Complexity**: high
-- **Focus Areas**: firmware_development, home_automation, networking_protocols, energy_management, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, energy_management, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- uart: unnamed
 
-- bluetooth_proxy: unnamed
+- i2c: unnamed
 
 - mqtt: unnamed
 
 - logger: unnamed
 
-- api: unnamed
-
 - ethernet: unnamed
 
-- uart: unnamed
+- api: unnamed
 
 - esp32_ble_tracker: unnamed
 
-- i2c: unnamed
+- ota (esphome): unnamed
 
 - spi: unnamed
+
+- bluetooth_proxy: unnamed
 
 
 ### ha-homelab/ha-radio-hub/firmware/h2-quartet/h2-ble-ethernet.yaml
@@ -1090,19 +1090,19 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- bluetooth_proxy: unnamed
-
 - logger: unnamed
-
-- api: unnamed
 
 - ethernet: unnamed
 
+- api: unnamed
+
 - esp32_ble_tracker: unnamed
+
+- bluetooth_proxy: unnamed
 
 
 ### ha-homelab/ha-radio-hub/firmware/hub-s3-eth.yaml
@@ -1112,13 +1112,25 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, firmware_development, environmental_monitoring, home_automation
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- uart: unnamed
+
+- uart: unnamed
+
+- i2c: unnamed
 
 - binary_sensor (status): API Connected
+
+- logger: unnamed
+
+- ethernet: unnamed
+
+- api: unnamed
+
+- ota (esphome): unnamed
 
 - sensor (uptime): Uptime
 
@@ -1126,105 +1138,93 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 
 - bluetooth_proxy: unnamed
 
-- logger: unnamed
-
-- api: unnamed
-
-- ethernet: unnamed
-
-- uart: unnamed
-
-- uart: unnamed
-
-- i2c: unnamed
-
 
 ### ha-homelab/ha-radio-hub/firmware/low-power/proof.yaml
 
 - **Devices**: esp32:esp32-s3-devkitc-1
 - **Components**: 10
-- **Custom Components**: low_power_ethernet, low_power_otbr
+- **Custom Components**: low_power_otbr, low_power_ethernet
 - **External Libraries**: None
 - **Complexity**: high
-- **Focus Areas**: firmware_development, home_automation, networking_protocols, energy_management, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, energy_management, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- uart: unnamed
 
-- bluetooth_proxy: unnamed
+- i2c: unnamed
 
 - mqtt: unnamed
 
 - logger: unnamed
 
-- api: unnamed
-
 - ethernet: unnamed
 
-- uart: unnamed
+- api: unnamed
 
 - esp32_ble_tracker: unnamed
 
-- i2c: unnamed
+- ota (esphome): unnamed
 
 - spi: unnamed
+
+- bluetooth_proxy: unnamed
 
 
 ### ha-homelab/ha-radio-hub/firmware/module-carrier/hub.yaml
 
 - **Devices**: esp32:esp32-s3-devkitc-1
 - **Components**: 10
-- **Custom Components**: zigbee_tcp, low_power_ethernet, low_power_otbr, wk2132_uart
+- **Custom Components**: low_power_otbr, low_power_ethernet, zigbee_tcp, wk2132_uart
 - **External Libraries**: None
 - **Complexity**: high
-- **Focus Areas**: firmware_development, home_automation, networking_protocols, energy_management, environmental_monitoring
+- **Focus Areas**: firmware_development, environmental_monitoring, home_automation, energy_management, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- uart: unnamed
 
-- bluetooth_proxy: unnamed
+- i2c: unnamed
 
 - mqtt: unnamed
 
 - logger: unnamed
 
-- api: unnamed
-
 - ethernet: unnamed
 
-- uart: unnamed
+- api: unnamed
 
 - esp32_ble_tracker: unnamed
 
-- i2c: unnamed
+- ota (esphome): unnamed
 
 - spi: unnamed
+
+- bluetooth_proxy: unnamed
 
 
 ### ha-homelab/ha-radio-hub/firmware/packages/rf-airbridge.yaml
 
 - **Devices**: 
 - **Components**: 6
-- **Custom Components**: remote_receiver, rf_tx_startup
+- **Custom Components**: rf_tx_startup, remote_receiver
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- remote_transmitter: unnamed
-
-- mqtt: unnamed
-
-- api: unnamed
+- remote_receiver: unnamed
 
 - switch (template): Raw RF learning
 
-- remote_receiver: unnamed
-
 - script: unnamed
+
+- mqtt: unnamed
+
+- remote_transmitter: unnamed
+
+- api: unnamed
 
 
 ### ha-homelab/ha-radio-hub/firmware/packages/rf-ethernet-base.yaml
@@ -1234,21 +1234,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
 - binary_sensor (status): API Connected
 
-- sensor (uptime): Uptime
-
 - logger: unnamed
-
-- api: unnamed
 
 - ethernet: unnamed
 
+- api: unnamed
+
 - spi: unnamed
+
+- sensor (uptime): Uptime
 
 
 ### ha-homelab/rf-airbridge/device.example.yaml
@@ -1258,17 +1258,17 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, firmware_development
+- **Focus Areas**: firmware_development, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- wifi: unnamed
 
 - mqtt: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 - spi: unnamed
 
@@ -1280,21 +1280,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: remote_receiver
 - **External Libraries**: None
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, firmware_development, home_automation
+- **Focus Areas**: firmware_development, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- remote_transmitter: unnamed
-
-- mqtt: unnamed
-
-- api: unnamed
+- remote_receiver: unnamed
 
 - switch (template): Raw RF learning
 
-- remote_receiver: unnamed
-
 - script: unnamed
+
+- mqtt: unnamed
+
+- remote_transmitter: unnamed
+
+- api: unnamed
 
 
 ### ha-homelab/rf-airbridge/packages/wake-on-lan.yaml
@@ -1318,21 +1318,21 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: wisp
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols, home_automation
+- **Focus Areas**: firmware_development, energy_management, home_automation, networking_protocols
 
 **Component Breakdown**:
 
-- ota (esphome): unnamed
+- switch (template): Pilot raw CSI stream
 
 - light (esp32_rmt_led_strip): unnamed
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
 
-- switch (template): Pilot raw CSI stream
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 
 ### ha-homelab/zac93-esp32/firmware/adopt/esp32-s3.yaml
@@ -1342,17 +1342,17 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols
+- **Focus Areas**: firmware_development, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 
 ### ha-homelab/zac93-esp32/firmware/adopt/esp32-wroom.yaml
@@ -1362,17 +1362,17 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols
+- **Focus Areas**: firmware_development, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 
 ### ha-homelab/zac93-esp32/firmware/factory/esp32-s3.yaml
@@ -1382,15 +1382,15 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols
+- **Focus Areas**: firmware_development, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
 
 
 ### ha-homelab/zac93-esp32/firmware/factory/esp32-wroom.yaml
@@ -1400,15 +1400,15 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols
+- **Focus Areas**: firmware_development, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
 
 
 ### ha-homelab/zac93-esp32/firmware/common.yaml
@@ -1418,17 +1418,17 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Custom Components**: None
 - **External Libraries**: None
 - **Complexity**: low
-- **Focus Areas**: energy_management, firmware_development, networking_protocols
+- **Focus Areas**: firmware_development, energy_management, networking_protocols
 
 **Component Breakdown**:
-
-- ota (esphome): unnamed
-
-- wifi: unnamed
 
 - logger: unnamed
 
 - api: unnamed
+
+- wifi: unnamed
+
+- ota (esphome): unnamed
 
 
 
@@ -1481,7 +1481,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 24
 - **Complexity**: medium
-- **Focus Areas**: energy_management, networking_protocols, home_automation
+- **Focus Areas**: home_automation, energy_management, networking_protocols
 
 **Interfaces**:
 
@@ -1499,7 +1499,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1517,7 +1517,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1535,7 +1535,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1553,7 +1553,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1589,7 +1589,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 7
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1607,7 +1607,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 5
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1625,7 +1625,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1643,7 +1643,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 38
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1661,7 +1661,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 2
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1787,7 +1787,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 0
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1815,7 +1815,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: energy_management, home_automation
+- **Focus Areas**: home_automation, energy_management
 
 **Interfaces**:
 
@@ -1833,7 +1833,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 4
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1905,7 +1905,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 35
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1941,7 +1941,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -1995,7 +1995,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2013,7 +2013,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 8
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2085,7 +2085,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2103,7 +2103,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 1
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2121,7 +2121,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 40
 - **Complexity**: medium
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2139,7 +2139,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 0
 - **Complexity**: low
-- **Focus Areas**: networking_protocols, energy_management, battery_management, home_automation
+- **Focus Areas**: networking_protocols, home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2157,7 +2157,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
 - **Total Signals**: 0
 - **Total Properties**: 3
 - **Complexity**: low
-- **Focus Areas**: energy_management, battery_management, home_automation
+- **Focus Areas**: home_automation, energy_management, battery_management
 
 **Interfaces**:
 
@@ -2188,7 +2188,7 @@ Analysis records from IoT repositories, ESPHome configurations and D-Bus analyse
     "requested_model": "nvidia_nim/nvidia/nemotron-3.5-super-vl-120b-a12b"
   },
   "iot_repos": 80,
-  "scanned_at": "2026-10-30T12:35:46.926932+00:00",
+  "scanned_at": "2026-10-30T13:31:39.808273+00:00",
   "total_repos": 91
 }
 ```
