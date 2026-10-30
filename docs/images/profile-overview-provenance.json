@@ -3,11 +3,14 @@
   "generated_at": "2026-10-30T13:32:50.992007+00:00",
   "capture_date": "2026-10-30",
   "image": "profile-overview.png",
-  "image_sha256": "227b2f7c6a8dc3c1212346e7dda48aebe45591a35a57ca36e40a5fc8e99c70db",
-  "captured_html_sha256": "8c53822f7b2ef5a450d71f5c93ae347fe4aec8aa24e1ccefa3fa19ddada090a5",
+  "image_sha256": "fd2cfbe5aedc86e0882d5613bea4193697bffe3c6ad1f6e69185786927d8b7e5",
+  "captured_html_sha256": "a912e85a8cd41498072d81ace971593e676cc49fe2a09d9f734d18a9ca478709",
   "dimensions": {
     "width": 1440,
     "height": 1000
   },
-  "description": "Actual browser viewport of the version-2 template rendered with the unchanged public snapshot; no compositing or invented values."
+  "description": "Actual browser viewport of the version-2 template rendered with the unchanged public snapshot; no compositing or invented values.",
+  "source_template_commit": "042c6d81cd94312e210dc42e9e662624880553a8",
+  "browser": "Playwright Chromium 156.0.8078.4",
+  "capture_policy": "1440x1000 CSS pixels, device scale 1, reduced motion; external HTTP(S) requests blocked."
 }
