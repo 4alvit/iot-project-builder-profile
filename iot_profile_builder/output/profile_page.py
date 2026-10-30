@@ -1465,9 +1465,12 @@ PROFILE_HTML = (
 <ul>
 {% for evidence in skill.evidence %}
 
+{% set matched = profile.top_repositories|selectattr('full_name', 'equalto', evidence)|list %}
+{% if not matched %}
 {% set matched = profile.top_repositories|selectattr('name', 'equalto', evidence)|list %}
+{% endif %}
 <li>
-{% if matched %}
+{% if matched|length == 1 %}
 <a href="https://github.com/{{ matched[0].full_name|urlencode }}">{{ evidence }} ↗</a>
 {% else %}
 {{ evidence }}
