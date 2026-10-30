@@ -1212,7 +1212,7 @@ body {
 </div>
 <svg viewBox="0 0 440 332" role="img" aria-labelledby="signal-title signal-description">
 <title id="signal-title">From repository evidence to an engineering profile</title>
-<desc id="signal-description">91 public repositories scanned, with 80 identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to 9 skill assessments. This illustrates the analysis process, not a deployed system.</desc>
+<desc id="signal-description">91 public repositories scanned, with 80 identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to 8 skill assessments. This illustrates the analysis process, not a deployed system.</desc>
 <defs>
 <radialGradient id="signal-glow">
 <stop stop-color="#ac90ee" stop-opacity=".2"/>
@@ -1252,7 +1252,7 @@ body {
 <text x="331" y="120" fill="#c2b9cf" font-size="9">related repos</text>
 <rect x="132" y="250" width="178" height="66" rx="10" fill="#2d2738" stroke="#736183"/>
 <text x="149" y="272" fill="#d3c2e9" font-size="8" letter-spacing="1">03 / ENGINEERING PROFILE</text>
-<text x="149" y="299" fill="#eee8f6" font-size="20">9</text>
+<text x="149" y="299" fill="#eee8f6" font-size="20">8</text>
 <text x="178" y="297" fill="#d4c6e4" font-size="10">skills with source evidence</text>
 </g>
 <g fill="#c6b5ff">
@@ -1297,7 +1297,14 @@ body {
 
 
 
-<p>The developer specializes in Victron Venus OS energy systems, building D-Bus and MQTT bridges for JBD/Daly BMS batteries, Tasmota PV meters, and grid-zero inverter control. ESPHome BLE sensor patterns for ESP32 proxies integrate battery monitors and environmental sensors into Home Assistant, demonstrating end-to-end energy and battery management. Additional work includes MQTT observability with OpenTelemetry, Prometheus, and Grafana, RAG pipelines for Victron documentation, and voice assistant gateways for Alexa and Google Home. Infrastructure experience spans K3s and Docker Compose edge deployments, with a focus on production-ready IoT patterns rather than low-level embedded firmware.</p>
+<p>The developer specializes in Victron Venus OS energy systems, building D-Bus and MQTT bridges for JBD/Daly BMS batteries, Tasmota power meters, and grid-zero inverter control. Their ESPHome work includes production BLE sensor patterns for ESP32 Bluetooth proxies, passive scanning, and Home Assistant integration for battery-powered environmental sensors.</p>
+
+<details class="summary-more">
+<summary>Read the full analysis</summary>
+
+<p>They operate a Python-centric IoT stack with FastAPI MQTT gateways, OpenTelemetry observability for Mosquitto, MCP servers for Venus OS management, and D-Bus service templates. Voice assistant integration spans Alexa and Google Home with Home Assistant as the hub. Edge experience includes K3s and Docker Compose deployments for IoT observability and telephony.</p>
+
+</details>
 
 
 
@@ -1324,6 +1331,17 @@ body {
 
 <div>
 <div class="score-caption">
+<span>Home Automation</span>
+<strong>90%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
 <span>Energy Management</span>
 <strong>90%</strong>
 </div>
@@ -1346,7 +1364,7 @@ body {
 
 <div>
 <div class="score-caption">
-<span>Home Automation</span>
+<span>Networking Protocols</span>
 <strong>80%</strong>
 </div>
 <div class="score-track" aria-hidden="true">
@@ -1357,18 +1375,18 @@ body {
 
 <div>
 <div class="score-caption">
-<span>Networking Protocols</span>
-<strong>75%</strong>
+<span>Data Pipeline</span>
+<strong>70%</strong>
 </div>
 <div class="score-track" aria-hidden="true">
-<i style="width:75.0%">
+<i style="width:70.0%">
 </i>
 </div>
 </div>
 
 <div>
 <div class="score-caption">
-<span>Data Pipeline</span>
+<span>Edge Computing</span>
 <strong>60%</strong>
 </div>
 <div class="score-track" aria-hidden="true">
@@ -1379,22 +1397,11 @@ body {
 
 <div>
 <div class="score-caption">
-<span>Edge Computing</span>
-<strong>50%</strong>
-</div>
-<div class="score-track" aria-hidden="true">
-<i style="width:50.0%">
-</i>
-</div>
-</div>
-
-<div>
-<div class="score-caption">
 <span>Voice Assistant</span>
-<strong>50%</strong>
+<strong>60%</strong>
 </div>
 <div class="score-track" aria-hidden="true">
-<i style="width:50.0%">
+<i style="width:60.0%">
 </i>
 </div>
 </div>
@@ -1413,10 +1420,10 @@ body {
 <div>
 <div class="score-caption">
 <span>Firmware Development</span>
-<strong>35%</strong>
+<strong>30%</strong>
 </div>
 <div class="score-track" aria-hidden="true">
-<i style="width:35.0%">
+<i style="width:30.0%">
 </i>
 </div>
 </div>
@@ -1474,8 +1481,57 @@ body {
 <div class="skills">
 
 <article class="skill">
+<span class="label">home automation</span>
+<h3>home_automation</h3>
+<div class="skill-value">
+<strong>9</strong>
+<span>/ 10</span>
+<small class="confidence">95% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>3 source references</summary>
+<ul>
+
+
+
+
+<li>
+
+<a href="https://github.com/4alvit/esphome-ble-sensor-patterns">4alvit/esphome-ble-sensor-patterns ↗</a>
+
+</li>
+
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/esphome-jbd-bms-mqtt">victron-venus/esphome-jbd-bms-mqtt ↗</a>
+
+</li>
+
+
+
+
+
+
+<li>
+
+4alvit/amazon-echo-home-voice
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
 <span class="label">energy systems</span>
-<h3>Victron Venus OS</h3>
+<h3>energy_systems</h3>
 <div class="skill-value">
 <strong>9</strong>
 <span>/ 10</span>
@@ -1514,7 +1570,7 @@ body {
 
 <li>
 
-4alvit/mcp-venus-os
+4alvit/solar-forecast-langgraph
 
 </li>
 
@@ -1523,20 +1579,29 @@ body {
 </article>
 
 <article class="skill">
-<span class="label">home automation</span>
-<h3>ESPHome</h3>
+<span class="label">energy systems</span>
+<h3>battery_management</h3>
 <div class="skill-value">
 <strong>8</strong>
 <span>/ 10</span>
-<small class="confidence">95% assessment confidence</small>
+<small class="confidence">90% assessment confidence</small>
 </div>
 <div class="score-track" aria-hidden="true">
 <i style="width:80%">
 </i>
 </div>
 <details class="evidence-toggle">
-<summary>2 source references</summary>
+<summary>3 source references</summary>
 <ul>
+
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">victron-venus/dbus-mqtt-battery ↗</a>
+
+</li>
 
 
 
@@ -1562,7 +1627,7 @@ body {
 
 <article class="skill">
 <span class="label">protocols networking</span>
-<h3>MQTT</h3>
+<h3>protocols_networking</h3>
 <div class="skill-value">
 <strong>8</strong>
 <span>/ 10</span>
@@ -1573,7 +1638,7 @@ body {
 </i>
 </div>
 <details class="evidence-toggle">
-<summary>2 source references</summary>
+<summary>3 source references</summary>
 <ul>
 
 
@@ -1596,13 +1661,24 @@ body {
 
 </li>
 
+
+
+
+
+
+<li>
+
+4alvit/mqtt-observability-opentelemetry
+
+</li>
+
 </ul>
 </details>
 </article>
 
 <article class="skill">
-<span class="label">energy systems</span>
-<h3>Battery Management Systems (BMS)</h3>
+<span class="label">python iot</span>
+<h3>python_iot</h3>
 <div class="skill-value">
 <strong>8</strong>
 <span>/ 10</span>
@@ -1613,87 +1689,7 @@ body {
 </i>
 </div>
 <details class="evidence-toggle">
-<summary>2 source references</summary>
-<ul>
-
-
-
-
-<li>
-
-<a href="https://github.com/victron-venus/dbus-mqtt-battery">victron-venus/dbus-mqtt-battery ↗</a>
-
-</li>
-
-
-
-
-
-
-<li>
-
-4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms
-
-</li>
-
-</ul>
-</details>
-</article>
-
-<article class="skill">
-<span class="label">protocols networking</span>
-<h3>D-Bus</h3>
-<div class="skill-value">
-<strong>8</strong>
-<span>/ 10</span>
-<small class="confidence">85% assessment confidence</small>
-</div>
-<div class="score-track" aria-hidden="true">
-<i style="width:80%">
-</i>
-</div>
-<details class="evidence-toggle">
-<summary>2 source references</summary>
-<ul>
-
-
-
-
-
-
-<li>
-
-4alvit/dbus-service-template
-
-</li>
-
-
-
-
-<li>
-
-<a href="https://github.com/victron-venus/dbus-tasmota-pv">victron-venus/dbus-tasmota-pv ↗</a>
-
-</li>
-
-</ul>
-</details>
-</article>
-
-<article class="skill">
-<span class="label">python iot</span>
-<h3>Python IoT</h3>
-<div class="skill-value">
-<strong>8</strong>
-<span>/ 10</span>
-<small class="confidence">85% assessment confidence</small>
-</div>
-<div class="score-track" aria-hidden="true">
-<i style="width:80%">
-</i>
-</div>
-<details class="evidence-toggle">
-<summary>2 source references</summary>
+<summary>3 source references</summary>
 <ul>
 
 
@@ -1714,7 +1710,18 @@ body {
 
 <li>
 
-4alvit/energy-data-rag-pipeline
+4alvit/dbus-service-template
+
+</li>
+
+
+
+
+
+
+<li>
+
+4alvit/fastapi-mqtt-gateway
 
 </li>
 
@@ -1724,7 +1731,7 @@ body {
 
 <article class="skill">
 <span class="label">data pipeline</span>
-<h3>Data Pipeline &amp; Observability</h3>
+<h3>data_pipeline</h3>
 <div class="skill-value">
 <strong>7</strong>
 <span>/ 10</span>
@@ -1766,7 +1773,7 @@ body {
 
 <article class="skill">
 <span class="label">edge computing</span>
-<h3>Edge Computing</h3>
+<h3>edge_computing</h3>
 <div class="skill-value">
 <strong>6</strong>
 <span>/ 10</span>
@@ -1808,18 +1815,18 @@ body {
 
 <article class="skill">
 <span class="label">voice ai</span>
-<h3>Voice Assistant Integration</h3>
+<h3>voice_ai</h3>
 <div class="skill-value">
-<strong>5</strong>
+<strong>6</strong>
 <span>/ 10</span>
 <small class="confidence">80% assessment confidence</small>
 </div>
 <div class="score-track" aria-hidden="true">
-<i style="width:50%">
+<i style="width:60%">
 </i>
 </div>
 <details class="evidence-toggle">
-<summary>2 source references</summary>
+<summary>3 source references</summary>
 <ul>
 
 
@@ -1841,6 +1848,17 @@ body {
 <li>
 
 4alvit/google-home-voice-stats
+
+</li>
+
+
+
+
+
+
+<li>
+
+4alvit/epg-voice-gateway
 
 </li>
 
@@ -2279,27 +2297,27 @@ body {
 
 <li>
 <span aria-hidden="true">↗</span>
-<span>Venus OS D-Bus/MQTT integration for batteries and inverters</span>
+<span>Victron Venus OS D-Bus and MQTT integration for battery, solar, and inverter control</span>
 </li>
 
 <li>
 <span aria-hidden="true">↗</span>
-<span>ESPHome BLE proxy patterns for JBD and Daly BMS</span>
+<span>ESPHome BLE sensor patterns for JBD and Daly BMS plus environmental monitoring</span>
 </li>
 
 <li>
 <span aria-hidden="true">↗</span>
-<span>IoT observability with OpenTelemetry and Prometheus/Grafana</span>
+<span>MQTT-centric architecture with REST/WebSocket gateways and OpenTelemetry observability</span>
 </li>
 
 <li>
 <span aria-hidden="true">↗</span>
-<span>Energy forecasting and Victron documentation RAG pipeline</span>
+<span>Python IoT services including MCP servers, D-Bus templates, and RAG pipelines</span>
 </li>
 
 <li>
 <span aria-hidden="true">↗</span>
-<span>Multi-protocol bridging across MQTT, D-Bus, WebSocket, and BLE</span>
+<span>Voice assistant bridging for Home Assistant via Alexa and Google Home</span>
 </li>
 
 </ul>
@@ -2310,17 +2328,17 @@ body {
 
 <li>
 <span aria-hidden="true">→</span>
-<span>Low-level embedded firmware in C/C++ or RTOS environments</span>
+<span>Low-level embedded firmware in C/C++ or ESP-IDF beyond ESPHome YAML configuration</span>
 </li>
 
 <li>
 <span aria-hidden="true">→</span>
-<span>Industrial IoT protocols such as Modbus TCP/RTU and CANbus</span>
+<span>Industrial IoT protocols such as Modbus and CANbus</span>
 </li>
 
 <li>
 <span aria-hidden="true">→</span>
-<span>BMS hardware design and cell balancing implementation</span>
+<span>Edge orchestration at scale beyond K3s and Docker Compose</span>
 </li>
 
 </ul>
@@ -2351,7 +2369,7 @@ body {
 <p>
 <strong>Components:</strong> 11 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
 
@@ -2362,6 +2380,36 @@ body {
 
 
 : ESP32 Status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
 
 </li>
 
@@ -2415,9 +2463,34 @@ body {
 
 </li>
 
-<li>wifi
+</ul>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 11 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> environmental monitoring, home automation, battery management, energy management, networking protocols</p>
+
+<ul>
+
+<li>binary_sensor
+
+ / status
 
 
+
+: ESP32 Status
 
 </li>
 
@@ -2445,34 +2518,9 @@ body {
 
 </li>
 
-</ul>
-
-<p>
-<strong>Custom components:</strong> None detected</p>
-<p>
-<strong>External libraries:</strong> None detected</p>
-</div>
-</details>
-
-<details class="source-row">
-<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml</summary>
-<div class="source-data">
-<p>
-<strong>Devices:</strong> esp32:esp32dev</p>
-<p>
-<strong>Components:</strong> 11 · <strong>Complexity:</strong> low</p>
-<p>
-<strong>Focus:</strong> battery management, energy management, home automation, networking protocols, environmental monitoring</p>
-
-<ul>
-
-<li>binary_sensor
-
- / status
+<li>wifi
 
 
-
-: ESP32 Status
 
 </li>
 
@@ -2526,9 +2574,34 @@ body {
 
 </li>
 
-<li>wifi
+</ul>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 10 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> environmental monitoring, home automation, battery management, energy management, networking protocols</p>
+
+<ul>
+
+<li>binary_sensor
+
+ / status
 
 
+
+: ESP32 Status
 
 </li>
 
@@ -2556,34 +2629,9 @@ body {
 
 </li>
 
-</ul>
-
-<p>
-<strong>Custom components:</strong> None detected</p>
-<p>
-<strong>External libraries:</strong> None detected</p>
-</div>
-</details>
-
-<details class="source-row">
-<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml</summary>
-<div class="source-data">
-<p>
-<strong>Devices:</strong> esp32:esp32dev</p>
-<p>
-<strong>Components:</strong> 10 · <strong>Complexity:</strong> low</p>
-<p>
-<strong>Focus:</strong> battery management, energy management, home automation, networking protocols, environmental monitoring</p>
-
-<ul>
-
-<li>binary_sensor
-
- / status
+<li>wifi
 
 
-
-: ESP32 Status
 
 </li>
 
@@ -2625,36 +2673,6 @@ body {
 
 </li>
 
-<li>wifi
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>esp32_ble_tracker
-
-
-
-</li>
-
 </ul>
 
 <p>
@@ -2672,27 +2690,9 @@ body {
 <p>
 <strong>Components:</strong> 19 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -2725,6 +2725,48 @@ body {
 
 
 : ESP32 Status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
 
 </li>
 
@@ -2772,43 +2814,19 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
 
 </li>
 
-<li>mqtt
+<li>ble_client
 
 
 
 </li>
 
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>interval
-
-
-
-</li>
-
-<li>esp32_ble
-
-
-
-</li>
-
-<li>esp32_ble_tracker
+<li>ble_client
 
 
 
@@ -2831,15 +2849,9 @@ body {
 <p>
 <strong>Components:</strong> 16 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -2864,6 +2876,36 @@ body {
 
 
 : ESP32 Status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
 
 </li>
 
@@ -2931,31 +2973,7 @@ body {
 
 </li>
 
-<li>wifi
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>esp32_ble_tracker
+<li>ble_client
 
 
 
@@ -2978,27 +2996,9 @@ body {
 <p>
 <strong>Components:</strong> 23 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -3031,6 +3031,48 @@ body {
 
 
 : ESP32 Status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
 
 </li>
 
@@ -3118,43 +3160,19 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
 
 </li>
 
-<li>mqtt
+<li>ble_client
 
 
 
 </li>
 
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>interval
-
-
-
-</li>
-
-<li>esp32_ble
-
-
-
-</li>
-
-<li>esp32_ble_tracker
+<li>ble_client
 
 
 
@@ -3177,15 +3195,9 @@ body {
 <p>
 <strong>Components:</strong> 14 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -3202,6 +3214,36 @@ body {
 
 
 : ESP32 Status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
 
 </li>
 
@@ -3259,9 +3301,40 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 9 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> environmental monitoring, home automation, battery management, energy management, networking protocols</p>
+
+<ul>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
 
 </li>
 
@@ -3289,34 +3362,9 @@ body {
 
 </li>
 
-</ul>
-
-<p>
-<strong>Custom components:</strong> jbd_bms_ble</p>
-<p>
-<strong>External libraries:</strong> None detected</p>
-</div>
-</details>
-
-<details class="source-row">
-<summary>4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml</summary>
-<div class="source-data">
-<p>
-<strong>Devices:</strong> esp32:esp32dev</p>
-<p>
-<strong>Components:</strong> 9 · <strong>Complexity:</strong> low</p>
-<p>
-<strong>Focus:</strong> battery management, energy management, home automation, networking protocols, environmental monitoring</p>
-
-<ul>
-
-<li>binary_sensor
-
- / status
+<li>wifi
 
 
-
-: ESP32 Status
 
 </li>
 
@@ -3348,36 +3396,6 @@ body {
 
 </li>
 
-<li>wifi
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>esp32_ble_tracker
-
-
-
-</li>
-
 </ul>
 
 <p>
@@ -3395,65 +3413,9 @@ body {
 <p>
 <strong>Components:</strong> 46 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ota
-
- / esphome
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -3526,6 +3488,56 @@ body {
 
 
 : esp32_status
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -3723,43 +3735,49 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
 
 </li>
 
-<li>mqtt
+<li>ble_client
 
 
 
 </li>
 
-<li>logger
+<li>ble_client
 
 
 
 </li>
 
-<li>api
+<li>ble_client
 
 
 
 </li>
 
-<li>interval
+<li>ble_client
 
 
 
 </li>
 
-<li>esp32_ble
+<li>ble_client
 
 
 
 </li>
 
-<li>esp32_ble_tracker
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
 
 
 
@@ -3782,41 +3800,9 @@ body {
 <p>
 <strong>Components:</strong> 29 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ota
-
- / esphome
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -3857,6 +3843,56 @@ body {
 
 
 : esp32_status
+
+</li>
+
+<li>script
+
+
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -3972,43 +4008,25 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
 
 </li>
 
-<li>mqtt
+<li>ble_client
 
 
 
 </li>
 
-<li>logger
+<li>ble_client
 
 
 
 </li>
 
-<li>api
-
-
-
-</li>
-
-<li>esp32_ble
-
-
-
-</li>
-
-<li>script
-
-
-
-</li>
-
-<li>esp32_ble_tracker
+<li>ble_client
 
 
 
@@ -4031,41 +4049,9 @@ body {
 <p>
 <strong>Components:</strong> 29 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> firmware development, battery management, energy management, home automation, networking protocols, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, battery management, energy management, networking protocols</p>
 
 <ul>
-
-<li>ota
-
- / esphome
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
-
-<li>ble_client
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -4106,6 +4092,56 @@ body {
 
 
 : esp32_status
+
+</li>
+
+<li>script
+
+
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -4221,43 +4257,25 @@ body {
 
 </li>
 
-<li>wifi
+<li>ble_client
 
 
 
 </li>
 
-<li>mqtt
+<li>ble_client
 
 
 
 </li>
 
-<li>logger
+<li>ble_client
 
 
 
 </li>
 
-<li>api
-
-
-
-</li>
-
-<li>esp32_ble
-
-
-
-</li>
-
-<li>script
-
-
-
-</li>
-
-<li>esp32_ble_tracker
+<li>ble_client
 
 
 
@@ -4280,15 +4298,23 @@ body {
 <p>
 <strong>Components:</strong> 16 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols, home automation</p>
+<strong>Focus:</strong> firmware development, energy management, home automation, networking protocols</p>
 
 <ul>
 
-<li>ota
-
- / esphome
+<li>i2c
 
 
+
+</li>
+
+<li>switch
+
+ / template
+
+
+
+: MQTT Publishing
 
 </li>
 
@@ -4309,6 +4335,48 @@ body {
 
 
 : Grid Feed-In Active
+
+</li>
+
+<li>light
+
+ / binary
+
+
+
+: Grid Sensor LED
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -4352,16 +4420,6 @@ body {
 
 </li>
 
-<li>light
-
- / binary
-
-
-
-: Grid Sensor LED
-
-</li>
-
 <li>button
 
  / restart
@@ -4382,46 +4440,6 @@ body {
 
 </li>
 
-<li>wifi
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>switch
-
- / template
-
-
-
-: MQTT Publishing
-
-</li>
-
-<li>i2c
-
-
-
-</li>
-
 </ul>
 
 <p>
@@ -4439,7 +4457,7 @@ body {
 <p>
 <strong>Components:</strong> 0 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, home automation</p>
+<strong>Focus:</strong> home automation, networking protocols</p>
 
 <p>
 <strong>Custom components:</strong> None detected</p>
@@ -4456,7 +4474,7 @@ body {
 <p>
 <strong>Components:</strong> 0 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development</p>
+<strong>Focus:</strong> firmware development, networking protocols</p>
 
 <p>
 <strong>Custom components:</strong> None detected</p>
@@ -4473,21 +4491,11 @@ body {
 <p>
 <strong>Components:</strong> 5 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, energy management, home automation</p>
 
 <ul>
 
-<li>ota
-
- / esphome
-
-
-
-</li>
-
-<li>sensor
-
- / emporia_vue
+<li>i2c
 
 
 
@@ -4505,7 +4513,17 @@ body {
 
 </li>
 
-<li>i2c
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>sensor
+
+ / emporia_vue
 
 
 
@@ -4528,7 +4546,7 @@ body {
 <p>
 <strong>Components:</strong> 0 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development</p>
+<strong>Focus:</strong> firmware development, networking protocols</p>
 
 <p>
 <strong>Custom components:</strong> None detected</p>
@@ -4545,17 +4563,9 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
-
-<li>ota
-
- / esphome
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -4564,22 +4574,6 @@ body {
 
 
 : Status
-
-</li>
-
-<li>sensor
-
- / wifi_signal
-
-
-
-: WiFi Signal
-
-</li>
-
-<li>wifi
-
-
 
 </li>
 
@@ -4592,6 +4586,30 @@ body {
 <li>api
 
 
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
 
 </li>
 
@@ -4612,47 +4630,9 @@ body {
 <p>
 <strong>Components:</strong> 7 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, energy management, home automation</p>
 
 <ul>
-
-<li>binary_sensor
-
- / gpio
-
-
-
-</li>
-
-<li>binary_sensor
-
- / template
-
-
-
-</li>
-
-<li>sensor
-
- / adc
-
-
-
-</li>
-
-<li>sensor
-
- / hlw8012
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
 
 <li>switch
 
@@ -4674,6 +4654,44 @@ body {
 
 </li>
 
+<li>binary_sensor
+
+ / gpio
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / template
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>sensor
+
+ / adc
+
+
+
+</li>
+
+<li>sensor
+
+ / hlw8012
+
+
+
+</li>
+
 </ul>
 
 <p>
@@ -4691,15 +4709,17 @@ body {
 <p>
 <strong>Components:</strong> 9 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>switch
 
- / esphome
+ / gpio
 
 
+
+: None
 
 </li>
 
@@ -4718,6 +4738,32 @@ body {
 
 
 : Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -4741,34 +4787,6 @@ body {
 
 </li>
 
-<li>wifi
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>switch
-
- / gpio
-
-
-
-: None
-
-</li>
-
 </ul>
 
 <p>
@@ -4786,15 +4804,33 @@ body {
 <p>
 <strong>Components:</strong> 21 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols, home automation</p>
+<strong>Focus:</strong> firmware development, energy management, home automation, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>time
 
- / esphome
+ / homeassistant
 
 
+
+</li>
+
+<li>time
+
+ / sntp
+
+
+
+</li>
+
+<li>switch
+
+ / gpio
+
+
+
+: Relay
 
 </li>
 
@@ -4815,6 +4851,46 @@ body {
 
 
 : Status
+
+</li>
+
+<li>light
+
+ / binary
+
+
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -4906,14 +4982,6 @@ body {
 
 </li>
 
-<li>light
-
- / binary
-
-
-
-</li>
-
 <li>button
 
  / restart
@@ -4921,56 +4989,6 @@ body {
 
 
 : Restart
-
-</li>
-
-<li>wifi
-
-
-
-</li>
-
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>time
-
- / homeassistant
-
-
-
-</li>
-
-<li>time
-
- / sntp
-
-
-
-</li>
-
-<li>interval
-
-
-
-</li>
-
-<li>switch
-
- / gpio
-
-
-
-: Relay
 
 </li>
 
@@ -4991,17 +5009,9 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
-
-<li>ota
-
- / esphome
-
-
-
-</li>
 
 <li>binary_sensor
 
@@ -5010,22 +5020,6 @@ body {
 
 
 : Status
-
-</li>
-
-<li>sensor
-
- / wifi_signal
-
-
-
-: WiFi Signal
-
-</li>
-
-<li>wifi
-
-
 
 </li>
 
@@ -5038,6 +5032,30 @@ body {
 <li>api
 
 
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
 
 </li>
 
@@ -5058,19 +5076,17 @@ body {
 <p>
 <strong>Components:</strong> 10 · <strong>Complexity:</strong> high</p>
 <p>
-<strong>Focus:</strong> firmware development, home automation, networking protocols, energy management, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
-
- / esphome
+<li>uart
 
 
 
 </li>
 
-<li>bluetooth_proxy
+<li>i2c
 
 
 
@@ -5088,19 +5104,13 @@ body {
 
 </li>
 
-<li>api
-
-
-
-</li>
-
 <li>ethernet
 
 
 
 </li>
 
-<li>uart
+<li>api
 
 
 
@@ -5112,7 +5122,9 @@ body {
 
 </li>
 
-<li>i2c
+<li>ota
+
+ / esphome
 
 
 
@@ -5124,10 +5136,16 @@ body {
 
 </li>
 
+<li>bluetooth_proxy
+
+
+
+</li>
+
 </ul>
 
 <p>
-<strong>Custom components:</strong> zigbee_tcp, low_power_ethernet, low_power_otbr, wk2132_uart</p>
+<strong>Custom components:</strong> low_power_otbr, low_power_ethernet, zigbee_tcp, wk2132_uart</p>
 <p>
 <strong>External libraries:</strong> None detected</p>
 </div>
@@ -5141,23 +5159,11 @@ body {
 <p>
 <strong>Components:</strong> 5 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
 
-<li>bluetooth_proxy
-
-
-
-</li>
-
 <li>logger
-
-
-
-</li>
-
-<li>api
 
 
 
@@ -5169,7 +5175,19 @@ body {
 
 </li>
 
+<li>api
+
+
+
+</li>
+
 <li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>bluetooth_proxy
 
 
 
@@ -5192,13 +5210,23 @@ body {
 <p>
 <strong>Components:</strong> 11 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, environmental monitoring, home automation</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>uart
 
- / esphome
+
+
+</li>
+
+<li>uart
+
+
+
+</li>
+
+<li>i2c
 
 
 
@@ -5211,6 +5239,32 @@ body {
 
 
 : API Connected
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>ethernet
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -5240,42 +5294,6 @@ body {
 
 </li>
 
-<li>logger
-
-
-
-</li>
-
-<li>api
-
-
-
-</li>
-
-<li>ethernet
-
-
-
-</li>
-
-<li>uart
-
-
-
-</li>
-
-<li>uart
-
-
-
-</li>
-
-<li>i2c
-
-
-
-</li>
-
 </ul>
 
 <p>
@@ -5293,19 +5311,17 @@ body {
 <p>
 <strong>Components:</strong> 10 · <strong>Complexity:</strong> high</p>
 <p>
-<strong>Focus:</strong> firmware development, home automation, networking protocols, energy management, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
-
- / esphome
+<li>uart
 
 
 
 </li>
 
-<li>bluetooth_proxy
+<li>i2c
 
 
 
@@ -5323,19 +5339,13 @@ body {
 
 </li>
 
-<li>api
-
-
-
-</li>
-
 <li>ethernet
 
 
 
 </li>
 
-<li>uart
+<li>api
 
 
 
@@ -5347,7 +5357,9 @@ body {
 
 </li>
 
-<li>i2c
+<li>ota
+
+ / esphome
 
 
 
@@ -5359,10 +5371,16 @@ body {
 
 </li>
 
+<li>bluetooth_proxy
+
+
+
+</li>
+
 </ul>
 
 <p>
-<strong>Custom components:</strong> low_power_ethernet, low_power_otbr</p>
+<strong>Custom components:</strong> low_power_otbr, low_power_ethernet</p>
 <p>
 <strong>External libraries:</strong> None detected</p>
 </div>
@@ -5376,19 +5394,17 @@ body {
 <p>
 <strong>Components:</strong> 10 · <strong>Complexity:</strong> high</p>
 <p>
-<strong>Focus:</strong> firmware development, home automation, networking protocols, energy management, environmental monitoring</p>
+<strong>Focus:</strong> firmware development, environmental monitoring, home automation, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
-
- / esphome
+<li>uart
 
 
 
 </li>
 
-<li>bluetooth_proxy
+<li>i2c
 
 
 
@@ -5406,19 +5422,13 @@ body {
 
 </li>
 
-<li>api
-
-
-
-</li>
-
 <li>ethernet
 
 
 
 </li>
 
-<li>uart
+<li>api
 
 
 
@@ -5430,7 +5440,9 @@ body {
 
 </li>
 
-<li>i2c
+<li>ota
+
+ / esphome
 
 
 
@@ -5442,10 +5454,16 @@ body {
 
 </li>
 
+<li>bluetooth_proxy
+
+
+
+</li>
+
 </ul>
 
 <p>
-<strong>Custom components:</strong> zigbee_tcp, low_power_ethernet, low_power_otbr, wk2132_uart</p>
+<strong>Custom components:</strong> low_power_otbr, low_power_ethernet, zigbee_tcp, wk2132_uart</p>
 <p>
 <strong>External libraries:</strong> None detected</p>
 </div>
@@ -5459,23 +5477,11 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
 
-<li>remote_transmitter
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>api
+<li>remote_receiver
 
 
 
@@ -5491,13 +5497,25 @@ body {
 
 </li>
 
-<li>remote_receiver
+<li>script
 
 
 
 </li>
 
-<li>script
+<li>mqtt
+
+
+
+</li>
+
+<li>remote_transmitter
+
+
+
+</li>
+
+<li>api
 
 
 
@@ -5506,7 +5524,7 @@ body {
 </ul>
 
 <p>
-<strong>Custom components:</strong> remote_receiver, rf_tx_startup</p>
+<strong>Custom components:</strong> rf_tx_startup, remote_receiver</p>
 <p>
 <strong>External libraries:</strong> None detected</p>
 </div>
@@ -5520,7 +5538,7 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
 
@@ -5534,23 +5552,7 @@ body {
 
 </li>
 
-<li>sensor
-
- / uptime
-
-
-
-: Uptime
-
-</li>
-
 <li>logger
-
-
-
-</li>
-
-<li>api
 
 
 
@@ -5562,9 +5564,25 @@ body {
 
 </li>
 
+<li>api
+
+
+
+</li>
+
 <li>spi
 
 
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
 
 </li>
 
@@ -5585,13 +5603,17 @@ body {
 <p>
 <strong>Components:</strong> 5 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development</p>
+<strong>Focus:</strong> firmware development, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>mqtt
 
- / esphome
+
+
+</li>
+
+<li>api
 
 
 
@@ -5603,13 +5625,9 @@ body {
 
 </li>
 
-<li>mqtt
+<li>ota
 
-
-
-</li>
-
-<li>api
+ / esphome
 
 
 
@@ -5638,23 +5656,11 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> medium</p>
 <p>
-<strong>Focus:</strong> networking protocols, firmware development, home automation</p>
+<strong>Focus:</strong> firmware development, home automation, networking protocols</p>
 
 <ul>
 
-<li>remote_transmitter
-
-
-
-</li>
-
-<li>mqtt
-
-
-
-</li>
-
-<li>api
+<li>remote_receiver
 
 
 
@@ -5670,13 +5676,25 @@ body {
 
 </li>
 
-<li>remote_receiver
+<li>script
 
 
 
 </li>
 
-<li>script
+<li>mqtt
+
+
+
+</li>
+
+<li>remote_transmitter
+
+
+
+</li>
+
+<li>api
 
 
 
@@ -5726,27 +5744,23 @@ body {
 <p>
 <strong>Components:</strong> 6 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols, home automation</p>
+<strong>Focus:</strong> firmware development, energy management, home automation, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>switch
 
- / esphome
+ / template
 
 
+
+: Pilot raw CSI stream
 
 </li>
 
 <li>light
 
  / esp32_rmt_led_strip
-
-
-
-</li>
-
-<li>wifi
 
 
 
@@ -5764,13 +5778,17 @@ body {
 
 </li>
 
-<li>switch
-
- / template
+<li>wifi
 
 
 
-: Pilot raw CSI stream
+</li>
+
+<li>ota
+
+ / esphome
+
+
 
 </li>
 
@@ -5791,13 +5809,17 @@ body {
 <p>
 <strong>Components:</strong> 4 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols</p>
+<strong>Focus:</strong> firmware development, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>logger
 
- / esphome
+
+
+</li>
+
+<li>api
 
 
 
@@ -5809,13 +5831,9 @@ body {
 
 </li>
 
-<li>logger
+<li>ota
 
-
-
-</li>
-
-<li>api
+ / esphome
 
 
 
@@ -5838,13 +5856,17 @@ body {
 <p>
 <strong>Components:</strong> 4 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols</p>
+<strong>Focus:</strong> firmware development, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>logger
 
- / esphome
+
+
+</li>
+
+<li>api
 
 
 
@@ -5856,13 +5878,9 @@ body {
 
 </li>
 
-<li>logger
+<li>ota
 
-
-
-</li>
-
-<li>api
+ / esphome
 
 
 
@@ -5885,15 +5903,9 @@ body {
 <p>
 <strong>Components:</strong> 3 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols</p>
+<strong>Focus:</strong> firmware development, energy management, networking protocols</p>
 
 <ul>
-
-<li>wifi
-
-
-
-</li>
 
 <li>logger
 
@@ -5902,6 +5914,12 @@ body {
 </li>
 
 <li>api
+
+
+
+</li>
+
+<li>wifi
 
 
 
@@ -5924,15 +5942,9 @@ body {
 <p>
 <strong>Components:</strong> 3 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols</p>
+<strong>Focus:</strong> firmware development, energy management, networking protocols</p>
 
 <ul>
-
-<li>wifi
-
-
-
-</li>
 
 <li>logger
 
@@ -5941,6 +5953,12 @@ body {
 </li>
 
 <li>api
+
+
+
+</li>
+
+<li>wifi
 
 
 
@@ -5963,13 +5981,17 @@ body {
 <p>
 <strong>Components:</strong> 4 · <strong>Complexity:</strong> low</p>
 <p>
-<strong>Focus:</strong> energy management, firmware development, networking protocols</p>
+<strong>Focus:</strong> firmware development, energy management, networking protocols</p>
 
 <ul>
 
-<li>ota
+<li>logger
 
- / esphome
+
+
+</li>
+
+<li>api
 
 
 
@@ -5981,13 +6003,9 @@ body {
 
 </li>
 
-<li>logger
+<li>ota
 
-
-
-</li>
-
-<li>api
+ / esphome
 
 
 
@@ -6053,7 +6071,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Energy/Daily, /Ac/Energy/Forward, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /AllowedRoles, /Connected, /CustomName, /DeviceInstance, /Energy/Daily/Yesterday, /ErrorCode, /FirmwareVersion, /IsGenericEnergyMeter, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /PhaseSetting, /Position, /PositionIsAdjustable, /ProductId, /ProductName, /Role, /Serial</p>
 <p>
-<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, networking protocols, home automation</p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> home automation, energy management, networking protocols</p>
 
 <ul>
 
@@ -6072,7 +6090,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Power, /CustomName, /org/freedesktop/DBus</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6091,7 +6109,7 @@ body {
 <p>
 <strong>Object paths:</strong> /org/freedesktop/DBus, {path}</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6110,7 +6128,7 @@ body {
 <p>
 <strong>Object paths:</strong> /org/freedesktop/DBus, /proc</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6129,7 +6147,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Power, /Soc, /sys/class/net/eth0/address</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6167,7 +6185,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Power, /Connected, /CustomName, /DeviceInstance, /LastUpdate, /ProductName, /Role</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6186,7 +6204,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Energy/Reverse, /Connected, /DeviceInstance, /Serial</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6205,7 +6223,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Grid/NumberOfPhases, /Connected, /NrOfPhases, /ServiceName</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6224,7 +6242,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Consumption/L1/Power, /Ac/Consumption/L2/Power, /Ac/Energy/Daily, /Ac/Energy/Forward, /Ac/Grid/L1/Power, /Ac/Grid/L2/Power, /Ac/Power, /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Voltage, /Dc/Battery/Soc, /Dc/Pv/Power, /Devices/0/Ac/Inverter/P, /Energy/Daily/Yesterday, /History/Daily/0/Yield, /History/Daily/1/Yield, /Hub4/L1/AcPowerSetpoint, /Info/AllowCharge, /Info/AllowDischarge, /Info/DataComplete, /Info/DataTimeout, /Info/LastMeasurementMonotonic, /Mode, /ModeIsAdjustable, /ProductName, /Pv/V, /Settings, /Settings/CGwacs/BatteryLife/State, /Settings/InverterControl/TouExpensiveEndHour, /Settings/InverterControl/TouExpensiveStartHour, /Settings/System/TimeZone, /Soc, /State, /TimeToGo, /Yield/Power, /usr/bin/dbus</p>
 <p>
-<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6243,7 +6261,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Level, /State</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6376,7 +6394,7 @@ body {
 <p>
 <strong>Object paths:</strong> /, /Double, /Int, /Nothing, /Settings/Vrmlogger/LogInterval, /Text, /org/freedesktop/DBus</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6399,7 +6417,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Settings, /Settings/AioVelib/OptionA, /Settings/AioVelib/OptionB</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management</p>
 
 <ul>
 
@@ -6418,7 +6436,7 @@ body {
 <p>
 <strong>Object paths:</strong> /api, /states, /websocket, config.json</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6494,7 +6512,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /CustomName, /Info/DataComplete, /Info/DataTimeout, /Info/LastMeasurementMonotonic, /Info/MissingSources, /Info/SourceStatus, /InstalledCapacity, /Io/AllowToCharge, /Io/AllowToDischarge, /ProductName, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MaxCellVoltage, /System/MaxVoltageCellId, /System/MinCellVoltage, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge, /System/NrOfModulesOffline, /System/NrOfModulesOnline, /TimeToGo, /Voltages/Diff, /Voltages/Sum</p>
 <p>
-<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6532,7 +6550,7 @@ body {
 <p>
 <strong>Object paths:</strong> Dc/0/MaxChargeCurrent, Mode, SocLimit</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6589,7 +6607,7 @@ body {
 <p>
 <strong>Object paths:</strong> /, /AcPowerSetpoint, /Power</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6608,7 +6626,7 @@ body {
 <p>
 <strong>Object paths:</strong> /api/settings, /api/state, /api/update, /app/src/inverter_dashboard/static, /assets, /health/live, /static, /ws</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6684,7 +6702,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/PowerFactor, /Ac/L1/Voltage, /Ac/L2/Current, /Ac/L2/Power, /Ac/L2/PowerFactor, /Ac/L2/Voltage, /Ac/L3/Current, /Ac/L3/Power, /Ac/L3/PowerFactor, /Ac/L3/Voltage, /Ac/Power, /Alarms/BlockedWarning, /Alarms/CPInputShortCircuit, /Alarms/DisplayFWUpdateFailure1, /Alarms/DisplayFWUpdateFailure2, /Alarms/DisplayFWUpdateInProgress, /Alarms/ExternalCurrentLimit, /Alarms/GNDNotPresent, /Alarms/GxCommWarning, /Alarms/HighTempWarning, /Alarms/LightSensorICFault, /Alarms/OverTemperature, /Alarms/OverloadActive, /Alarms/OverloadDetected, /Alarms/ResidualCurrent, /Alarms/SetupNeeded, /Alarms/SystemCausedCurrentLimit, /Alarms/TamperDetected, /Alarms/TimeSyncIssue, /Alarms/WeldedContacts, /AutoStart, /Connected, /Current, /CustomName, /DeviceInstance, /EnableDisplay, /FirmwareVersion, /HardwareVersion, /IsGenericEnergyMeter, /MaxCurrent, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /MinCurrent, /Mode, /Model, /NrOfPhases, /Position, /PositionIsAdjustable, /ProductId, /ProductName, /Serial, /Session/Cost, /Session/Energy, /Session/SavedCost, /Session/Time, /Session/UserId, /Session/UserIdType, /SetCurrent, /StartStop, /Status</p>
 <p>
-<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6703,7 +6721,7 @@ body {
 <p>
 <strong>Object paths:</strong> /v2/vehicles</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6722,7 +6740,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/L2/Power, /Ac/L3/Power, /Ac/Power, /AtSite, /BatteryCapacity, /ChargingState, /ChargingTime, /Connected, /Current, /CustomName, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /IsGenericEnergyMeter, /MaxCurrent, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Mode, /NrOfPhases, /Odometer, /Position, /Position/Latitude, /Position/Longitude, /PositionIsAdjustable, /ProductId, /ProductName, /RangeToGo, /Serial, /Session/Energy, /SetCurrent, /Soc, /StartStop, /Status, /TargetSoc, /VIN</p>
 <p>
-<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6741,7 +6759,7 @@ body {
 <p>
 <strong>Object paths:</strong> /Climate/Control, /Climate/ControlAvailable, /Climate/ControlEnabled, /Climate/ControlOutcome, /Climate/ControlPending, /Climate/ControlReason, /Climate/Decision, /Climate/DecisionReason, /Climate/EstimatedHeatingPower, /Climate/HvacAction, /Climate/HvacMode, /Climate/IntegrationHealthy, /Climate/LastUpdate, /Climate/Phase, /Climate/ServiceMode, /Climate/TargetTemperature, /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Serial, /Settings/System/Units/Temperature, /Status, /SwitchableOutput/0, /SwitchableOutput/1, /Temperature, /TemperatureType</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> networking protocols, home automation, energy management, battery management</p>
 
 <ul>
 
@@ -6760,7 +6778,7 @@ body {
 <p>
 <strong>Object paths:</strong> /L, /Total/Power, /org/freedesktop/DBus</p>
 <p>
-<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> home automation, energy management, battery management</p>
 
 <ul>
 
