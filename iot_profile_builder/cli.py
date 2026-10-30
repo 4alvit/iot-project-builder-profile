@@ -16,6 +16,7 @@ from rich.table import Table
 
 from iot_profile_builder.analyzers.dbus_analyzer import DBusAnalysis, DBusAnalyzer
 from iot_profile_builder.analyzers.esphome_analyzer import ESPHomeAnalysis, ESPHomeAnalyzer
+from iot_profile_builder.evidence import EvidenceError, load_evidence, write_evidence
 from iot_profile_builder.generator.profile_generator import (
     ProfileGenerator,
     generate_heuristic_profile,
@@ -38,8 +39,22 @@ class IoTProfileBuilder:
         self.dbus_analyzer = DBusAnalyzer()
         self.generator: ProfileGenerator | None = None
 
-    async def run(self, output_dir: Path, use_llm: bool = True) -> Path:
-        """Run the complete profile generation pipeline."""
+    async def run(
+        self,
+        output_dir: Path,
+        use_llm: bool = True,
+        *,
+        checkpoint_path: Path | None = None,
+        resume_from: Path | None = None,
+        evidence_only: bool = False,
+    ) -> Path:
+        """Generate a profile, or explicitly capture/reuse recent public evidence."""
+        if (checkpoint_path or resume_from or evidence_only) and not self.config.strict_scan:
+            raise EvidenceError("Evidence checkpoints require --strict-scan")
+        if checkpoint_path and resume_from:
+            raise EvidenceError("Choose either --checkpoint or --resume-from")
+        if evidence_only and (checkpoint_path is None or resume_from is not None):
+            raise EvidenceError("--evidence-only requires --checkpoint and a fresh scan")
         console.print(
             Panel.fit(
                 f"IoT Profile Builder for [bold cyan]{self.config.username}[/bold cyan]",
@@ -48,6 +63,80 @@ class IoTProfileBuilder:
             )
         )
 
+        if resume_from is not None:
+            evidence = load_evidence(resume_from, self.config)
+            repositories = evidence.repositories
+            esphome_analyses = evidence.esphome_analyses
+            dbus_analyses = evidence.dbus_analyses
+            github_stats = evidence.github_stats
+            console.print(f"Reusing public evidence scanned at {github_stats['scanned_at']}")
+        else:
+            (
+                scan_result,
+                esphome_analyses,
+                dbus_analyses,
+                github_stats,
+            ) = await self._collect_evidence()
+            repositories = scan_result.repositories
+            if checkpoint_path is not None:
+                evidence = write_evidence(
+                    checkpoint_path,
+                    self.config,
+                    repositories,
+                    esphome_analyses,
+                    dbus_analyses,
+                    github_stats,
+                )
+                # Use the same safe summaries as a future retry, not raw configs.
+                repositories = evidence.repositories
+                esphome_analyses = evidence.esphome_analyses
+                dbus_analyses = evidence.dbus_analyses
+                github_stats = evidence.github_stats
+                if evidence_only:
+                    console.print("Public evidence checkpoint saved; no profile generated")
+                    return checkpoint_path
+
+        # Step 5: Generate profile
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=console,
+        ) as progress:
+            gen_task = progress.add_task("Generating engineering profile...", total=None)
+
+            if use_llm:
+                if self.generator is None:
+                    self.generator = ProfileGenerator(self.config)
+                profile = self.generator.generate(
+                    repositories,
+                    esphome_analyses,
+                    dbus_analyses,
+                    github_stats,
+                )
+            else:
+                profile = generate_heuristic_profile(
+                    repositories,
+                    esphome_analyses,
+                    dbus_analyses,
+                    github_stats,
+                    self.config.username,
+                )
+
+            progress.update(gen_task, completed=True, description="Profile generated")
+
+        # Step 6: Render outputs
+        console.print("[blue]Rendering outputs...[/blue]")
+        formats = ["markdown", "html", "json", "charts"]
+        output_paths = generate_profile_outputs(profile, output_dir, formats)
+
+        _print_output_summary(output_paths)
+
+        return output_dir / f"{self.config.username}_profile.md"
+
+    async def _collect_evidence(
+        self,
+    ) -> tuple[ScanResult, list[ESPHomeAnalysis], list[DBusAnalysis], dict[str, Any]]:
+        """Run all network-backed analysis before any model request."""
         # Step 1: Scan GitHub repositories
         with Progress(
             SpinnerColumn(),
@@ -100,42 +189,7 @@ class IoTProfileBuilder:
             },
         }
 
-        # Step 5: Generate profile
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            console=console,
-        ) as progress:
-            gen_task = progress.add_task("Generating engineering profile...", total=None)
-
-            if use_llm:
-                if self.generator is None:
-                    self.generator = ProfileGenerator(self.config)
-                profile = self.generator.generate(
-                    scan_result.repositories,
-                    esphome_analyses,
-                    dbus_analyses,
-                    github_stats,
-                )
-            else:
-                profile = generate_heuristic_profile(
-                    scan_result.repositories,
-                    esphome_analyses,
-                    dbus_analyses,
-                    github_stats,
-                    self.config.username,
-                )
-
-            progress.update(gen_task, completed=True, description="Profile generated")
-
-        # Step 6: Render outputs
-        console.print("[blue]Rendering outputs...[/blue]")
-        formats = ["markdown", "html", "json", "charts"]
-        output_paths = generate_profile_outputs(profile, output_dir, formats)
-
-        _print_output_summary(output_paths)
-
-        return output_dir / f"{self.config.username}_profile.md"
+        return scan_result, esphome_analyses, dbus_analyses, github_stats
 
     @staticmethod
     def _repo_ref(repo: RepositoryMetrics) -> str:
@@ -329,6 +383,9 @@ async def main(
     model: str | None = None,
     include_orgs: list[str] | None = None,
     strict_scan: bool = False,
+    checkpoint_path: Path | None = None,
+    resume_from: Path | None = None,
+    evidence_only: bool = False,
 ) -> int:
     """Main entry point."""
     config_kwargs: dict[str, Any] = {
@@ -348,11 +405,18 @@ async def main(
     config = ScanConfig(**config_kwargs)
 
     builder = IoTProfileBuilder(config)
-    output_path = await builder.run(output_dir, use_llm)
+    output_path = await builder.run(
+        output_dir,
+        use_llm,
+        checkpoint_path=checkpoint_path,
+        resume_from=resume_from,
+        evidence_only=evidence_only,
+    )
 
     console.print(
         Panel.fit(
-            f"Profile generated: [bold green]{output_path}[/bold green]",
+            f"{'Evidence saved' if evidence_only else 'Profile generated'}: "
+            f"[bold green]{output_path}[/bold green]",
             title="Complete",
             border_style="green",
         )
@@ -392,6 +456,17 @@ def cli() -> int:
         help="Comma-separated GitHub orgs to include (default: victron-venus,ha-homelab,open-ott-play)",
     )
 
+    checkpoints = parser.add_mutually_exclusive_group()
+    checkpoints.add_argument(
+        "--checkpoint", type=Path, help="Save public evidence before model generation"
+    )
+    checkpoints.add_argument(
+        "--resume-from", type=Path, help="Reuse matching evidence less than 24 hours old"
+    )
+    parser.add_argument(
+        "--evidence-only", action="store_true", help="Scan and save --checkpoint without a profile"
+    )
+
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.WARNING)
@@ -407,6 +482,9 @@ def cli() -> int:
                 model=args.model,
                 include_orgs=[o.strip() for o in args.orgs.split(",") if o.strip()] or None,
                 strict_scan=args.strict_scan,
+                checkpoint_path=args.checkpoint,
+                resume_from=args.resume_from,
+                evidence_only=args.evidence_only,
             )
         )
     except KeyboardInterrupt:

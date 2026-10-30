@@ -1,5 +1,6 @@
 """Published profiles remain readable, linked and complete without third-party assets."""
 
+from dataclasses import replace
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
@@ -159,6 +160,23 @@ class ProfilePageTests(TestCase):
         self.assertIn('<details class="source-row">', html)
         self.assertIn('<div class="filters" id="repository-filters" hidden>', html)
         self.assertNotIn('<article class="repo" hidden', html)
+
+    def test_qualified_evidence_links_to_its_exact_owner(self) -> None:
+        self.profile.top_repositories.append(
+            replace(self.profile.top_repositories[0], full_name="another-org/meter-bridge")
+        )
+        self.profile.skills[0].evidence = ["another-org/meter-bridge"]
+        page = PageStructure(self.render())
+        self.assertEqual(page.links.count("https://github.com/another-org/meter-bridge"), 2)
+        self.assertEqual(page.links.count("https://github.com/example-org/meter-bridge"), 1)
+
+    def test_ambiguous_short_evidence_does_not_guess_an_owner(self) -> None:
+        self.profile.top_repositories.append(
+            replace(self.profile.top_repositories[0], full_name="another-org/meter-bridge")
+        )
+        page = PageStructure(self.render())
+        self.assertEqual(page.links.count("https://github.com/another-org/meter-bridge"), 1)
+        self.assertEqual(page.links.count("https://github.com/example-org/meter-bridge"), 1)
 
     def test_repository_metadata_is_escaped_in_content_attributes_and_urls(self) -> None:
         repo = self.profile.top_repositories[0]

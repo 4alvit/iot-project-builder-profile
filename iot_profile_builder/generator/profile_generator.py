@@ -203,6 +203,56 @@ class GenerationError(RuntimeError):
     """Requested model analysis could not produce a complete, valid profile."""
 
 
+class _ModelValidationError(ValueError):
+    """A static reason code, never a model-provided value or response body."""
+
+    def __init__(self, reason: str):
+        super().__init__(reason)
+        self.reason = reason
+
+
+MAX_PROFILE_SKILLS = 16
+
+
+def _response_schema() -> dict[str, Any]:
+    """Describe the bounded producer contract using valid JSON Schema syntax."""
+    text = {"type": "string", "minLength": 1}
+    score = {"type": "number", "minimum": 0, "maximum": 1}
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["skills", "focus_areas", "narrative_summary", "key_strengths", "growth_areas"],
+        "properties": {
+            "skills": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": MAX_PROFILE_SKILLS,
+                "items": {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "required": ["name", "category", "proficiency", "evidence", "confidence"],
+                    "properties": {
+                        "name": text,
+                        "category": {"type": "string", "enum": list(SKILL_CATEGORIES)},
+                        "proficiency": {"type": "integer", "minimum": 1, "maximum": 10},
+                        "evidence": {"type": "array", "minItems": 1, "maxItems": 3, "items": text},
+                        "confidence": score,
+                    },
+                },
+            },
+            "focus_areas": {
+                "type": "object",
+                "minProperties": 1,
+                "propertyNames": {"enum": [area.value for area in FocusArea]},
+                "additionalProperties": score,
+            },
+            "narrative_summary": text,
+            "key_strengths": {"type": "array", "minItems": 1, "maxItems": 5, "items": text},
+            "growth_areas": {"type": "array", "maxItems": 3, "items": text},
+        },
+    }
+
+
 def _scanned_repository_count(repos: list[RepositoryMetrics], github_stats: dict[str, Any]) -> int:
     """Count scanned repositories without adding their configuration/service records."""
     count = github_stats.get("total_repos")
@@ -365,7 +415,7 @@ class ProfileGenerator:
         repo_summaries = []
         for r in repos[:20]:
             repo_summaries.append(
-                f"- {r.name}: {r.description or 'No description'} "
+                f"- {r.full_name or r.name}: {r.description or 'No description'} "
                 f"({r.language}, {r.stars}⭐, iot_score: {r.iot_score:.2f}, "
                 f"complexity: {r.complexity.value}, areas: "
                 f"{[a.value for a in r.focus_areas]})"
@@ -394,11 +444,12 @@ class ProfileGenerator:
 
         context = (
             f"GitHub Stats: {json.dumps(github_stats, default=str)}\n\n"
-            f"Repositories ({len(repos)} IoT-related):\n"
+            f"Repositories (selected {len(repo_summaries)} of {len(repos)} IoT-related):\n"
             f"{chr(10).join(repo_summaries)}\n\n"
-            f"ESPHome Analyses ({len(esphome_analyses)} files):\n"
+            f"ESPHome Analyses (selected {len(esphome_summary)} "
+            f"of {len(esphome_analyses)} files):\n"
             f"{chr(10).join(esphome_summary) or 'None'}\n\n"
-            f"D-Bus Analyses ({len(dbus_analyses)} services):\n"
+            f"D-Bus Analyses (selected {len(dbus_summary)} of {len(dbus_analyses)} services):\n"
             f"{chr(10).join(dbus_summary) or 'None'}\n\n"
             f"Skill Categories Reference:\n"
             f"{json.dumps(SKILL_CATEGORIES, indent=2)}"
@@ -409,26 +460,23 @@ class ProfileGenerator:
         """Call Anthropic API for profile generation."""
         self._generation = {"mode": "heuristic_fallback", "requested_model": self.model}
 
-        focus_area_values = [a.value for a in FocusArea]
         user_prompt = (
-            "Analyze this IoT developer's GitHub activity and create a "
-            f"comprehensive engineering profile.\n\n{context}\n\n"
-            "Return JSON with these fields:\n"
-            "{\n"
-            '    "skills": [\n'
-            '        {"name": "skill name", "category": "category", '
-            '"proficiency": 1-10, "evidence": ["repo1", "repo2"], '
-            '"confidence": 0.0-1.0}\n'
-            "    ],\n"
-            '    "focus_areas": {"focus_area_name": 0.0-1.0},\n'
-            '    "narrative_summary": "2-3 paragraph summary",\n'
-            '    "key_strengths": ["strength1", "strength2"],\n'
-            '    "growth_areas": ["area1", "area2"]\n'
-            "}\n\n"
-            f"Focus areas must be from: {focus_area_values}\n"
-            "Categories from skill categories reference above.\n"
+            "Create a concise, evidence-based IoT engineering profile.\n\n"
+            f"{context}\n\n"
+            "Return one JSON object conforming to this schema:\n"
+            f"{json.dumps(_response_schema(), indent=2)}\n\n"
+            f"Select at most {MAX_PROFILE_SKILLS} well-supported skills; fewer are valid. "
+            "Each proficiency must be an integer such as 7, never 7.0, a percentage, "
+            "a range or a quoted number. Confidence and focus scores must be finite "
+            "JSON numbers between 0 and 1. Use only exact focus-area enum names. "
+            "Use category names from the skill categories reference. "
+            "For each skill give 1-3 exact repository or source names from the evidence. "
+            "Write two short narrative paragraphs totaling at most 180 words, "
+            "1-5 brief strengths and 0-3 brief growth areas. "
+            "Do not add unsupported skills to fill a quota. "
             "Output ONLY the JSON object — no markdown fences, no comments, "
-            "no trailing commas. It must parse with a strict JSON parser."
+            "no reasoning prose and no trailing commas. Before returning it, check "
+            "that every required field has the exact requested JSON type."
         )
 
         try:
@@ -449,7 +497,12 @@ class ProfileGenerator:
                 "end_turn",
                 "stop_sequence",
             ):
-                raise ValueError("model response did not finish normally")
+                reason = {
+                    "max_tokens": "response_truncated",
+                    "tool_use": "unexpected_tool_request",
+                    "refusal": "response_refused",
+                }.get(response.stop_reason or "", "response_unfinished")
+                raise _ModelValidationError(reason)
             content = "".join(b.text for b in response.content if b.type == "text")
             generation = {"mode": "llm", "requested_model": self.model}
             if isinstance(response.model, str) and response.model:
@@ -458,6 +511,8 @@ class ProfileGenerator:
             if self.config.strict_scan:
                 # Publication must never turn truncated or repaired model output
                 # into a successful fresh profile.
+                if not content.strip():
+                    raise _ModelValidationError("empty_response")
                 result = json.loads(content)
                 validated = self._validate_llm_result(result)
                 self._generation = generation
@@ -493,6 +548,10 @@ class ProfileGenerator:
         except Exception as error:
             # Provider exception bodies can contain request data or credentials.
             message = f"Model analysis failed ({type(error).__name__})"
+            if isinstance(error, _ModelValidationError):
+                message += f": {error.reason}"
+            elif isinstance(error, json.JSONDecodeError):
+                message += ": invalid_json"
             if self.config.strict_scan:
                 raise GenerationError(message) from None
             logger.error(message)
@@ -503,15 +562,15 @@ class ProfileGenerator:
     def _validate_llm_result(result: Any) -> dict[str, Any]:
         """Validate publication data before permissive profile parsing can drop it."""
         if not isinstance(result, dict):
-            raise ValueError("model output must be an object")
+            raise _ModelValidationError("expected_object")
         required = {"skills", "focus_areas", "narrative_summary", "key_strengths", "growth_areas"}
         if not required.issubset(result):
-            raise ValueError("model output is missing required fields")
+            raise _ModelValidationError("missing_required_fields")
         if (
             not isinstance(result["narrative_summary"], str)
             or not result["narrative_summary"].strip()
         ):
-            raise ValueError("model summary must be nonempty text")
+            raise _ModelValidationError("invalid_narrative")
 
         def text_list(value: Any) -> bool:
             return isinstance(value, list) and all(
@@ -527,35 +586,34 @@ class ProfileGenerator:
             )
 
         if not all(text_list(result[key]) for key in ("key_strengths", "growth_areas")):
-            raise ValueError("model strengths and growth areas must be text lists")
+            raise _ModelValidationError("invalid_insight_lists")
         if not result["key_strengths"]:
-            raise ValueError("model must identify evidence-backed strengths")
+            raise _ModelValidationError("empty_strengths")
         focus = result["focus_areas"]
-        if (
-            not isinstance(focus, dict)
-            or not focus
-            or not all(
-                area in {item.value for item in FocusArea} and score(value)
-                for area, value in focus.items()
-            )
-        ):
-            raise ValueError("model focus areas must have known names and bounded scores")
+        if not isinstance(focus, dict) or not focus:
+            raise _ModelValidationError("invalid_focus_object")
+        if not all(area in {item.value for item in FocusArea} for area in focus):
+            raise _ModelValidationError("unknown_focus_area")
+        if not all(score(value) for value in focus.values()):
+            raise _ModelValidationError("invalid_focus_score")
         if not isinstance(result["skills"], list) or not result["skills"]:
-            raise ValueError("model skills must be a nonempty list")
+            raise _ModelValidationError("invalid_skills_list")
+        if len(result["skills"]) > MAX_PROFILE_SKILLS:
+            raise _ModelValidationError("too_many_skills")
         for skill in result["skills"]:
             if not isinstance(skill, dict) or not all(
                 isinstance(skill.get(key), str) and skill[key].strip()
                 for key in ("name", "category")
             ):
-                raise ValueError("model skill must have a name and category")
-            if (
-                type(skill.get("proficiency")) is not int
-                or not 1 <= skill["proficiency"] <= 10
-                or not text_list(skill.get("evidence"))
-                or not skill["evidence"]
-                or not score(skill.get("confidence"))
-            ):
-                raise ValueError("model skill assessment is invalid")
+                raise _ModelValidationError("invalid_skill_identity")
+            if skill["category"] not in SKILL_CATEGORIES:
+                raise _ModelValidationError("unknown_skill_category")
+            if type(skill.get("proficiency")) is not int or not 1 <= skill["proficiency"] <= 10:
+                raise _ModelValidationError("invalid_skill_proficiency")
+            if not text_list(skill.get("evidence")) or not skill["evidence"]:
+                raise _ModelValidationError("invalid_skill_evidence")
+            if not score(skill.get("confidence")):
+                raise _ModelValidationError("invalid_skill_confidence")
         return result
 
     def _parse_llm_result(

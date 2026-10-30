@@ -43,6 +43,29 @@ The refresh job has a 45-minute execution limit. Concurrent refreshes queue
 rather than canceling the current generation. Output from previous runs is never
 used as a fallback. A failed run must not be repaired by changing only its date.
 
+## Retry model generation from complete evidence
+
+After a complete scan, the job saves a public evidence checkpoint before asking
+the model for its narrative. Its separate Actions artifact is retained for one
+day, including when model generation fails. It contains selected public metadata
+and derived analysis, never raw configuration contents or API credentials. An
+incomplete scan does not produce a checkpoint.
+
+Download `scan-evidence-RUN-ATTEMPT` from the trusted default-branch run you have
+reviewed. Configure the same model endpoint and credentials, then repeat the
+same username, owners and scan options with `--strict-scan --resume-from
+/path/to/scan-evidence.json` instead of `--checkpoint`. A checkpoint is usable
+for less than 24 hours and must match those options; it cannot be substituted
+for another user or silently extended to a later date. Treat downloaded files
+as data and verify the source run before using them.
+
+The retry preserves the original `github_stats.scanned_at`. Its new
+`generated_at` records when the model actually generated the narrative. For
+manual staging, use the reviewed original scan's start time as
+`--generated-after`, not the later retry time. Checkpoint files are marked
+`evidence_only` and are never a publishable profile themselves. For a fresh
+scan without a model call, use `--checkpoint PATH --evidence-only`.
+
 ## Run a refresh now
 
 In Actions, choose **Update IoT Developer Profile**, then **Run workflow** on

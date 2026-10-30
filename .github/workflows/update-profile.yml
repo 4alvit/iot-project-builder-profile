@@ -113,10 +113,19 @@ jobs:
         uv run --locked iot-profile-builder "$PROFILE_USERNAME" \
           --token "$GITHUB_TOKEN" \
           --output "$PROFILE_DIRECTORY" \
+          --checkpoint "$PROFILE_DIRECTORY/scan-evidence.json" \
           --max-repos 100 \
           --orgs victron-venus,ha-homelab,open-ott-play \
           --strict-scan \
           "${EXTRA[@]}"
+    - name: Retain complete public scan evidence
+      if: ${{ always() && steps.refresh.outputs.directory != '' }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      with:
+        name: scan-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+        path: ${{ steps.refresh.outputs.directory }}/scan-evidence.json
+        if-no-files-found: ignore
+        retention-days: 1
     - name: Validate and stage this run's profile
       env:
         PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
