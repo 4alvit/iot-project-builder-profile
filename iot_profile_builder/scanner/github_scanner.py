@@ -24,6 +24,11 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+
+class ScanError(RuntimeError):
+    """A strict scan cannot publish incomplete repository evidence."""
+
+
 IOT_KEYWORDS = {
     "esphome",
     "homeassistant",
@@ -273,6 +278,30 @@ class GitHubScanner:
             Github(auth=Auth.Token(config.token)) if config.token else Github()
         )
         self.user = self.client.get_user(config.username)
+        self.errors: list[str] = []
+        self._repositories: dict[str, Repository] = {}
+        self._topics: dict[str, list[str]] = {}
+        self._heads: dict[str, str] = {}
+        self._trees: dict[str, list[dict[str, Any]]] = {}
+        self._contents: dict[tuple[str, str], list[dict[str, Any]]] = {}
+        self._files: dict[tuple[str, str], str] = {}
+
+    def record_error(self, message: str) -> None:
+        """Record incomplete evidence; publication scans stop at the first error."""
+        self.errors.append(message)
+        if self.config.strict_scan:
+            raise ScanError(message)
+        logger.warning(message)
+
+    def _repo_topics(self, repo: Repository) -> list[str]:
+        key = repo.full_name.lower()
+        if key not in self._topics:
+            # Enumeration includes topics on current GitHub APIs.
+            topics = repo.raw_data.get("topics")
+            if not isinstance(topics, list) or not all(isinstance(t, str) for t in topics):
+                topics = repo.get_topics()
+            self._topics[key] = topics
+        return self._topics[key]
 
     def _calculate_iot_score(self, repo: Repository) -> float:
         """Calculate IoT relevance score (0-1)."""
@@ -280,7 +309,7 @@ class GitHubScanner:
         text = " ".join(
             [
                 (repo.description or "").lower(),
-                " ".join(repo.get_topics()).lower(),
+                " ".join(self._repo_topics(repo)).lower(),
                 (repo.language or "").lower(),
             ]
         )
@@ -334,8 +363,8 @@ class GitHubScanner:
             languages = repo.get_languages()
             if len(languages) > 3:
                 factors += 1
-        except Exception:
-            pass
+        except Exception as error:
+            self.record_error(f"Failed to get languages for {repo.full_name}: {error}")
 
         if factors >= 5:
             return ComplexityLevel.EXPERT
@@ -350,7 +379,7 @@ class GitHubScanner:
         text = " ".join(
             [
                 (repo.description or "").lower(),
-                " ".join(repo.get_topics()).lower(),
+                " ".join(self._repo_topics(repo)).lower(),
             ]
         ).split()
 
@@ -374,7 +403,7 @@ class GitHubScanner:
             stars=repo.stargazers_count,
             forks=repo.forks_count,
             language=repo.language,
-            topics=repo.get_topics(),
+            topics=self._repo_topics(repo),
             is_fork=repo.fork,
             created_at=repo.created_at,
             updated_at=repo.updated_at,
@@ -390,6 +419,7 @@ class GitHubScanner:
         org_repos: list[Repository] = []
         for i, org_repo in enumerate(org.get_repos(type="public")):
             if i >= limit:
+                self.record_error(f"org:{org_name}: repository list exceeds max_repos={limit}")
                 break
             org_repos.append(org_repo)
         return org_repos
@@ -397,7 +427,14 @@ class GitHubScanner:
     async def scan(self) -> ScanResult:
         """Scan user's repositories for IoT projects."""
         repos: list[RepositoryMetrics] = []
-        errors: list[str] = []
+        # Never reuse old evidence when a builder starts a second scan.
+        self.errors = []
+        self._repositories.clear()
+        self._topics.clear()
+        self._heads.clear()
+        self._trees.clear()
+        self._contents.clear()
+        self._files.clear()
         total = 0
         iot_count = 0
 
@@ -412,6 +449,10 @@ class GitHubScanner:
             )
             for i, user_repo in enumerate(user_repos):
                 if i >= self.config.max_repos:
+                    self.record_error(
+                        f"user:{self.config.username}: repository list exceeds "
+                        f"max_repos={self.config.max_repos}"
+                    )
                     break
                 gh_repos.append(user_repo)
 
@@ -421,22 +462,22 @@ class GitHubScanner:
                     org_repos = self._iter_org_repos(org_name, self.config.max_repos)
                     gh_repos.extend(org_repos)
                     logger.info(f"Included {len(org_repos)} repos from org {org_name}")
+                except ScanError:
+                    raise
                 except Exception as e:
-                    errors.append(f"org:{org_name}: {e!s}")
-                    logger.warning(f"Failed to list org {org_name}: {e}")
+                    self.record_error(f"org:{org_name}: {e!s}")
 
             for repo in gh_repos:
                 if repo.full_name in seen:
                     continue
                 seen.add(repo.full_name)
-                if len(seen) > self.config.max_repos * 2:
-                    break
                 total += 1
                 try:
                     if getattr(repo, "private", False):
                         continue  # public repos only
                     if repo.fork and not self.config.include_forks:
                         continue
+                    self._repositories[repo.full_name.lower()] = repo
                     metrics = self._repo_to_metrics(repo)
                     if metrics.iot_score >= self.config.min_iot_score:
                         repos.append(metrics)
@@ -444,39 +485,60 @@ class GitHubScanner:
                         logger.info(
                             f"Found IoT repo: {repo.full_name} (score: {metrics.iot_score:.2f})"
                         )
+                except ScanError:
+                    raise
                 except Exception as e:
-                    errors.append(f"{repo.full_name}: {e!s}")
-                    logger.warning(f"Error processing {repo.full_name}: {e}")
+                    self.record_error(f"{repo.full_name}: {e!s}")
 
+        except ScanError:
+            raise
         except Exception as e:
-            errors.append(f"Scan failed: {e!s}")
-            logger.error(f"Scan failed: {e}")
+            self.record_error(f"Scan failed: {e!s}")
 
         return ScanResult(
             repositories=repos,
             total_scanned=total,
             iot_repos=iot_count,
-            errors=errors,
+            errors=self.errors,
         )
 
     def _resolve_repo(self, repo_ref: str) -> Repository:
-        """Resolve owner/name or bare name under configured username."""
+        """Reuse public enumeration objects instead of refetching every file's repo."""
         full = repo_ref if "/" in repo_ref else f"{self.config.username}/{repo_ref}"
-        return self.client.get_repo(full)
+        key = full.lower()
+        if key not in self._repositories:
+            repo = self.client.get_repo(full)
+            if repo.private is True:
+                raise ValueError("Private repositories cannot be public profile evidence")
+            self._repositories[key] = repo
+        return self._repositories[key]
+
+    def _head(self, repo: Repository) -> str:
+        key = repo.full_name.lower()
+        if key not in self._heads:
+            self._heads[key] = repo.get_branch(repo.default_branch).commit.sha
+        return self._heads[key]
 
     async def get_repo_contents(self, repo_name: str, path: str = "") -> list[dict[str, Any]]:
         """Get repository contents for deeper analysis (single directory)."""
         try:
             repo = self._resolve_repo(repo_name)
-            contents = repo.get_contents(path)
+            key = (repo.full_name.lower(), path)
+            if key in self._contents:
+                return self._contents[key]
+            contents = repo.get_contents(path, ref=self._head(repo))
             # get_contents returns a single ContentFile for files, list for dirs
             if isinstance(contents, ContentFile):
                 contents = [contents]
-            return [
+            result = [
                 {"name": c.name, "path": c.path, "type": c.type, "size": c.size} for c in contents
             ]
+            self._contents[key] = result
+            return result
+        except ScanError:
+            raise
         except Exception as e:
-            logger.error(f"Failed to get contents for {repo_name}: {e}")
+            self.record_error(f"Failed to get contents for {repo_name}: {e}")
             return []
 
     async def list_repo_files(
@@ -485,45 +547,52 @@ class GitHubScanner:
         suffixes: tuple[str, ...] = (".yaml", ".yml", ".py"),
         max_files: int = 200,
     ) -> list[dict[str, Any]]:
-        """List matching files recursively via Git Trees API (falls back to root listing)."""
+        """Reuse one pinned recursive tree for ESPHome and D-Bus analysis."""
         try:
             repo = self._resolve_repo(repo_name)
-            sha = repo.get_branch(repo.default_branch).commit.sha
-            tree = repo.get_git_tree(sha, recursive=True)
+            key = repo.full_name.lower()
+            if key not in self._trees:
+                tree = repo.get_git_tree(self._head(repo), recursive=True)
+                if tree.truncated is True:
+                    self.record_error(f"Truncated Git tree for {repo_name}")
+                self._trees[key] = [
+                    {
+                        "name": entry.path.rsplit("/", 1)[-1],
+                        "path": entry.path,
+                        "type": "file",
+                        "size": entry.size or 0,
+                    }
+                    for entry in tree.tree
+                    if entry.type == "blob"
+                ]
             files: list[dict[str, Any]] = []
             skip_parts = (
-                ".git/",
-                "node_modules/",
-                "vendor/",
-                ".venv/",
-                "dist/",
-                "build/",
-                "__pycache__/",
+                ".git",
+                "node_modules",
+                "vendor",
+                ".venv",
+                "dist",
+                "build",
+                "__pycache__",
+                ".github",
+                "tests",
+                "test",
             )
-            for entry in tree.tree:
-                if entry.type != "blob":
-                    continue
-                path = entry.path
-                if any(p in path for p in skip_parts):
+            for entry in self._trees[key]:
+                path = entry["path"]
+                if any(part in skip_parts for part in path.split("/")[:-1]):
                     continue
                 lower = path.lower()
                 if not any(lower.endswith(sfx) or lower.endswith(sfx + ".j2") for sfx in suffixes):
                     continue
-                # Skip secrets examples / lock-ish yaml noise at root of CI configs optionally
-                name = path.rsplit("/", 1)[-1]
-                files.append(
-                    {
-                        "name": name,
-                        "path": path,
-                        "type": "file",
-                        "size": entry.size or 0,
-                    }
-                )
+                files.append(entry)
                 if len(files) >= max_files:
                     break
             return files
+        except ScanError:
+            raise
         except Exception as e:
-            logger.warning(f"Tree listing failed for {repo_name} ({e}); falling back to root")
+            self.record_error(f"Tree listing failed for {repo_name} ({e}); falling back to root")
             contents = await self.get_repo_contents(repo_name)
             return [
                 c
@@ -533,16 +602,23 @@ class GitHubScanner:
                     c["path"].lower().endswith(sfx) or c["path"].lower().endswith(sfx + ".j2")
                     for sfx in suffixes
                 )
-            ]
+            ][:max_files]
 
     async def get_file_content(self, repo_name: str, path: str) -> str | None:
         """Get file content from repository."""
         try:
             repo = self._resolve_repo(repo_name)
-            file = repo.get_contents(path)
+            key = (repo.full_name.lower(), path)
+            if key in self._files:
+                return self._files[key]
+            file = repo.get_contents(path, ref=self._head(repo))
             if isinstance(file, list):
                 raise ValueError(f"{path} is a directory, not a file")
-            return (file.decoded_content or b"").decode("utf-8")
+            content = (file.decoded_content or b"").decode("utf-8")
+            self._files[key] = content
+            return content
+        except ScanError:
+            raise
         except Exception as e:
-            logger.error(f"Failed to get file {path} from {repo_name}: {e}")
+            self.record_error(f"Failed to get file {path} from {repo_name}: {e}")
             return None

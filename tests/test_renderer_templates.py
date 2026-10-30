@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 from unittest.mock import patch
 
-from iot_profile_builder.models import EngineeringProfile
+from iot_profile_builder.models import EngineeringProfile, FocusArea
 from iot_profile_builder.output import renderer
 
 
@@ -37,6 +37,15 @@ class RendererTemplateTests(TestCase):
         html = (self.root / "profile.html").read_text()
         self.assertIn("&lt;script&gt;untrusted metadata&lt;/script&gt;", html)
         self.assertNotIn("<script>untrusted metadata</script>", html)
+
+    def test_markdown_focus_scores_do_not_depend_on_unpublished_images(self) -> None:
+        self.profile.focus_areas = {FocusArea.ENERGY_MANAGEMENT: 0.75}
+        output = self.root / "profile.md"
+        renderer.ProfileRenderer().render_markdown(self.profile, output)
+        markdown = output.read_text()
+        self.assertIn("Energy Management: 75.0%", markdown)
+        self.assertNotIn("![", markdown)
+        self.assertEqual(list(self.root.iterdir()), [output])
 
     def test_missing_custom_directory_uses_defaults_without_creating_it(self) -> None:
         templates = self.root / "missing-templates"

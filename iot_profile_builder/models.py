@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
@@ -157,7 +158,12 @@ class ScanConfig:
     min_iot_score: float = 0.3
     analyze_esphome: bool = True
     analyze_dbus: bool = True
+    strict_scan: bool = False
     include_orgs: list[str] = field(
         default_factory=lambda: ["victron-venus", "ha-homelab", "open-ott-play"]
     )
-    llm_model: str = "claude-3-5-sonnet-20241022"
+    llm_model: str = field(
+        default_factory=lambda: (
+            os.environ.get("PROFILE_LLM_MODEL", "").strip() or "claude-3-5-sonnet-20241022"
+        )
+    )
