@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 
 from github import Auth, Github
 from github.ContentFile import ContentFile
+from github.GithubException import RateLimitExceededExceedsMaxWait
+from github.GithubRetry import GithubRetry
 from github.Repository import Repository
 
 from ..github_tls import enforce_github_tls
@@ -21,12 +23,38 @@ from ..models import (
 
 if TYPE_CHECKING:
     from github.PaginatedList import PaginatedList
+    from urllib3.response import BaseHTTPResponse
 
 logger = logging.getLogger(__name__)
 
 
 class ScanError(RuntimeError):
     """A strict scan cannot publish incomplete repository evidence."""
+
+
+class _BoundedGithubRetry(GithubRetry):
+    """Also bound Retry-After headers, which bypass PyGithub's reset-time guard."""
+
+    def get_retry_after(self, response: BaseHTTPResponse) -> float | None:
+        delay = super().get_retry_after(response)
+        reset = response.headers.get("X-RateLimit-Reset", "")
+        if response.headers.get("X-RateLimit-Remaining") == "0" and reset.isdigit():
+            # Primary exhaustion remains authoritative when Retry-After is
+            # shorter. Match PyGithub's one-second reset-boundary allowance.
+            until_reset = float(reset) - datetime.now(UTC).timestamp() + 1
+            delay = max(delay or 0, until_reset)
+        if (
+            delay is not None
+            and self.max_rate_limit_wait is not None
+            and delay > self.max_rate_limit_wait
+        ):
+            # Refuse this attempt instead of retrying earlier than GitHub allows.
+            raise RateLimitExceededExceedsMaxWait(
+                response.status,
+                {"message": "GitHub Retry-After exceeds the configured wait limit"},
+                wait=delay,
+            )
+        return delay
 
 
 IOT_KEYWORDS = {
@@ -275,7 +303,11 @@ class GitHubScanner:
     def __init__(self, config: ScanConfig):
         self.config = config
         self.client = enforce_github_tls(
-            Github(auth=Auth.Token(config.token)) if config.token else Github()
+            Github(
+                auth=Auth.Token(config.token) if config.token else None,
+                per_page=100,
+                retry=_BoundedGithubRetry(max_rate_limit_wait=60),
+            )
         )
         self.user = self.client.get_user(config.username)
         self.errors: list[str] = []
@@ -390,9 +422,8 @@ class GitHubScanner:
 
         return areas if areas else [FocusArea.UNKNOWN]
 
-    def _repo_to_metrics(self, repo: Repository) -> RepositoryMetrics:
+    def _repo_to_metrics(self, repo: Repository, iot_score: float) -> RepositoryMetrics:
         """Convert GitHub repo to metrics object."""
-        iot_score = self._calculate_iot_score(repo)
         complexity = self._determine_complexity(repo, iot_score)
         focus_areas = self._detect_focus_areas(repo)
 
@@ -478,8 +509,9 @@ class GitHubScanner:
                     if repo.fork and not self.config.include_forks:
                         continue
                     self._repositories[repo.full_name.lower()] = repo
-                    metrics = self._repo_to_metrics(repo)
-                    if metrics.iot_score >= self.config.min_iot_score:
+                    iot_score = self._calculate_iot_score(repo)
+                    if iot_score >= self.config.min_iot_score:
+                        metrics = self._repo_to_metrics(repo, iot_score)
                         repos.append(metrics)
                         iot_count += 1
                         logger.info(

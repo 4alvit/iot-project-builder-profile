@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from tempfile import mkdtemp
 from types import SimpleNamespace
+from typing import Any
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock, patch
 
@@ -78,7 +79,10 @@ class ApplicationTests(IsolatedAsyncioTestCase):
             )
         )
         self.enterContext(
-            patch("iot_profile_builder.scanner.github_scanner.Github", lambda: self.github_client)
+            patch(
+                "iot_profile_builder.scanner.github_scanner.Github",
+                lambda **_kwargs: self.github_client,
+            )
         )
 
     async def test_scan_preserves_org_owners_and_excludes_private_forks_duplicates(self) -> None:
@@ -255,6 +259,52 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         self.assertEqual(profile.skills, [])
         assert profile.iot_repos_count == 0
         assert all(score == 0 for score in profile.focus_areas.values())
+
+    def test_repository_totals_do_not_count_nested_analysis_records(self) -> None:
+        """Both generators distinguish scanned repositories from per-file evidence."""
+        repos = [repository_metrics()]
+        esphome = [
+            ESPHomeAnalyzer().analyze_content(
+                "esphome:\n  name: battery\nesp32:\n  board: esp32dev\n", path
+            )
+            for path in ("devices/battery.yaml", "devices/backup.yaml")
+        ]
+        dbus = [
+            DBusAnalyzer().analyze_content(
+                "service = VeDbusService('com.victronenergy.battery.demo')\n"
+                "service.add_path('/Soc', 75)\n",
+                "service.py",
+            )
+        ]
+        self.enterContext(patch("anthropic.Anthropic"))
+        self.enterContext(
+            patch.object(
+                ProfileGenerator,
+                "_call_llm",
+                return_value={"skills": [], "narrative_summary": "Repository evidence."},
+            )
+        )
+        generator = ProfileGenerator(ScanConfig(username="owner"))
+        cases: list[tuple[dict[str, Any], int]] = [({"total_repos": 7}, 7), ({}, 1)]
+        cases.extend(
+            ({"total_repos": invalid}, 1) for invalid in (None, True, False, 0, -1, 7.0, "7")
+        )
+        for stats, expected in cases:
+            with self.subTest(stats=stats):
+                profiles = [
+                    generator.generate(repos, esphome, dbus, stats),
+                    generate_heuristic_profile(repos, esphome, dbus, stats, "owner"),
+                ]
+                for profile in profiles:
+                    self.assertIs(type(profile.total_repos_analyzed), int)
+                    self.assertEqual(profile.total_repos_analyzed, expected)
+                    self.assertEqual(profile.iot_repos_count, 1)
+                    self.assertEqual(len(profile.esphome_analyses), 2)
+                    self.assertEqual(len(profile.dbus_analyses), 1)
+                    self.assertEqual(sum(profile.complexity_distribution.values()), 4)
+                    self.assertEqual(
+                        renderer._profile_to_dict(profile)["total_repos_analyzed"], expected
+                    )
 
     def test_llm_failure_preserves_repository_evidence(self) -> None:
         """Provider errors degrade to a report without discarding scanned projects."""

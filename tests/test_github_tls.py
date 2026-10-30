@@ -39,7 +39,7 @@ def test_actual_scanner_rejects_weak_chain_before_auth(
     with peer(chain, version, response_body=b'{"login":"synthetic","id":1}') as (port, seen):
         host = "127.0.0.1" if case == "wrong-host" else "localhost"
 
-        def client(*, auth: Auth.Auth) -> Github:
+        def client(*, auth: Auth.Auth, **_kwargs: object) -> Github:
             return Github(auth=auth, base_url=f"https://{host}:{port}", retry=0)
 
         with patch("iot_profile_builder.scanner.github_scanner.Github", client):

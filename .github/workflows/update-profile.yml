@@ -23,15 +23,36 @@ jobs:
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     permissions:
       contents: read
-    runs-on: ${{ fromJSON((vars.CI_RUNNER_MODE == 'self-hosted' || vars.CI_RUNNER_MODE == 'k3s') && (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) && (vars.CI_RUNNER_AUTOMATION_LABELS || '[]') || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(((vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'self-hosted' || (vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'k3s') && (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) && (vars.CI_RUNNER_AUTOMATION_LABELS || '[]') || '["ubuntu-latest"]') }}
     timeout-minutes: 45
     env:
       TZ: UTC
     steps:
-    - name: Harden the runner (Audit all outbound calls)
+    - name: Mask the private inference hostname
+      env:
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+      run: |
+        python3 - <<'PY'
+        import os
+        from urllib.parse import urlsplit
+        hostname = urlsplit(os.environ.get("ANTHROPIC_BASE_URL", "")).hostname
+        if hostname:
+            print(f"::add-mask::{hostname}")
+        PY
+    - name: Harden the runner (Enforce permitted endpoints)
       uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
       with:
-        egress-policy: audit
+        egress-policy: block
+        disable-telemetry: true
+        allowed-endpoints: >-
+          github.com:443
+          api.github.com:443
+          raw.githubusercontent.com:443
+          release-assets.githubusercontent.com:443
+          releases.astral.sh:443
+          pypi.org:443
+          files.pythonhosted.org:443
+          ${{ secrets.PROFILE_INFERENCE_HOSTNAME }}:443
 
     - name: Prepare a fresh refresh directory
       id: refresh
@@ -55,6 +76,17 @@ jobs:
         version: 0.13.4
     - name: Install locked dependencies
       run: uv sync --locked --all-extras
+    - name: Check model access before scanning
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.use-llm }}
+      timeout-minutes: 3
+      env:
+        PROFILE_LLM_MODEL: ${{ vars.PROFILE_LLM_MODEL }}
+        ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        PROFILE_LLM_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        PROFILE_ACCESS_CLIENT_ID: ${{ secrets.PROFILE_ACCESS_CLIENT_ID }}
+        PROFILE_ACCESS_CLIENT_SECRET: ${{ secrets.PROFILE_ACCESS_CLIENT_SECRET }}
+      run: uv run --locked python scripts/probe_profile_model.py
     - name: Generate profile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

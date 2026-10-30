@@ -12,7 +12,8 @@ can be delayed by GitHub. It scans the user and configured public organizations,
 then asks the configured model to generate the narrative. The stages are:
 
 1. Create a new temporary output directory and record the refresh start time.
-2. Fetch public repository evidence and run ESPHome/D-Bus analysis with
+2. Verify model access from the selected runner with one small synthetic request
+   and a three-minute deadline. Then fetch public repository evidence and run ESPHome/D-Bus analysis with
    `--strict-scan`, then require a valid structured model response.
 3. Require three nonempty output files for the requested user, zero scan errors,
    repository evidence and scan/generation timestamps from this run. Model-mode
@@ -31,6 +32,12 @@ and 80 eligible files per repository, with at most 15 ESPHome or 10 D-Bus matche
 per repository. These sampling limits are recorded in
 `github_stats.analysis_scope` in the JSON; the profile is not an exhaustive
 firmware or service inventory.
+
+The public repository total comes from the scan inventory; the IoT repository
+count is the subset retained for this profile. Complexity counts analysis records
+from those IoT repositories, individual ESPHome configurations and D-Bus analyses,
+so its total is not a repository count. The JSON field `total_repos_analyzed`
+retains its existing name but now reports the scanned repository count.
 
 The refresh job has a 45-minute execution limit. Concurrent refreshes queue
 rather than canceling the current generation. Output from previous runs is never
@@ -58,6 +65,10 @@ The trusted refresh job checks out only the default branch and receives
 pool when self-hosted routing is enabled, not a pool that runs arbitrary PR code.
 
 - `CI_RUNNER_MODE=github` or an unset variable uses GitHub-hosted Linux.
+- Optional `PROFILE_RUNNER_MODE` overrides that mode for this trusted refresh
+  job only. Leave it unset to inherit the shared mode. This allows a qualified
+  public automation pool to reach inference from its network while all ordinary
+  repository CI jobs retain their existing runner selection.
 - `CI_RUNNER_MODE=self-hosted` or `k3s` selects `CI_RUNNER_AUTOMATION_LABELS`, a
   JSON array containing the registered ARC scale-set name or configured alias.
 - `k3s` is a compatibility routing value, not a request for a static runner;
@@ -78,7 +89,10 @@ and [ARC recovery index](https://github.com/victron-venus/venus-os-ci-toolkit/bl
 ## Language-model access
 
 Set `ANTHROPIC_BASE_URL` as an Actions secret and `PROFILE_LLM_MODEL` as an
-Actions variable. Use the model ID accepted by the endpoint's Messages API,
+Actions variable. Set `PROFILE_INFERENCE_HOSTNAME` as a separate Actions secret
+containing only that URL's hostname. The runner hardening pre-hook needs it for
+the outbound allowlist and automatic masking before regular steps run. Network
+telemetry upload is disabled; endpoint blocking stays enabled. Use the model ID accepted by the endpoint's Messages API,
 which may differ from aliases advertised for other clients. Credentials belong
 in Actions secrets: `ANTHROPIC_API_KEY` for a direct compatible API, or the pair
 `PROFILE_ACCESS_CLIENT_ID` / `PROFILE_ACCESS_CLIENT_SECRET` for Cloudflare Access.
@@ -122,6 +136,12 @@ system; GitHub cannot return an existing secret value.
   Access policy, exact Messages model ID and provider availability. Do not
   replace an unavailable model with an unreviewed paid fallback. An upstream
   model can be retired while the proxy's health check remains green.
+  The preflight reports only the HTTP status, validated Cloudflare request ID
+  and recognized numeric edge error, never a response body or private hostname.
+  A working request from a developer's computer does not prove runner access:
+  Cloudflare Bot Fight Mode can challenge datacenter addresses independently of
+  Access authentication. Standard Bot Fight Mode has no per-path skip; do not
+  disable zone-wide protection to repair one consumer.
 - **Staging rejected a date, username or empty output:** keep the prior site.
   Inspect the fresh directory and generator error. No old `*_profile.html` is
   selected by a glob.
