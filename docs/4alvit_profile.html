@@ -1,765 +1,5754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoT Engineering Profile: 4alvit</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a2e; background: #f8f9fa; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 2rem; border-radius: 16px; margin-bottom: 2rem; text-align: center; }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        header p { opacity: 0.9; }
-        section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        h2 { color: #667eea; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #eef; }
-        h3 { color: #333; margin: 1.5rem 0 0.5rem; }
-        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9fa; font-weight: 600; }
-        tr:hover { background: #fafbff; }
-        .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 500; margin: 0.25rem; }
-        .badge-primary { background: #eef; color: #667eea; }
-        .badge-success { background: #d4edda; color: #155724; }
-        .badge-warning { background: #fff3cd; color: #856404; }
-        .badge-danger { background: #f8d7da; color: #721c24; }
-        .chart-container { height: 300px; margin: 1rem 0; }
-        .repo-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
-        .repo-card h4 { color: #667eea; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; }
-        .stat-card { background: #f8f9fa; padding: 1rem; border-radius: 8px; text-align: center; }
-        .stat-value { font-size: 2rem; font-weight: 700; color: #667eea; }
-        .stat-label { font-size: 0.9rem; color: #666; }
-        .skills-table th:nth-child(3), .skills-table td:nth-child(3) { text-align: center; }
-        .skill-bar { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
-        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 3px; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111214">
+<meta name="description" content="Explore 4alvit's IoT engineering profile: public repository signals, focus areas, skills and source evidence. Generated September 28, 2026.">
+<title>4alvit — IoT Engineering Profile</title>
+<style>
+:root {
+  color-scheme:dark;
+  --bg:#111214;
+  --surface:#191a1e;
+  --ink:#f3f1ed;
+  --muted:#aaa8b2;
+  --line:#323139;
+  --accent:#c6b5ff;
+  --green:#a7d9c0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+* {
+  box-sizing:border-box
+}
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:100px
+}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6
+}
+a {
+  color:inherit;
+  text-decoration:none
+}
+a:hover {
+  color:var(--accent)
+}
+button,input,select {
+  font:inherit
+}
+:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:5px
+}
+summary {
+  cursor:pointer
+}
+svg {
+  display:block;
+  max-width:100%
+}
+h1,h2,h3,p {
+  margin:0
+}
+h1,h2,h3 {
+  line-height:1.13;
+  font-weight:500;
+  letter-spacing:-.04em
+}
+h1 {
+  font-size:clamp(3.2rem,6.6vw,6.1rem);
+  max-width:10ch
+}
+h2 {
+  font-size:clamp(2rem,4vw,3.7rem)
+}
+h3 {
+  font-size:1.18rem;
+  letter-spacing:-.02em
+}
+p {
+  color:var(--muted)
+}
+[hidden] {
+  display:none!important
+}
+.container {
+  width:min(1200px,calc(100% - 80px));
+  margin-inline:auto
+}
+.skip {
+  position:fixed;
+  left:20px;
+  top:-80px;
+  background:var(--accent);
+  color:var(--bg);
+  padding:12px 20px;
+  z-index:100
+}
+.skip:focus {
+  top:12px
+}
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid var(--line);
+  background:rgba(17,18,20,.94);
+  backdrop-filter:blur(16px)
+}
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  min-height:78px
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:.96rem;
+  font-weight:600;
+  letter-spacing:-.03em
+}
+.brand-mark {
+  display:grid;
+  grid-template-columns:repeat(2,6px);
+  gap:3px;
+  transform:rotate(-9deg)
+}
+.brand-mark i {
+  width:6px;
+  height:6px;
+  background:var(--ink);
+  border-radius:1px
+}
+.brand-mark i:last-child {
+  background:var(--accent)
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:.82rem;
+  color:var(--muted)
+}
+.nav-links a {
+  padding-block:8px
+}
+.nav-links a[aria-current] {
+  color:var(--ink)
+}
+.nav-source {
+  border:1px solid var(--line);
+  padding:8px 15px;
+  border-radius:8px;
+  color:var(--ink)
+}
+.label {
+  display:block;
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:.67rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted)
+}
+.eyebrow {
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+.status-dot {
+  width:6px;
+  height:6px;
+  flex-shrink:0;
+  border-radius:50%;
+  background:var(--green)
+}
+.hero {
+  padding-block:88px 72px;
+  display:grid;
+  grid-template-columns:1.07fr 1fr;
+  gap:64px;
+  align-items:center
+}
+.hero h1 {
+  margin-top:24px
+}
+.hero h1 span {
+  color:var(--accent)
+}
+.hero-copy {
+  max-width:43ch;
+  margin-top:25px;
+  font-size:1rem;
+  line-height:1.8
+}
+.hero-copy strong {
+  color:var(--ink);
+  font-weight:500;
+  overflow-wrap:anywhere
+}
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px
+}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  padding:13px 20px;
+  border-radius:8px;
+  font-size:.82rem;
+  font-weight:600;
+  border:1px solid var(--line)
+}
+.button-primary {
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#18191c
+}
+.button-primary:hover {
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#18191c
+}
+.button-secondary:hover {
+  border-color:var(--muted)
+}
+.hero-note {
+  font-size:.69rem;
+  margin-top:22px
+}
+.signal-card {
+  background:radial-gradient(ellipse at 60% 42%,#373047 0%,#202027 48%,#1b1c20 80%);
+  border:1px solid #4d4557;
+  border-radius:20px;
+  padding:26px 26px 22px;
+  overflow:hidden;
+  box-shadow:0 25px 70px #0003
+}
+.signal-card-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px
+}
+.signal-card .label {
+  font-size:.59rem
+}
+.signal-window {
+  display:flex;
+  gap:5px
+}
+.signal-window i {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#857c90
+}
+.signal-card svg {
+  width:100%;
+  margin-block:12px
+}
+.signal-card-bottom {
+  border-top:1px solid #ffffff20;
+  padding-top:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:.7rem;
+  color:var(--muted);
+  gap:12px
+}
+.signal-card-bottom strong {
+  color:var(--ink);
+  font-weight:500
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-block:1px solid var(--line);
+  padding-block:30px;
+  gap:28px
+}
+.stat {
+  padding-left:27px;
+  border-left:1px solid var(--line)
+}
+.stat:first-child {
+  padding-left:0;
+  border-left:0
+}
+.stat strong {
+  display:block;
+  font-size:2.25rem;
+  line-height:1.25;
+  font-weight:500;
+  letter-spacing:-.05em;
+  font-variant-numeric:tabular-nums
+}
+.stat span {
+  display:block;
+  font-size:.72rem;
+  color:var(--muted);
+  margin-top:7px
+}
+.section {
+  padding-block:84px;
+  border-bottom:1px solid var(--line)
+}
+.section-heading {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:35px
+}
+.section-heading .label {
+  margin-bottom:16px
+}
+.section-heading>p {
+  max-width:37ch;
+  font-size:.85rem
+}
+.intro {
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:75px
+}
+.intro .label {
+  margin-bottom:20px
+}
+.intro-copy {
+  font-size:.94rem;
+  line-height:1.9
+}
+.intro-copy p+p {
+  margin-top:20px
+}
+.summary-more {
+  margin-top:16px
+}
+.summary-more summary {
+  display:inline-block;
+  color:var(--accent);
+  font-size:.8rem
+}
+.summary-more summary::after {
+  content:" +"
+}
+.summary-more[open] summary::after {
+  content:" −"
+}
+.summary-more p {
+  margin-top:15px
+}
+.snapshot-note {
+  margin-top:22px;
+  padding-left:15px;
+  border-left:2px solid #887398;
+  font-size:.75rem;
+  line-height:1.75
+}
+.focus-layout {
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:24px
+}
+.panel {
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:28px
+}
+.panel-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:26px
+}
+.panel-title h3 {
+  font-size:1rem
+}
+.panel-title .label {
+  font-size:.56rem
+}
+.focus-list {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:30px;
+  row-gap:20px
+}
+.score-caption {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+  font-size:.71rem;
+  margin-bottom:8px
+}
+.score-caption span {
+  color:#d0ced6
+}
+.score-caption strong {
+  font-size:.67rem;
+  font-weight:400;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums
+}
+.score-track {
+  height:4px;
+  border-radius:10px;
+  background:#333139;
+  overflow:hidden
+}
+.score-track i {
+  display:block;
+  height:100%;
+  background:var(--accent);
+  border-radius:10px
+}
+.complexity-chart {
+  display:flex;
+  gap:5px;
+  height:12px;
+  margin-bottom:26px;
+  overflow:hidden;
+  border-radius:4px
+}
+.complexity-chart span {
+  background:var(--accent);
+  min-width:2px
+}
+.complexity-chart span:nth-child(2) {
+  background:#858192
+}
+.complexity-chart span:nth-child(3) {
+  background:var(--green)
+}
+.complexity-chart span:nth-child(4) {
+  background:#e9c494
+}
+.complexity-list {
+  display:grid;
+  gap:14px
+}
+.complexity-row {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:.77rem
+}
+.complexity-row i {
+  width:7px;
+  height:7px;
+  background:var(--accent);
+  border-radius:2px
+}
+.complexity-row:nth-child(2) i {
+  background:#858192
+}
+.complexity-row:nth-child(3) i {
+  background:var(--green)
+}
+.complexity-row:nth-child(4) i {
+  background:#e9c494
+}
+.complexity-row strong {
+  margin-left:auto;
+  font-weight:500
+}
+.chart-note {
+  font-size:.68rem;
+  line-height:1.75;
+  margin-top:24px
+}
+.skills {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:24px
+}
+.skill {
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:23px;
+  background:linear-gradient(160deg,#1b1b20,#17181b);
+  min-width:0
+}
+.skill .label {
+  font-size:.56rem;
+  margin-bottom:14px
+}
+.skill h3 {
+  font-size:.96rem;
+  min-height:2.8em;
+  line-height:1.4
+}
+.skill-value {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:baseline;
+  margin-block:19px 12px
+}
+.skill-value strong {
+  font-size:2rem;
+  font-weight:400;
+  letter-spacing:-.05em
+}
+.skill-value span {
+  color:var(--muted);
+  font-size:.7rem
+}
+.confidence {
+  font-size:.63rem;
+  color:var(--muted);
+  margin-left:auto
+}
+.evidence-toggle {
+  font-size:.68rem;
+  margin-top:18px
+}
+.evidence-toggle summary {
+  padding-block:4px;
+  color:var(--muted)
+}
+.evidence-toggle[open] summary {
+  margin-bottom:12px
+}
+.evidence-toggle ul {
+  margin:0;
+  padding-left:14px;
+  display:grid;
+  gap:7px
+}
+.evidence-toggle li {
+  overflow-wrap:anywhere;
+  color:var(--muted)
+}
+.evidence-toggle a {
+  color:var(--accent)
+}
+.filters {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:22px
+}
+.filter-fields {
+  display:flex;
+  gap:10px;
+  flex:1;
+  min-width:0
+}
+.search-label {
+  position:relative;
+  max-width:340px;
+  width:100%;
+  min-width:0
+}
+.search-label svg {
+  position:absolute;
+  top:14px;
+  left:14px;
+  width:15px;
+  height:15px;
+  color:var(--muted)
+}
+.search-label input {
+  width:100%;
+  min-width:0
+}
+.filters input,.filters select {
+  background:var(--surface);
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-radius:7px;
+  min-height:44px;
+  font-size:.74rem;
+  padding:10px 12px
+}
+.filters .search-label input {
+  padding-left:40px
+}
+.filters select {
+  min-width:150px
+}
+.result-count {
+  font-size:.68rem;
+  color:var(--muted);
+  white-space:nowrap
+}
+.sr-only {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0
+}
+.repositories {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px
+}
+.repo {
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  transition:border-color .2s,background .2s;
+  background:var(--surface);
+  min-width:0
+}
+.repo:hover {
+  border-color:#77707f;
+  background:#1d1d23
+}
+.repo-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:24px
+}
+.repo-owner {
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:.62rem;
+  color:var(--muted);
+  overflow-wrap:anywhere
+}
+.repo-arrow {
+  font-size:1.1rem;
+  color:var(--muted)
+}
+.repo h3 {
+  font-size:1.1rem;
+  overflow-wrap:anywhere;
+  line-height:1.4
+}
+.repo p {
+  font-size:.8rem;
+  line-height:1.8;
+  margin-top:12px;
+  overflow-wrap:anywhere
+}
+.repo-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-block:21px
+}
+.tag {
+  display:inline-flex;
+  background:#24252b;
+  border:1px solid #3a3a43;
+  border-radius:5px;
+  padding:3px 7px;
+  color:#c6c3d0;
+  font-size:.58rem;
+  overflow-wrap:anywhere;
+  max-width:100%
+}
+.repo-meta {
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+  color:var(--muted);
+  font-size:.64rem
+}
+.language {
+  display:flex;
+  align-items:center;
+  gap:6px
+}
+.language:before {
+  content:"";
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--accent)
+}
+.empty {
+  border:1px dashed var(--line);
+  border-radius:12px;
+  text-align:center;
+  padding:40px;
+  font-size:.85rem
+}
+.insights {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px
+}
+.insight h3 {
+  font-size:1.08rem;
+  margin-bottom:24px
+}
+.insight ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:22px
+}
+.insight li {
+  display:grid;
+  grid-template-columns:22px 1fr;
+  gap:10px;
+  font-size:.8rem;
+  color:var(--muted);
+  line-height:1.8
+}
+.insight li span:first-child {
+  color:var(--green)
+}
+.insight:last-child li span:first-child {
+  color:var(--accent)
+}
+.evidence-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px
+}
+.evidence-group {
+  min-width:0
+}
+.evidence-group>h3 {
+  font-size:1rem;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line)
+}
+.evidence-group>h3 span {
+  font-family:ui-monospace,monospace;
+  font-size:.65rem;
+  color:var(--muted);
+  margin-left:10px;
+  letter-spacing:0
+}
+.source-row {
+  border-bottom:1px solid var(--line);
+  font-size:.73rem
+}
+.source-row summary {
+  padding:17px 24px 17px 0;
+  position:relative;
+  list-style:none;
+  overflow-wrap:anywhere;
+  color:#d0ced5
+}
+.source-row summary::-webkit-details-marker {
+  display:none
+}
+.source-row summary:after {
+  content:"+";
+  position:absolute;
+  right:2px;
+  top:16px;
+  color:var(--muted)
+}
+.source-row[open] summary:after {
+  content:"−"
+}
+.source-data {
+  display:grid;
+  gap:8px;
+  padding-bottom:20px;
+  color:var(--muted);
+  font-size:.7rem;
+  overflow-wrap:anywhere
+}
+.source-data strong {
+  color:#d0ced5;
+  font-weight:500
+}
+.source-data ul {
+  margin:0;
+  padding-left:17px
+}
+.footer {
+  padding-block:40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:24px
+}
+.footer p {
+  font-size:.68rem;
+  max-width:58ch;
+  overflow-wrap:anywhere
+}
+.footer-links {
+  display:flex;
+  gap:22px;
+  font-size:.7rem
+}
+.footer-links a {
+  white-space:nowrap
+}
+.section-index {
+  font-family:ui-monospace,monospace;
+  font-size:.6rem;
+  margin-right:9px
+}
+.back-top {
+  color:var(--accent)
+}
+.quiet-state {
+  font-size:.78rem;
+  color:var(--muted);
+  padding:20px 0
+}
+
+@media(min-width:1450px) {
+  .hero {
+  padding-top:110px;
+  padding-bottom:90px
+}
+
+}
+@media(max-width:1000px) {
+  .container {
+  width:calc(100% - 48px)
+}
+.hero {
+  gap:35px;
+  padding-top:62px
+}
+h1 {
+  font-size:clamp(3rem,6.8vw,5rem)
+}
+.intro {
+  gap:40px
+}
+.focus-layout {
+  grid-template-columns:1.2fr 1fr
+}
+.focus-list {
+  grid-template-columns:1fr
+}
+.skills {
+  grid-template-columns:repeat(2,1fr)
+}
+.nav-links {
+  gap:18px
+}
+.nav-source {
+  display:none
+}
+.signal-card {
+  padding:20px
+}
+.signal-card-bottom {
+  font-size:.6rem
+}
+.section {
+  padding-block:64px
+}
+
+}
+
+@media(max-width:720px) {
+  html {
+  scroll-padding-top:125px
+}
+.container {
+  width:calc(100% - 40px)
+}
+.nav {
+  min-height:88px;
+  align-items:flex-start;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  padding-block:16px
+}
+.nav-links {
+  width:100%;
+  justify-content:space-between;
+  gap:12px;
+  font-size:.7rem
+}
+.brand {
+  font-size:.88rem
+}
+.hero {
+  grid-template-columns:1fr;
+  padding-block:45px 40px;
+  gap:35px
+}
+h1 {
+  font-size:clamp(3.1rem,12.5vw,5.4rem)
+}
+.hero h1 {
+  max-width:12ch
+}
+.hero-copy {
+  font-size:.91rem;
+  max-width:40ch
+}
+.hero-note {
+  font-size:.64rem
+}
+.signal-card {
+  max-width:510px;
+  width:100%;
+  margin-inline:auto;
+  padding:22px
+}
+.signal-card svg {
+  max-height:330px
+}
+.stats {
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  padding-block:25px
+}
+.stat {
+  padding-left:20px
+}
+.stat:nth-child(3) {
+  border:0;
+  padding-left:0
+}
+.stat strong {
+  font-size:2rem
+}
+.stat span {
+  font-size:.66rem
+}
+.section {
+  padding-block:50px
+}
+.section-heading {
+  align-items:flex-start;
+  flex-direction:column;
+  gap:18px;
+  margin-bottom:28px
+}
+.section-heading>p {
+  max-width:50ch;
+  font-size:.78rem
+}
+.intro {
+  grid-template-columns:1fr;
+  gap:26px
+}
+.intro-copy {
+  font-size:.86rem
+}
+.intro h2 {
+  max-width:14ch
+}
+.focus-layout,.insights,.evidence-grid {
+  grid-template-columns:1fr
+}
+.focus-list {
+  grid-template-columns:1fr 1fr;
+  gap:22px
+}
+.panel {
+  padding:22px
+}
+.panel-title .label {
+  font-size:.5rem
+}
+.skills {
+  gap:12px
+}
+.skill {
+  padding:18px
+}
+.skill h3 {
+  font-size:.87rem
+}
+.skill .label {
+  font-size:.48rem;
+  letter-spacing:.09em;
+  overflow-wrap:anywhere
+}
+.confidence {
+  margin-left:0;
+  width:100%;
+  font-size:.57rem
+}
+.repositories {
+  grid-template-columns:1fr
+}
+.repo {
+  padding:22px
+}
+.filters {
+  align-items:flex-start;
+  flex-direction:column;
+  gap:10px
+}
+.filter-fields {
+  width:100%
+}
+.filters select {
+  min-width:110px;
+  width:110px;
+  font-size:.68rem
+}
+.search-label {
+  max-width:none
+}
+.filters input {
+  font-size:.7rem
+}
+.footer {
+  flex-direction:column
+}
+.footer-links {
+  flex-wrap:wrap
+}
+.evidence-grid {
+  gap:35px
+}
+.score-caption {
+  font-size:.65rem;
+  gap:8px
+}
+.signal-card-bottom {
+  font-size:.65rem
+}
+
+}
+
+@media(max-width:390px) {
+  .focus-list,.skills {
+  grid-template-columns:1fr
+}
+.confidence {
+  margin-left:auto;
+  width:auto
+}
+.skill h3 {
+  min-height:0
+}
+.skill-value {
+  margin-block:12px 9px
+}
+.actions {
+  gap:9px
+}
+.button {
+  font-size:.73rem;
+  padding:12px 15px
+}
+.signal-card {
+  padding:15px
+}
+.signal-card-bottom {
+  font-size:.57rem
+}
+.label {
+  font-size:.59rem
+}
+.nav-links {
+  gap:9px;
+  font-size:.65rem
+}
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+  scroll-behavior:auto
+}
+* {
+  transition:none!important
+}
+
+}
+@media print {
+  :root {
+  color-scheme:light;
+  --bg:#fff;
+  --surface:#fff;
+  --ink:#111;
+  --muted:#444;
+  --line:#bbb;
+  --accent:#554080
+}
+body {
+  font-size:10pt
+}
+.topbar {
+  position:static;
+  background:#fff
+}
+.nav-links,.actions,.filters,.back-top {
+  display:none!important
+}
+.container {
+  width:100%
+}
+.hero {
+  padding:30px 0;
+  gap:25px
+}
+.hero h1 {
+  font-size:40pt
+}
+.signal-card {
+  display:none
+}
+.hero {
+  display:block
+}
+.hero-note {
+  margin-top:12px
+}
+.section {
+  padding-block:30px
+}
+.panel,.skill,.repo {
+  background:#fff;
+  break-inside:avoid
+}
+.repo[hidden] {
+  display:flex!important
+}
+.repo p,.source-row summary,.score-caption span {
+  color:#333
+}
+.tag {
+  background:#eee;
+  color:#333
+}
+.section-heading h2 {
+  font-size:25pt
+}
+.stats {
+  break-inside:avoid
+}
+.complexity-chart,.score-track {
+  print-color-adjust:exact;
+  -webkit-print-color-adjust:exact
+}
+
+}
+
+</style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>IoT Engineering Profile</h1>
-            <p>4alvit • Generated September 28, 2026</p>
-        </header>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+<nav class="container nav" aria-label="Main navigation">
+<a class="brand" href="#top">
+<span class="brand-mark" aria-hidden="true">
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+</span>IoT / Engineering profile</a>
+<div class="nav-links">
+<a href="#overview">Overview</a>
+<a href="#capabilities">Capabilities</a>
+<a href="#repositories">Repositories</a>
+<a href="#evidence">Evidence</a>
+<a class="nav-source" href="https://github.com/4alvit">GitHub ↗</a>
+</div>
+</nav>
+</header>
+<main id="main" class="container">
+<section class="hero" aria-labelledby="hero-title">
+<div>
+<p class="label eyebrow">
+<span class="status-dot" aria-hidden="true">
+</span>Public repository snapshot · Sep 2026</p>
+<h1 id="hero-title">Engineering,<br>
+<span>in evidence.</span>
+</h1>
+<p class="hero-copy">A closer look at <a href="https://github.com/4alvit">
+<strong>@4alvit</strong>
+</a>’s IoT work. Explore the repositories, technical focus and implementation signals behind this profile.</p>
+<div class="actions">
+<a class="button button-primary" href="#repositories">Explore the work <span aria-hidden="true">↗</span>
+</a>
+<a class="button button-secondary" href="#capabilities">View capabilities <span aria-hidden="true">↓</span>
+</a>
+</div>
+<p class="hero-note">Generated September 28, 2026 · A dated analysis of public code.</p>
+</div>
+<div class="signal-card">
+<div class="signal-card-top">
+<span class="label">The profile, at a glance</span>
+<span class="signal-window" aria-hidden="true">
+<i>
+</i>
+<i>
+</i>
+<i>
+</i>
+</span>
+</div>
+<svg viewBox="0 0 440 332" role="img" aria-labelledby="signal-title signal-description">
+<title id="signal-title">From repository evidence to an engineering profile</title>
+<desc id="signal-description">93 repositories analyzed, with 41 identified as IoT-related. ESPHome and D-Bus analysis contributes evidence to 9 skill assessments. This illustrates the analysis process, not a deployed system.</desc>
+<defs>
+<radialGradient id="signal-glow">
+<stop stop-color="#ac90ee" stop-opacity=".2"/>
+<stop offset="1" stop-color="#ac90ee" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="signal-edge" x2="1" y2="1">
+<stop stop-color="#a08bbb"/>
+<stop offset="1" stop-color="#605869"/>
+</linearGradient>
+</defs>
+<circle cx="220" cy="170" r="150" fill="url(#signal-glow)"/>
+<g fill="none" stroke="#8f81a1" stroke-opacity=".18">
+<circle cx="220" cy="170" r="63"/>
+<circle cx="220" cy="170" r="106"/>
+<circle cx="220" cy="170" r="147"/>
+<path d="M18 170H422M220 20V320" stroke-dasharray="2 7"/>
+</g>
+<g fill="none" stroke="url(#signal-edge)" stroke-width="1.1">
+<path d="M104 91L184 149M337 103L251 151M220 201V263"/>
+<circle cx="220" cy="170" r="41"/>
+</g>
+<circle cx="220" cy="170" r="33" fill="#292331" stroke="#aa94cd" stroke-opacity=".5"/>
+<g fill="#d5c2f8">
+<rect x="207" y="157" width="10" height="10" rx="2"/>
+<rect x="223" y="157" width="10" height="10" rx="2"/>
+<rect x="207" y="173" width="10" height="10" rx="2"/>
+<rect x="223" y="173" width="10" height="10" rx="2" opacity=".45"/>
+</g>
+<g font-family="Inter,system-ui,sans-serif">
+<rect x="20" y="52" width="152" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
+<text x="35" y="73" fill="#c4b9d3" font-size="8" letter-spacing="1">01 / REPOSITORIES</text>
+<text x="35" y="104" fill="#eee8f6" font-size="23">93</text>
+<text x="78" y="104" fill="#c2b9cf" font-size="9">sources analyzed</text>
+<rect x="274" y="68" width="146" height="73" rx="10" fill="#24212b" stroke="#4e455b"/>
+<text x="289" y="89" fill="#c4b9d3" font-size="8" letter-spacing="1">02 / IOT SIGNALS</text>
+<text x="289" y="120" fill="#eee8f6" font-size="23">41</text>
+<text x="331" y="120" fill="#c2b9cf" font-size="9">related repos</text>
+<rect x="132" y="250" width="178" height="66" rx="10" fill="#2d2738" stroke="#736183"/>
+<text x="149" y="272" fill="#d3c2e9" font-size="8" letter-spacing="1">03 / ENGINEERING PROFILE</text>
+<text x="149" y="299" fill="#eee8f6" font-size="20">9</text>
+<text x="178" y="297" fill="#d4c6e4" font-size="10">skills with source evidence</text>
+</g>
+<g fill="#c6b5ff">
+<circle cx="154" cy="127" r="3"/>
+<circle cx="289" cy="136" r="3"/>
+<circle cx="220" cy="227" r="3"/>
+</g>
+</svg>
+<div class="signal-card-bottom">
+<span>
+<strong>Public code.</strong> Traceable signals.</span>
+<span>2026.09.28</span>
+</div>
+</div>
+</section>
+<div class="stats" aria-label="Scan totals">
+<div class="stat">
+<strong>93</strong>
+<span>Repositories analyzed</span>
+</div>
+<div class="stat">
+<strong>41</strong>
+<span>IoT-related repositories</span>
+</div>
+<div class="stat">
+<strong>13</strong>
+<span>ESPHome configurations</span>
+</div>
+<div class="stat">
+<strong>39</strong>
+<span>D-Bus analysis records</span>
+</div>
+</div>
+<section class="section intro" id="overview" aria-labelledby="overview-title">
+<div>
+<span class="label">
+<span class="section-index">01</span>Overview</span>
+<h2 id="overview-title">The work behind<br>the profile.</h2>
+</div>
+<div class="intro-copy">
 
-        
-        <section>
-            <h2>✨ Summary</h2>
-            <p style="line-height: 1.7; font-size: 1.05rem;">The developer demonstrates a strong focus on energy and battery management systems, particularly within the Victron Venus OS ecosystem. Their work spans from low-level firmware patterns using ESPHome for BLE sensor integration to high-level orchestration layers involving MQTT, D-Bus, and Home Assistant. They have built comprehensive observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT-based IoT deployments, indicating a deep understanding of data pipelines and edge monitoring. Their proficiency in Python is evident across numerous repos, ranging from REST/MQTT gateways to RAG pipelines for energy documentation, showcasing versatility in both infrastructure and application layers.
 
-In the realm of home automation and voice assistance, they have integrated Amazon Echo and Google Home with Home Assistant, enabling voice-controlled energy systems. The developer also exhibits solid edge computing skills, utilizing Docker Compose and lightweight monitoring stacks suitable for deployment on devices like Venus OS. While their embedded firmware work is primarily expressed through ESPHome YAML configurations (which generate C++ code), there is room to grow in native C/C++ or Rust firmware development for more constrained environments. Overall, the profile reflects a well-rounded IoT engineer with particular strength in energy systems, networking protocols, and Python-based service development.</p>
-        </section>
 
-        
-        <section>
-            <h2>📊 Overview</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">93</div>
-                    <div class="stat-label">Total Analyzed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">41</div>
-                    <div class="stat-label">IoT Repositories</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">13</div>
-                    <div class="stat-label">ESPHome Configs</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">39</div>
-                    <div class="stat-label">D-Bus Services</div>
-                </div>
-            </div>
-        </section>
 
-        <section>
-            <h2>🎯 Focus Areas</h2>
-            <div id="focus-chart" class="chart-container"></div>
-            <div class="focus-details">
-                
-                <span class="badge badge-primary">Home Automation: 85%</span>
-                
-                <span class="badge badge-primary">Industrial Iot: 10%</span>
-                
-                <span class="badge badge-primary">Energy Management: 90%</span>
-                
-                <span class="badge badge-primary">Battery Management: 80%</span>
-                
-                <span class="badge badge-primary">Environmental Monitoring: 40%</span>
-                
-                <span class="badge badge-primary">Voice Assistant: 60%</span>
-                
-                <span class="badge badge-primary">Networking Protocols: 90%</span>
-                
-                <span class="badge badge-primary">Edge Computing: 50%</span>
-                
-                <span class="badge badge-primary">Firmware Development: 60%</span>
-                
-                <span class="badge badge-primary">Data Pipeline: 85%</span>
-                
-                <span class="badge badge-primary">Unknown: 5%</span>
-                
-            </div>
-        </section>
+<p>The developer demonstrates a strong focus on energy and battery management systems, particularly within the Victron Venus OS ecosystem. Their work spans from low-level firmware patterns using ESPHome for BLE sensor integration to high-level orchestration layers involving MQTT, D-Bus, and Home Assistant. They have built comprehensive observability stacks (OpenTelemetry, Prometheus, Grafana) for MQTT-based IoT deployments, indicating a deep understanding of data pipelines and edge monitoring. Their proficiency in Python is evident across numerous repos, ranging from REST/MQTT gateways to RAG pipelines for energy documentation, showcasing versatility in both infrastructure and application layers.</p>
 
-        <section>
-            <h2>📈 Complexity Distribution</h2>
-            <div id="complexity-chart" class="chart-container"></div>
-        </section>
+<details class="summary-more">
+<summary>Read the full analysis</summary>
 
-        <section>
-            <h2>🛠 Skills Assessment</h2>
-            <table class="skills-table">
-                <thead>
-                    <tr>
-                        <th>Skill</th>
-                        <th>Category</th>
-                        <th>Proficiency</th>
-                        <th>Confidence</th>
-                        <th>Evidence</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <td><strong>Home Assistant / ESPHome</strong></td>
-                        <td><span class="badge badge-primary">home_automation</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 90%"></div>
-                            </div>
-                            <small>9/10</small>
-                        </td>
-                        <td>95%</td>
-                        <td>esphome-ble-sensor-patterns, inverter-control, inverter-dashboard-go, inverter-desktop, amazon-echo-home-voice, google-home-voice-stats, esphome-jbd-bms-mqtt</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Energy Management</strong></td>
-                        <td><span class="badge badge-primary">energy_systems</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 90%"></div>
-                            </div>
-                            <small>9/10</small>
-                        </td>
-                        <td>95%</td>
-                        <td>solar-forecast-langgraph, inverter-control, inverter-dashboard, inverter-monitoring, dbus-tasmota-pv, dbus-mqtt-battery, mqtt-observability-opentelemetry</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>MQTT &amp; Networking Protocols</strong></td>
-                        <td><span class="badge badge-primary">protocols_networking</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 90%"></div>
-                            </div>
-                            <small>9/10</small>
-                        </td>
-                        <td>95%</td>
-                        <td>mqtt-observability-opentelemetry, fastapi-mqtt-gateway, mcp-venus-os, dbus-mqtt-battery, dbus-tasmota-pv, inverter-dashboard, inverter-dashboard-go, inverter-desktop, inverter-monitoring</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Python IoT</strong></td>
-                        <td><span class="badge badge-primary">python_iot</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 90%"></div>
-                            </div>
-                            <small>9/10</small>
-                        </td>
-                        <td>95%</td>
-                        <td>solar-forecast-langgraph, mqtt-observability-opentelemetry, energy-data-rag-pipeline, iot-project-builder-profile, mcp-venus-os, fastapi-mqtt-gateway, dbus-service-template, amazon-echo-home-voice, google-home-voice-stats, dbus-mqtt-battery, dbus-tasmota-pv, inverter-control, inverter-dashboard, inverter-monitoring, integration-tests, inverter-dashboard-vue</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Battery Management</strong></td>
-                        <td><span class="badge badge-primary">energy_systems</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>90%</td>
-                        <td>esphome-ble-sensor-patterns, dbus-mqtt-battery, esphome-jbd-bms-mqtt, inverter-control</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Data Pipeline &amp; Observability</strong></td>
-                        <td><span class="badge badge-primary">data_pipeline</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 80%"></div>
-                            </div>
-                            <small>8/10</small>
-                        </td>
-                        <td>90%</td>
-                        <td>mqtt-observability-opentelemetry, inverter-monitoring, inverter-dashboard-go, inverter-desktop, energy-data-rag-pipeline</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Embedded Firmware Development</strong></td>
-                        <td><span class="badge badge-primary">embedded_firmware</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 70%"></div>
-                            </div>
-                            <small>7/10</small>
-                        </td>
-                        <td>80%</td>
-                        <td>esphome-ble-sensor-patterns, esphome-jbd-bms-mqtt, inverter-desktop</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Edge Computing</strong></td>
-                        <td><span class="badge badge-primary">edge_computing</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 60%"></div>
-                            </div>
-                            <small>6/10</small>
-                        </td>
-                        <td>70%</td>
-                        <td>mqtt-observability-opentelemetry, inverter-dashboard-go, inverter-monitoring, inverter-desktop</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><strong>Voice AI / Voice Assistant</strong></td>
-                        <td><span class="badge badge-primary">voice_ai</span></td>
-                        <td>
-                            <div class="skill-bar">
-                                <div class="skill-bar-fill" style="width: 60%"></div>
-                            </div>
-                            <small>6/10</small>
-                        </td>
-                        <td>80%</td>
-                        <td>amazon-echo-home-voice, google-home-voice-stats, inverter-control, inverter-dashboard-go, inverter-desktop</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </section>
+<p>In the realm of home automation and voice assistance, they have integrated Amazon Echo and Google Home with Home Assistant, enabling voice-controlled energy systems. The developer also exhibits solid edge computing skills, utilizing Docker Compose and lightweight monitoring stacks suitable for deployment on devices like Venus OS. While their embedded firmware work is primarily expressed through ESPHome YAML configurations (which generate C++ code), there is room to grow in native C/C++ or Rust firmware development for more constrained environments. Overall, the profile reflects a well-rounded IoT engineer with particular strength in energy systems, networking protocols, and Python-based service development.</p>
 
-        <section>
-            <h2>💪 Key Strengths</h2>
-            <ul>
-                
-                <li>Deep expertise in Home Assistant/ESPHome integration for battery and energy systems</li>
-                
-                <li>Strong MQTT-based data pipelines and observability solutions (OpenTelemetry, Prometheus, Grafana)</li>
-                
-                <li>Proficiency in Python for building IoT services, gateways, and edge deployments</li>
-                
-            </ul>
-        </section>
+</details>
 
-        <section>
-            <h2>📈 Growth Areas</h2>
-            <ul>
-                
-                <li>Expand into industrial IoT protocols such as Modbus TCP, CANbus, and IEC 61850</li>
-                
-                <li>Deepen low-level embedded firmware development in C/C++ or Rust for resource‑constrained MCUs</li>
-                
-                <li>Explore AI/ML at the edge for predictive maintenance and solar forecasting enhancement</li>
-                
-            </ul>
-        </section>
 
-        <section>
-            <h2>🏆 Top Repositories</h2>
-            
-            <div class="repo-card">
-                <h4>esphome-ble-sensor-patterns</h4>
-                <p>Production-ready patterns for ESPHome BLE sensors — iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: ble, bms, esp32, esphome, plant-sensor, reference-implementation, bluetooth-low-energy, bluetooth-proxy, home-assistant, iot, lambda, passive-scanning, sensor, ibeacon, temperature-sensor, venus-os, victron, xiaomi</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>dbus-mqtt-battery</h4>
-                <p>MQTT to D-Bus bridge for JBD BMS batteries on Victron Venus OS with DVCC support</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: bms, dbus, lifepo4, mqtt, python, venus-os, victron, battery-management, cerbo-gx, dvcc, jbd-bms, battery, energy, power, sensor, solar</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>dbus-tasmota-pv</h4>
-                <p>Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: dbus, mqtt, python, solar, tasmota, venus-os, victron, pv-inverter, energy, inverter, meter, power, sensor</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>esphome-jbd-bms-mqtt</h4>
-                <p>ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">YAML</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">1⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: bluetooth, esp32, esphome, jbd-bms, lifepo4, mqtt, venus-os, victron, battery-monitor, cerbo-gx, battery, ble, bms, energy, sensor</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>inverter-control</h4>
-                <p>Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: dbus, energy-management, grid-tie, home-assistant, python, raspberry-pi, solar, cerbo-gx, emporia-vue, hass, quattro, ess, external-control, mqtt, battery, energy, inverter, meter, power, sensor</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>inverter-monitoring</h4>
-                <p>Telegraf + InfluxDB + Grafana monitoring stack for Victron inverter systems</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, docker, energy-monitoring, grafana, influxdb, iot, mqtt, telegraf, time-series, venus-os, victron, python, battery, dbus, energy, inverter, meter, power, sensor, solar</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>inverter-dashboard-go</h4>
-                <p>Real-time Victron inverter web dashboard (Go) — same role as inverter-dashboard, implemented in Go with MQTT and optional Home Assistant direct control</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Go</span>
-                    <span class="badge badge-success">high</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, dashboard, docker, go, golang, hass, home-assistant, mqtt, real-time, venus-os, victron, websocket, battery, energy, inverter, power, sensor, solar</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>inverter-desktop</h4>
-                <p>Desktop version of Web dashboard for Victron inverter control with Home Assistant integration</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Rust</span>
-                    <span class="badge badge-success">high</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, dashboard, energy-management, grid-tie, hass, home-assistant, mqtt, venus-os, victron, web-dashboard, battery, energy, inverter, power, sensor, solar</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>venus-os-observability</h4>
-                <p>OpenTelemetry/Prometheus observability for Venus OS — D-Bus event tracing, inverter metrics, distributed tracing</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: cerbo-gx, dbus, distributed-tracing, grafana, mqtt, opentelemetry, prometheus, tempo, venus-os, victron, python, energy, inverter, power, sensor, solar</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>dbus-esphome-grid-sensor</h4>
-                <p>ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                    <span class="badge badge-primary">Python</span>
-                    <span class="badge badge-success">medium</span>
-                    <span class="badge badge-warning">1.00 IoT Score</span>
-                    <span class="badge">0⭐</span>
-                </div>
-                <p style="margin-top: 0.5rem; color: #666;">Topics: ct-sensor, dbus, docker, esp32, esphome, grid-meter, home-automation, mqtt, python, venus-os, victron, energy, grid, meter, power, sensor, solar</p>
-            </div>
-            
-        </section>
 
-        <section>
-            <h2>🔧 ESPHome Configurations</h2>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 14 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 13 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 12 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 21 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 17 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 25 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 16 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 17 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 47 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 30 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 30 | Complexity: <span class="badge badge-success">medium</span></p>
-                <p>Focus: home_automation, firmware_development, battery_management, energy_management, environmental_monitoring, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml</h4>
-                <p>Devices: esp32:esp32dev</p>
-                <p>Components: 16 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: energy_management, home_automation, firmware_development, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>victron-venus/dbus-esphome-grid-sensor/docker-compose.yml</h4>
-                <p>Devices: </p>
-                <p>Components: 0 | Complexity: <span class="badge badge-success">low</span></p>
-                <p>Focus: home_automation, networking_protocols</p>
-            </div>
-            
-        </section>
 
-        <section>
-            <h2>📡 D-Bus Services</h2>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.battery.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>dbus_utils</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.pvinverter.tasmota_</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.acload.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.BusItem</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.tank.ha_tank</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.evcharger.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>grid_backup</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.grid.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.settings</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.tank.ha_tank</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.BusItem</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>dbus_owners</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.battery.ttyO1</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.grid</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>mqtt_to_dbus</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.BusItem</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.BusItem</h4>
-                <p>Interfaces: 3 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.settings</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.acload.emporia_ch</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.acload.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>monitor</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.battery.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.Battery</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>server</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>cerbo</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>server</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.tank.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>cerbo_mqtt</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>charger</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.evcharger.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>client</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.ev.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>mqtt_bridge</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.mock.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, battery_management</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>__main__</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>main</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation, networking_protocols</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.evcharger.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">medium</span> | Focus: energy_management, battery_management, home_automation</p>
-            </div>
-            
-            <div class="repo-card">
-                <h4>com.victronenergy.grid.</h4>
-                <p>Interfaces: 1 | Methods: 0 | Signals: 0</p>
-                <p>Complexity: <span class="badge badge-success">low</span> | Focus: energy_management, home_automation</p>
-            </div>
-            
-        </section>
-    </div>
+<p class="snapshot-note">This is a snapshot from September 28, 2026. Scores are automated assessments of repository signals, not independent proficiency ratings or deployment verification. Repository descriptions are recorded as they appeared in the scan.</p>
+</div>
+</section>
+<section class="section" id="capabilities" aria-labelledby="capabilities-title">
+<div class="section-heading">
+<div>
+<span class="label">
+<span class="section-index">02</span>Capabilities</span>
+<h2 id="capabilities-title">Technical focus.<br>Visible evidence.</h2>
+</div>
+<p>Explore the distribution of work and the repository evidence attached to each skill.</p>
+</div>
+<div class="focus-layout">
+<div class="panel">
+<div class="panel-title">
+<h3>Focus areas</h3>
+<span class="label">Independent scores / 100</span>
+</div>
+<div class="focus-list">
 
-    <script>
-        // Focus Areas Radar Chart
-        const focusData = [{
-            type: 'scatterpolar',
-            r: [85.0, 10.0, 90.0, 80.0, 40.0, 60.0, 90.0, 50.0, 60.0, 85.0, 5.0],
-            theta: ["Home Automation", "Industrial Iot", "Energy Management", "Battery Management", "Environmental Monitoring", "Voice Assistant", "Networking Protocols", "Edge Computing", "Firmware Development", "Data Pipeline", "Unknown"],
-            fill: 'toself',
-            name: 'Focus Areas',
-            line: { color: '#667eea' }
-        }];
-        Plotly.newPlot('focus-chart', focusData, {
-            polar: { radialaxis: { visible: true, range: [0, 100] } },
-            showlegend: false,
-            margin: { t: 20, b: 20, l: 20, r: 20 }
-        });
+<div>
+<div class="score-caption">
+<span>Energy Management</span>
+<strong>90%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90.0%">
+</i>
+</div>
+</div>
 
-        // Complexity Distribution Pie Chart
-        const complexityLabels = ["Medium", "Low", "High"];
-        const complexityValues = [51, 39, 3];
-        Plotly.newPlot('complexity-chart', [{
-            values: complexityValues,
-            labels: complexityLabels,
-            type: 'pie',
-            hole: 0.4,
-            marker: { colors: ['#28a745', '#ffc107', '#fd7e14', '#dc3545'] }
-        }], {
-            showlegend: true,
-            margin: { t: 20, b: 20, l: 20, r: 20 }
-        });
-    </script>
+<div>
+<div class="score-caption">
+<span>Networking Protocols</span>
+<strong>90%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Home Automation</span>
+<strong>85%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:85.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Data Pipeline</span>
+<strong>85%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:85.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Battery Management</span>
+<strong>80%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:80.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Voice Assistant</span>
+<strong>60%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:60.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Firmware Development</span>
+<strong>60%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:60.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Edge Computing</span>
+<strong>50%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:50.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Environmental Monitoring</span>
+<strong>40%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:40.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Industrial Iot</span>
+<strong>10%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:10.0%">
+</i>
+</div>
+</div>
+
+<div>
+<div class="score-caption">
+<span>Unknown</span>
+<strong>5%</strong>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:5.0%">
+</i>
+</div>
+</div>
+
+</div>
+</div>
+<div class="panel">
+<div class="panel-title">
+<h3>Code complexity</h3>
+<span class="label">Repository distribution</span>
+</div>
+
+<div class="complexity-chart" aria-hidden="true">
+
+<span style="flex:51">
+</span>
+
+<span style="flex:39">
+</span>
+
+<span style="flex:3">
+</span>
+
+</div>
+<div class="complexity-list">
+
+<div class="complexity-row">
+<i aria-hidden="true">
+</i>
+<span>Medium</span>
+<strong>51</strong>
+<span>repos</span>
+</div>
+
+<div class="complexity-row">
+<i aria-hidden="true">
+</i>
+<span>Low</span>
+<strong>39</strong>
+<span>repos</span>
+</div>
+
+<div class="complexity-row">
+<i aria-hidden="true">
+</i>
+<span>High</span>
+<strong>3</strong>
+<span>repos</span>
+</div>
+
+</div>
+<p class="chart-note">93 classified repositories. Complexity reflects detected code patterns. Focus scores measure overlapping areas and do not add up to 100%.</p>
+</div>
+</div>
+<div class="skills">
+
+<article class="skill">
+<span class="label">home automation</span>
+<h3>Home Assistant / ESPHome</h3>
+<div class="skill-value">
+<strong>9</strong>
+<span>/ 10</span>
+<small class="confidence">95% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>7 source references</summary>
+<ul>
+
+
+
+<li>
+
+<a href="https://github.com/4alvit/esphome-ble-sensor-patterns">esphome-ble-sensor-patterns ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-control">inverter-control ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+
+
+<li>
+
+amazon-echo-home-voice
+
+</li>
+
+
+
+<li>
+
+google-home-voice-stats
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/esphome-jbd-bms-mqtt">esphome-jbd-bms-mqtt ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">energy systems</span>
+<h3>Energy Management</h3>
+<div class="skill-value">
+<strong>9</strong>
+<span>/ 10</span>
+<small class="confidence">95% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>7 source references</summary>
+<ul>
+
+
+
+<li>
+
+solar-forecast-langgraph
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-control">inverter-control ↗</a>
+
+</li>
+
+
+
+<li>
+
+inverter-dashboard
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-tasmota-pv">dbus-tasmota-pv ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">dbus-mqtt-battery ↗</a>
+
+</li>
+
+
+
+<li>
+
+mqtt-observability-opentelemetry
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">protocols networking</span>
+<h3>MQTT &amp; Networking Protocols</h3>
+<div class="skill-value">
+<strong>9</strong>
+<span>/ 10</span>
+<small class="confidence">95% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>9 source references</summary>
+<ul>
+
+
+
+<li>
+
+mqtt-observability-opentelemetry
+
+</li>
+
+
+
+<li>
+
+fastapi-mqtt-gateway
+
+</li>
+
+
+
+<li>
+
+mcp-venus-os
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">dbus-mqtt-battery ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-tasmota-pv">dbus-tasmota-pv ↗</a>
+
+</li>
+
+
+
+<li>
+
+inverter-dashboard
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">python iot</span>
+<h3>Python IoT</h3>
+<div class="skill-value">
+<strong>9</strong>
+<span>/ 10</span>
+<small class="confidence">95% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:90%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>16 source references</summary>
+<ul>
+
+
+
+<li>
+
+solar-forecast-langgraph
+
+</li>
+
+
+
+<li>
+
+mqtt-observability-opentelemetry
+
+</li>
+
+
+
+<li>
+
+energy-data-rag-pipeline
+
+</li>
+
+
+
+<li>
+
+iot-project-builder-profile
+
+</li>
+
+
+
+<li>
+
+mcp-venus-os
+
+</li>
+
+
+
+<li>
+
+fastapi-mqtt-gateway
+
+</li>
+
+
+
+<li>
+
+dbus-service-template
+
+</li>
+
+
+
+<li>
+
+amazon-echo-home-voice
+
+</li>
+
+
+
+<li>
+
+google-home-voice-stats
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">dbus-mqtt-battery ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-tasmota-pv">dbus-tasmota-pv ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-control">inverter-control ↗</a>
+
+</li>
+
+
+
+<li>
+
+inverter-dashboard
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring ↗</a>
+
+</li>
+
+
+
+<li>
+
+integration-tests
+
+</li>
+
+
+
+<li>
+
+inverter-dashboard-vue
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">energy systems</span>
+<h3>Battery Management</h3>
+<div class="skill-value">
+<strong>8</strong>
+<span>/ 10</span>
+<small class="confidence">90% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:80%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>4 source references</summary>
+<ul>
+
+
+
+<li>
+
+<a href="https://github.com/4alvit/esphome-ble-sensor-patterns">esphome-ble-sensor-patterns ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">dbus-mqtt-battery ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/esphome-jbd-bms-mqtt">esphome-jbd-bms-mqtt ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-control">inverter-control ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">data pipeline</span>
+<h3>Data Pipeline &amp; Observability</h3>
+<div class="skill-value">
+<strong>8</strong>
+<span>/ 10</span>
+<small class="confidence">90% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:80%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>5 source references</summary>
+<ul>
+
+
+
+<li>
+
+mqtt-observability-opentelemetry
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+
+
+<li>
+
+energy-data-rag-pipeline
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">embedded firmware</span>
+<h3>Embedded Firmware Development</h3>
+<div class="skill-value">
+<strong>7</strong>
+<span>/ 10</span>
+<small class="confidence">80% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:70%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>3 source references</summary>
+<ul>
+
+
+
+<li>
+
+<a href="https://github.com/4alvit/esphome-ble-sensor-patterns">esphome-ble-sensor-patterns ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/esphome-jbd-bms-mqtt">esphome-jbd-bms-mqtt ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">edge computing</span>
+<h3>Edge Computing</h3>
+<div class="skill-value">
+<strong>6</strong>
+<span>/ 10</span>
+<small class="confidence">70% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:60%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>4 source references</summary>
+<ul>
+
+
+
+<li>
+
+mqtt-observability-opentelemetry
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+<article class="skill">
+<span class="label">voice ai</span>
+<h3>Voice AI / Voice Assistant</h3>
+<div class="skill-value">
+<strong>6</strong>
+<span>/ 10</span>
+<small class="confidence">80% assessment confidence</small>
+</div>
+<div class="score-track" aria-hidden="true">
+<i style="width:60%">
+</i>
+</div>
+<details class="evidence-toggle">
+<summary>5 source references</summary>
+<ul>
+
+
+
+<li>
+
+amazon-echo-home-voice
+
+</li>
+
+
+
+<li>
+
+google-home-voice-stats
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-control">inverter-control ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go ↗</a>
+
+</li>
+
+
+
+<li>
+
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop ↗</a>
+
+</li>
+
+</ul>
+</details>
+</article>
+
+</div>
+</section>
+<section class="section" id="repositories" aria-labelledby="repositories-title">
+<div class="section-heading">
+<div>
+<span class="label">
+<span class="section-index">03</span>Selected work</span>
+<h2 id="repositories-title">Explore the repositories.</h2>
+</div>
+<p>The top repositories retained in this scan, with their original descriptions and source links.</p>
+</div>
+<div class="filters" id="repository-filters" hidden>
+<div class="filter-fields">
+<label class="search-label">
+<span class="sr-only">Search repositories</span>
+<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+<circle cx="8" cy="8" r="5.5"/>
+<path d="m12 12 5 5"/>
+</svg>
+<input id="repository-search" type="search" placeholder="Search name, topic or description" autocomplete="off">
+</label>
+<label>
+<span class="sr-only">Filter by language</span>
+<select id="repository-language">
+<option value="">All languages</option>
+
+<option>Go</option>
+
+<option>Python</option>
+
+<option>Rust</option>
+
+<option>YAML</option>
+
+</select>
+</label>
+</div>
+<span class="result-count" id="repository-count" role="status" aria-live="polite">10 repositories</span>
+</div>
+<div class="repositories">
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">4alvit /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/4alvit/esphome-ble-sensor-patterns">esphome-ble-sensor-patterns</a>
+</h3>
+<p>Production-ready patterns for ESPHome BLE sensors — iBeacon, Eddystone, and custom BLE service parsing with lambda filters. Covers ESP32 Bluetooth proxy, passive scanning, and Home Assistant integration for battery-powered sensors.</p>
+<div class="repo-tags">
+
+<span class="tag">ble</span>
+
+<span class="tag">bms</span>
+
+<span class="tag">esp32</span>
+
+<span class="tag">esphome</span>
+
+<span class="tag">plant-sensor</span>
+
+<span class="tag">reference-implementation</span>
+
+
+
+<span class="tag">+12 topics</span>
+
+</div>
+<span class="sr-only">ble bms esp32 esphome plant-sensor reference-implementation bluetooth-low-energy bluetooth-proxy home-assistant iot lambda passive-scanning sensor ibeacon temperature-sensor venus-os victron xiaomi</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/dbus-mqtt-battery">dbus-mqtt-battery</a>
+</h3>
+<p>MQTT to D-Bus bridge for JBD BMS batteries on Victron Venus OS with DVCC support</p>
+<div class="repo-tags">
+
+<span class="tag">bms</span>
+
+<span class="tag">dbus</span>
+
+<span class="tag">lifepo4</span>
+
+<span class="tag">mqtt</span>
+
+<span class="tag">python</span>
+
+<span class="tag">venus-os</span>
+
+
+
+<span class="tag">+10 topics</span>
+
+</div>
+<span class="sr-only">bms dbus lifepo4 mqtt python venus-os victron battery-management cerbo-gx dvcc jbd-bms battery energy power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/dbus-tasmota-pv">dbus-tasmota-pv</a>
+</h3>
+<p>Tasmota power meter to Victron D-Bus PV inverter bridge for Venus OS</p>
+<div class="repo-tags">
+
+<span class="tag">dbus</span>
+
+<span class="tag">mqtt</span>
+
+<span class="tag">python</span>
+
+<span class="tag">solar</span>
+
+<span class="tag">tasmota</span>
+
+<span class="tag">venus-os</span>
+
+
+
+<span class="tag">+7 topics</span>
+
+</div>
+<span class="sr-only">dbus mqtt python solar tasmota venus-os victron pv-inverter energy inverter meter power sensor</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="YAML">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/esphome-jbd-bms-mqtt">esphome-jbd-bms-mqtt</a>
+</h3>
+<p>ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS</p>
+<div class="repo-tags">
+
+<span class="tag">bluetooth</span>
+
+<span class="tag">esp32</span>
+
+<span class="tag">esphome</span>
+
+<span class="tag">jbd-bms</span>
+
+<span class="tag">lifepo4</span>
+
+<span class="tag">mqtt</span>
+
+
+
+<span class="tag">+9 topics</span>
+
+</div>
+<span class="sr-only">bluetooth esp32 esphome jbd-bms lifepo4 mqtt venus-os victron battery-monitor cerbo-gx battery ble bms energy sensor</span>
+<div class="repo-meta">
+<span class="language">YAML</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>1 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/inverter-control">inverter-control</a>
+</h3>
+<p>Grid-zero feed-in control for Victron inverters with Home Assistant integration and web dashboard</p>
+<div class="repo-tags">
+
+<span class="tag">dbus</span>
+
+<span class="tag">energy-management</span>
+
+<span class="tag">grid-tie</span>
+
+<span class="tag">home-assistant</span>
+
+<span class="tag">python</span>
+
+<span class="tag">raspberry-pi</span>
+
+
+
+<span class="tag">+14 topics</span>
+
+</div>
+<span class="sr-only">dbus energy-management grid-tie home-assistant python raspberry-pi solar cerbo-gx emporia-vue hass quattro ess external-control mqtt battery energy inverter meter power sensor</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/inverter-monitoring">inverter-monitoring</a>
+</h3>
+<p>Telegraf + InfluxDB + Grafana monitoring stack for Victron inverter systems</p>
+<div class="repo-tags">
+
+<span class="tag">cerbo-gx</span>
+
+<span class="tag">docker</span>
+
+<span class="tag">energy-monitoring</span>
+
+<span class="tag">grafana</span>
+
+<span class="tag">influxdb</span>
+
+<span class="tag">iot</span>
+
+
+
+<span class="tag">+14 topics</span>
+
+</div>
+<span class="sr-only">cerbo-gx docker energy-monitoring grafana influxdb iot mqtt telegraf time-series venus-os victron python battery dbus energy inverter meter power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Go">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/inverter-dashboard-go">inverter-dashboard-go</a>
+</h3>
+<p>Real-time Victron inverter web dashboard (Go) — same role as inverter-dashboard, implemented in Go with MQTT and optional Home Assistant direct control</p>
+<div class="repo-tags">
+
+<span class="tag">cerbo-gx</span>
+
+<span class="tag">dashboard</span>
+
+<span class="tag">docker</span>
+
+<span class="tag">go</span>
+
+<span class="tag">golang</span>
+
+<span class="tag">hass</span>
+
+
+
+<span class="tag">+12 topics</span>
+
+</div>
+<span class="sr-only">cerbo-gx dashboard docker go golang hass home-assistant mqtt real-time venus-os victron websocket battery energy inverter power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Go</span>
+<span>High complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Rust">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/inverter-desktop">inverter-desktop</a>
+</h3>
+<p>Desktop version of Web dashboard for Victron inverter control with Home Assistant integration</p>
+<div class="repo-tags">
+
+<span class="tag">cerbo-gx</span>
+
+<span class="tag">dashboard</span>
+
+<span class="tag">energy-management</span>
+
+<span class="tag">grid-tie</span>
+
+<span class="tag">hass</span>
+
+<span class="tag">home-assistant</span>
+
+
+
+<span class="tag">+10 topics</span>
+
+</div>
+<span class="sr-only">cerbo-gx dashboard energy-management grid-tie hass home-assistant mqtt venus-os victron web-dashboard battery energy inverter power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Rust</span>
+<span>High complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/venus-os-observability">venus-os-observability</a>
+</h3>
+<p>OpenTelemetry/Prometheus observability for Venus OS — D-Bus event tracing, inverter metrics, distributed tracing</p>
+<div class="repo-tags">
+
+<span class="tag">cerbo-gx</span>
+
+<span class="tag">dbus</span>
+
+<span class="tag">distributed-tracing</span>
+
+<span class="tag">grafana</span>
+
+<span class="tag">mqtt</span>
+
+<span class="tag">opentelemetry</span>
+
+
+
+<span class="tag">+10 topics</span>
+
+</div>
+<span class="sr-only">cerbo-gx dbus distributed-tracing grafana mqtt opentelemetry prometheus tempo venus-os victron python energy inverter power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+<article class="repo" data-language="Python">
+<div class="repo-top">
+<span class="repo-owner">victron-venus /</span>
+<span class="repo-arrow" aria-hidden="true">↗</span>
+</div>
+<h3>
+<a href="https://github.com/victron-venus/dbus-esphome-grid-sensor">dbus-esphome-grid-sensor</a>
+</h3>
+<p>ESP32 CT sensor for grid power monitoring with D-Bus service for Venus OS</p>
+<div class="repo-tags">
+
+<span class="tag">ct-sensor</span>
+
+<span class="tag">dbus</span>
+
+<span class="tag">docker</span>
+
+<span class="tag">esp32</span>
+
+<span class="tag">esphome</span>
+
+<span class="tag">grid-meter</span>
+
+
+
+<span class="tag">+11 topics</span>
+
+</div>
+<span class="sr-only">ct-sensor dbus docker esp32 esphome grid-meter home-automation mqtt python venus-os victron energy grid meter power sensor solar</span>
+<div class="repo-meta">
+<span class="language">Python</span>
+<span>Medium complexity</span>
+<span>100% IoT relevance</span>
+<span>0 stars</span>
+</div>
+</article>
+
+</div>
+<p class="empty" id="repository-empty" hidden>No repositories match these filters. Try another term or language.</p>
+</section>
+
+
+<section class="section" aria-labelledby="insights-title">
+<div class="section-heading">
+<div>
+<span class="label">Analysis notes</span>
+<h2 id="insights-title">Strengths &amp; next directions.</h2>
+</div>
+<p>The scan’s conclusions, kept alongside the evidence they were derived from.</p>
+</div>
+<div class="insights">
+<div class="panel insight">
+<h3>Where the work is strongest</h3>
+<ul>
+
+<li>
+<span aria-hidden="true">↗</span>
+<span>Deep expertise in Home Assistant/ESPHome integration for battery and energy systems</span>
+</li>
+
+<li>
+<span aria-hidden="true">↗</span>
+<span>Strong MQTT-based data pipelines and observability solutions (OpenTelemetry, Prometheus, Grafana)</span>
+</li>
+
+<li>
+<span aria-hidden="true">↗</span>
+<span>Proficiency in Python for building IoT services, gateways, and edge deployments</span>
+</li>
+
+</ul>
+</div>
+<div class="panel insight">
+<h3>Suggested growth areas</h3>
+<ul>
+
+<li>
+<span aria-hidden="true">→</span>
+<span>Expand into industrial IoT protocols such as Modbus TCP, CANbus, and IEC 61850</span>
+</li>
+
+<li>
+<span aria-hidden="true">→</span>
+<span>Deepen low-level embedded firmware development in C/C++ or Rust for resource‑constrained MCUs</span>
+</li>
+
+<li>
+<span aria-hidden="true">→</span>
+<span>Explore AI/ML at the edge for predictive maintenance and solar forecasting enhancement</span>
+</li>
+
+</ul>
+</div>
+</div>
+</section>
+
+
+<section class="section" id="evidence" aria-labelledby="evidence-title">
+<div class="section-heading">
+<div>
+<span class="label">
+<span class="section-index">04</span>Implementation evidence</span>
+<h2 id="evidence-title">A closer look at the source.</h2>
+</div>
+<p>Expand a record to inspect the devices, components and interfaces detected by the analyzers.</p>
+</div>
+<div class="evidence-grid">
+<div class="evidence-group">
+<h3>ESPHome configurations <span>13 records</span>
+</h3>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/generic-ble-temp.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 14 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / ble_client
+
+
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Temperature
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Humidity
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Battery
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 13 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Inkbird Temperature
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Inkbird Humidity
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Inkbird Battery
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 12 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: Restart
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> xiaomi_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 21 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> daly_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 17 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: Restart
+
+</li>
+
+<li>binary_sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / daly_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> daly_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 25 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: Restart
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Total Voltage (All)
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Total Power (All)
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Min SOC (All)
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 16 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: Restart
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 17 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: ESP32 Status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / xiaomi_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: Uptime
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: WiFi Signal
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> xiaomi_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 47 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: restart
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: esp32_status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>interval
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: wifi_signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: uptime
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: voltage_total_c1
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: power_total_c1
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: current_total_c1
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: soc_total_c1
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: capacity_total_c1
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: voltage_total_c2
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: power_total_c2
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: current_total_c2
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: soc_total_c2
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: capacity_total_c2
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries1.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 30 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>script
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: restart
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: esp32_status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: wifi_signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: uptime
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: voltage_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: power_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: current_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: soc_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: capacity_total
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries2.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 30 · <strong>Complexity:</strong> medium</p>
+<p>
+<strong>Focus:</strong> home automation, firmware development, battery management, energy management, environmental monitoring, networking protocols</p>
+
+<ul>
+
+<li>web_server
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>script
+
+
+
+</li>
+
+<li>esp32_ble_tracker
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: restart
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: esp32_status
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / jbd_bms_ble
+
+
+
+</li>
+
+<li>sensor
+
+ / wifi_signal
+
+
+
+: wifi_signal
+
+</li>
+
+<li>sensor
+
+ / uptime
+
+
+
+: uptime
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: voltage_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: power_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: current_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: soc_total
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: capacity_total
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+<li>esp32_ble
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+<li>ble_client
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> jbd_bms_ble</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>victron-venus/dbus-esphome-grid-sensor/esphome/grid-sensor.yaml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> esp32:esp32dev</p>
+<p>
+<strong>Components:</strong> 16 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> energy management, home automation, firmware development, networking protocols</p>
+
+<ul>
+
+<li>i2c
+
+
+
+</li>
+
+<li>wifi
+
+
+
+</li>
+
+<li>ota
+
+ / esphome
+
+
+
+</li>
+
+<li>button
+
+ / restart
+
+
+
+: Grid Sensor Restart
+
+</li>
+
+<li>button
+
+ / template
+
+
+
+: Toggle Calibration Mode
+
+</li>
+
+<li>switch
+
+ / template
+
+
+
+: MQTT Publishing
+
+</li>
+
+<li>binary_sensor
+
+ / status
+
+
+
+: Grid Sensor Status
+
+</li>
+
+<li>binary_sensor
+
+ / template
+
+
+
+: Grid Feed-In Active
+
+</li>
+
+<li>logger
+
+
+
+</li>
+
+<li>api
+
+
+
+</li>
+
+<li>sensor
+
+ / adc
+
+
+
+: Grid Current
+
+</li>
+
+<li>sensor
+
+ / template
+
+
+
+: Grid Power
+
+</li>
+
+<li>sensor
+
+ / integration
+
+
+
+: Grid Energy Forward
+
+</li>
+
+<li>sensor
+
+ / integration
+
+
+
+: Grid Energy Reverse
+
+</li>
+
+<li>light
+
+ / binary
+
+
+
+: Grid Sensor LED
+
+</li>
+
+<li>mqtt
+
+
+
+</li>
+
+</ul>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+<details class="source-row">
+<summary>victron-venus/dbus-esphome-grid-sensor/docker-compose.yml</summary>
+<div class="source-data">
+<p>
+<strong>Devices:</strong> Not detected</p>
+<p>
+<strong>Components:</strong> 0 · <strong>Complexity:</strong> low</p>
+<p>
+<strong>Focus:</strong> home automation, networking protocols</p>
+
+<p>
+<strong>Custom components:</strong> None detected</p>
+<p>
+<strong>External libraries:</strong> None detected</p>
+</div>
+</details>
+
+</div>
+<div class="evidence-group">
+<h3>D-Bus analysis <span>39 records</span>
+</h3>
+
+<details class="source-row">
+<summary>com.victronenergy.battery.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Alarms/CellImbalance, /Alarms/CommunicationError, /Alarms/HighCellVoltage, /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowCellVoltage, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /Dc/0/Temperature, /History/ChargeCycles, /Info/MaxChargeCellVoltage, /Info/MaxChargeCurrent, /Info/MaxChargeVoltage, /Info/MaxDischargeCurrent, /InstalledCapacity, /Io/AllowToBalance, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MOSTemperature, /System/MaxCellTemperature, /System/MaxCellVoltage, /System/MaxTemperatureCellId, /System/MaxVoltageCellId, /System/MinCellTemperature, /System/MinCellVoltage, /System/MinTemperatureCellId, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCells, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge, /System/NrOfModulesOffline, /System/NrOfModulesOnline, /System/StaleData, /Voltages/Diff, /Voltages/Sum</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.battery. · /Alarms/CellImbalance</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>dbus_utils</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Connected, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /TimeToGo</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.dbus_utils · /Connected</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.pvinverter.tasmota_</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Daily, /Ac/Energy/Forward, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /Energy/Daily/Yesterday, /ErrorCode, /FirmwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Position, /ProductId, /ProductName, /Serial</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.pvinverter.tasmota_ · /Ac/Energy/Daily</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.acload.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Power, /CustomName, /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.acload. · /Ac/Power</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.BusItem</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /org/freedesktop/DBus, {path}</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.BusItem · /org/freedesktop/DBus</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.tank.ha_tank</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Power, /Soc, /sys/class/net/eth0/address</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.tank.ha_tank · /Ac/Power</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.evcharger.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/L1/Voltage, /Ac/Power, /Current, /DeviceInstance, /Mgmt/Connection, /Soc, /VIN</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management</p>
+
+<ul>
+
+<li>com.victronenergy.evcharger. · /Ac/L1/Voltage</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>grid_backup</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Power, /Connected, /CustomName, /DeviceInstance, /LastUpdate, /ProductName, /Role</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.grid_backup · /Ac/Power</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.grid.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Grid/NumberOfPhases, /Connected, /NrOfPhases, /ServiceName</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.grid. · /Ac/Grid/NumberOfPhases</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.settings</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Consumption/L1/Power, /Ac/Consumption/L2/Power, /Ac/Energy/Daily, /Ac/Energy/Forward, /Ac/Grid/L1/Power, /Ac/Grid/L2/Power, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Voltage, /Dc/Battery/Soc, /Dc/Pv/Power, /Devices/0/Ac/Inverter/P, /Energy/Daily/Yesterday, /History/Daily/0/Yield, /History/Daily/1/Yield, /Hub4/L1/AcPowerSetpoint, /Info/AllowCharge, /Info/AllowDischarge, /ProductName, /Pv/V, /Settings, /Settings/CGwacs/BatteryLife/State, /Settings/InverterControl/TouExpensiveEndHour, /Settings/InverterControl/TouExpensiveStartHour, /Settings/System/TimeZone, /Soc, /State, /TimeToGo, /Yield/Power</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.settings · /Ac/Consumption/L1/Power</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.tank.ha_tank</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Level, /State</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.tank.ha_tank · /Level</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.BusItem</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /, /Ac/Grid/L1/P, /Ac/L1/Power, /Ac/Out/L1/P, /Ac/Power, /CustomName, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /Soc, /State, /Yield/Power, /org/freedesktop/DBus, {path}</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management</p>
+
+<ul>
+
+<li>com.victronenergy.BusItem · /</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>dbus_owners</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management</p>
+
+<ul>
+
+<li>com.victronenergy.dbus_owners · /org/freedesktop/DBus</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.battery.ttyO1</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /ac/grid/power, /ac/loads/power, /ac/power, /dc/0/power, /dc/0/voltages/cell, /dc/pv/power, /power, /soc, /state, /temperatures/cell, /yield/power</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.battery.ttyO1 · /ac/grid/power</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.grid</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/Power, /Connected, /CustomName, /DeviceInstance, /ErrorCode, /FirmwareVersion, /HardwareVersion, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /ProductId, /ProductName, /Status, /run/dbus-grid-service.pid</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.grid · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>mqtt_to_dbus</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /ProductId, /ProductName</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.mqtt_to_dbus · /Connected</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.BusItem</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /, /Array, /AsyncItem, /DeviceInstance, /Double, /DoubleArray, /Int, /Text</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management</p>
+
+<ul>
+
+<li>com.victronenergy.BusItem · /</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.BusItem</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 3 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /, /Double, /Int, /Nothing, /Settings/Vrmlogger/LogInterval, /Text, /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.example.servicehandler · /servicehandler</li>
+
+<li>com.example.gridservice · /gridservice</li>
+
+<li>com.example.settingsservice · /settingsservice</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.settings</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Settings, /Settings/AioVelib/OptionA, /Settings/AioVelib/OptionB</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.settings · /Settings</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.acload.emporia_ch</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /api, /states, /websocket, config.json</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.acload.emporia_ch · /api</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.acload.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/L1/Power, /Ac/Power, /AllowedRoles, /Connected, /CustomName, /DeviceInstance, /Emporia/Channel, /Emporia/DeviceId, /FirmwareVersion, /IsGenericEnergyMeter, /LastUpdate, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /NrOfPhases, /Position, /ProductId, /ProductName, /RefreshTime, /Role, /Serial, /Source/EntityId, /Source/Type, /Status</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.acload. · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>monitor</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /, /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management</p>
+
+<ul>
+
+<li>com.victronenergy.monitor · /</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.battery.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Alarms/HighTemperature, /Alarms/HighVoltage, /Alarms/InternalFailure, /Alarms/LowSoc, /Alarms/LowTemperature, /Alarms/LowVoltage, /Capacity, /Connected, /ConsumedAmphours, /CustomName, /Info/DataComplete, /Info/MissingSources, /Info/SourceStatus, /InstalledCapacity, /Io/AllowToCharge, /Io/AllowToDischarge, /Soc, /System/BatteriesParallel, /System/BatteriesSeries, /System/MaxCellVoltage, /System/MaxVoltageCellId, /System/MinCellVoltage, /System/MinVoltageCellId, /System/NrOfBatteries, /System/NrOfCellsPerBattery, /System/NrOfModulesBlockingCharge, /System/NrOfModulesBlockingDischarge, /System/NrOfModulesOffline, /System/NrOfModulesOnline, /TimeToGo, /Voltages/Diff, /Voltages/Sum</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.battery. · /Alarms/HighTemperature</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.Battery</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management</p>
+
+<ul>
+
+<li>com.victronenergy.Battery · /org/freedesktop/DBus</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>server</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Level, Dc/0/MaxChargeCurrent, Mode, SocLimit</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.server · /Level</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>cerbo</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /, /AcPowerSetpoint, /Power</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.cerbo · /</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>server</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /api/settings, /api/state, /api/update, /app/src/inverter_dashboard/static, /assets, /static, /ws</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.server · /api/settings</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.tank.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /ActiveTankService, /Capacity, /Connected, /CustomName, /DeviceInstance, /FirmwareVersion, /FluidType, /HardwareVersion, /Level, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Mode, /ProductId, /ProductName, /Remaining, /Serial, /State, /Status</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management</p>
+
+<ul>
+
+<li>com.victronenergy.tank. · /ActiveTankService</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>cerbo_mqtt</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /availability, /state</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.cerbo_mqtt · /availability</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>charger</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Current, /Ac/Energy/Forward, /Ac/Frequency, /Ac/Power, /Connected, /Current, /NrOfPhases, /Status</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.charger · /Ac/Current</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.evcharger.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/PowerFactor, /Ac/L1/Voltage, /Ac/L2/Current, /Ac/L2/Power, /Ac/L2/PowerFactor, /Ac/L2/Voltage, /Ac/L3/Current, /Ac/L3/Power, /Ac/L3/PowerFactor, /Ac/L3/Voltage, /Ac/Power, /Alarms/BlockedWarning, /Alarms/CPInputShortCircuit, /Alarms/DisplayFWUpdateFailure1, /Alarms/DisplayFWUpdateFailure2, /Alarms/DisplayFWUpdateInProgress, /Alarms/ExternalCurrentLimit, /Alarms/GNDNotPresent, /Alarms/GxCommWarning, /Alarms/HighTempWarning, /Alarms/LightSensorICFault, /Alarms/OverTemperature, /Alarms/OverloadActive, /Alarms/OverloadDetected, /Alarms/ResidualCurrent, /Alarms/SetupNeeded, /Alarms/SystemCausedCurrentLimit, /Alarms/TamperDetected, /Alarms/TimeSyncIssue, /Alarms/WeldedContacts, /AutoStart, /Connected, /Current, /CustomName, /DeviceInstance, /EnableDisplay, /FirmwareVersion, /HardwareVersion, /IsGenericEnergyMeter, /MaxCurrent, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /MinCurrent, /Mode, /Model, /NrOfPhases, /Position, /PositionIsAdjustable, /ProductId, /ProductName, /Serial, /Session/Cost, /Session/Energy, /Session/SavedCost, /Session/Time, /Session/UserId, /Session/UserIdType, /SetCurrent, /StartStop, /Status</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.evcharger. · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>client</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /v2/vehicles</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.client · /v2/vehicles</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.ev.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/L2/Power, /Ac/L3/Power, /Ac/Power, /AtSite, /BatteryCapacity, /ChargingState, /ChargingTime, /Connected, /Current, /CustomName, /DeviceInstance, /FirmwareVersion, /HardwareVersion, /IsGenericEnergyMeter, /MaxCurrent, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /Mode, /NrOfPhases, /Odometer, /Position, /Position/Latitude, /Position/Longitude, /PositionIsAdjustable, /ProductId, /ProductName, /RangeToGo, /Serial, /Session/Energy, /SetCurrent, /Soc, /StartStop, /Status, /TargetSoc, /VIN</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.ev. · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>mqtt_bridge</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Voltage, /Ac/Power, /Alarm, /Capacity, /CellVoltages, /Dc/0/Current, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /FluidType, /Level, /Remaining, /Soc, /Unit, /Value, /set</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.mqtt_bridge · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.mock.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Energy/Reverse, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/Voltage, /Ac/L2/Current, /Ac/L2/Power, /Ac/L2/Voltage, /Ac/L3/Current, /Ac/L3/Power, /Ac/L3/Voltage, /Ac/MaxPower, /Ac/Power, /Alarm/CellImbalance, /Alarm/HighTemperature, /Alarm/InternalFailure, /Alarm/LowSoc, /Alarm/LowTemperature, /Alarms, /Alarms/CellImbalance, /Alarms/HighTemperature, /Alarms/InternalFailure, /Alarms/LowSoc, /Alarms/LowTemperature, /Balancing, /BatteryState, /Capacity, /ChargeCurrent, /ChargeVoltage, /Connected, /CustomName, /Dc/0/AllowCharge, /Dc/0/AllowDischarge, /Dc/0/ConsumedAmphours, /Dc/0/Current, /Dc/0/MaxChargeCurrent, /Dc/0/MaxChargeVoltage, /Dc/0/MaxDischargeCurrent, /Dc/0/Power, /Dc/0/Temperature, /Dc/0/Voltage, /DeviceInstance, /FirmwareVersion, /FluidType, /HardwareVersion, /Level, /MaxChargeCurrent, /MaxDischargeCurrent, /Model, /ProductId, /ProductName, /Remaining, /Serial, /Soc, /SystemMaxCellVoltage, /SystemMinCellVoltage, /Temperature, /TemperatureType, /TimeRemaining, /opt/victronenergy/velib_python</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, battery management</p>
+
+<ul>
+
+<li>com.victronenergy.mock. · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>__main__</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /opt/victronenergy/velib_python</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.__main__ · /opt/victronenergy/velib_python</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>main</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/PowerFactor, /Ac/L1/Voltage, /Ac/L2/Current, /Ac/L2/Power, /Ac/L2/PowerFactor, /Ac/L2/Voltage, /Ac/Power, /Current, /MaxCurrent, /MinCurrent, /NrOfPhases, /Position, /Session/Cost, /Session/Energy, /Session/SavedCost, /Session/Time, /Session/UserId, /Session/UserIdType, /StartStop, /Status</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation, networking protocols</p>
+
+<ul>
+
+<li>com.victronenergy.main · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.evcharger.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /Ac/Energy/Forward, /Ac/Frequency, /Ac/L1/Current, /Ac/L1/Power, /Ac/L1/PowerFactor, /Ac/L1/Voltage, /Ac/L2/Current, /Ac/L2/Power, /Ac/L2/PowerFactor, /Ac/L2/Voltage, /Ac/L3/Current, /Ac/L3/Power, /Ac/L3/PowerFactor, /Ac/L3/Voltage, /Ac/Power, /Alarms/BlockedWarning, /Alarms/CPInputShortCircuit, /Alarms/DisplayFWUpdateFailure1, /Alarms/DisplayFWUpdateFailure2, /Alarms/DisplayFWUpdateInProgress, /Alarms/ExternalCurrentLimit, /Alarms/GNDNotPresent, /Alarms/GxCommWarning, /Alarms/HighTempWarning, /Alarms/LightSensorICFault, /Alarms/OverTemperature, /Alarms/OverloadActive, /Alarms/OverloadDetected, /Alarms/ResidualCurrent, /Alarms/SetupNeeded, /Alarms/SystemCausedCurrentLimit, /Alarms/TamperDetected, /Alarms/TimeSyncIssue, /Alarms/WeldedContacts, /AutoStart, /Connected, /Current, /CustomName, /DeviceInstance, /EnableDisplay, /FirmwareVersion, /HardwareVersion, /IsGenericEnergyMeter, /MaxCurrent, /Mgmt/Connection, /Mgmt/ProcessName, /Mgmt/ProcessVersion, /MinCurrent, /Mode, /Model, /NrOfPhases, /Position, /PositionIsAdjustable, /ProductId, /ProductName, /Serial, /Session/Cost, /Session/Energy, /Session/SavedCost, /Session/Time, /Session/UserId, /Session/UserIdType, /SetCurrent, /StartStop, /Status</p>
+<p>
+<strong>Complexity:</strong> medium · <strong>Focus:</strong> energy management, battery management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.evcharger. · /Ac/Energy/Forward</li>
+
+</ul>
+
+</div>
+</details>
+
+<details class="source-row">
+<summary>com.victronenergy.grid.</summary>
+<div class="source-data">
+<p>
+<strong>Interfaces:</strong> 1 · <strong>Methods:</strong> 0 · <strong>Signals:</strong> 0</p>
+<p>
+<strong>Object paths:</strong> /org/freedesktop/DBus</p>
+<p>
+<strong>Complexity:</strong> low · <strong>Focus:</strong> energy management, home automation</p>
+
+<ul>
+
+<li>com.victronenergy.grid. · /org/freedesktop/DBus</li>
+
+</ul>
+
+</div>
+</details>
+
+</div>
+</div>
+</section>
+<footer class="footer">
+<div>
+<p>IoT Engineering Profile / @4alvit<br>Generated September 28, 2026 from repository evidence. Check individual repositories for current documentation and installation requirements.</p>
+</div>
+<div class="footer-links">
+<a href="https://github.com/4alvit/iot-project-builder-profile">About the generator ↗</a>
+<a class="back-top" href="#top">Back to top ↑</a>
+</div>
+</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+
+  // The full repository list is the no-JavaScript default.
+  const filters = document.getElementById("repository-filters");
+  const search = document.getElementById("repository-search");
+  const language = document.getElementById("repository-language");
+  const count = document.getElementById("repository-count");
+  const empty = document.getElementById("repository-empty");
+  const cards = Array.from(document.querySelectorAll(".repo"));
+
+  if (filters && search && language && count && empty) {
+    function apply() {
+      const terms = search.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+      let visible = 0;
+      cards.forEach(function (card) {
+        const content = card.textContent.toLocaleLowerCase();
+        const matches = terms.every(function (term) { return content.includes(term); }) &&
+          (!language.value || card.dataset.language === language.value);
+        card.hidden = !matches;
+        if (matches) visible++;
+      });
+      count.textContent = visible + " of " + cards.length + " repositories";
+      empty.hidden = visible !== 0;
+    }
+    filters.hidden = false;
+    search.addEventListener("input", apply);
+    language.addEventListener("change", apply);
+    apply();
+  }
+
+  if ("IntersectionObserver" in window) {
+    const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    const visible = new Map();
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { visible.set(entry.target.id, entry.isIntersecting); });
+      const current = links.find(function (link) { return visible.get(link.hash.slice(1)); });
+      links.forEach(function (link) {
+        if (link === current) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-18% 0px -52% 0px", threshold: 0 });
+    links.forEach(function (link) {
+      const section = document.getElementById(link.hash.slice(1));
+      if (section) observer.observe(section);
+    });
+  }
+
+  // Print all evidence, then restore the reader's expansion choices.
+  let printDetails = [];
+  window.addEventListener("beforeprint", function () {
+    printDetails = Array.from(document.querySelectorAll("details:not([open])"));
+    printDetails.forEach(function (detail) { detail.open = true; });
+  });
+  window.addEventListener("afterprint", function () {
+    printDetails.forEach(function (detail) { detail.open = false; });
+    printDetails = [];
+  });
+})();
+</script>
 </body>
 </html>

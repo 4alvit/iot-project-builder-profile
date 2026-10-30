@@ -53,6 +53,13 @@ For username `4alvit`, the output directory contains `4alvit_profile.md`,
 belong under `profile/`; GitHub Pages copies them into `docs/` and installs the
 HTML entry point as `docs/index.html`.
 
+The HTML profile is self-contained: charts, styling and repository filtering do
+not require external scripts, fonts or network requests. Source records use native
+expandable sections, and repository links, scores and analysis remain readable
+without JavaScript. The presentation is maintained in
+`iot_profile_builder/output/profile_page.py`, so scheduled regeneration keeps
+the same design. A visual refresh does not change the snapshot date or scores.
+
 Only the output directory needs to be writable. Standard templates are loaded
 from memory; `ProfileRenderer(template_dir=...)` reads any supplied overrides
 and uses the standard template for each missing file without creating it there.

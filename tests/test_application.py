@@ -303,4 +303,5 @@ class ApplicationTests(IsolatedAsyncioTestCase):
         html = output.with_suffix(".html").read_text()
         assert "<html" in html.lower()
         assert '<script src="https://cdn.plot.ly' not in html
-        assert "plotly.js v" in html
+        assert 'class="score-track"' in html
+        assert "plotly.js v" not in html
