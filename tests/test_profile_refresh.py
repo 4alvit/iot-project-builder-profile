@@ -193,6 +193,34 @@ class RefreshWorkflowTests(unittest.TestCase):
         self.job = self.workflow["jobs"]["generate-profile"]
         self.steps = {step["name"]: step for step in self.job["steps"]}
 
+    def test_model_preflight_precedes_scanning_and_hostname_is_masked(self) -> None:
+        names = list(self.steps)
+        self.assertLess(
+            names.index("Check model access before scanning"), names.index("Generate profile")
+        )
+        self.assertLess(
+            names.index("Mask the private inference hostname"),
+            names.index("Harden the runner (Enforce permitted endpoints)"),
+        )
+        preflight = self.steps["Check model access before scanning"]
+        self.assertIn("inputs.use-llm", preflight["if"])
+        self.assertIn("probe_profile_model.py", preflight["run"])
+        self.assertNotIn("GITHUB_TOKEN", preflight["env"])
+        self.assertNotIn("BOT_PAT", str(preflight))
+        hardening = self.steps["Harden the runner (Enforce permitted endpoints)"]["with"]
+        self.assertEqual(hardening["egress-policy"], "block")
+        self.assertTrue(hardening["disable-telemetry"])
+        self.assertIn("secrets.PROFILE_INFERENCE_HOSTNAME", hardening["allowed-endpoints"])
+        result = subprocess.run(
+            ["bash", "-euc", self.steps["Mask the private inference hostname"]["run"]],
+            env={**os.environ, "ANTHROPIC_BASE_URL": "https://inference.example.test"},
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertEqual(result.stdout, "::add-mask::inference.example.test\n")
+        self.assertEqual(result.stderr, "")
+
     def test_schedule_routes_through_variables_and_requires_the_configured_model(self) -> None:
         self.assertEqual(self.workflow["on"]["schedule"], [{"cron": "0 6 * * 1"}])
         self.assertTrue(self.workflow["on"]["workflow_dispatch"]["inputs"]["use-llm"]["default"])

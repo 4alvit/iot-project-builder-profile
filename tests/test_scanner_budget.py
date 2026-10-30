@@ -114,6 +114,54 @@ class ScannerBudgetTests(IsolatedAsyncioTestCase):
             following.sleep(response)
         sleep.assert_called_once_with(60)
 
+    def test_short_retry_after_cannot_override_hour_long_primary_reset(self) -> None:
+        now = datetime(2030, 1, 1, tzinfo=UTC)
+        response = HTTPResponse(
+            status=403,
+            headers={
+                "Retry-After": "30",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": str(int(now.timestamp()) + 3600),
+            },
+        )
+        following = self.configured_retry().increment(
+            "GET", "https://api.github.com/example", response
+        )
+        with (
+            patch("iot_profile_builder.scanner.github_scanner.datetime", wraps=datetime) as clock,
+            patch("time.sleep") as sleep,
+            self.assertRaises(RateLimitExceededExceedsMaxWait) as raised,
+        ):
+            clock.now.return_value = now
+            following.sleep(response)
+        self.assertEqual(raised.exception.wait, 3601)
+        sleep.assert_not_called()
+
+    def test_combined_rate_limit_headers_respect_the_later_allowed_time(self) -> None:
+        now = datetime(2030, 1, 1, tzinfo=UTC)
+        for retry_after, reset_seconds, expected in [(30, 45, 46), (50, 10, 50)]:
+            with self.subTest(retry_after=retry_after, reset_seconds=reset_seconds):
+                response = HTTPResponse(
+                    status=403,
+                    headers={
+                        "Retry-After": str(retry_after),
+                        "X-RateLimit-Remaining": "0",
+                        "X-RateLimit-Reset": str(int(now.timestamp()) + reset_seconds),
+                    },
+                )
+                following = self.configured_retry().increment(
+                    "GET", "https://api.github.com/example", response
+                )
+                with (
+                    patch(
+                        "iot_profile_builder.scanner.github_scanner.datetime", wraps=datetime
+                    ) as clock,
+                    patch("time.sleep") as sleep,
+                ):
+                    clock.now.return_value = now
+                    following.sleep(response)
+                sleep.assert_called_once_with(expected)
+
     async def test_irrelevant_repositories_do_not_spend_language_requests(self) -> None:
         relevant = repository("mqtt-battery", relevant=True)
         irrelevant = repository("poems", relevant=False)

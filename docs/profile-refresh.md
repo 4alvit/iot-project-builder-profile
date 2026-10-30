@@ -12,7 +12,8 @@ can be delayed by GitHub. It scans the user and configured public organizations,
 then asks the configured model to generate the narrative. The stages are:
 
 1. Create a new temporary output directory and record the refresh start time.
-2. Fetch public repository evidence and run ESPHome/D-Bus analysis with
+2. Verify model access from the selected runner with one small synthetic request
+   and a three-minute deadline. Then fetch public repository evidence and run ESPHome/D-Bus analysis with
    `--strict-scan`, then require a valid structured model response.
 3. Require three nonempty output files for the requested user, zero scan errors,
    repository evidence and scan/generation timestamps from this run. Model-mode
@@ -84,7 +85,10 @@ and [ARC recovery index](https://github.com/victron-venus/venus-os-ci-toolkit/bl
 ## Language-model access
 
 Set `ANTHROPIC_BASE_URL` as an Actions secret and `PROFILE_LLM_MODEL` as an
-Actions variable. Use the model ID accepted by the endpoint's Messages API,
+Actions variable. Set `PROFILE_INFERENCE_HOSTNAME` as a separate Actions secret
+containing only that URL's hostname. The runner hardening pre-hook needs it for
+the outbound allowlist and automatic masking before regular steps run. Network
+telemetry upload is disabled; endpoint blocking stays enabled. Use the model ID accepted by the endpoint's Messages API,
 which may differ from aliases advertised for other clients. Credentials belong
 in Actions secrets: `ANTHROPIC_API_KEY` for a direct compatible API, or the pair
 `PROFILE_ACCESS_CLIENT_ID` / `PROFILE_ACCESS_CLIENT_SECRET` for Cloudflare Access.
@@ -128,6 +132,12 @@ system; GitHub cannot return an existing secret value.
   Access policy, exact Messages model ID and provider availability. Do not
   replace an unavailable model with an unreviewed paid fallback. An upstream
   model can be retired while the proxy's health check remains green.
+  The preflight reports only the HTTP status, validated Cloudflare request ID
+  and recognized numeric edge error, never a response body or private hostname.
+  A working request from a developer's computer does not prove runner access:
+  Cloudflare Bot Fight Mode can challenge datacenter addresses independently of
+  Access authentication. Standard Bot Fight Mode has no per-path skip; do not
+  disable zone-wide protection to repair one consumer.
 - **Staging rejected a date, username or empty output:** keep the prior site.
   Inspect the fresh directory and generator error. No old `*_profile.html` is
   selected by a glob.

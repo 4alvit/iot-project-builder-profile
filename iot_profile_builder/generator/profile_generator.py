@@ -7,6 +7,7 @@ import logging
 import math
 import os
 import re
+import time
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 from urllib.parse import urlsplit
@@ -269,6 +270,62 @@ class ProfileGenerator:
             raise GenerationError(
                 f"Model client initialization failed ({type(error).__name__})"
             ) from None
+
+    def probe(self) -> dict[str, Any]:
+        """Check the configured model with one tiny request and safe diagnostics."""
+        started = time.monotonic()
+        result: dict[str, Any] = {
+            "mode": "model_preflight",
+            "model": self.model,
+            "status": "failed",
+        }
+        try:
+            with self.client.messages.stream(
+                model=self.model,
+                # Reasoning models may spend tokens before the five-character reply.
+                max_tokens=128,
+                messages=[
+                    {"role": "user", "content": "Reply with exactly READY and no other text."}
+                ],
+            ) as stream:
+                response = stream.get_final_message()
+            text = "".join(block.text for block in response.content if block.type == "text")
+            if (
+                response.stop_reason != "end_turn"
+                or text.strip() != "READY"
+                or any(
+                    block.type not in ("text", "thinking", "redacted_thinking")
+                    for block in response.content
+                )
+            ):
+                raise ValueError("Invalid model preflight response")
+            result["status"] = "ok"
+        except anthropic.APIStatusError as error:
+            result["error"] = "http_error"
+            result["http_status"] = error.status_code
+            ray = error.response.headers.get("cf-ray", "")
+            if re.fullmatch(r"[0-9a-fA-F]{16,32}(?:-[A-Z]{3})?", ray):
+                result["cloudflare_ray_id"] = ray
+            content_type = error.response.headers.get("content-type", "").lower()
+            if content_type.split(";", 1)[0].strip() == "text/plain" and (
+                ray or error.response.headers.get("server", "").lower() == "cloudflare"
+            ):
+                code = re.search(
+                    r"\berror code\s*:\s*(1[0-9]{3})\b", error.response.text[:8192], re.I
+                )
+                if code:
+                    result["edge_error_code"] = int(code[1])
+        except anthropic.APITimeoutError:
+            result["error"] = "timeout"
+        except anthropic.APIConnectionError:
+            result["error"] = "connection_error"
+        except (ValueError, anthropic.APIResponseValidationError):
+            result["error"] = "invalid_response"
+        except Exception:
+            # Exception text may contain a private endpoint or credential.
+            result["error"] = "client_error"
+        result["duration_seconds"] = round(time.monotonic() - started, 3)
+        return result
 
     def generate(
         self,

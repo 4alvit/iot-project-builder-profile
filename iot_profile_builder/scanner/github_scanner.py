@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 
 from github import Auth, Github
@@ -37,6 +37,12 @@ class _BoundedGithubRetry(GithubRetry):
 
     def get_retry_after(self, response: BaseHTTPResponse) -> float | None:
         delay = super().get_retry_after(response)
+        reset = response.headers.get("X-RateLimit-Reset", "")
+        if response.headers.get("X-RateLimit-Remaining") == "0" and reset.isdigit():
+            # Primary exhaustion remains authoritative when Retry-After is
+            # shorter. Match PyGithub's one-second reset-boundary allowance.
+            until_reset = float(reset) - datetime.now(UTC).timestamp() + 1
+            delay = max(delay or 0, until_reset)
         if (
             delay is not None
             and self.max_rate_limit_wait is not None
