@@ -84,6 +84,33 @@ Follow the resulting run, its generated PR and the subsequent
 `pages-build-deployment` run. Compare the public page date with the merged JSON;
 an Actions artifact alone is not proof of deployment.
 
+## Check model access without publishing
+
+For a connector or network change, select `probe_only` on a manual run of the
+same workflow. It defaults to false, so existing manual and scheduled refreshes
+retain their behavior. The probe always uses GitHub-hosted `ubuntu-latest`, even
+if a runner-mode variable selects ARC for normal refreshes; it does not change
+those variables. The default-branch restriction, queue, hardening, hostname
+masking and existing timeouts still apply.
+
+```sh
+gh workflow run update-profile.yml --repo 4alvit/iot-project-builder-profile \
+  --ref main -f probe_only=true
+```
+
+This runs the existing model preflight with the same configured model and
+Access credentials: one synthetic streaming request, at most 128 output
+tokens, no automatic retries and a three-minute step deadline. It runs even
+when `use-llm` is disabled. Dependency setup still runs, but no refresh output
+directory, repository scan, profile generation, staging, artifact upload or
+publication step runs. The `BOT_PAT` publication step is skipped.
+
+The result is a static job summary plus the preflight's sanitized diagnostic;
+request credentials, endpoint and model response text are not included in an
+uploaded artifact. A successful probe proves this model-access path from that
+runner, not complete profile generation or publication. A failed setup or
+probe leaves the job failed. Inspect it before manually retrying.
+
 ## ARC runner routing
 
 The trusted refresh job checks out only the default branch and receives
