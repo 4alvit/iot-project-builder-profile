@@ -13,6 +13,11 @@ name: Update IoT Developer Profile
         required: false
         default: true
         type: boolean
+      probe_only:
+        description: Test model access from GitHub-hosted Linux without scanning or publishing
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
 concurrency:
@@ -23,7 +28,7 @@ jobs:
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     permissions:
       contents: read
-    runs-on: ${{ fromJSON(((vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'self-hosted' || (vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'k3s') && (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) && (vars.CI_RUNNER_AUTOMATION_LABELS || '[]') || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(github.event_name == 'workflow_dispatch' && inputs.probe_only == true && '["ubuntu-latest"]' || (((vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'self-hosted' || (vars.PROFILE_RUNNER_MODE || vars.CI_RUNNER_MODE) == 'k3s') && (contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) && (vars.CI_RUNNER_AUTOMATION_LABELS || '[]') || '["ubuntu-latest"]')) }}
     timeout-minutes: 45
     env:
       TZ: UTC
@@ -55,6 +60,7 @@ jobs:
           ${{ secrets.PROFILE_INFERENCE_HOSTNAME }}:443
 
     - name: Prepare a fresh refresh directory
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.probe_only != true }}
       id: refresh
       run: |
         work_root=$(mktemp -d "$RUNNER_TEMP/iot-profile-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-XXXXXX")
@@ -77,7 +83,7 @@ jobs:
     - name: Install locked dependencies
       run: uv sync --locked --all-extras
     - name: Check model access before scanning
-      if: ${{ github.event_name != 'workflow_dispatch' || inputs.use-llm }}
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.use-llm || inputs.probe_only == true }}
       timeout-minutes: 3
       env:
         PROFILE_LLM_MODEL: ${{ vars.PROFILE_LLM_MODEL }}
@@ -88,6 +94,7 @@ jobs:
         PROFILE_ACCESS_CLIENT_SECRET: ${{ secrets.PROFILE_ACCESS_CLIENT_SECRET }}
       run: uv run --locked python scripts/probe_profile_model.py
     - name: Generate profile
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.probe_only != true }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
@@ -119,7 +126,7 @@ jobs:
           --strict-scan \
           "${EXTRA[@]}"
     - name: Retain complete public scan evidence
-      if: ${{ always() && steps.refresh.outputs.directory != '' }}
+      if: ${{ always() && (github.event_name != 'workflow_dispatch' || inputs.probe_only != true) && steps.refresh.outputs.directory != '' }}
       uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: scan-evidence-${{ github.run_id }}-${{ github.run_attempt }}
@@ -127,6 +134,7 @@ jobs:
         if-no-files-found: ignore
         retention-days: 1
     - name: Validate and stage this run's profile
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.probe_only != true }}
       env:
         PROFILE_USERNAME: ${{ github.event.inputs.username || '4alvit' }}
         PROFILE_DIRECTORY: ${{ steps.refresh.outputs.directory }}
@@ -142,6 +150,7 @@ jobs:
           --summary "$GITHUB_STEP_SUMMARY" \
           "${EXTRA[@]}"
     - name: Retain the validated snapshot
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.probe_only != true }}
       uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: validated-profile-${{ github.run_id }}-${{ github.run_attempt }}
@@ -156,15 +165,34 @@ jobs:
     # BOT_PAT authors the server-signed commit and PR so normal CI events run.
     # Approval uses the independent Actions identity for this same-repository bot.
     - name: Open signed profile update PR
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.probe_only != true }}
       env:
         GH_TOKEN: ${{ secrets.BOT_PAT }}
       run: python3 -I scripts/publish_profile.py
     - name: Explain a blocked refresh
-      if: ${{ failure() }}
+      if: ${{ failure() && (github.event_name != 'workflow_dispatch' || inputs.probe_only != true) }}
       run: |
         {
           echo '## Profile refresh did not finish'
           echo ''
           echo 'Inspect the failed step before retrying. Strict scanning and staging reject incomplete, empty or stale snapshots; they do not relabel the previous profile with a fresh date.'
           echo 'The published site changes only after a validated signed update PR passes required checks and merges. If publication failed after opening a branch, inspect that branch before rerunning.'
+        } >> "$GITHUB_STEP_SUMMARY"
+    - name: Summarize successful model probe
+      if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.probe_only == true }}
+      run: |
+        {
+          echo '## Model access probe passed'
+          echo ''
+          echo 'The configured model accepted one bounded synthetic request from GitHub-hosted Linux.'
+          echo 'No repositories were scanned, no profile was generated or staged, and no artifact or publication PR was created.'
+        } >> "$GITHUB_STEP_SUMMARY"
+    - name: Explain a failed model probe
+      if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.probe_only == true }}
+      run: |
+        {
+          echo '## Model access probe failed'
+          echo ''
+          echo 'Inspect the failed setup or model-access step and its sanitized diagnostic before retrying.'
+          echo 'No profile generation, staging, artifact upload or publication was attempted.'
         } >> "$GITHUB_STEP_SUMMARY"
