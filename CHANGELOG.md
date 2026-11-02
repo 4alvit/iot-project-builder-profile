@@ -1,6 +1,22 @@
 # Changelog
 
-## [0.1.8] - Unreleased
+## [0.1.9] - Unreleased
+
+### Changed
+
+- Update the locked Pydantic runtime to 2.14.2 and pydantic-core to 2.50.2; refresh pytest, mypy and PyYAML type stubs with verified package hashes.
+- Qualify required macOS 15 WebKit coverage on the standard Intel runner while retaining all five required browser targets and the extended compatibility inventory.
+- Refresh pinned workflow dependencies and preserve synchronized release and fuzzing references.
+
+### Upgrade
+
+Recreate the documented locked environment from this release. Existing profile inputs and custom templates remain supported; no data migration is required. Profile generation and external publication remain separate explicit operations.
+
+### Security
+
+Required source, dependency and release checks remain enabled. This release refreshes the validated dependency closure; it does not establish acceptance of live provider credentials, external services or profile publication.
+
+## [0.1.8] - 2026-11-02
 
 ### Changed
 
