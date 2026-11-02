@@ -1,44 +1,43 @@
 {
   "username": "4alvit",
-  "generated_at": "2026-10-30T13:32:50.992007+00:00",
-  "total_repos_analyzed": 91,
-  "iot_repos_count": 80,
+  "generated_at": "2026-11-02T15:06:58.840752+00:00",
+  "total_repos_analyzed": 92,
+  "iot_repos_count": 82,
   "skills": [
     {
-      "name": "home_automation",
+      "name": "Home Assistant",
       "category": "home_automation",
-      "proficiency": 9,
-      "evidence": [
-        "4alvit/esphome-ble-sensor-patterns",
-        "victron-venus/esphome-jbd-bms-mqtt",
-        "4alvit/amazon-echo-home-voice"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "name": "energy_systems",
-      "category": "energy_systems",
-      "proficiency": 9,
-      "evidence": [
-        "victron-venus/inverter-control",
-        "victron-venus/dbus-mqtt-battery",
-        "4alvit/solar-forecast-langgraph"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "name": "battery_management",
-      "category": "energy_systems",
       "proficiency": 8,
       "evidence": [
-        "victron-venus/dbus-mqtt-battery",
+        "4alvit/esphome-ble-sensor-patterns",
+        "4alvit/google-home-voice-stats",
+        "4alvit/amazon-echo-home-voice"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "ESPHome",
+      "category": "home_automation",
+      "proficiency": 8,
+      "evidence": [
         "4alvit/esphome-ble-sensor-patterns",
         "victron-venus/esphome-jbd-bms-mqtt"
       ],
       "confidence": 0.9
     },
     {
-      "name": "protocols_networking",
+      "name": "Python",
+      "category": "python_iot",
+      "proficiency": 8,
+      "evidence": [
+        "4alvit/fastapi-mqtt-gateway",
+        "4alvit/dbus-service-template",
+        "4alvit/mcp-venus-os"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "MQTT",
       "category": "protocols_networking",
       "proficiency": 8,
       "evidence": [
@@ -49,63 +48,102 @@
       "confidence": 0.9
     },
     {
-      "name": "python_iot",
-      "category": "python_iot",
+      "name": "D-Bus",
+      "category": "protocols_networking",
+      "proficiency": 7,
+      "evidence": [
+        "4alvit/dbus-service-template",
+        "victron-venus/dbus-mqtt-battery",
+        "4alvit/mcp-venus-os"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "name": "BLE",
+      "category": "protocols_networking",
+      "proficiency": 7,
+      "evidence": [
+        "4alvit/esphome-ble-sensor-patterns"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "name": "Victron",
+      "category": "energy_systems",
       "proficiency": 8,
       "evidence": [
-        "4alvit/mcp-venus-os",
-        "4alvit/dbus-service-template",
-        "4alvit/fastapi-mqtt-gateway"
+        "victron-venus/dbus-mqtt-battery",
+        "4alvit/energy-data-rag-pipeline",
+        "4alvit/mcp-venus-os"
       ],
       "confidence": 0.9
     },
     {
-      "name": "data_pipeline",
+      "name": "BMS",
+      "category": "energy_systems",
+      "proficiency": 8,
+      "evidence": [
+        "victron-venus/dbus-mqtt-battery",
+        "4alvit/esphome-ble-sensor-patterns"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "OpenTelemetry",
       "category": "data_pipeline",
       "proficiency": 7,
       "evidence": [
-        "4alvit/mqtt-observability-opentelemetry",
-        "4alvit/energy-data-rag-pipeline"
+        "4alvit/mqtt-observability-opentelemetry"
       ],
       "confidence": 0.8
     },
     {
-      "name": "edge_computing",
+      "name": "Docker",
       "category": "edge_computing",
       "proficiency": 6,
       "evidence": [
-        "4alvit/cisco-home-telephony",
-        "4alvit/mqtt-observability-opentelemetry"
+        "4alvit/mqtt-observability-opentelemetry",
+        "4alvit/cisco-home-telephony"
       ],
       "confidence": 0.75
     },
     {
-      "name": "voice_ai",
+      "name": "ESP32",
+      "category": "embedded_firmware",
+      "proficiency": 5,
+      "evidence": [
+        "4alvit/esphome-ble-sensor-patterns",
+        "victron-venus/esphome-jbd-bms-mqtt"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "name": "Voice Assistant",
       "category": "voice_ai",
       "proficiency": 6,
       "evidence": [
-        "4alvit/amazon-echo-home-voice",
         "4alvit/google-home-voice-stats",
+        "4alvit/amazon-echo-home-voice",
         "4alvit/epg-voice-gateway"
       ],
-      "confidence": 0.8
+      "confidence": 0.75
     }
   ],
   "focus_areas": {
-    "home_automation": 0.9,
-    "energy_management": 0.9,
+    "home_automation": 0.85,
+    "energy_management": 0.85,
     "battery_management": 0.85,
     "networking_protocols": 0.8,
-    "data_pipeline": 0.7,
-    "edge_computing": 0.6,
+    "data_pipeline": 0.65,
+    "edge_computing": 0.55,
     "voice_assistant": 0.6,
     "environmental_monitoring": 0.4,
-    "firmware_development": 0.3
+    "firmware_development": 0.35
   },
   "complexity_distribution": {
-    "medium": 73,
-    "high": 15,
-    "low": 69
+    "medium": 74,
+    "low": 71,
+    "high": 16
   },
   "top_repositories": [
     {
@@ -137,8 +175,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-07-31T01:53:11+00:00",
-      "updated_at": "2026-10-30T10:55:54+00:00",
-      "size_kb": 705,
+      "updated_at": "2026-11-02T14:14:07+00:00",
+      "size_kb": 839,
       "complexity": "medium",
       "focus_areas": [
         "home_automation",
@@ -176,8 +214,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-03-30T17:49:11+00:00",
-      "updated_at": "2026-10-30T09:13:00+00:00",
-      "size_kb": 1238,
+      "updated_at": "2026-11-02T14:12:32+00:00",
+      "size_kb": 1428,
       "complexity": "high",
       "focus_areas": [
         "energy_management",
@@ -211,8 +249,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-03-30T17:51:01+00:00",
-      "updated_at": "2026-10-30T09:13:16+00:00",
-      "size_kb": 1243,
+      "updated_at": "2026-11-02T14:13:14+00:00",
+      "size_kb": 976,
       "complexity": "medium",
       "focus_areas": [
         "energy_management",
@@ -227,7 +265,7 @@
       "description": "ESPHome ESP32 Bluetooth proxy for JBD BMS batteries, publishing to MQTT for Victron Venus OS",
       "stars": 1,
       "forks": 1,
-      "language": "YAML",
+      "language": "Python",
       "topics": [
         "battery",
         "battery-monitor",
@@ -247,8 +285,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-03-31T03:11:26+00:00",
-      "updated_at": "2026-10-30T10:56:35+00:00",
-      "size_kb": 707,
+      "updated_at": "2026-11-02T14:08:13+00:00",
+      "size_kb": 733,
       "complexity": "medium",
       "focus_areas": [
         "energy_management",
@@ -289,8 +327,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-03-31T03:41:04+00:00",
-      "updated_at": "2026-10-30T13:13:06+00:00",
-      "size_kb": 5829,
+      "updated_at": "2026-11-02T14:17:38+00:00",
+      "size_kb": 6037,
       "complexity": "high",
       "focus_areas": [
         "home_automation",
@@ -332,8 +370,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-04-10T01:38:08+00:00",
-      "updated_at": "2026-10-30T09:14:15+00:00",
-      "size_kb": 1657,
+      "updated_at": "2026-11-02T14:14:10+00:00",
+      "size_kb": 1824,
       "complexity": "high",
       "focus_areas": [
         "energy_management",
@@ -372,8 +410,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-04-28T23:06:24+00:00",
-      "updated_at": "2026-10-30T09:13:52+00:00",
-      "size_kb": 8747,
+      "updated_at": "2026-11-02T14:22:01+00:00",
+      "size_kb": 8610,
       "complexity": "high",
       "focus_areas": [
         "home_automation",
@@ -412,8 +450,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-05-13T02:45:10+00:00",
-      "updated_at": "2026-10-30T10:10:34+00:00",
-      "size_kb": 23038,
+      "updated_at": "2026-11-02T13:06:24+00:00",
+      "size_kb": 23167,
       "complexity": "high",
       "focus_areas": [
         "home_automation",
@@ -451,8 +489,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-07-30T00:24:31+00:00",
-      "updated_at": "2026-10-30T10:06:35+00:00",
-      "size_kb": 1760,
+      "updated_at": "2026-11-02T10:36:26+00:00",
+      "size_kb": 1891,
       "complexity": "high",
       "focus_areas": [
         "energy_management",
@@ -489,8 +527,8 @@
       ],
       "is_fork": false,
       "created_at": "2026-08-09T06:37:28+00:00",
-      "updated_at": "2026-10-30T10:57:36+00:00",
-      "size_kb": 1047,
+      "updated_at": "2026-11-02T11:02:57+00:00",
+      "size_kb": 1014,
       "complexity": "high",
       "focus_areas": [
         "energy_management",
@@ -501,24 +539,24 @@
       "iot_score": 1.0
     }
   ],
-  "narrative_summary": "The developer specializes in Victron Venus OS energy systems, building D-Bus and MQTT bridges for JBD/Daly BMS batteries, Tasmota power meters, and grid-zero inverter control. Their ESPHome work includes production BLE sensor patterns for ESP32 Bluetooth proxies, passive scanning, and Home Assistant integration for battery-powered environmental sensors.\n\nThey operate a Python-centric IoT stack with FastAPI MQTT gateways, OpenTelemetry observability for Mosquitto, MCP servers for Venus OS management, and D-Bus service templates. Voice assistant integration spans Alexa and Google Home with Home Assistant as the hub. Edge experience includes K3s and Docker Compose deployments for IoT observability and telephony.",
+  "narrative_summary": "The developer specializes in the Home Assistant and ESPHome ecosystem, building ESP32-based BLE sensor patterns for iBeacon, Eddystone, Xiaomi, Daly BMS, and JBD BMS devices. They maintain MQTT-to-D-Bus bridges for Victron Venus OS, including JBD battery integration with DVCC support, and manage Terraform infrastructure for Victron Venus organizations.\n\nTheir Python IoT backend work includes FastAPI MQTT gateways, OpenTelemetry observability stacks for Mosquitto with Grafana, Jaeger, and Prometheus, and D-Bus service templates for Venus OS. Additional focus areas include solar forecasting with LangGraph, RAG pipelines for Victron documentation, and voice assistant integrations with Google Home and Amazon Alexa.",
   "key_strengths": [
-    "Victron Venus OS D-Bus and MQTT integration for battery, solar, and inverter control",
-    "ESPHome BLE sensor patterns for JBD and Daly BMS plus environmental monitoring",
-    "MQTT-centric architecture with REST/WebSocket gateways and OpenTelemetry observability",
-    "Python IoT services including MCP servers, D-Bus templates, and RAG pipelines",
-    "Voice assistant bridging for Home Assistant via Alexa and Google Home"
+    "ESPHome BLE sensor pattern development for JBD and Daly BMS battery systems",
+    "MQTT-D-Bus bridging for Victron Venus OS energy infrastructure",
+    "Python IoT service development with FastAPI, async, and D-Bus",
+    "IoT observability with OpenTelemetry, Prometheus, Grafana, and Jaeger",
+    "Home Assistant voice and automation integrations"
   ],
   "growth_areas": [
-    "Low-level embedded firmware in C/C++ or ESP-IDF beyond ESPHome YAML configuration",
-    "Industrial IoT protocols such as Modbus and CANbus",
-    "Edge orchestration at scale beyond K3s and Docker Compose"
+    "Embedded firmware development in C/C++ or Rust beyond ESPHome YAML configuration",
+    "Industrial IoT protocol deployment at scale, including Modbus and CANbus",
+    "Production Kubernetes/K3s orchestration patterns beyond Docker Compose"
   ],
   "github_stats": {
-    "total_repos": 91,
-    "iot_repos": 80,
+    "total_repos": 92,
+    "iot_repos": 82,
     "errors": [],
-    "scanned_at": "2026-10-30T13:31:39.808273+00:00",
+    "scanned_at": "2026-11-02T15:06:10.053746+00:00",
     "analysis_scope": {
       "max_repositories_per_owner": 100,
       "max_repositories_per_analyzer": 25,
@@ -539,51 +577,6 @@
         "esp32:esp32dev"
       ],
       "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt",
-            "ble"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
         {
           "type": "sensor",
           "platform": "template",
@@ -613,51 +606,14 @@
           "platform": "wifi_signal",
           "name": "WiFi Signal",
           "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
         },
         {
           "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
+            "ble",
             "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
           ]
         },
         {
@@ -669,11 +625,51 @@
           ]
         },
         {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
           "type": "wifi",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "ble"
+          ]
         },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/inkbird-ibs-th1.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "template",
@@ -703,30 +699,6 @@
           "platform": "wifi_signal",
           "name": "WiFi Signal",
           "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
         },
         {
           "type": "mqtt",
@@ -737,7 +709,21 @@
           ]
         },
         {
-          "type": "logger",
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -751,19 +737,29 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": []
-        },
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/ble-temp-sensor/xiaomi-lywsd03mmc.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "xiaomi_lywsd03mmc",
@@ -783,98 +779,11 @@
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "daly_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
           "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
             "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
           ]
         },
         {
@@ -886,11 +795,55 @@
           ]
         },
         {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
           "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
         },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/multi-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "daly_bms_ble",
@@ -931,7 +884,15 @@
           "integrations": []
         },
         {
-          "type": "ble_client",
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
           "integrations": [
@@ -953,28 +914,15 @@
           "integrations": [
             "ble"
           ]
-        }
-      ],
-      "custom_components": [
-        "daly_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "firmware_development",
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
         {
           "type": "binary_sensor",
           "platform": "daly_bms_ble",
@@ -989,6 +937,16 @@
           "platform": "daly_bms_ble",
           "name": "",
           "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "daly_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
             "ble"
           ]
         },
@@ -999,15 +957,21 @@
           "integrations": []
         },
         {
-          "type": "mqtt",
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "interval",
           "platform": null,
           "name": "",
           "integrations": [
-            "mqtt"
+            "ble"
           ]
         },
         {
-          "type": "logger",
+          "type": "esp32_ble",
           "platform": null,
           "name": "",
           "integrations": []
@@ -1021,17 +985,34 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
+          "integrations": [
+            "ble"
+          ]
+        }
+      ],
+      "custom_components": [
+        "daly_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/daly-bms/single-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "daly_bms_ble",
@@ -1078,9 +1059,17 @@
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
           "integrations": []
         },
         {
@@ -1090,31 +1079,10 @@
           "integrations": [
             "ble"
           ]
-        }
-      ],
-      "custom_components": [
-        "daly_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "firmware_development",
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
+        },
         {
           "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
+          "platform": "daly_bms_ble",
           "name": "",
           "integrations": [
             "homeassistant",
@@ -1123,19 +1091,9 @@
         },
         {
           "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
+          "platform": "daly_bms_ble",
           "name": "",
           "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
             "ble"
           ]
         },
@@ -1146,34 +1104,16 @@
           "integrations": []
         },
         {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
         },
         {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
         },
         {
           "type": "api",
@@ -1184,19 +1124,32 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": []
-        },
+        }
+      ],
+      "custom_components": [
+        "daly_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/multi-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "jbd_bms_ble",
@@ -1261,13 +1214,15 @@
           ]
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
         },
         {
-          "type": "ble_client",
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
           "integrations": [
@@ -1289,28 +1244,33 @@
           "integrations": [
             "ble"
           ]
-        }
-      ],
-      "custom_components": [
-        "jbd_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "firmware_development",
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
         {
           "type": "binary_sensor",
           "platform": "jbd_bms_ble",
@@ -1327,15 +1287,27 @@
           "integrations": []
         },
         {
-          "type": "mqtt",
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "interval",
           "platform": null,
           "name": "",
           "integrations": [
-            "mqtt"
+            "ble"
           ]
         },
         {
-          "type": "logger",
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "esp32_ble",
           "platform": null,
           "name": "",
           "integrations": []
@@ -1349,19 +1321,34 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
             "ble"
           ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
+        }
+      ],
+      "custom_components": [
+        "jbd_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/jbd-bms/single-bms.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "jbd_bms_ble",
@@ -1400,66 +1387,11 @@
           "integrations": []
         },
         {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
-          "integrations": []
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        }
-      ],
-      "custom_components": [
-        "jbd_bms_ble"
-      ],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "firmware_development",
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "ESP32 Status",
-          "integrations": []
-        },
-        {
           "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
             "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
           ]
         },
         {
@@ -1471,11 +1403,75 @@
           ]
         },
         {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
           "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
         },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        }
+      ],
+      "custom_components": [
+        "jbd_bms_ble"
+      ],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "4alvit/esphome-ble-sensor-patterns/patterns/xiaomi-mi-flora/mi-flora.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "xiaomi_hhccjcy01",
@@ -1493,102 +1489,6 @@
           "platform": "wifi_signal",
           "name": "WiFi Signal",
           "integrations": []
-        }
-      ],
-      "custom_components": [],
-      "external_libs": [],
-      "complexity": "low",
-      "focus_areas": [
-        "environmental_monitoring",
-        "home_automation",
-        "battery_management",
-        "energy_management",
-        "networking_protocols"
-      ]
-    },
-    {
-      "file_path": "victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml",
-      "devices": [
-        "esp32:esp32dev"
-      ],
-      "components": [
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
-          "integrations": []
         },
         {
           "type": "mqtt",
@@ -1596,37 +1496,6 @@
           "name": "",
           "integrations": [
             "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
           ]
         },
         {
@@ -1638,17 +1507,49 @@
           ]
         },
         {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "ESP32 Status",
+          "integrations": []
+        },
+        {
           "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
         },
         {
-          "type": "ota",
-          "platform": "esphome",
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
           "name": "",
           "integrations": []
-        },
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
+        "environmental_monitoring",
+        "energy_management",
+        "home_automation",
+        "battery_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "file_path": "victron-venus/esphome-jbd-bms-mqtt/jbd-all-batteries.yaml",
+      "devices": [
+        "esp32:esp32dev"
+      ],
+      "components": [
         {
           "type": "sensor",
           "platform": "jbd_bms_ble",
@@ -1814,80 +1715,217 @@
           ]
         },
         {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "interval",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
           "type": "button",
           "platform": "restart",
           "name": "restart",
           "integrations": []
         },
         {
-          "type": "ble_client",
+          "type": "esp32_ble",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "api",
           "platform": null,
           "name": "",
           "integrations": [
-            "homeassistant",
-            "ble"
+            "api"
           ]
         },
         {
-          "type": "ble_client",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
             "ble"
           ]
         }
@@ -1898,11 +1936,11 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
         "home_automation",
         "battery_management",
-        "energy_management",
         "networking_protocols"
       ]
     },
@@ -1913,109 +1951,6 @@
       ],
       "components": [
         {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
-          "integrations": []
-        },
-        {
-          "type": "script",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
           "type": "sensor",
           "platform": "jbd_bms_ble",
           "name": "",
@@ -2104,37 +2039,140 @@
           ]
         },
         {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "script",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "mqtt"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant"
+          ]
+        },
+        {
           "type": "button",
           "platform": "restart",
           "name": "restart",
           "integrations": []
         },
         {
-          "type": "ble_client",
+          "type": "esp32_ble",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "api",
           "platform": null,
           "name": "",
           "integrations": [
-            "ble"
+            "api"
           ]
         },
         {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
@@ -2148,11 +2186,11 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
         "home_automation",
         "battery_management",
-        "energy_management",
         "networking_protocols"
       ]
     },
@@ -2163,109 +2201,6 @@
       ],
       "components": [
         {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "jbd_bms_ble",
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "esp32_status",
-          "integrations": []
-        },
-        {
-          "type": "script",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "esp32_ble",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
           "type": "sensor",
           "platform": "jbd_bms_ble",
           "name": "",
@@ -2354,37 +2289,140 @@
           ]
         },
         {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "script",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "mqtt"
+          ]
+        },
+        {
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ble_client",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "ble"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "jbd_bms_ble",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "ble"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "esp32_status",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant"
+          ]
+        },
+        {
           "type": "button",
           "platform": "restart",
           "name": "restart",
           "integrations": []
         },
         {
-          "type": "ble_client",
+          "type": "esp32_ble",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "api",
           "platform": null,
           "name": "",
           "integrations": [
-            "ble"
+            "api"
           ]
         },
         {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "ble_client",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": [
@@ -2398,11 +2436,11 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
+        "energy_management",
+        "firmware_development",
         "home_automation",
         "battery_management",
-        "energy_management",
         "networking_protocols"
       ]
     },
@@ -2412,80 +2450,6 @@
         "esp32:esp32dev"
       ],
       "components": [
-        {
-          "type": "i2c",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "switch",
-          "platform": "template",
-          "name": "MQTT Publishing",
-          "integrations": [
-            "mqtt",
-            "ble"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "Grid Sensor Status",
-          "integrations": []
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "template",
-          "name": "Grid Feed-In Active",
-          "integrations": []
-        },
-        {
-          "type": "light",
-          "platform": "binary",
-          "name": "Grid Sensor LED",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "mqtt"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
         {
           "type": "sensor",
           "platform": "adc",
@@ -2513,6 +2477,63 @@
           "integrations": []
         },
         {
+          "type": "mqtt",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "mqtt"
+          ]
+        },
+        {
+          "type": "i2c",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "light",
+          "platform": "binary",
+          "name": "Grid Sensor LED",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "switch",
+          "platform": "template",
+          "name": "MQTT Publishing",
+          "integrations": [
+            "ble",
+            "mqtt"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "Grid Sensor Status",
+          "integrations": []
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "template",
+          "name": "Grid Feed-In Active",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
           "type": "button",
           "platform": "restart",
           "name": "Grid Sensor Restart",
@@ -2525,16 +2546,33 @@
           "integrations": [
             "mqtt"
           ]
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [],
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
         "energy_management",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -2545,8 +2583,8 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "networking_protocols"
+        "networking_protocols",
+        "home_automation"
       ]
     },
     {
@@ -2568,6 +2606,15 @@
       ],
       "components": [
         {
+          "type": "sensor",
+          "platform": "emporia_vue",
+          "name": "",
+          "integrations": [
+            "homeassistant",
+            "i2c"
+          ]
+        },
+        {
           "type": "i2c",
           "platform": null,
           "name": "",
@@ -2577,8 +2624,8 @@
           ]
         },
         {
-          "type": "logger",
-          "platform": null,
+          "type": "ota",
+          "platform": "esphome",
           "name": "",
           "integrations": []
         },
@@ -2591,19 +2638,10 @@
           ]
         },
         {
-          "type": "ota",
-          "platform": "esphome",
+          "type": "logger",
+          "platform": null,
           "name": "",
           "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "emporia_vue",
-          "name": "",
-          "integrations": [
-            "i2c",
-            "homeassistant"
-          ]
         }
       ],
       "custom_components": [
@@ -2636,13 +2674,25 @@
       ],
       "components": [
         {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
           "type": "binary_sensor",
           "platform": "status",
           "name": "Status",
           "integrations": []
         },
         {
-          "type": "logger",
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -2656,21 +2706,9 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
           "integrations": []
         }
       ],
@@ -2678,15 +2716,30 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
       "file_path": "ha-homelab/ha-tuya-esphome/examples/supernight-cv01.yaml",
       "devices": [],
       "components": [
+        {
+          "type": "sensor",
+          "platform": "adc",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "sensor",
+          "platform": "hlw8012",
+          "name": "",
+          "integrations": [
+            "gpio",
+            "homeassistant"
+          ]
+        },
         {
           "type": "switch",
           "platform": "gpio",
@@ -2725,21 +2778,6 @@
           "platform": null,
           "name": "",
           "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "adc",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "hlw8012",
-          "name": "",
-          "integrations": [
-            "gpio",
-            "homeassistant"
-          ]
         }
       ],
       "custom_components": [],
@@ -2757,6 +2795,18 @@
         "esp8266:esp_wroom_02"
       ],
       "components": [
+        {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
         {
           "type": "switch",
           "platform": "gpio",
@@ -2780,9 +2830,15 @@
           "integrations": []
         },
         {
-          "type": "logger",
+          "type": "wifi",
           "platform": null,
           "name": "",
+          "integrations": []
+        },
+        {
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart",
           "integrations": []
         },
         {
@@ -2794,27 +2850,9 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart",
           "integrations": []
         }
       ],
@@ -2822,9 +2860,9 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -2833,82 +2871,6 @@
         "esp8266:esp01_1m"
       ],
       "components": [
-        {
-          "type": "time",
-          "platform": "homeassistant",
-          "name": "",
-          "integrations": [
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "time",
-          "platform": "sntp",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "switch",
-          "platform": "gpio",
-          "name": "Relay",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "gpio",
-          "name": "Physical Button",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "Status",
-          "integrations": []
-        },
-        {
-          "type": "light",
-          "platform": "binary",
-          "name": "",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "interval",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
-          ]
-        },
-        {
-          "type": "wifi",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
         {
           "type": "sensor",
           "platform": "hlw8012",
@@ -2967,9 +2929,85 @@
           "integrations": []
         },
         {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "light",
+          "platform": "binary",
+          "name": "",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "switch",
+          "platform": "gpio",
+          "name": "Relay",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "time",
+          "platform": "homeassistant",
+          "name": "",
+          "integrations": [
+            "homeassistant"
+          ]
+        },
+        {
+          "type": "time",
+          "platform": "sntp",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "gpio",
+          "name": "Physical Button",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "Status",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "interval",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
           "type": "button",
           "platform": "restart",
           "name": "Restart",
+          "integrations": []
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
+          "name": "",
           "integrations": []
         }
       ],
@@ -2977,10 +3015,10 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
         "energy_management",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -2990,13 +3028,25 @@
       ],
       "components": [
         {
+          "type": "sensor",
+          "platform": "wifi_signal",
+          "name": "WiFi Signal",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
           "type": "binary_sensor",
           "platform": "status",
           "name": "Status",
           "integrations": []
         },
         {
-          "type": "logger",
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -3010,21 +3060,9 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "wifi_signal",
-          "name": "WiFi Signal",
           "integrations": []
         }
       ],
@@ -3032,9 +3070,9 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -3044,12 +3082,11 @@
       ],
       "components": [
         {
-          "type": "uart",
+          "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
-            "gpio",
-            "uart"
+            "mqtt"
           ]
         },
         {
@@ -3061,21 +3098,31 @@
           ]
         },
         {
-          "type": "mqtt",
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "uart",
           "platform": null,
           "name": "",
           "integrations": [
-            "mqtt"
+            "gpio",
+            "uart"
           ]
         },
         {
-          "type": "logger",
+          "type": "bluetooth_proxy",
           "platform": null,
           "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
+          "integrations": []
         },
         {
           "type": "ethernet",
@@ -3093,18 +3140,6 @@
           "integrations": [
             "api"
           ]
-        },
-        {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
         },
         {
           "type": "spi",
@@ -3116,10 +3151,13 @@
           ]
         },
         {
-          "type": "bluetooth_proxy",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [
@@ -3131,10 +3169,10 @@
       "external_libs": [],
       "complexity": "high",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
-        "home_automation",
         "energy_management",
+        "firmware_development",
+        "home_automation",
         "networking_protocols"
       ]
     },
@@ -3145,13 +3183,16 @@
       ],
       "components": [
         {
-          "type": "logger",
+          "type": "esp32_ble_tracker",
           "platform": null,
           "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
+          "integrations": []
+        },
+        {
+          "type": "bluetooth_proxy",
+          "platform": null,
+          "name": "",
+          "integrations": []
         },
         {
           "type": "ethernet",
@@ -3170,25 +3211,22 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
-        },
-        {
-          "type": "bluetooth_proxy",
-          "platform": null,
-          "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [],
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -3198,25 +3236,51 @@
       ],
       "components": [
         {
-          "type": "uart",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio",
-            "uart"
-          ]
-        },
-        {
-          "type": "uart",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio",
-            "uart"
-          ]
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
+          "integrations": []
         },
         {
           "type": "i2c",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "uart",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio",
+            "uart"
+          ]
+        },
+        {
+          "type": "uart",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio",
+            "uart"
+          ]
+        },
+        {
+          "type": "bluetooth_proxy",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ethernet",
           "platform": null,
           "name": "",
           "integrations": [
@@ -3230,17 +3294,11 @@
           "integrations": []
         },
         {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ethernet",
-          "platform": null,
-          "name": "",
+          "type": "button",
+          "platform": "restart",
+          "name": "Restart sensor controller",
           "integrations": [
-            "gpio"
+            "ble"
           ]
         },
         {
@@ -3252,27 +3310,7 @@
           ]
         },
         {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
-          "integrations": []
-        },
-        {
-          "type": "button",
-          "platform": "restart",
-          "name": "Restart sensor controller",
-          "integrations": [
-            "ble"
-          ]
-        },
-        {
-          "type": "bluetooth_proxy",
+          "type": "logger",
           "platform": null,
           "name": "",
           "integrations": []
@@ -3282,10 +3320,10 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
-        "home_automation",
-        "networking_protocols"
+        "networking_protocols",
+        "firmware_development",
+        "home_automation"
       ]
     },
     {
@@ -3295,23 +3333,6 @@
       ],
       "components": [
         {
-          "type": "uart",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio",
-            "uart"
-          ]
-        },
-        {
-          "type": "i2c",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "gpio"
-          ]
-        },
-        {
           "type": "mqtt",
           "platform": null,
           "name": "",
@@ -3320,28 +3341,11 @@
           ]
         },
         {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
-        },
-        {
-          "type": "ethernet",
+          "type": "i2c",
           "platform": null,
           "name": "",
           "integrations": [
             "gpio"
-          ]
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
-          "integrations": [
-            "api"
           ]
         },
         {
@@ -3357,6 +3361,37 @@
           "integrations": []
         },
         {
+          "type": "uart",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio",
+            "uart"
+          ]
+        },
+        {
+          "type": "bluetooth_proxy",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ethernet",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio"
+          ]
+        },
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
           "type": "spi",
           "platform": null,
           "name": "",
@@ -3366,10 +3401,13 @@
           ]
         },
         {
-          "type": "bluetooth_proxy",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [
@@ -3379,10 +3417,10 @@
       "external_libs": [],
       "complexity": "high",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
-        "home_automation",
         "energy_management",
+        "firmware_development",
+        "home_automation",
         "networking_protocols"
       ]
     },
@@ -3393,12 +3431,11 @@
       ],
       "components": [
         {
-          "type": "uart",
+          "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
-            "gpio",
-            "uart"
+            "mqtt"
           ]
         },
         {
@@ -3410,21 +3447,31 @@
           ]
         },
         {
-          "type": "mqtt",
+          "type": "esp32_ble_tracker",
+          "platform": null,
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "uart",
           "platform": null,
           "name": "",
           "integrations": [
-            "mqtt"
+            "gpio",
+            "uart"
           ]
         },
         {
-          "type": "logger",
+          "type": "bluetooth_proxy",
           "platform": null,
           "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
+          "integrations": []
         },
         {
           "type": "ethernet",
@@ -3444,18 +3491,6 @@
           ]
         },
         {
-          "type": "esp32_ble_tracker",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
-          "name": "",
-          "integrations": []
-        },
-        {
           "type": "spi",
           "platform": null,
           "name": "",
@@ -3465,10 +3500,13 @@
           ]
         },
         {
-          "type": "bluetooth_proxy",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [
@@ -3480,10 +3518,10 @@
       "external_libs": [],
       "complexity": "high",
       "focus_areas": [
-        "firmware_development",
         "environmental_monitoring",
-        "home_automation",
         "energy_management",
+        "firmware_development",
+        "home_automation",
         "networking_protocols"
       ]
     },
@@ -3492,20 +3530,12 @@
       "devices": [],
       "components": [
         {
-          "type": "remote_receiver",
+          "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
-            "gpio",
-            "mqtt",
-            "homeassistant"
+            "mqtt"
           ]
-        },
-        {
-          "type": "switch",
-          "platform": "template",
-          "name": "Raw RF learning",
-          "integrations": []
         },
         {
           "type": "script",
@@ -3513,15 +3543,7 @@
           "name": "",
           "integrations": [
             "gpio",
-            "mqtt",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
+            "homeassistant",
             "mqtt"
           ]
         },
@@ -3535,15 +3557,31 @@
           ]
         },
         {
+          "type": "remote_receiver",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio",
+            "homeassistant",
+            "mqtt"
+          ]
+        },
+        {
+          "type": "switch",
+          "platform": "template",
+          "name": "Raw RF learning",
+          "integrations": []
+        },
+        {
           "type": "api",
           "platform": null,
           "name": "",
           "integrations": [
+            "gpio",
+            "ble",
             "mqtt",
             "homeassistant",
-            "api",
-            "gpio",
-            "ble"
+            "api"
           ]
         }
       ],
@@ -3554,9 +3592,9 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -3566,15 +3604,9 @@
       ],
       "components": [
         {
-          "type": "binary_sensor",
-          "platform": "status",
-          "name": "API Connected",
-          "integrations": []
-        },
-        {
-          "type": "logger",
-          "platform": null,
-          "name": "",
+          "type": "sensor",
+          "platform": "uptime",
+          "name": "Uptime",
           "integrations": []
         },
         {
@@ -3584,6 +3616,12 @@
           "integrations": [
             "gpio"
           ]
+        },
+        {
+          "type": "binary_sensor",
+          "platform": "status",
+          "name": "API Connected",
+          "integrations": []
         },
         {
           "type": "api",
@@ -3603,9 +3641,9 @@
           ]
         },
         {
-          "type": "sensor",
-          "platform": "uptime",
-          "name": "Uptime",
+          "type": "logger",
+          "platform": null,
+          "name": "",
           "integrations": []
         }
       ],
@@ -3613,9 +3651,9 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -3633,12 +3671,10 @@
           ]
         },
         {
-          "type": "api",
-          "platform": null,
+          "type": "ota",
+          "platform": "esphome",
           "name": "",
-          "integrations": [
-            "api"
-          ]
+          "integrations": []
         },
         {
           "type": "wifi",
@@ -3647,10 +3683,12 @@
           "integrations": []
         },
         {
-          "type": "ota",
-          "platform": "esphome",
+          "type": "api",
+          "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "api"
+          ]
         },
         {
           "type": "spi",
@@ -3674,20 +3712,12 @@
       "devices": [],
       "components": [
         {
-          "type": "remote_receiver",
+          "type": "mqtt",
           "platform": null,
           "name": "",
           "integrations": [
-            "gpio",
-            "mqtt",
-            "homeassistant"
+            "mqtt"
           ]
-        },
-        {
-          "type": "switch",
-          "platform": "template",
-          "name": "Raw RF learning",
-          "integrations": []
         },
         {
           "type": "script",
@@ -3695,15 +3725,7 @@
           "name": "",
           "integrations": [
             "gpio",
-            "mqtt",
-            "homeassistant"
-          ]
-        },
-        {
-          "type": "mqtt",
-          "platform": null,
-          "name": "",
-          "integrations": [
+            "homeassistant",
             "mqtt"
           ]
         },
@@ -3716,15 +3738,31 @@
           ]
         },
         {
+          "type": "remote_receiver",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "gpio",
+            "homeassistant",
+            "mqtt"
+          ]
+        },
+        {
+          "type": "switch",
+          "platform": "template",
+          "name": "Raw RF learning",
+          "integrations": []
+        },
+        {
           "type": "api",
           "platform": null,
           "name": "",
           "integrations": [
+            "gpio",
+            "ble",
             "mqtt",
             "homeassistant",
-            "api",
-            "gpio",
-            "ble"
+            "api"
           ]
         }
       ],
@@ -3734,8 +3772,28 @@
       "external_libs": [],
       "complexity": "medium",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
-        "home_automation",
+        "home_automation"
+      ]
+    },
+    {
+      "file_path": "ha-homelab/rf-airbridge/packages/wake-on-lan-lg2.yaml",
+      "devices": [],
+      "components": [
+        {
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        }
+      ],
+      "custom_components": [],
+      "external_libs": [],
+      "complexity": "low",
+      "focus_areas": [
         "networking_protocols"
       ]
     },
@@ -3766,12 +3824,10 @@
       ],
       "components": [
         {
-          "type": "switch",
-          "platform": "template",
-          "name": "Pilot raw CSI stream",
-          "integrations": [
-            "ble"
-          ]
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
         },
         {
           "type": "light",
@@ -3783,17 +3839,11 @@
           ]
         },
         {
-          "type": "logger",
-          "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "api",
-          "platform": null,
-          "name": "",
+          "type": "switch",
+          "platform": "template",
+          "name": "Pilot raw CSI stream",
           "integrations": [
-            "api"
+            "ble"
           ]
         },
         {
@@ -3805,8 +3855,16 @@
           ]
         },
         {
-          "type": "ota",
-          "platform": "esphome",
+          "type": "api",
+          "platform": null,
+          "name": "",
+          "integrations": [
+            "api"
+          ]
+        },
+        {
+          "type": "logger",
+          "platform": null,
           "name": "",
           "integrations": []
         }
@@ -3817,10 +3875,10 @@
       "external_libs": [],
       "complexity": "low",
       "focus_areas": [
+        "networking_protocols",
         "firmware_development",
         "energy_management",
-        "home_automation",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -3830,7 +3888,13 @@
       ],
       "components": [
         {
-          "type": "logger",
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -3844,14 +3908,8 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
           "name": "",
           "integrations": []
         }
@@ -3872,7 +3930,13 @@
       ],
       "components": [
         {
-          "type": "logger",
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -3886,14 +3950,8 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
           "name": "",
           "integrations": []
         }
@@ -3914,13 +3972,10 @@
       ],
       "components": [
         {
-          "type": "logger",
+          "type": "wifi",
           "platform": null,
           "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
+          "integrations": []
         },
         {
           "type": "api",
@@ -3931,10 +3986,13 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [],
@@ -3953,13 +4011,10 @@
       ],
       "components": [
         {
-          "type": "logger",
+          "type": "wifi",
           "platform": null,
           "name": "",
-          "integrations": [
-            "homeassistant",
-            "uart"
-          ]
+          "integrations": []
         },
         {
           "type": "api",
@@ -3970,10 +4025,13 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
           "name": "",
-          "integrations": []
+          "integrations": [
+            "homeassistant",
+            "uart"
+          ]
         }
       ],
       "custom_components": [],
@@ -3990,7 +4048,13 @@
       "devices": [],
       "components": [
         {
-          "type": "logger",
+          "type": "ota",
+          "platform": "esphome",
+          "name": "",
+          "integrations": []
+        },
+        {
+          "type": "wifi",
           "platform": null,
           "name": "",
           "integrations": []
@@ -4004,14 +4068,8 @@
           ]
         },
         {
-          "type": "wifi",
+          "type": "logger",
           "platform": null,
-          "name": "",
-          "integrations": []
-        },
-        {
-          "type": "ota",
-          "platform": "esphome",
           "name": "",
           "integrations": []
         }
@@ -4137,11 +4195,19 @@
               "type": "property"
             },
             {
+              "name": "/Info/TelemetrySchema",
+              "type": "property"
+            },
+            {
               "name": "/Info/TelemetrySource",
               "type": "property"
             },
             {
               "name": "/Info/TelemetryState",
+              "type": "property"
+            },
+            {
+              "name": "/Info/TopologyId",
               "type": "property"
             },
             {
@@ -4187,14 +4253,6 @@
             {
               "name": "/System/MaxTemperatureCellId",
               "type": "property"
-            },
-            {
-              "name": "/System/MaxVoltageCellId",
-              "type": "property"
-            },
-            {
-              "name": "/System/MinCellTemperature",
-              "type": "property"
             }
           ]
         }
@@ -4225,8 +4283,10 @@
         "/Info/MaxDischargeCurrent",
         "/Info/MissingData",
         "/Info/TelemetryPartial",
+        "/Info/TelemetrySchema",
         "/Info/TelemetrySource",
         "/Info/TelemetryState",
+        "/Info/TopologyId",
         "/InstalledCapacity",
         "/Io/AllowToBalance",
         "/Io/AllowToCharge",
@@ -4256,9 +4316,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -4352,9 +4413,46 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
+        "energy_management",
+        "networking_protocols"
+      ]
+    },
+    {
+      "service_name": "com.victronenergy.battery.",
+      "interfaces": [
+        {
+          "name": "com.victronenergy.battery.",
+          "path": "/DeviceInstance",
+          "methods": [],
+          "signals": [],
+          "properties": [
+            {
+              "name": "/DeviceInstance",
+              "type": "property"
+            },
+            {
+              "name": "/service",
+              "type": "property"
+            },
+            {
+              "name": "/var/log",
+              "type": "property"
+            }
+          ]
+        }
+      ],
+      "object_paths": [
+        "/DeviceInstance",
+        "/service",
+        "/var/log"
+      ],
+      "complexity": "low",
+      "focus_areas": [
+        "battery_management",
         "networking_protocols",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -4493,9 +4591,9 @@
       ],
       "complexity": "medium",
       "focus_areas": [
-        "home_automation",
+        "networking_protocols",
         "energy_management",
-        "networking_protocols"
+        "home_automation"
       ]
     },
     {
@@ -4529,9 +4627,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -4560,9 +4658,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -4591,8 +4689,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -4626,10 +4724,10 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -4688,8 +4786,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -4743,8 +4841,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -4788,8 +4886,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -4828,8 +4926,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -5038,10 +5136,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -5070,8 +5168,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -5160,8 +5258,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -5259,9 +5357,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "networking_protocols",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "networking_protocols"
       ]
     },
     {
@@ -5529,8 +5627,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -5564,8 +5662,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
-        "energy_management"
+        "energy_management",
+        "home_automation"
       ]
     },
     {
@@ -5604,9 +5702,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -5760,9 +5858,9 @@
       ],
       "complexity": "medium",
       "focus_areas": [
-        "networking_protocols",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "networking_protocols"
       ]
     },
     {
@@ -6009,10 +6107,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -6036,8 +6134,8 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "energy_management",
-        "battery_management"
+        "battery_management",
+        "energy_management"
       ]
     },
     {
@@ -6071,10 +6169,10 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -6198,9 +6296,9 @@
       ],
       "complexity": "medium",
       "focus_areas": [
-        "networking_protocols",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "networking_protocols"
       ]
     },
     {
@@ -6443,9 +6541,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "networking_protocols",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "networking_protocols"
       ]
     },
     {
@@ -6479,10 +6577,10 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -6541,10 +6639,10 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -7017,9 +7115,9 @@
       ],
       "complexity": "medium",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -7043,9 +7141,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -7264,10 +7362,10 @@
       ],
       "complexity": "medium",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -7318,10 +7416,10 @@
       ],
       "complexity": "low",
       "focus_areas": [
+        "battery_management",
         "networking_protocols",
-        "home_automation",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     },
     {
@@ -7355,9 +7453,9 @@
       ],
       "complexity": "low",
       "focus_areas": [
-        "home_automation",
+        "battery_management",
         "energy_management",
-        "battery_management"
+        "home_automation"
       ]
     }
   ]
