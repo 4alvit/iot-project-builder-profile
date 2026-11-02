@@ -104,7 +104,13 @@ must keep every section accessible.
 
 The existing required CI workflow calls the shared TypeScript browser adapter in
 browser-only mode. The five required targets are current Chromium, Firefox and
-WebKit on Linux, Chromium on Windows, and WebKit on macOS. Failures propagate to
+WebKit on Linux, Chromium on Windows, and WebKit on macOS 15 Intel. The
+standard `macos-15-intel` runner preserves the OS, WebKit version and required
+scenarios when hosted ARM capacity is unavailable; this row proves x64 execution,
+not ARM execution. The ten extended macOS rows remain unchanged. GitHub documents
+this standard public-repository runner in its
+[runner reference](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job).
+Failures propagate to
 `CI gate`. The separate locked inventory also records historical and branded
 targets; a baseline run does **not** claim that all 35 targets ran. To exercise
 the complete inventory, run **Actions → CI → Run workflow** with
@@ -132,6 +138,8 @@ Browser jobs install a minimal, hash-locked renderer dependency set from
 `.github/requirements-browser.txt`. Update it alongside the corresponding five
 packages in `uv.lock`. Advance the isolated browser generations and their inventory
 together using the toolkit's `prepare_browser_compatibility.py` generator.
+Preserve the explicit required Intel row after inventory regeneration;
+`tests/test_browser_policy.py` checks this selection and the separate extended rows.
 
 ## Troubleshooting
 
