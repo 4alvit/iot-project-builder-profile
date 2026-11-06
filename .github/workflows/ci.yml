@@ -4,7 +4,7 @@ permissions:
 jobs:
   browsers:
     name: Profile browser acceptance
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@6f0bf114a398f9c2b7e5407042c3828a8cc28b40
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@6f0bf114a398f9c2b7e5407042c3828a8cc28b40 # main
     permissions:
       contents: read
       actions: read

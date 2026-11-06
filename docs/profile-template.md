@@ -135,8 +135,21 @@ PROFILE_PLAYWRIGHT_MODULE="$PWD/tools/browser-compatibility/playwright-1-64-0/no
 ```
 
 Browser jobs install a minimal, hash-locked renderer dependency set from
-`.github/requirements-browser.txt`. Update it alongside the corresponding five
-packages in `uv.lock`. Advance the isolated browser generations and their inventory
+`.github/requirements-browser.txt`. The root `uv.lock` supplies the exact
+versions and hashes for this five-package closure; `.github/requirements-browser.in`
+names only its Jinja2 and Plotly entry points. Renovate regenerates this export
+after updating the root project/lock in the same update, using only literal
+allowlisted uv commands with shell execution disabled. With uv 0.13.4, run:
+
+```sh
+uv export --locked --offline --no-build --no-dev --no-emit-project --format requirements-txt --output-file .renovate-constraints.txt
+uv pip compile .github/requirements-browser.in --constraint .renovate-constraints.txt --python-version 3.12 --universal --no-build --generate-hashes --no-header --no-annotate --output-file .github/requirements-browser.txt
+```
+
+`--locked --offline --no-build` rejects stale project/lock pairs and build hooks;
+the constrained compile also forbids source builds. Do not commit temporary
+`.renovate-constraints.txt`. Review both lock files and run the browser checks
+above. Advance the isolated browser generations and their inventory
 together using the toolkit's `prepare_browser_compatibility.py` generator.
 Preserve the explicit required Intel row after inventory regeneration;
 `tests/test_browser_policy.py` checks this selection and the separate extended rows.
