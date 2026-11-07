@@ -1,13 +1,78 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>victron-venus/venus-os-ci-toolkit:renovate-ci"
+    "local>victron-venus/venus-os-ci-toolkit:renovate-fleet"
   ],
   "packageRules": [
     {
-      "matchFileNames": ["tools/browser-compatibility/**"],
+      "matchFileNames": [
+        "tools/browser-compatibility/**"
+      ],
       "enabled": false,
       "description": "Advance the reviewed browser generations together with their compatibility inventory."
+    },
+    {
+      "description": "Regenerate coupled exports after the authoritative uv project and lock update.",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchFileNames": [
+        "pyproject.toml"
+      ],
+      "constraints": {
+        "uv": "0.13.4"
+      },
+      "postUpgradeTasks": {
+        "commands": [
+          "uv export --locked --offline --no-build --no-dev --no-emit-project --format requirements-txt --output-file .renovate-constraints.txt",
+          "uv pip compile .github/requirements-browser.in --constraint .renovate-constraints.txt --python-version 3.12 --universal --no-build --generate-hashes --no-header --no-annotate --output-file .github/requirements-browser.txt"
+        ],
+        "fileFilters": [
+          ".github/requirements-browser.txt"
+        ],
+        "executionMode": "update",
+        "workingDirTemplate": ".",
+        "installTools": {
+          "uv": {}
+        }
+      }
     }
-  ]
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "custom.regex",
+    "custom.jsonata",
+    "pip_requirements",
+    "pip-compile",
+    "pep621"
+  ],
+  "pip_requirements": {
+    "managerFilePatterns": [
+      "/(^|/)requirements[^/]*\\.(txt|pip)$/"
+    ],
+    "ignorePaths": [
+      "**/vendor/**",
+      "**/node_modules/**",
+      "**/fixtures/**",
+      ".github/requirements-browser.txt",
+      "tools/browser-compatibility/**",
+      "pyproject.toml",
+      "uv.lock",
+      ".github/requirements-fuzz.txt",
+      ".github/requirements-fuzz.in"
+    ]
+  },
+  "ignorePaths": [
+    "**/vendor/**",
+    "**/node_modules/**",
+    "**/fixtures/**",
+    ".github/requirements-browser.txt",
+    "tools/browser-compatibility/**",
+    ".github/requirements-browser.in"
+  ],
+  "pip-compile": {
+    "managerFilePatterns": [
+      "/^\\.github/requirements\\-fuzz\\.txt$/"
+    ]
+  }
 }

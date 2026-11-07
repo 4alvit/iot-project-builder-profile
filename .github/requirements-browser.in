@@ -1,0 +1,3 @@
+# Minimal renderer closure; versions and hashes are constrained by the authoritative uv.lock export.
+jinja2
+plotly

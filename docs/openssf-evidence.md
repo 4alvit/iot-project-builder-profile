@@ -20,7 +20,7 @@ The project is developed publicly in [Git](https://github.com/4alvit/iot-project
 - [Test suite](../tests) and [CI workflows](../.github/workflows)
 - [Local CI entry point](../scripts/ci.sh)
 - [CodeQL analysis](../.github/workflows/codeql.yml)
-- [Dependency update configuration](../.github/dependabot.yml)
+- [Dependency update configuration](../renovate.json)
 
 The gate runs Ruff, formatting, mypy, test-readiness checks and the application test suite. Tests cover data processing, rendering and publication helpers. Use mocked GitHub/LLM responses; do not publish an output or contact a paid provider as part of a unit test.
 
