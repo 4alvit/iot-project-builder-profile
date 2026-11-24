@@ -1,7 +1,29 @@
 # Changelog
 
-## [0.1.9] - Unreleased
+## [0.1.10] - Unreleased
 
+### Changed
+
+- keep local instruction files out of git.
+- add a navigation index for docs/.
+- isolate every auto-merge base edit (#172).
+- preserve merge identity and withdrawn auto-merge requests (#171).
+- skip heavy qualification for ordinary documentation (#165).
+- Complete dependency update migration to Renovate (#164).
+- recheck automatic publication source (#161).
+- reconcile lost creation responses (#160).
+- harden release reads and rerun validation (#157).
+- harden release reads and rerun validation (#156).
+
+### Upgrade
+
+Recreate the documented locked environment from this release. Existing profile inputs and custom templates remain supported; no data migration is required. Profile generation and external publication remain separate explicit operations.
+
+### Security
+
+Required source, dependency and release checks remain enabled. This release refreshes the validated dependency closure; it does not establish acceptance of live provider credentials, external services or profile publication.
+
+## [0.1.9] - 2026-11-02
 ### Changed
 
 - Update the locked Pydantic runtime to 2.14.2 and pydantic-core to 2.50.2; refresh pytest, mypy and PyYAML type stubs with verified package hashes.
