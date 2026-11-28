@@ -75,8 +75,17 @@ do not make access to evidence depend on animation or hover.
 Visible repository cards request only `GET https://api.github.com/repos/OWNER/REPO`.
 Requests contain no token, omit credentials and do not send the page referrer.
 Responses must identify the expected public repository. No private-repository API,
-analytics endpoint, third-party script, external font or gateway is involved.
-GitHub still receives a normal public request from the reader's network.
+analytics endpoint of our own, external font or gateway is involved. The only
+third-party script is the cookieless Cloudflare Web Analytics beacon described
+below. GitHub still receives a normal public request from the reader's network.
+
+## Page views
+
+The generated pages load Cloudflare Web Analytics from
+`static.cloudflareinsights.com`. It counts aggregate page views only: no
+cookies, no cross-site identifier and no visitor profile. The policy therefore
+allowlists that one origin next to the hash-pinned inline script, and permits
+`https://cloudflareinsights.com` in `connect-src` for the report request.
 
 The controller makes at most two concurrent requests, combines duplicate cards,
 uses a twenty-minute session cache, and stops further requests after HTTP 403 or

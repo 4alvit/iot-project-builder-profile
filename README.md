@@ -60,7 +60,8 @@ navigation, layered analysis cards, scroll reveals and pointer tilt enhance the
 report. The hosted site loads its overview, repository catalogue and evidence
 pages without a full reload; ordinary links also work without JavaScript.
 Repository cards can fetch current public GitHub metadata, labelled separately
-from the dated analysis. No browser token, external script or font is needed.
+from the dated analysis. No browser token, external font or third-party script
+other than the cookieless Cloudflare Web Analytics beacon is needed.
 Source records remain readable offline, and motion respects the reader's settings.
 
 The presentation is maintained in `iot_profile_builder/output/profile_page.py`

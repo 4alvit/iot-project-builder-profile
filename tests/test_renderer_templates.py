@@ -31,6 +31,10 @@ class ScriptPolicyParser(HTMLParser):
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = dict(attrs)
         if tag == "script":
+            # Only inline bodies are hash-pinned; src-bearing scripts are a
+            # separate allowlisted origin and carry no hash obligation.
+            if attributes.get("src"):
+                return
             self.scripts.append("")
             self.in_script = True
         if (

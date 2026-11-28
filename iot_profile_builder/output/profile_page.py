@@ -1359,6 +1359,7 @@ PROFILE_HTML = (
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0e13">
 <meta http-equiv="Content-Security-Policy" content="{{ content_security_policy|default("default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.github.com; base-uri 'none'; object-src 'none'; form-action 'none'") }}">
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e8c1374356c142419a7b6cf4c756822e"}'></script>
 <meta name="description" content="Explore {{ profile.username }}'s IoT engineering profile: public repository signals, focus areas, skills and source evidence. Generated {{ profile.generated_at.strftime('%B %d, %Y') }}.">
 <title>{{ profile.username }} — {% if current_page == 'repositories' %}Repositories{% elif current_page == 'evidence' %}Source Evidence{% else %}IoT Engineering Profile{% endif %}</title>
 <style>"""

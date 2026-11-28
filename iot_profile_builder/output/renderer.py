@@ -178,9 +178,11 @@ class ProfileRenderer:
         script_digest = b64encode(sha256(PROFILE_SCRIPT.encode("utf-8")).digest()).decode("ascii")
         policy = (
             "default-src 'none'; "
-            f"script-src 'sha256-{script_digest}'; "
+            # The inline enhancement script stays pinned by digest; the analytics
+            # beacon is a separate external origin, so it is allowlisted by host.
+            f"script-src 'sha256-{script_digest}' https://static.cloudflareinsights.com; "
             "style-src 'unsafe-inline'; img-src 'self'; "
-            "connect-src 'self' https://api.github.com; "
+            "connect-src 'self' https://api.github.com https://cloudflareinsights.com; "
             "base-uri 'none'; object-src 'none'; form-action 'none'"
         )
         content = template.render(
