@@ -60,6 +60,11 @@ async function check(name, browser, run) {
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   await context.route('https://api.github.com/**', async route => { requests.push(route.request()); await route.fulfill({ json: api(route.request().url().split('/').at(-1)) }); });
+  // Analytics is deliberately network-free in tests: the beacon and its report
+  // endpoint are stubbed so acceptance runs never depend on a third party, and
+  // an unreachable collector cannot surface as a CORS console error.
+  await context.route('https://static.cloudflareinsights.com/**', route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  await context.route('https://cloudflareinsights.com/**', route => route.fulfill({ status: 204, body: '' }));
   try { await run({ page, context, requests }); assert.deepEqual(errors, [], 'No uncaught browser errors');
     if (process.env.CI_BROWSER_DIAGNOSTICS && consoleErrors.length) {
       await mkdir(process.env.CI_BROWSER_DIAGNOSTICS, { recursive: true });
